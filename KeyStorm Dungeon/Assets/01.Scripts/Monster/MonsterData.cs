@@ -5,9 +5,9 @@ using UnityEngine;
 public class MonsterData : ScriptableObject
 {
     [Header("몬스터 정보")]
-    public GameObject monsterPrefab;
     public CharacterData characterData;
     public float detectRange;   // 플레이어 탐지 거리
+    public float attackRange;   // 공격 사거리
     public int tier;            // 몬스터의 등급
     public float targetDistance;// 플레이어와의 거리
     public float shotSpeed;     // 투사체 속도

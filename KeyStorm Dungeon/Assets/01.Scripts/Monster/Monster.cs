@@ -4,16 +4,32 @@ using UnityEngine;
 
 public class Monster : Character
 {
+    protected CharacterStateManager<Monster> monsterStateManager;
     [SerializeField] private MonsterData _monsterData;
     public MonsterData MonsterData => _monsterData;
-    protected CharacterStateManager<Monster> monsterStateManager;
+    private Rigidbody2D monsterRb;
+    public Rigidbody2D MonsterRb => monsterRb;
+    [SerializeField] private Animator animator;
+    public Animator Animator => animator;
 
+    public MonsterIdleState IdleState { get; private set; }
+    public MonsterMoveState MoveState { get; private set; }
+    public MonsterAttackState AttackState { get; private set; }
+    public MonsterDieState DieState { get; private set; }
+
+    public GameObject playerGO {  get; private set; }
+    public Transform playerTransform { get; private set; }
+    public bool IsMove {  get; private set; }
 
     [HideInInspector] public float CurrentAttackCooldown { get; private set; }
 
 
     protected override void Awake()
     {
+        if (monsterRb == null)
+        {
+            monsterRb = GetComponent<Rigidbody2D>();
+        }
         monsterStateManager = new CharacterStateManager<Monster>(this);
 
         if (_monsterData != null)
@@ -29,7 +45,15 @@ public class Monster : Character
 
     private void Start()
     {
-        /*GameObject playerGO = GameManager.Instance.player;
+        IdleState = new MonsterIdleState(this, monsterStateManager);
+        MoveState = new MonsterMoveState(this, monsterStateManager);
+        AttackState = new MonsterAttackState(this, monsterStateManager);
+        DieState = new MonsterDieState(this, monsterStateManager);
+
+        playerGO = GameObject.FindGameObjectWithTag("Player");
+
+
+        //GameObject playerGO = GameManager.Instance.player;
         
         if (playerGO == null)
         {
@@ -37,15 +61,15 @@ public class Monster : Character
         }
         else
         {
-            Transform playerTrasnfrom = playerGO.transform;
-            monsterStateManager.ChangeState(new MonsterMoveState(this, playerTrasnfrom));
-        }*/
+            playerTransform = playerGO.transform;
+            monsterStateManager.ChangeState(IdleState);
+        }
 
     }
 
     protected override void Update()
     {
-        monsterStateManager?.Update();
+        monsterStateManager.Update();
 
         if (CurrentAttackCooldown > 0f)
         {
@@ -56,7 +80,17 @@ public class Monster : Character
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
-        monsterStateManager?.FixedUpdate();
+        monsterStateManager.FixedUpdate();
+
+        float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
+        if (distanceToPlayer <= MonsterData.detectRange)
+        {
+            IsMove = true;
+        }
+        else
+        {
+            IsMove = false;
+        }
     }
 
     public override void Attack(Character character)
@@ -83,6 +117,6 @@ public class Monster : Character
     public override void Die()
     {
         base.Die();
-        monsterStateManager.ChangeState(dieState);
+        monsterStateManager.ChangeState(DieState);
     }
 }
