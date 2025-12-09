@@ -1,17 +1,12 @@
 using UnityEngine;
 
-public enum MonsterType
-{
-    Melee,
-    Range,
-    Boss,
-}
-
+[System.Serializable]
 [CreateAssetMenu(fileName = "Monster", menuName = "NewMonsterData")]
 public class MonsterData : ScriptableObject
 {
     [Header("몬스터 정보")]
-    // public CharacterData characterData;
+    public GameObject monsterPrefab;
+    public CharacterData characterData;
     public float detectRange;   // 플레이어 탐지 거리
     public int tier;            // 몬스터의 등급
     public float targetDistance;// 플레이어와의 거리
