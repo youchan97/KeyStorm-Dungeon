@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RangerMonster : MonoBehaviour
+public class RangerMonster : Monster
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private GameObject projectilePrefab;
 
-    // Update is called once per frame
-    void Update()
+    public override void Attack(Character character)
     {
-        
+        if (character == null) return;
+
+        if (projectilePrefab != null)
+        {
+            
+        }
+        Debug.Log($"투사체 발사");
+        //투사체 발사 로직
     }
 }

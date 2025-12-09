@@ -11,7 +11,7 @@ public class MonsterData : ScriptableObject
     public int tier;            // 몬스터의 등급
     public float targetDistance;// 플레이어와의 거리
     public float shotSpeed;     // 투사체 속도
-    public float attackSpeed;   // 공격과 공격간의 속도
+    public float attackSpeed;   // 공격과 공격 사이의 속도
 
     [Header("골드 드랍 설정")]
     public int dropGold;

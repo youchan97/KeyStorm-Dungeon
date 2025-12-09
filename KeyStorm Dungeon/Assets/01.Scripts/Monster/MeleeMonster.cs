@@ -2,17 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeMonster : MonoBehaviour
+public class MeleeMonster : Monster
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        
+        GameObject currentGameObject = collision.gameObject;
+
+        if (CurrentAttackCooldown <= 0f)
+        {
+            if (currentGameObject.CompareTag("Player"))
+            {
+                Player player = currentGameObject.GetComponent<Player>();
+
+                if (player != null)
+                {
+                    Attack(player);
+                    ResetAttackCooldown();
+                }
+            }
+
+        }
     }
 }
