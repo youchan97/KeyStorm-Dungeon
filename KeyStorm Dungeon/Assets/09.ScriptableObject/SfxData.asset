@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a77785fa688a51459220841a14669ec, type: 3}
+  m_Name: SfxData
+  m_EditorClassIdentifier: 
+  audioClips:
+  - audioKey: Shot
+    audioClip: {fileID: 8300000, guid: d4c99efa088e49143b4f006b924de3d5, type: 3}
+  - audioKey: Damaged
+    audioClip: {fileID: 8300000, guid: f9f34e5152e05a94b901cdc037fa118c, type: 3}
+  - audioKey: Coin
+    audioClip: {fileID: 8300000, guid: 681cb5878089c5e4eafd9c6cb1264194, type: 3}
