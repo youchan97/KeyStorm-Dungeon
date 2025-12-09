@@ -13,6 +13,7 @@ public class Player : Character
     bool isMove;
 
     #region Property
+    public PlayerAttack PlayerAttack { get; private set; }
     public bool IsMove { get => isMove; private set => isMove = value; }
     public PlayerIdleState IdleState { get; private set; }
     public PlayerMoveState MoveState { get; private set; }
@@ -25,6 +26,7 @@ public class Player : Character
     protected override void Awake()
     {
         playerStateManager = new CharacterStateManager<Player>(this);
+        PlayerAttack = new PlayerAttack();
     }
 
 
@@ -66,6 +68,7 @@ public class Player : Character
     void InitData()
     {
         InitCharData(data.characterData);
+        PlayerAttack.InitPlayerAttack(this, data);
     }
 
     void InitActions()
@@ -81,11 +84,6 @@ public class Player : Character
     void PlayerMove()
     {
         IsMove = PlayerController.MoveVec != Vector2.zero;
-    }
-
-    void PlayerStop()
-    {
-        IsMove = false;
     }
 
     public override void Die()
