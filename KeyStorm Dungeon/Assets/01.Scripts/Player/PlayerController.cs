@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
     void InitAction()
     {
         moveAction.performed += MovePerformed;
-        moveAction.canceled -= MoveCanceled;
+        moveAction.canceled += MoveCanceled;
         shootAction.performed += ShootPerformed;
         bombAction.performed += BombPerformed;
     }
@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
     void RemoveAction()
     {
         moveAction.performed -= MovePerformed;
+        moveAction.canceled -= MoveCanceled;
         shootAction.performed-= ShootPerformed;
         bombAction.performed -= BombPerformed;
     }
@@ -89,6 +90,7 @@ public class PlayerController : MonoBehaviour
     void MoveCanceled(InputAction.CallbackContext context)
     {
         moveVec = Vector2.zero;
+        OnMove?.Invoke();
     }
 
     void ShootPerformed(InputAction.CallbackContext context)
