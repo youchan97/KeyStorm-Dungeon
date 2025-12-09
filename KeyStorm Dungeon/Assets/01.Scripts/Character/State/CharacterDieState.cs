@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterDieState : CharacterState
+public class CharacterDieState<T> : CharacterState<T> where T : Character
 {
-    public CharacterDieState(Character character, CharacterStateManager stateManager) : base(character, stateManager)
+    public CharacterDieState(T character, CharacterStateManager<T> stateManager) : base(character, stateManager)
     {
     }
-
-
 }

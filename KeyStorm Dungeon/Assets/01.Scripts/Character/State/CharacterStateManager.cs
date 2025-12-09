@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterStateManager
+public class CharacterStateManager<T> where T : Character
 {
-    private CharacterState curState;
+    private CharacterState<T> curState;
     private Character character;
 
     public CharacterStateManager(Character character)
@@ -12,7 +12,7 @@ public class CharacterStateManager
         this.character = character;
     }
 
-    public void ChangeState(CharacterState newState)
+    public void ChangeState(CharacterState<T> newState)
     {
         if (curState == newState)
             return;

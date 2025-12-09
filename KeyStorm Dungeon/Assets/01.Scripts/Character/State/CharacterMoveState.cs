@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterMoveState : CharacterState
+public class CharacterMoveState<T> : CharacterState<T> where T : Character
 {
-    public CharacterMoveState(Character character, CharacterStateManager stateManager) : base(character, stateManager)
+    public CharacterMoveState(T character, CharacterStateManager<T> stateManager) : base(character, stateManager)
     {
     }
 
