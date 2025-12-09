@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class GameManager : SingletonManager<GameManager>
 {
-    //°ÔÀÓ½ÃÀÛ, ÀÏ½ÃÁ¤Áö, °ÔÀÓ Á¾·á °ü·Ã, ½ºÅ×ÀÌÁö °ü·Ã Á¤º¸ Àü´Ş
-    public bool isStart;
-    public bool isPaused;
+    //ê²Œì„ì‹œì‘, ì¼ì‹œì •ì§€, ê²Œì„ ì¢…ë£Œ ê´€ë ¨, ìŠ¤í…Œì´ì§€ ê´€ë ¨ ì •ë³´ ì „ë‹¬
+    private bool isStart;
+    private bool isPaused;
 
     public void GameStart()
     {

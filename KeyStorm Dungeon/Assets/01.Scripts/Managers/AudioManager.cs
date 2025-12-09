@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,16 +11,19 @@ public class AudioManager : SingletonManager<AudioManager>
     Dictionary<string, AudioClip> bgmClips = new Dictionary<string, AudioClip>();
     Dictionary<string, AudioClip> sfxClips = new Dictionary<string, AudioClip>();
 
-
+    SfxPoolManager sfxPoolManager;
 
     protected override void Awake()
     {
         base.Awake();
+        //saveLoadManager = SaveLoadManager.Instance;
         initAudioDic();
 
     }
     private void Start()
     {
+        //saveLoadManager = SaveLoadManager.Instance;
+        sfxPoolManager = SfxPoolManager.Instance;
         LoadVolume();
     }
 
@@ -40,7 +42,7 @@ public class AudioManager : SingletonManager<AudioManager>
     }
     void LoadVolume() //볼륨값
     {
-
+        //bgmAudio.volume = saveLoadManager.datas.soundData.bgmVolume;
     }
 
     public void PlayBgm(string audioName)
@@ -50,20 +52,22 @@ public class AudioManager : SingletonManager<AudioManager>
         bgmAudio.Play();
     }
 
-    public void PlayEffect(string audioName)
+    public void PlayEffect(string audioName, float volume = 0.5f)
     {
         if (!sfxClips.ContainsKey(audioName)) return;
         AudioClip audioClip = sfxClips[audioName];
-        
+        var sfx = sfxPoolManager.GetObject();
+        sfx.PlaySfx(audioClip, volume);
     }
 
     public void UpdateBgmVolume(float value)
     {
         bgmAudio.volume = value;
+        //saveLoadManager.datas.soundData.bgmVolume = value;
     }
 
     public void UpdateEffectVolume(float value)
     {
-
+        //saveLoadManager.datas.soundData.sfxVolume = value;
     }
 }

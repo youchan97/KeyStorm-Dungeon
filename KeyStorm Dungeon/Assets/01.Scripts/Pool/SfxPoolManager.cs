@@ -24,11 +24,11 @@ public class SfxPoolManager : SingletonManager<SfxPoolManager>
 
     public SfxPool GetObject()
     {
-        return pool.Get();
+        return SfxPool.Get();
     }
     public void ReturnObject(SfxPool sfx)
     {
-        pool.Release(sfx);
+        SfxPool.Release(sfx);
     }
 
     private SfxPool CreateSfx()
