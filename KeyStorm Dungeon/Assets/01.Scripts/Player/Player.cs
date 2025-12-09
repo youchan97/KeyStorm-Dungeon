@@ -10,6 +10,9 @@ public class Player : Character
     [SerializeField] Rigidbody2D playerRb;
     [SerializeField] Animator anim;
 
+    [SerializeField] GameObject bullet;
+    [SerializeField] GameObject sBullet;
+
     bool isMove;
 
     #region Property
@@ -21,6 +24,8 @@ public class Player : Character
     public PlayerController PlayerController { get => playerController; private set => playerController = value; }
     public Rigidbody2D PlayerRb { get => playerRb; private set => playerRb = value; }
     public Animator Anim { get => anim; private set => anim = value; }
+    public GameObject Bullet { get => bullet;}
+    public GameObject SBullet { get => sBullet;}
     #endregion
 
     protected override void Awake()
@@ -74,16 +79,23 @@ public class Player : Character
     void InitActions()
     {
         PlayerController.OnMove += PlayerMove;
+        playerController.OnShoot += Shoot;
     }
 
     void RemoveActions()
     {
         PlayerController.OnMove -= PlayerMove;
+        playerController.OnShoot -= Shoot;
     }
 
     void PlayerMove()
     {
         IsMove = PlayerController.MoveVec != Vector2.zero;
+    }
+
+    void Shoot()
+    {
+        PlayerAttack.Shoot(playerController.KeyName);
     }
 
     public override void Die()
