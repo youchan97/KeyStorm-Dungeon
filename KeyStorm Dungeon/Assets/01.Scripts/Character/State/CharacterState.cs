@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class CharacterState
+public abstract class CharacterState<T> where T : Character
 {
-    protected Character character;
-    protected CharacterStateManager stateManager;
+    protected T character;
+    protected CharacterStateManager<T> stateManager;
 
-    public CharacterState(Character character, CharacterStateManager stateManager)
+    public CharacterState(T character, CharacterStateManager<T> stateManager)
     {
         this.character = character;
         this.stateManager = stateManager;

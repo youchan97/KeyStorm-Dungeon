@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    CharacterStateManager characterStateManager;
-
-
     #region Property
     public string CharName {  get; protected set; }
     public int Id { get; protected set; }
@@ -16,21 +13,24 @@ public class Character : MonoBehaviour
     public float MoveSpeed { get; protected set; }
     #endregion
 
-    private void Awake()
+    protected virtual void Awake()
     {
-        characterStateManager = new CharacterStateManager(this);
     }
 
 
-    private void Update()
+    protected virtual void Update()
     {
-        characterStateManager?.Update();
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
-        characterStateManager?.FixedUpdate();
     }
+
+    /// <summary>
+    /// 상태 초기화
+    /// </summary>
+    protected virtual void InitState() { }
+
     /// <summary>
     /// 캐릭터 공통 정보 초기화
     /// </summary>
