@@ -8,7 +8,17 @@ public class PlayerIdleState : CharacterIdleState<Player>
     {
     }
 
+    public override void EnterState()
+    {
+        Debug.Log("안녕");
+    }
+
     public override void UpdateState()
     {
+        if (character.IsMove)
+        {
+            stateManager.ChangeState(character.MoveState);
+            return;
+        }
     }
 }
