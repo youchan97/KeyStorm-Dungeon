@@ -15,7 +15,7 @@ public class SfxPoolManager : SingletonManager<SfxPoolManager>
             {
                 pool = new ObjectPool<SfxPool>(
                     CreateSfx, OnTakeFromPool, OnReturnToPool, null, 
-                    defaultCapacity: poolSize
+                    maxSize: poolSize
                     );
             }
             return pool;
