@@ -46,9 +46,9 @@ public class MonsterMoveState : CharacterMoveState<Monster>
             return;
         }
 
-        UpdateMovement();
-
         float distanceToPlayer = Vector2.Distance(character.transform.position, playerTransform.position);
+
+        UpdateMovement(distanceToPlayer);
 
         if (character.CurrentAttackCooldown <= 0f)
         {
@@ -81,9 +81,17 @@ public class MonsterMoveState : CharacterMoveState<Monster>
         return true;
     }
 
-    private void UpdateMovement()
+    private void UpdateMovement(float distanceToPlayer)
     {
         Vector2 direction = (playerTransform.position - character.transform.position).normalized;
-        rb.velocity = direction * character.MoveSpeed;
+        float currentMoveSpeed = character.MoveSpeed;
+
+        if (distanceToPlayer <= character.MonsterData.attackRange)
+        {
+            float clampedDistance = Mathf.Clamp01(distanceToPlayer / character.MonsterData.attackRange);
+            currentMoveSpeed *= clampedDistance;
+        }
+
+        rb.velocity = direction * currentMoveSpeed;
     }
 }

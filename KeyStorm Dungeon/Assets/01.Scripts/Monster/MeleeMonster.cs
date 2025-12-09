@@ -18,6 +18,7 @@ public class MeleeMonster : Monster
                 if (player != null)
                 {
                     Attack(player);
+                    Debug.Log("공격!");
                     ResetAttackCooldown();
                 }
             }

@@ -17,11 +17,11 @@ MonoBehaviour:
     id: 0
     maxHp: 100
     damage: 10
-    moveSpeed: 3
-  detectRange: 10
-  attackRange: 0.1
+    moveSpeed: 2
+  detectRange: 5
+  attackRange: 1
   tier: 1
-  targetDistance: 0
+  targetDistance: 0.85
   shotSpeed: 0
   attackSpeed: 2
   dropGold: 0
