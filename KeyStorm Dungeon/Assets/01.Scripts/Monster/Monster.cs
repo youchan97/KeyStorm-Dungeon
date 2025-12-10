@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Monster : Character
 {
-    protected CharacterStateManager<Monster> monsterStateManager;
+    public CharacterStateManager<Monster> monsterStateManager { get; protected set; }
     [SerializeField] private MonsterData _monsterData;
     public MonsterData MonsterData => _monsterData;
     private Rigidbody2D monsterRb;

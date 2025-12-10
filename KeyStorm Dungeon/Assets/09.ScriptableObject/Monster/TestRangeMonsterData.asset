@@ -19,7 +19,7 @@ MonoBehaviour:
     damage: 5
     moveSpeed: 1
   detectRange: 7
-  attackRange: 4
+  attackRange: 5
   tier: 1
   targetDistance: 2
   shotSpeed: 3

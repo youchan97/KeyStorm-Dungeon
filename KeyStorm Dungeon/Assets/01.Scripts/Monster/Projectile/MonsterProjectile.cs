@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class MonsterProjectile : MonoBehaviour
+public class MonsterProjectile : AttackObj
 {
     private float speed;
     private int damage;
     private Vector2 targetDirection;
-    private GameObject projectilePrefab;
+    private Vector3 startPosition;
     private AttackPoolManager objectPoolManager;
 
-    public void Initialize(Transform target, float speed, int damage, GameObject projectilePrefab)
+    public void Initialize(Transform target, float speed, int damage, AttackPoolManager poolManager)
     {
         if (target != null)
         {
@@ -22,6 +22,7 @@ public class MonsterProjectile : MonoBehaviour
 
         this.speed = speed;
         this.damage = damage;
+        this.objectPoolManager = poolManager;
     }
 
     private void FixedUpdate()
@@ -31,26 +32,22 @@ public class MonsterProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        GameObject currentGameObject = collision.gameObject;
-
         if (collision.CompareTag("Player"))
         {
-            Player player = currentGameObject.GetComponent<Player>();
+            Player player = collision.GetComponent<Player>();
 
             if(player != null)
             {
                 player.TakeDamage(damage);
                 Debug.Log("원거리 공격에 맞음");
-                Destroy(this);
-                //objectPoolManager.ReturnPool();
+                objectPoolManager.ReturnPool(this);
             }
         }
 
-        if (collision.CompareTag("collision"))
+        if (collision.CompareTag("Collision"))
         {
             Debug.Log("원거리 공격이 벽에 충돌함");
-            Destroy(this);
-            //objectPoolManager.ReturnPool();
+            objectPoolManager.ReturnPool(this);
         }
     }
 }
