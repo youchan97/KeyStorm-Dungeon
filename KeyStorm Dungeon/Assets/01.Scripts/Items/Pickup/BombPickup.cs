@@ -9,12 +9,12 @@ public class BombPickup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //if (!other.CompareTag("Player")) return;
+        if (!other.CompareTag("Player")) return;
 
-        //var inv = other.GetComponent<PlayerInventory>();
-        //if (inv == null) return;
+        var inv = other.GetComponent<PlayerInventory>();
+        if (inv == null) return;
 
-        //inv.AddBomb(amount);
-        //Destroy(gameObject);
+        inv.AddBomb(amount);
+        Destroy(gameObject);
     }
 }
