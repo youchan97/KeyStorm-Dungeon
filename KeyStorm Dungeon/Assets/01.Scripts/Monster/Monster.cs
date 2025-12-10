@@ -98,7 +98,7 @@ public class Monster : Character
         base.Attack(character);
     }
 
-    protected void ResetAttackCooldown()
+    public void ResetAttackCooldown()
     {
         if (_monsterData != null)
         {

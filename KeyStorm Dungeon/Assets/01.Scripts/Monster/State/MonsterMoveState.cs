@@ -40,26 +40,23 @@ public class MonsterMoveState : CharacterMoveState<Monster>
     {
         if (playerTransform == null || character == null || rb == null) return;
 
-        if (!character.IsMove)
-        {
-            stateManager.ChangeState(character.IdleState);
-            return;
-        }
-
         float distanceToPlayer = Vector2.Distance(character.transform.position, playerTransform.position);
+
+        if (character is RangerMonster)
+        {
+            if (distanceToPlayer <= character.MonsterData.attackRange)
+            {
+                stateManager.ChangeState(character.AttackState);
+                return;
+            }
+        }
 
         UpdateMovement(distanceToPlayer);
 
-        if (character.CurrentAttackCooldown <= 0f)
+        if (distanceToPlayer > character.MonsterData.detectRange)
         {
-            if (character is RangerMonster)
-            {
-                if (distanceToPlayer <= character.MonsterData.attackRange)
-                {
-                    stateManager.ChangeState(character.AttackState);
-                    return;
-                }
-            }
+            stateManager.ChangeState(character.IdleState);
+            return;
         }
     }
 
