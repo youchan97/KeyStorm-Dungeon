@@ -6,10 +6,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    #region InputSystem
-    PlayerInput playerInput;
-    #endregion
-
     #region InputActions
     InputAction moveAction;
     InputAction shootAction;
@@ -26,8 +22,14 @@ public class PlayerController : MonoBehaviour
     Vector2 moveVec;
     #endregion
 
+    #region Shoot관련
+    string keyName;
+    #endregion
+
+    public PlayerInput PlayerInput { get ; private set ; }
     #region Property
     public Vector2 MoveVec { get => moveVec; private set => moveVec = value; }
+    public string KeyName { get => keyName; private set => keyName = value; }
     #endregion
 
     private void Awake()
@@ -45,10 +47,10 @@ public class PlayerController : MonoBehaviour
 
     void InitInput()
     {
-        playerInput = new PlayerInput();
-        moveAction = playerInput.Player.Move;
-        shootAction = playerInput.Player.Shot;
-        bombAction = playerInput.Player.Bomb;
+        PlayerInput = new PlayerInput();
+        moveAction = PlayerInput.Player.Move;
+        shootAction = PlayerInput.Player.Shot;
+        bombAction = PlayerInput.Player.Bomb;
     }
 
     void InitAction()
@@ -95,6 +97,7 @@ public class PlayerController : MonoBehaviour
 
     void ShootPerformed(InputAction.CallbackContext context)
     {
+        keyName = context.control.displayName;
         OnShoot?.Invoke();
     }
 
