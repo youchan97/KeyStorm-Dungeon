@@ -5,7 +5,6 @@ public class MonsterAttackState : CharacterAttackState<Monster>
 {
     private Player player;
     private Animator animator;
-    private bool attackAnimationCycleActive = false;
     public MonsterAttackState(Monster character, CharacterStateManager<Monster> stateManager) : base(character, stateManager)
     {
     }
@@ -68,6 +67,5 @@ public class MonsterAttackState : CharacterAttackState<Monster>
             animator.ResetTrigger("IsAttack");
         }
         character.SetAttackTarget(null);
-        attackAnimationCycleActive = false;
     }
 }

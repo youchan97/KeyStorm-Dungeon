@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce87fc21abef12c4fa631d1e6753d211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackObj: {fileID: 7695468066208947691, guid: 902b44e764b4ac74ebf94b1349cf0a4e, type: 3}
+  attackObj: {fileID: 4379815588428868619, guid: f0071b8fd571cfd4bb4c50a27e71c627, type: 3}
   poolSize: 50
 --- !u!4 &244028272
 Transform:
@@ -662,6 +662,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8005183584313418240, guid: 327c6a06491d1d84a89fdd4cf05a63b3, type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: -1883321432, guid: 1c6ad60ea7c214c45b35a631c2f91c6a, type: 3}
     - target: {fileID: 8005183584313418240, guid: 327c6a06491d1d84a89fdd4cf05a63b3, type: 3}
       propertyPath: attackPoolManager
       value: 

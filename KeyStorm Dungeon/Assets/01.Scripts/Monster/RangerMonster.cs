@@ -4,7 +4,7 @@ using UnityEngine;
 public class RangerMonster : Monster
 {
     [SerializeField] private Transform shootPoint;
-    [SerializeField] private AttackPoolManager attackPoolManager;
+    [SerializeField] private Sprite bullet;
 
     private MonsterIdleState _idleState;
     private MonsterMoveState _moveState;
@@ -49,10 +49,6 @@ public class RangerMonster : Monster
         }
     }
 
-    public void OnAnimationFireProjectile()
-    {
-        
-    }
     public override void Attack(Character character)
     {
         if (CurrentAttackTarget == null)
@@ -79,20 +75,15 @@ public class RangerMonster : Monster
             return;
         }
 
-        MonsterProjectile monsterProjectile = pooledAttackObj.GetComponent<MonsterProjectile>();
+        Vector2 projectileDirection = (CurrentAttackTarget.transform.position - shootPoint.position).normalized;
 
-        if (monsterProjectile != null)
-        {
-            pooledAttackObj.transform.position = shootPoint.position;
-            pooledAttackObj.transform.rotation = Quaternion.identity;
+        float calculateProjectileLifeTime = MonsterData.attackRange / MonsterData.shotSpeed * 1.5f;
 
-            monsterProjectile.Initialize(CurrentAttackTarget.transform, MonsterData.shotSpeed, MonsterData.characterData.damage, attackPoolManager);
+        pooledAttackObj.transform.position = shootPoint.position;
+        pooledAttackObj.transform.rotation = Quaternion.identity;
 
-            Debug.Log($"투사체 발사");
-        }
-        else
-        {
-            attackPoolManager.ReturnPool(pooledAttackObj);
-        }
+        pooledAttackObj.InitData(bullet, Damage, projectileDirection, MonsterData.shotSpeed, MonsterData.attackRange, attackPoolManager);
+
+        Debug.Log($"투사체 발사");
     }
 }

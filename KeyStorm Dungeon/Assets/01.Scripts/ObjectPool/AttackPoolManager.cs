@@ -10,11 +10,6 @@ public class AttackPoolManager : MonoBehaviour
 
     Queue<AttackObj> queue = new Queue<AttackObj>();
 
-    private void Awake()
-    {
-        queue = new Queue<AttackObj>();
-    }
-
     private void Start()
     {
         InitPool();
