@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static ConstValue;
 
-public class PlayerAttack
+public class PlayerAttack : MonoBehaviour
 {
     Player player;
+    bool isReloading;
 
     #region 키 입력 관련
     private readonly string[] keyNames =
@@ -17,6 +19,7 @@ public class PlayerAttack
 
     Dictionary<string, Vector2> keyDic = new Dictionary<string, Vector2>();
 
+    Dictionary<string, bool> keyCoolDic = new Dictionary<string, bool>();
     #endregion
 
     #region Property
@@ -31,12 +34,19 @@ public class PlayerAttack
     public int MaxAmmo { get; private set; }
     public int UseAmmo { get; private set; }
     public int Ammo { get; private set; }
+    public Dictionary<string, bool> KeyCoolDic { get => keyCoolDic; }
     #endregion
+
+    private void Start()
+    {
+        player = GetComponent<Player>();
+
+        InitPlayerAttack(player, player.Data);
+    }
+
 
     public void InitPlayerAttack(Player player, PlayerData data)
     {
-        this.player = player;
-
         Damage = player.Damage;
         DamageMultiple = data.damageMultiple;
         SpecialDamageMultiple = data.specialDamageMultiple;
@@ -50,6 +60,7 @@ public class PlayerAttack
         Ammo = data.ammo;
 
         ShuffleKey();
+        InitialKeyCoolTime();
     }
 
     #region 플레이어 능력치 변화
@@ -66,6 +77,14 @@ public class PlayerAttack
     public void InCreaseAmmo(int value) => Ammo += value;
     #endregion
 
+    void InitialKeyCoolTime()
+    {
+        for(int i = 0; i < keyNames.Length; i++)
+        {
+            keyCoolDic[keyNames[i]] = false;
+        }
+    }
+
     void ShuffleKey()
     {
         keyDic.Clear();
@@ -78,19 +97,55 @@ public class PlayerAttack
         }
     }
 
-    public void Shoot(string keyName)
+    public void Shoot(string keyName, bool isSpecial = false)
     {
+        if (keyCoolDic[keyName] || isReloading) return;
+
         if (!keyDic.ContainsKey(keyName)) return;
 
+        AttackObj obj = player.AttackPoolManager.GetAttack();
+
+        int damage = isSpecial ? (int)(Damage * SpecialDamageMultiple) : Damage;
         Vector2 dir = keyDic[keyName].normalized;
+        obj.transform.position = player.transform.position + (Vector3)dir * ShootOffset;
+
+        obj.InitData(player.Bullet, damage, dir, ShootSpeed, Range, player.AttackPoolManager);
+
         Debug.Log(keyName + dir);
-        
+
+        KeyCool(keyName);
 
         Ammo--;
         if(Ammo == 0)
         {
-            ShuffleKey();
-
+            Reload();
         }
+    }
+
+    void KeyCool(string keyName)
+    {
+        StartCoroutine(StartKeyCool(keyName));
+    }
+
+    IEnumerator StartKeyCool(string key)
+    {
+        keyCoolDic[key] = true;
+        yield return new WaitForSeconds(ShootSpeed);
+        keyCoolDic[key] = false;
+    }
+
+
+    void Reload()
+    {
+        StartCoroutine(StartReload());
+    }
+
+    IEnumerator StartReload()
+    {
+        isReloading = true;
+        yield return new WaitForSeconds(ShootSpeed);
+        ShuffleKey();
+        Ammo = MaxAmmo;
+        isReloading = false;
     }
 }

@@ -9,9 +9,8 @@ public class Player : Character
     [SerializeField] PlayerData data;
     [SerializeField] Rigidbody2D playerRb;
     [SerializeField] Animator anim;
-
-    [SerializeField] GameObject bullet;
-    [SerializeField] GameObject sBullet;
+    [SerializeField] Sprite bullet;
+    [SerializeField] Sprite sBullet;
 
     bool isMove;
 
@@ -21,17 +20,18 @@ public class Player : Character
     public PlayerIdleState IdleState { get; private set; }
     public PlayerMoveState MoveState { get; private set; }
     public PlayerDieState DieState { get; private set; }
+    public PlayerData Data { get => data; }
     public PlayerController PlayerController { get => playerController; private set => playerController = value; }
     public Rigidbody2D PlayerRb { get => playerRb; private set => playerRb = value; }
     public Animator Anim { get => anim; private set => anim = value; }
-    public GameObject Bullet { get => bullet;}
-    public GameObject SBullet { get => sBullet;}
+    public Sprite Bullet { get => bullet;}
+    public Sprite SBullet { get => sBullet;}
     #endregion
 
     protected override void Awake()
     {
         playerStateManager = new CharacterStateManager<Player>(this);
-        PlayerAttack = new PlayerAttack();
+        PlayerAttack = GetComponent<PlayerAttack>();
     }
 
 
@@ -73,7 +73,6 @@ public class Player : Character
     void InitData()
     {
         InitCharData(data.characterData);
-        PlayerAttack.InitPlayerAttack(this, data);
     }
 
     void InitActions()

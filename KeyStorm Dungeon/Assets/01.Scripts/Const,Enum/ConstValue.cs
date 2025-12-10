@@ -9,4 +9,6 @@ public static class ConstValue
     public const string AxisX = "MoveX";
     public const string AxisY = "MoveY";
     #endregion
+
+    public const float ShootOffset = 1.5f;
 }
