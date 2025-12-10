@@ -8,7 +8,7 @@ public class AttackPoolManager : MonoBehaviour
 
     [SerializeField] int poolSize;
 
-    Queue<AttackObj> queue;
+    Queue<AttackObj> queue = new Queue<AttackObj>();
 
     private void Awake()
     {

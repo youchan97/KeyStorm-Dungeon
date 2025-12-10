@@ -4,15 +4,68 @@ using UnityEngine;
 
 public class AttackObj : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] Rigidbody2D rb;
+    [SerializeField] bool isPlayer;
+
+    AttackPoolManager poolManager;
+    int damage;
+    Vector2 dir;
+    float shootSpeed;
+    float coolTime;
+
+    Coroutine coroutine;
+
+    public void InitData(Sprite sprite, int value, Vector2 vec, float speed, float cool, AttackPoolManager manager)
     {
-        
+        spriteRenderer.sprite = sprite;
+        damage = value;
+        dir = vec;
+        shootSpeed = speed;
+        coolTime = cool;
+        poolManager = manager;
+
+        transform.up = dir;
+
+        StartDurate();
     }
 
-    // Update is called once per frame
-    void Update()
+    void StartDurate()
     {
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+            coroutine = null;
+        }
+
+        coroutine = StartCoroutine(DurateAttack());
+    }
+
+    IEnumerator DurateAttack()
+    {
+        yield return new WaitForSeconds(coolTime);
+        poolManager.ReturnPool(this);
+    }
+
+
+    private void FixedUpdate()
+    {
+        rb.velocity = dir * shootSpeed;
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Character character;
+        if (isPlayer)
+            character = collision.GetComponent<Monster>();
+        else
+            character = collision.GetComponent<Player>();
+
+        if (character == null) return;
+
+        character.TakeDamage(damage);
+        poolManager.ReturnPool(this);
         
     }
 }

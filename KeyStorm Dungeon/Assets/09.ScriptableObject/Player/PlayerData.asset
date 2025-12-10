@@ -18,3 +18,15 @@ MonoBehaviour:
     maxHp: 100
     damage: 10
     moveSpeed: 3
+  damageMultiple: 3
+  specialDamageMultiple: 3
+  attackSpeed: 3
+  attackSpeedMultiple: 3
+  range: 3
+  rangeMultiple: 3
+  shootSpeed: 3
+  maxAmmo: 3
+  useAmmo: 3
+  ammo: 3
+  xScale: 3
+  yScale: 3
