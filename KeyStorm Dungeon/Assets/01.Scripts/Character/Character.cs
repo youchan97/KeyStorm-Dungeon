@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    [SerializeField] protected AttackPoolManager attackPoolManager;
+
     #region Property
     public string CharName {  get; protected set; }
     public int Id { get; protected set; }
@@ -11,6 +13,7 @@ public class Character : MonoBehaviour
     public int Hp { get; protected set; }
     public int Damage { get; protected set; }
     public float MoveSpeed { get; protected set; }
+    public AttackPoolManager AttackPoolManager { get => attackPoolManager; }
     #endregion
 
     protected virtual void Awake()

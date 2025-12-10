@@ -1,11 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using static ConstValue;
 
-public class PlayerAttack
+public enum DirType
+{
+    LeftUp,
+    Up,
+    RightUp,
+    Left,
+    Right,
+    LeftDown,
+    Down,
+    RightDown
+}
+
+public class PlayerAttack : MonoBehaviour
 {
     Player player;
+    bool isReloading;
+
+    #region UI 관련
+    [SerializeField] TextMeshProUGUI[] dirTexts;
+    [SerializeField] Image[] coolImage;
+    Coroutine[] keyImageCoroutine = new Coroutine[8];
+    Coroutine reloadImageCoroutine;
+    #endregion
 
     #region 키 입력 관련
     private readonly string[] keyNames =
@@ -17,6 +40,10 @@ public class PlayerAttack
 
     Dictionary<string, Vector2> keyDic = new Dictionary<string, Vector2>();
 
+    Dictionary<string, bool> keyCoolDic = new Dictionary<string, bool>();
+
+    Coroutine[] keyCoroutine = new Coroutine[8];
+    Coroutine reloadCoroutine;
     #endregion
 
     #region Property
@@ -31,12 +58,19 @@ public class PlayerAttack
     public int MaxAmmo { get; private set; }
     public int UseAmmo { get; private set; }
     public int Ammo { get; private set; }
+    public Dictionary<string, bool> KeyCoolDic { get => keyCoolDic; }
     #endregion
+
+    private void Start()
+    {
+        player = GetComponent<Player>();
+
+        InitPlayerAttack(player, player.Data);
+    }
+
 
     public void InitPlayerAttack(Player player, PlayerData data)
     {
-        this.player = player;
-
         Damage = player.Damage;
         DamageMultiple = data.damageMultiple;
         SpecialDamageMultiple = data.specialDamageMultiple;
@@ -66,6 +100,14 @@ public class PlayerAttack
     public void InCreaseAmmo(int value) => Ammo += value;
     #endregion
 
+    void InitialKeyCoolTime()
+    {
+        for(int i = 0; i < keyNames.Length; i++)
+        {
+            keyCoolDic[keyNames[i]] = false;
+        }
+    }
+
     void ShuffleKey()
     {
         keyDic.Clear();
@@ -75,22 +117,181 @@ public class PlayerAttack
         for(int i = 0; i < keyNames.Length; i++)
         {
             keyDic[keyNames[i]] = randVec[i];
+            AttackDirUiUpdate(keyNames[i], randVec[i]);
+        }
+        InitialKeyCoolTime();
+    }
+
+    DirType SwitchType(Vector2 vec)
+    {
+        if (vec == Vector2.up) return DirType.Up;
+        else if (vec == Vector2.down) return DirType.Down;
+        else if (vec == Vector2.right) return DirType.Right;
+        else if (vec == Vector2.left) return DirType.Left;
+        else if (vec == new Vector2(1, 1)) return DirType.RightUp;
+        else if (vec == new Vector2(1, -1)) return DirType.RightDown;
+        else if (vec == new Vector2(-1, 1)) return DirType.LeftUp;
+        else if (vec == new Vector2(-1, -1)) return DirType.LeftDown;
+
+        return default;
+    }
+
+    void AttackDirUiUpdate(string text, Vector2 vec)
+    {
+        DirType type = SwitchType(vec);
+        switch(type)
+        {
+            case DirType.LeftUp:
+                dirTexts[((int)DirType.LeftUp)].text = text;
+                break;
+            case DirType.Up:
+                dirTexts[((int)DirType.Up)].text = text;
+                break;
+            case DirType.RightUp:
+                dirTexts[((int)DirType.RightUp)].text = text;
+                break;
+            case DirType.Left:
+                dirTexts[((int)DirType.Left)].text = text;
+                break;
+            case DirType.Right:
+                dirTexts[((int)DirType.Right)].text = text;
+                break;
+            case DirType.LeftDown:
+                dirTexts[((int)DirType.LeftDown)].text = text;
+                break;
+            case DirType.Down:
+                dirTexts[((int)DirType.Down)].text = text;
+                break;
+            case DirType.RightDown:
+                dirTexts[((int)DirType.RightDown)].text = text;
+                break;
         }
     }
 
-    public void Shoot(string keyName)
+    public void Shoot(string keyName, bool isSpecial = false)
     {
+        if (keyCoolDic[keyName] || isReloading) return;
+
         if (!keyDic.ContainsKey(keyName)) return;
 
+        AttackObj obj = player.AttackPoolManager.GetAttack();
+
+        Sprite sprite = isSpecial ? player.SBullet : player.Bullet;
+        int damage = isSpecial ? (int)(Damage * SpecialDamageMultiple) : Damage;
         Vector2 dir = keyDic[keyName].normalized;
+        obj.transform.position = player.transform.position + (Vector3)dir * ShootOffset;
+
+        obj.InitData(sprite, damage, dir, ShootSpeed, Range, player.AttackPoolManager);
+
         Debug.Log(keyName + dir);
-        
+
+        DirType type = SwitchType(keyDic[keyName]);
+
+        KeyCool(keyName, type);
 
         Ammo--;
         if(Ammo == 0)
         {
-            ShuffleKey();
+            Reload();
+        }
+    }
 
+    void KeyCool(string keyName, DirType type)
+    {
+        keyCoroutine[(int)type] = StartCoroutine(StartKeyCool(keyName));
+        keyImageCoroutine[(int)type] = StartCoroutine(ImageFiil(type));
+    }
+
+    IEnumerator StartKeyCool(string key)
+    {
+        keyCoolDic[key] = true;
+        yield return new WaitForSeconds(ShootSpeed);
+        keyCoolDic[key] = false;
+    }
+
+    IEnumerator ImageFiil(DirType type)
+    {
+        Image image = coolImage[(int)type];
+        float timer = ShootSpeed;
+
+        image.fillAmount = 1f;
+        image.gameObject.SetActive(true);
+        while(timer >= 0)
+        {
+            timer -= Time.deltaTime;
+            float fill = timer / ShootSpeed;
+            image.fillAmount = fill;
+
+            yield return null;
+        }
+
+        image.fillAmount = 0f;
+        image.gameObject.SetActive(false);
+    }
+
+    void Reload()
+    {
+        CoroutineStop();
+        StartCoroutine(StartReload());
+        StartCoroutine(ReloadImage());
+    }
+
+    void CoroutineStop()
+    {
+        for (int i = 0; i < keyCoroutine.Length; i++)
+        {
+            if (keyCoroutine[i] != null)
+            {
+                StopCoroutine(keyCoroutine[i]);
+                keyCoroutine[i] = null;
+            }
+
+            if (keyImageCoroutine[i] != null)
+            {
+                StopCoroutine(keyImageCoroutine[i]);
+                keyImageCoroutine[i] = null;
+                coolImage[i].fillAmount = 1f;
+                coolImage[i].gameObject.SetActive(false);
+            }
+        }
+    }
+
+    IEnumerator StartReload()
+    {
+        isReloading = true;
+        ShuffleKey();
+        yield return new WaitForSeconds(ShootSpeed);
+        Ammo = MaxAmmo;
+        isReloading = false;
+    }
+
+    IEnumerator ReloadImage()
+    {
+        float timer = ShootSpeed;
+
+        for(int i = 0; i<coolImage.Length; i++)
+        {
+            coolImage[i].fillAmount = 1f;
+            coolImage[i].gameObject.SetActive(true);
+        }
+
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            float fill = timer / ShootSpeed;
+
+            for (int i = 0; i < coolImage.Length; i++)
+            {
+                coolImage[i].fillAmount = fill;
+            }
+
+            yield return null;
+        }
+
+        for (int i = 0; i < coolImage.Length; i++)
+        {
+            coolImage[i].fillAmount = 0f;
+            coolImage[i].gameObject.SetActive(false);
         }
     }
 }
