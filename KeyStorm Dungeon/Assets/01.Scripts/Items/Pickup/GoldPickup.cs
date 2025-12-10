@@ -11,7 +11,7 @@ public class GoldPickup : MonoBehaviour
 
     private void Start()
     {
-        //target = GameObject.FindGameObjectsWithTag("Player")?.transform;
+        target = GameObject.FindGameObjectWithTag("Player")?.transform;
     }
 
     private void Update()
@@ -28,14 +28,14 @@ public class GoldPickup : MonoBehaviour
         magnetMode = true;
     }
 
-    //private void OnTriggerEnter2D(Collider2D other)
-    //{
-    //    if (!other.CompareTag("Player")) return;
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!other.CompareTag("Player")) return;
 
-    //    var inv = other.GetComponent<PlayerInventory>();
-    //    if (inv == null) return;
+        var inv = other.GetComponent<PlayerInventory>();
+        if (inv == null) return;
 
-    //    inv.AddGold(amount);
-    //    Destroy(gameObject);
-    //}
+        inv.AddGold(amount);
+        Destroy(gameObject);
+    }
 }

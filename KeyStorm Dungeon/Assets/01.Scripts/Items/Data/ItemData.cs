@@ -40,7 +40,7 @@ public class ItemData : ScriptableObject
     [Header("분류")]
     public bool attackChange;
     public bool isActiveItem;
-    public ItemTier itemTier;
+    public ItemTier tier;
     public ItemDropRoom dropRoom;
 
     [Header("스탯 변화량")]
