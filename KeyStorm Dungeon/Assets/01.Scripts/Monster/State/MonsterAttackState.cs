@@ -41,11 +41,13 @@ public class MonsterAttackState : CharacterAttackState<Monster>
             return;
         }
 
+        character.FlipSprite(character.playerTransform);
+
         float distanceToPlayer = Vector2.Distance(character.transform.position, player.transform.position);
 
         if (character is RangerMonster)
         {
-            if (distanceToPlayer > character.MonsterData.attackRange)
+            if (distanceToPlayer > character.MonsterData.targetDistance)
             {
                 stateManager.ChangeState(character.CreateMoveState());
                 return;

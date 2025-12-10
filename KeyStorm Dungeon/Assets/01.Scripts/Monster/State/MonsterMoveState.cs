@@ -38,11 +38,13 @@ public class MonsterMoveState : CharacterMoveState<Monster>
     {
         if (playerTransform == null || character == null || rb == null) return;
 
+        character.FlipSprite(character.playerTransform);
+
         float distanceToPlayer = Vector2.Distance(character.transform.position, playerTransform.position);
 
         if (character is RangerMonster)
         {
-            if (distanceToPlayer <= character.MonsterData.attackRange)
+            if (distanceToPlayer <= character.MonsterData.targetDistance)
             {
                 stateManager.ChangeState(character.CreateAttackState());
                 return;
@@ -81,9 +83,9 @@ public class MonsterMoveState : CharacterMoveState<Monster>
         Vector2 direction = (playerTransform.position - character.transform.position).normalized;
         float currentMoveSpeed = character.MoveSpeed;
 
-        if (distanceToPlayer <= character.MonsterData.attackRange)
+        if (distanceToPlayer <= character.MonsterData.targetDistance)
         {
-            float clampedDistance = Mathf.Clamp01(distanceToPlayer / character.MonsterData.attackRange);
+            float clampedDistance = Mathf.Clamp01(distanceToPlayer / character.MonsterData.targetDistance);
             currentMoveSpeed *= clampedDistance;
         }
 

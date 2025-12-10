@@ -19,9 +19,8 @@ MonoBehaviour:
     damage: 10
     moveSpeed: 1.5
   detectRange: 5
-  attackRange: 1.5
-  tier: 1
   targetDistance: 0.85
+  tier: 0
   shotSpeed: 0
   attackSpeed: 2
   dropGold: 0

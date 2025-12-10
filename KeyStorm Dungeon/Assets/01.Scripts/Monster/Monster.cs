@@ -4,6 +4,8 @@ public abstract class Monster : Character
 {
     public CharacterStateManager<Monster> MonsterStateManager { get; protected set; }
     [SerializeField] private MonsterData _monsterData;
+    [SerializeField] protected SpriteRenderer monsterSpriteRenderer;
+
     public MonsterData MonsterData => _monsterData;
     private Rigidbody2D monsterRb;
     public Rigidbody2D MonsterRb => monsterRb;
@@ -43,6 +45,11 @@ public abstract class Monster : Character
         else
         {
             Debug.LogWarning("MonsterData가 할당되지 않음");
+        }
+
+        if (monsterSpriteRenderer == null)
+        {
+            monsterSpriteRenderer = GetComponent<SpriteRenderer>();
         }
     }
 
@@ -121,5 +128,19 @@ public abstract class Monster : Character
     public void SetAttackTarget(Player player)
     {
         CurrentAttackTarget = player;
+    }
+
+    public virtual void FlipSprite(Transform targetTransform)
+    {
+        if (targetTransform == null || monsterSpriteRenderer == null) return;
+
+        if (targetTransform.position.x < transform.position.x)
+        {
+            monsterSpriteRenderer.flipX = false;
+        }
+        else
+        {
+            monsterSpriteRenderer.flipX = true;
+        }
     }
 }

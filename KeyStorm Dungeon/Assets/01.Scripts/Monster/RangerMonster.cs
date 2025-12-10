@@ -77,12 +77,12 @@ public class RangerMonster : Monster
 
         Vector2 projectileDirection = (CurrentAttackTarget.transform.position - shootPoint.position).normalized;
 
-        float calculateProjectileLifeTime = MonsterData.attackRange / MonsterData.shotSpeed * 1.5f;
+        float calculateProjectileLifeTime = MonsterData.targetDistance / MonsterData.shotSpeed * 1.5f;
 
         pooledAttackObj.transform.position = shootPoint.position;
         pooledAttackObj.transform.rotation = Quaternion.identity;
 
-        pooledAttackObj.InitData(bullet, Damage, projectileDirection, MonsterData.shotSpeed, MonsterData.attackRange, attackPoolManager);
+        pooledAttackObj.InitData(bullet, Damage, projectileDirection, MonsterData.shotSpeed, MonsterData.targetDistance, attackPoolManager);
 
         Debug.Log($"투사체 발사");
     }
