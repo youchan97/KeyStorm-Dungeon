@@ -5,7 +5,7 @@ public class MonsterAttackState : CharacterAttackState<Monster>
 {
     private Player player;
     private Animator animator;
-
+    private bool attackAnimationCycleActive = false;
     public MonsterAttackState(Monster character, CharacterStateManager<Monster> stateManager) : base(character, stateManager)
     {
     }
@@ -17,6 +17,7 @@ public class MonsterAttackState : CharacterAttackState<Monster>
         if(character.playerGO != null)
         {
             player = character.playerGO.GetComponent<Player>();
+            character.SetAttackTarget(player);
             if (player == null)
             {
                 Debug.LogError("MonsterAttackState: Player GameObject에 Player컴포넌트가 없음");
@@ -37,7 +38,7 @@ public class MonsterAttackState : CharacterAttackState<Monster>
     {
         if (player == null)
         {
-            stateManager.ChangeState(character.IdleState);
+            stateManager.ChangeState(character.CreateIdleState());
             return;
         }
 
@@ -47,7 +48,7 @@ public class MonsterAttackState : CharacterAttackState<Monster>
         {
             if (distanceToPlayer > character.MonsterData.attackRange)
             {
-                stateManager.ChangeState(character.MoveState);
+                stateManager.ChangeState(character.CreateMoveState());
                 return;
             }
         }
@@ -66,5 +67,7 @@ public class MonsterAttackState : CharacterAttackState<Monster>
         {
             animator.ResetTrigger("IsAttack");
         }
+        character.SetAttackTarget(null);
+        attackAnimationCycleActive = false;
     }
 }

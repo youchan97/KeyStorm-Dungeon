@@ -44,18 +44,18 @@ public class MonsterMoveState : CharacterMoveState<Monster>
         {
             if (distanceToPlayer <= character.MonsterData.attackRange)
             {
-                stateManager.ChangeState(character.AttackState);
+                stateManager.ChangeState(character.CreateAttackState());
                 return;
             }
         }
 
-        UpdateMovement(distanceToPlayer);
-
         if (distanceToPlayer > character.MonsterData.detectRange)
         {
-            stateManager.ChangeState(character.IdleState);
+            stateManager.ChangeState(character.CreateIdleState());
             return;
         }
+
+        UpdateMovement(distanceToPlayer);
     }
 
     public override void ExitState()
