@@ -700,6 +700,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8969645377382259084, guid: f143bf35de38027438377ef440643931, type: 3}
+      propertyPath: m_AnimatedTiles.Array.data[7].second.m_AnimationSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8969645377382259084, guid: f143bf35de38027438377ef440643931, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[8].second.m_AnimationSpeed
       value: 10
       objectReference: {fileID: 0}
@@ -760,10 +764,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4851458755222282479, guid: e19d910db4bbd334f895f0a9eb2dfd24, type: 3}
-      propertyPath: bullet
-      value: 
-      objectReference: {fileID: 568474425, guid: 1c6ad60ea7c214c45b35a631c2f91c6a, type: 3}
     - target: {fileID: 4851458755222282479, guid: e19d910db4bbd334f895f0a9eb2dfd24, type: 3}
       propertyPath: attackPoolManager
       value: 
