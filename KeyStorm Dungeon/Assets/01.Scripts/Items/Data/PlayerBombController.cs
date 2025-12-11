@@ -66,7 +66,7 @@ public class PlayerBombController : MonoBehaviour
         currentBomb = bombObj.GetComponent<ThrownBomb>();
         if (currentBomb != null)
         {
-            currentBomb.Hold(transform, bombFuseTime);
+            currentBomb.Hold(transform);
         }
     }
 

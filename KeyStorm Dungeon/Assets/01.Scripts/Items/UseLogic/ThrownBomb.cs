@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,19 +19,26 @@ public class ThrownBomb : MonoBehaviour
     public GameObject explosionEffectPrefab;
 
     Transform holder;        // 들고 있는 주인(보통 플레이어)
-    bool isHeld = false;     // 들고 있는 상태인지
     bool hasExploded = false;
     float timer = 0f;
+
+    public event Action OnExplode;
+
+    bool canTrigger;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void Start()
+    private void Start()
     {
-        // 처음에는 손에 들고 나올 거라 물리 끔
-        rb.isKinematic = true;
+        canTrigger = false;
+    }
+
+    private void OnDisable()
+    {
+        OnExplode = null;
     }
 
     void Update()
@@ -43,7 +51,7 @@ public class ThrownBomb : MonoBehaviour
         }
 
         // 들고 있는 상태면 항상 holder 위에 위치
-        if (isHeld && holder != null)
+        if (holder != null)
         {
             Vector3 offset = new Vector3(0, 1f, 0); // 머리 위로 약간 올려서 표시
             transform.position = holder.position + offset;
@@ -51,14 +59,11 @@ public class ThrownBomb : MonoBehaviour
     }
 
     // 플레이어가 폭탄을 들기 시작할 때 호출
-    public void Hold(Transform _holder, float _fuseTime)
+    public void Hold(Transform _holder)
     {
         holder = _holder;
-        isHeld = true;
-        fuseTime = _fuseTime;
         timer = 0f;          // 들기 시작한 순간부터 타이머 재시작
 
-        rb.isKinematic = true;
         rb.velocity = Vector2.zero;
         rb.angularVelocity = 0f;
     }
@@ -66,10 +71,10 @@ public class ThrownBomb : MonoBehaviour
     // 들고 있던 폭탄을 던질 때 호출
     public void Throw(Vector2 direction, float power)
     {
-        isHeld = false;
         holder = null;
 
-        rb.isKinematic = false;
+        canTrigger = true;
+
         rb.AddForce(direction.normalized * power, ForceMode2D.Impulse);
     }
 
@@ -89,15 +94,27 @@ public class ThrownBomb : MonoBehaviour
 
         foreach (var hit in hits)
         {
-            var damageable = hit.GetComponent<IDamageable>();
+            var damageable = hit.GetComponent<Character>();
             if (damageable == null)
                 continue;
 
             int damage = hit.CompareTag("Player") ? damageToPlayer : damageToEnemy;
             damageable.TakeDamage(damage);
         }
+        OnExplode?.Invoke();
         Destroy(gameObject);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (canTrigger == false) return;
+
+        Monster monster = collision.gameObject.GetComponent<Monster>();
+
+        if (monster != null || collision.gameObject.CompareTag("Wall"))
+            Explode();
+    }
+
 
     //플레이어 몬스터 타격 로직
 
