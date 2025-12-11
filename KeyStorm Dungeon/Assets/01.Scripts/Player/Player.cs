@@ -32,11 +32,6 @@ public class Player : Character
     {
         playerStateManager = new CharacterStateManager<Player>(this);
         PlayerAttack = GetComponent<PlayerAttack>();
-    }
-
-
-    private void Start()
-    {
         InitPlayer();
     }
 

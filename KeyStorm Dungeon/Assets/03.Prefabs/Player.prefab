@@ -1684,7 +1684,7 @@ MonoBehaviour:
   playerRb: {fileID: 2508212066495251963}
   anim: {fileID: 382889259470501132}
   bullet: {fileID: 568474425, guid: 1c6ad60ea7c214c45b35a631c2f91c6a, type: 3}
-  sBullet: {fileID: 0}
+  sBullet: {fileID: -606324551, guid: 96955bebae4f3474da49636c43ee1499, type: 3}
 --- !u!114 &9001353019542540319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1697,6 +1697,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 857940e04b32385469657ffe8d0e5af8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  specialAttackKey: 
+  canSniper: 0
+  canShotGun: 0
+  shotGunBulletCount: 0
+  shotSpreadAngle: 0
   dirImages:
   - {fileID: 3129408851358223910}
   - {fileID: 3934496878501446982}
