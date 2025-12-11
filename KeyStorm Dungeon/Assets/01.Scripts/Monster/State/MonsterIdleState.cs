@@ -20,17 +20,17 @@ public class MonsterIdleState : CharacterIdleState<Monster>
 
     public override void FixedUpdateState()
     {
-        if (character.playerTransform == null) return;
+        if (character.PlayerTransform == null) return;
 
-        float distanceToPlayer = Vector2.Distance(character.transform.position, character.playerTransform.position);
-
-        if (distanceToPlayer <= character.MonsterData.detectRange)
+        if (character.MonsterData.tier == MonsterTier.Boss)
         {
             stateManager.ChangeState(character.CreateMoveState());
             return;
         }
 
-        if (character.MonsterData.tier == MonsterTier.Boss)
+        float distanceToPlayer = Vector2.Distance(character.transform.position, character.PlayerTransform.position);
+
+        if (distanceToPlayer <= character.MonsterData.detectRange)
         {
             stateManager.ChangeState(character.CreateMoveState());
             return;

@@ -25,7 +25,7 @@ public class MonsterDieState : CharacterDieState<Monster>
 
         if (character.Animator != null)
         {
-            character.Animator.SetBool("IsDie", true);
+            character.Animator.SetTrigger("IsDie");
             character.StartCoroutine(WaitForDieAnimation());
         }
         else

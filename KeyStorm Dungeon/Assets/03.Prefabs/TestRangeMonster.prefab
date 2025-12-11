@@ -215,7 +215,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e090815d99db82f4082a152cf8ea8455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackPoolManager: {fileID: 0}
   _monsterData: {fileID: 11400000, guid: 684b915b0f7c62d4789c5c7811a5a127, type: 2}
+  monsterSpriteRenderer: {fileID: 8672176183538600671}
   animator: {fileID: 158036806374650618}
-  projectilePrefab: {fileID: 5382625752474010588, guid: 902b44e764b4ac74ebf94b1349cf0a4e, type: 3}
   shootPoint: {fileID: 5903468699106850718}
+  bullet: {fileID: -1883321432, guid: 1c6ad60ea7c214c45b35a631c2f91c6a, type: 3}

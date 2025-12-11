@@ -15,9 +15,9 @@ public class RangerMonsterAttackState : MonsterAttackState
     {
         animator = character.Animator;
 
-        if (character.playerGO != null)
+        if (character.PlayerGO != null)
         {
-            player = character.playerGO.GetComponent<Player>();
+            player = character.PlayerGO.GetComponent<Player>();
             character.SetAttackTarget(player);
             if (player == null)
             {
@@ -43,7 +43,7 @@ public class RangerMonsterAttackState : MonsterAttackState
             return;
         }
 
-        character.FlipSprite(character.playerTransform);
+        character.FlipSprite(character.PlayerTransform);
 
         float distanceToPlayer = Vector2.Distance(character.transform.position, player.transform.position);
 

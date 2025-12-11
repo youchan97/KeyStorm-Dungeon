@@ -12,8 +12,8 @@ public abstract class Monster : Character
     [SerializeField] private Animator animator;
     public Animator Animator => animator;
 
-    public GameObject playerGO {  get; private set; }
-    public Transform playerTransform { get; private set; }
+    public GameObject PlayerGO {  get; private set; }
+    public Transform PlayerTransform { get; private set; }
     public Player CurrentAttackTarget { get; protected set; }
 
     [HideInInspector] public float CurrentAttackCooldown { get; protected set; }
@@ -53,20 +53,20 @@ public abstract class Monster : Character
         }
     }
 
-    private void Start()
+    protected virtual void Start()
     {
-        playerGO = GameObject.FindGameObjectWithTag("Player");
+        PlayerGO = GameObject.FindGameObjectWithTag("Player");
 
 
         //GameObject playerGO = GameManager.Instance.player;
         
-        if (playerGO == null)
+        if (PlayerGO == null)
         {
             Debug.LogError("Monster : Player GameObject를 찾을 수 없음");
         }
         else
         {
-            playerTransform = playerGO.transform;
+            PlayerTransform = PlayerGO.transform;
             MonsterStateManager.ChangeState(CreateIdleState());
         }
 

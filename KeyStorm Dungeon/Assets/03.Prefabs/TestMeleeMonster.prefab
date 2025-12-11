@@ -110,7 +110,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f370ffda9860f9e42ab96139cfa69ecf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackPoolManager: {fileID: 0}
   _monsterData: {fileID: 11400000, guid: c501897a72231ce4b86065ace68a55f6, type: 2}
+  monsterSpriteRenderer: {fileID: 6778235029235199329}
   animator: {fileID: 639115253277326893}
 --- !u!212 &6778235029235199329
 SpriteRenderer:

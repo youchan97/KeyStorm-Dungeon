@@ -1,13 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using static ConstValue;
 
 public class BossMonsterMoveState : MonsterMoveState
 {
-    private Transform playerTransform;
-    private Rigidbody2D rb;
-    private Animator animator;
 
     public BossMonsterMoveState(Monster character, CharacterStateManager<Monster> stateManager) : base(character, stateManager)
     {
@@ -19,16 +14,11 @@ public class BossMonsterMoveState : MonsterMoveState
         character.ResetAttackCooldown();
     }
 
-    public override void UpdateState()
-    {
-        base.UpdateState();
-    }
-
     public override void FixedUpdateState()
     {
         if (playerTransform == null || character == null || rb == null) return;
 
-        character.FlipSprite(character.playerTransform);
+        character.FlipSprite(character.PlayerTransform);
 
         float distanceToPlayer = Vector2.Distance(character.transform.position, playerTransform.position);
 
