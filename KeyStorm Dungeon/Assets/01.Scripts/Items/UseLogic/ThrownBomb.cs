@@ -89,29 +89,57 @@ public class ThrownBomb : MonoBehaviour
 
         foreach (var hit in hits)
         {
-            if (hit.CompareTag("Enemy"))
-            {
-                //일단 몬스터파트랑 연동을 해봐야하는거라 주석처리함
-                //var enemyHealth = hit.GetComponent<EnemyHealth>();
-                //if (enemyHealth != null)
-                //{
-                //    enemyHealth.TakeDamage(damageToEnemy);
-                //}
-            }
+            var damageable = hit.GetComponent<IDamageable>();
+            if (damageable == null)
+                continue;
 
-            if (hit.CompareTag("Player"))
-            {
-                //일단 플레이어파트랑 연동을 해봐야하는거라 주석처리함
-                //var playerHealth = hit.GetComponent<PlayerHealth>();
-                //if (playerHealth != null)
-                //{
-                //    playerHealth.TakeDamage(damageToPlayer);
-                //}
-            }
+            int damage = hit.CompareTag("Player") ? damageToPlayer : damageToEnemy;
+            damageable.TakeDamage(damage);
         }
-
         Destroy(gameObject);
     }
+
+    //플레이어 몬스터 타격 로직
+
+    //void Explode()
+    //{
+    //    if (hasExploded) return;
+    //    hasExploded = true;
+
+    //    // 폭발 이펙트
+    //    if (explosionEffectPrefab != null)
+    //    {
+    //        Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
+    //    }
+
+    //    // 범위 내 피격 판정
+    //    Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
+
+    //    foreach (var hit in hits)
+    //    {
+    //        if (hit.CompareTag("Enemy"))
+    //        {
+    //            //일단 몬스터파트랑 연동을 해야하는거라 주석처리함
+    //            var enemyHealth = hit.GetComponent<EnemyHealth>();
+    //            if (enemyHealth != null)
+    //            {
+    //                enemyHealth.TakeDamage(damageToEnemy);
+    //            }
+    //        }
+
+    //        if (hit.CompareTag("Player"))
+    //        {
+    //            //일단 플레이어파트랑 연동을 해봐야하는거라 주석처리함
+    //            var playerHealth = hit.GetComponent<PlayerHealth>();
+    //            if (playerHealth != null)
+    //            {
+    //                playerHealth.TakeDamage(damageToPlayer);
+    //            }
+    //        }
+    //    }
+
+    //    Destroy(gameObject);
+    //}
 
     void OnDrawGizmosSelected()
     {

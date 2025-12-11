@@ -8,27 +8,40 @@ public class PlayerBombController : MonoBehaviour
     public GameObject thrownBombPrefab;
 
     [Header("설정")]
-    public float bombFuseTime = 3f;   // 들고 있기 시작한 시점부터 얼마나 뒤에 터질지
+    public float bombFuseTime = 3f;   // 들기 시작한 시점부터 얼마나 뒤에 터질지
     public float throwPower = 5f;     // 던질 때 힘의 크기
 
     ThrownBomb currentBomb;           // 현재 들고 있는 폭탄 참조
+    Vector2 lastLookDir = Vector2.right; // 플레이어가 "바라보는" 방향 (기본 오른쪽)
 
     void Update()
     {
-        // Shift로 폭탄 들기
+        // 플레이어가 바라보는 방향 업데이트 (이동 방향 기준, 필요하면 네 이동 코드랑 맞추면 됨)
+        UpdateLookDirection();
+
+        // Shift 누르는 순간  폭탄 들기
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             TryHoldBomb();
         }
 
-        // 방향키 입력으로 던지기 (임시 구현)
-        if (currentBomb != null)
+        // Shift를 떼는 순간  현재 바라보는 방향으로 던지기
+        if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            Vector2 dir = GetThrowDirectionFromInput();
-            if (dir != Vector2.zero)
-            {
-                ThrowCurrentBomb(dir);
-            }
+            TryThrowHeldBomb();
+        }
+    }
+
+    void UpdateLookDirection()
+    {
+        // 여기서는 간단히 WASD/화살표 기준 이동 방향으로 봄
+        float x = Input.GetAxisRaw("Horizontal");
+        float y = Input.GetAxisRaw("Vertical");
+        Vector2 move = new Vector2(x, y);
+
+        if (move.sqrMagnitude > 0.01f)
+        {
+            lastLookDir = move.normalized;
         }
     }
 
@@ -57,29 +70,17 @@ public class PlayerBombController : MonoBehaviour
         }
     }
 
-    void ThrowCurrentBomb(Vector2 dir)
+    void TryThrowHeldBomb()
     {
         if (currentBomb == null) return;
 
-        currentBomb.Throw(dir, throwPower);
+        // 혹시 바라보는 방향 정보가 0,0이면 기본값 하나 정해두기 (오른쪽)
+        if (lastLookDir.sqrMagnitude < 0.01f)
+        {
+            lastLookDir = Vector2.right;
+        }
+
+        currentBomb.Throw(lastLookDir, throwPower);
         currentBomb = null;
-    }
-
-    // 임시: 방향키로 던질 방향 결정 (나중에 키버튼 시스템(QWERASDF) 방향으로 교체 예정)
-    Vector2 GetThrowDirectionFromInput()
-    {
-        float x = 0f;
-        float y = 0f;
-
-        if (Input.GetKeyDown(KeyCode.UpArrow)) y = 1f;
-        if (Input.GetKeyDown(KeyCode.DownArrow)) y = -1f;
-        if (Input.GetKeyDown(KeyCode.LeftArrow)) x = -1f;
-        if (Input.GetKeyDown(KeyCode.RightArrow)) x = 1f;
-
-        Vector2 dir = new Vector2(x, y);
-        if (dir.sqrMagnitude > 0f)
-            return dir.normalized;
-
-        return Vector2.zero;
     }
 }
