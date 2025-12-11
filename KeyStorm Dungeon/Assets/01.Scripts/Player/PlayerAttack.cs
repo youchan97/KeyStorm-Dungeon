@@ -23,26 +23,54 @@ public class PlayerAttack : MonoBehaviour
     Player player;
     bool isReloading;
 
+    [SerializeField] bool canSniper;
+    bool canShotGun;
+
+    #region readOnly
+    private readonly Vector2[] defaultUi =
+        {new Vector2(-1.125f, 1.125f), new Vector2(0, 1.125f), new Vector2(1.125f, 1.125f), new Vector2(-1.125f, 0),
+    new Vector2(1.125f, 0), new Vector2(-1.125f, -1.125f),new Vector2(0, -1.125f),new Vector2(1.125f, -1.125f)};
+    private readonly Vector2[] sniperUi =
+        {new Vector2(0, 2.125f), new Vector2(0, 1.125f), new Vector2(-2.125f, 0), new Vector2(-1.125f, 0),
+    new Vector2(2.125f, 0), new Vector2(1.125f, 0),new Vector2(0, -1.125f),new Vector2(0, -2.125f)};
+    private readonly string[] keyNames =
+    { "Q", "W", "E", "R", "A", "S","D", "F" };
+
+    private readonly Vector2[] defaultShotDir =
+        {new Vector2(0, 1), new Vector2(1, 1), new Vector2(1, 0), new Vector2(1, -1),
+    new Vector2(-1, 1), new Vector2(0, -1),new Vector2(-1, -1),new Vector2(-1, 0)};
+
+    private readonly Vector2[] sniperShotDir =
+        {new Vector2(0, 1), new Vector2(0, 1), new Vector2(1, 0), new Vector2(1, 0),
+    new Vector2(-1, 0), new Vector2(-1, 0),new Vector2(0, -1),new Vector2(0, -1)};
+
+    private readonly DirType[] sniperDirType = { DirType.Up, DirType.Left, DirType.Right, DirType.Down };
+    #endregion
+
     #region UI 관련
+    [SerializeField] Image[] dirImages;
     [SerializeField] TextMeshProUGUI[] dirTexts;
     [SerializeField] Image[] coolImage;
-    Coroutine[] keyImageCoroutine = new Coroutine[8];
+
+    Dictionary<DirType, List<string>> dirTextDic = new Dictionary<DirType, List<string>>();
+
+    Dictionary<DirType, List<TextMeshProUGUI>> sniperDirTmpDic = new Dictionary<DirType, List<TextMeshProUGUI>>();
+
+    Dictionary<DirType, List<Image>> sniperDirImageDic = new Dictionary<DirType, List<Image>>();
+
+    Dictionary<string, Coroutine> keyImageCoroutine = new Dictionary<string, Coroutine>();
     Coroutine reloadImageCoroutine;
     #endregion
 
     #region 키 입력 관련
-    private readonly string[] keyNames =
-    { "Q", "W", "E", "R", "A", "S","D", "F" };
-
-    private readonly Vector2[] shotDir =
-        {new Vector2(0, 1), new Vector2(1, 1), new Vector2(1, 0), new Vector2(1, -1),
-    new Vector2(-1, 1), new Vector2(0, -1),new Vector2(-1, -1),new Vector2(-1, 0)};
 
     Dictionary<string, Vector2> keyDic = new Dictionary<string, Vector2>();
 
     Dictionary<string, bool> keyCoolDic = new Dictionary<string, bool>();
 
-    Coroutine[] keyCoroutine = new Coroutine[8];
+    Dictionary<string, int> sniperKeySlotIndex = new Dictionary<string, int>();
+
+    Dictionary<string, Coroutine> keyCoroutine = new Dictionary<string, Coroutine>();
     Coroutine reloadCoroutine;
     #endregion
 
@@ -66,10 +94,16 @@ public class PlayerAttack : MonoBehaviour
         player = GetComponent<Player>();
 
         InitPlayerAttack(player, player.Data);
+
+        InitialDic();
+        InitSniperDic();
+        ShuffleKey();
+
+        SetAttackUi();
     }
 
 
-    public void InitPlayerAttack(Player player, PlayerData data)
+    void InitPlayerAttack(Player player, PlayerData data)
     {
         Damage = player.Damage;
         DamageMultiple = data.damageMultiple;
@@ -83,7 +117,56 @@ public class PlayerAttack : MonoBehaviour
         UseAmmo = data.useAmmo;
         Ammo = data.ammo;
 
-        ShuffleKey();
+    }
+
+    void InitialDic()
+    {
+        foreach (string key in keyNames)
+        {
+            keyCoroutine[key] = null;
+            keyImageCoroutine[key] = null;
+        }
+
+        dirTextDic[DirType.Up] = new List<string>();
+        dirTextDic[DirType.Down] = new List<string>();
+        dirTextDic[DirType.Left] = new List<string>();
+        dirTextDic[DirType.Right] = new List<string>();
+        dirTextDic[DirType.LeftUp] = new List<string>();
+        dirTextDic[DirType.RightUp] = new List<string>();
+        dirTextDic[DirType.LeftDown] = new List<string>();
+        dirTextDic[DirType.RightDown] = new List<string>();
+    }
+
+    void InitSniperDic()
+    {
+        sniperDirTmpDic.Clear();
+
+        int index = 0;
+        
+
+
+        foreach (var type in sniperDirType)
+        {
+            sniperDirTmpDic[type] = new List<TextMeshProUGUI>()
+            {
+                dirTexts[index],
+                dirTexts[index + 1]
+            };
+            sniperDirImageDic[type] = new List<Image>()
+            {
+                coolImage[index],
+                coolImage[index + 1]
+            };
+            index += 2;
+        }
+    }
+
+    void SetAttackUi()
+    {
+        Vector2[] uiVec = canSniper ? sniperUi : defaultUi;
+
+        for (int i = 0; i < dirImages.Length; i++)
+            dirImages[i].rectTransform.anchoredPosition = uiVec[i];
     }
 
     #region 플레이어 능력치 변화
@@ -106,19 +189,30 @@ public class PlayerAttack : MonoBehaviour
         {
             keyCoolDic[keyNames[i]] = false;
         }
+
+
     }
 
     void ShuffleKey()
     {
         keyDic.Clear();
 
-        Vector2[] randVec = shotDir.OrderBy(x => Random.Range(0f, 1f)).ToArray();
+        foreach(var list in dirTextDic.Keys.ToList())
+        {
+            dirTextDic[list].Clear();
+        }
+        sniperKeySlotIndex.Clear();
+        Vector2[] veces = canSniper ? sniperShotDir : defaultShotDir;
+
+        Vector2[] randVec = veces.OrderBy(x => Random.Range(0f, 1f)).ToArray();
 
         for(int i = 0; i < keyNames.Length; i++)
         {
             keyDic[keyNames[i]] = randVec[i];
-            AttackDirUiUpdate(keyNames[i], randVec[i]);
+            DirType type = SwitchType(keyDic[keyNames[i]]);
+            dirTextDic[type].Add(keyNames[i]);
         }
+        AttackDirUiUpdate();
         InitialKeyCoolTime();
     }
 
@@ -136,9 +230,9 @@ public class PlayerAttack : MonoBehaviour
         return default;
     }
 
-    void AttackDirUiUpdate(string text, Vector2 vec)
+    void AttackDirUiUpdate()
     {
-        DirType type = SwitchType(vec);
+        /*DirType type = SwitchType(vec);
         switch(type)
         {
             case DirType.LeftUp:
@@ -165,7 +259,32 @@ public class PlayerAttack : MonoBehaviour
             case DirType.RightDown:
                 dirTexts[((int)DirType.RightDown)].text = text;
                 break;
-        }
+        }*/
+
+        foreach(DirType list in dirTextDic.Keys.ToList())
+        {
+            string[] keys = dirTextDic[list].OrderBy(x => Random.Range(0f, 1f)).ToArray();
+
+            int num = (int)list;
+
+            if (keys == null || keys.Length == 0)
+            {
+                continue;
+            }
+
+            if(canSniper)
+            {
+                for(int i = 0; i < keys.Length; i++)
+                {
+                    sniperDirTmpDic[list][i].text = keys[i];
+                    sniperKeySlotIndex[keys[i]] = i;
+                }
+            }
+            else
+            {
+                dirTexts[(int)list].text = keys[0];
+            }
+        } 
     }
 
     public void Shoot(string keyName, bool isSpecial = false)
@@ -198,8 +317,19 @@ public class PlayerAttack : MonoBehaviour
 
     void KeyCool(string keyName, DirType type)
     {
-        keyCoroutine[(int)type] = StartCoroutine(StartKeyCool(keyName));
-        keyImageCoroutine[(int)type] = StartCoroutine(ImageFiil(type));
+        if (keyCoroutine[keyName] != null)
+            StopCoroutine(keyCoroutine[keyName]);
+
+        keyCoroutine[keyName] = StartCoroutine(StartKeyCool(keyName));
+        if (canSniper)
+        {
+            int slot = sniperKeySlotIndex[keyName];
+            keyImageCoroutine[keyName] = StartCoroutine(ImageFiil(type, slot));
+        }
+        else
+        {
+            keyImageCoroutine[keyName] = StartCoroutine(ImageFiil(type));
+        }
     }
 
     IEnumerator StartKeyCool(string key)
@@ -209,9 +339,13 @@ public class PlayerAttack : MonoBehaviour
         keyCoolDic[key] = false;
     }
 
-    IEnumerator ImageFiil(DirType type)
+    IEnumerator ImageFiil(DirType type, int slot = 0)
     {
-        Image image = coolImage[(int)type];
+        Image image;
+        if(canSniper)
+            image = sniperDirImageDic[type][slot];
+        else
+            image = coolImage[(int)type];
         float timer = ShootSpeed;
 
         image.fillAmount = 1f;
@@ -238,20 +372,17 @@ public class PlayerAttack : MonoBehaviour
 
     void CoroutineStop()
     {
-        for (int i = 0; i < keyCoroutine.Length; i++)
+        foreach(string key in keyNames)
         {
-            if (keyCoroutine[i] != null)
+            if (keyCoroutine.ContainsKey(key) && keyCoroutine[key] != null)
             {
-                StopCoroutine(keyCoroutine[i]);
-                keyCoroutine[i] = null;
+                StopCoroutine(keyCoroutine[key]);
+                keyCoroutine[key] = null;
             }
-
-            if (keyImageCoroutine[i] != null)
+            if (keyImageCoroutine.ContainsKey(key) && keyImageCoroutine[key] != null)
             {
-                StopCoroutine(keyImageCoroutine[i]);
-                keyImageCoroutine[i] = null;
-                coolImage[i].fillAmount = 1f;
-                coolImage[i].gameObject.SetActive(false);
+                StopCoroutine(keyImageCoroutine[key]);
+                keyImageCoroutine[key] = null;
             }
         }
     }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using static ConstValue;
 
@@ -40,27 +38,26 @@ public class MonsterMoveState : CharacterMoveState<Monster>
     {
         if (playerTransform == null || character == null || rb == null) return;
 
-        if (!character.IsMove)
-        {
-            stateManager.ChangeState(character.IdleState);
-            return;
-        }
-
-        UpdateMovement();
+        character.FlipSprite(character.playerTransform);
 
         float distanceToPlayer = Vector2.Distance(character.transform.position, playerTransform.position);
 
-        if (character.CurrentAttackCooldown <= 0f)
+        if (character is RangerMonster)
         {
-            if (character is RangerMonster)
+            if (distanceToPlayer <= character.MonsterData.targetDistance)
             {
-                if (distanceToPlayer <= character.MonsterData.attackRange)
-                {
-                    stateManager.ChangeState(character.AttackState);
-                    return;
-                }
+                stateManager.ChangeState(character.CreateAttackState());
+                return;
             }
         }
+
+        if (distanceToPlayer > character.MonsterData.detectRange)
+        {
+            stateManager.ChangeState(character.CreateIdleState());
+            return;
+        }
+
+        UpdateMovement(distanceToPlayer);
     }
 
     public override void ExitState()
@@ -81,9 +78,17 @@ public class MonsterMoveState : CharacterMoveState<Monster>
         return true;
     }
 
-    private void UpdateMovement()
+    private void UpdateMovement(float distanceToPlayer)
     {
         Vector2 direction = (playerTransform.position - character.transform.position).normalized;
-        rb.velocity = direction * character.MoveSpeed;
+        float currentMoveSpeed = character.MoveSpeed;
+
+        if (distanceToPlayer <= character.MonsterData.targetDistance)
+        {
+            float clampedDistance = Mathf.Clamp01(distanceToPlayer / character.MonsterData.targetDistance);
+            currentMoveSpeed *= clampedDistance;
+        }
+
+        rb.velocity = direction * currentMoveSpeed;
     }
 }

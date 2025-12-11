@@ -1,28 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Monster : Character
+public abstract class Monster : Character
 {
-    protected CharacterStateManager<Monster> monsterStateManager;
+    public CharacterStateManager<Monster> MonsterStateManager { get; protected set; }
     [SerializeField] private MonsterData _monsterData;
+    [SerializeField] protected SpriteRenderer monsterSpriteRenderer;
+
     public MonsterData MonsterData => _monsterData;
     private Rigidbody2D monsterRb;
     public Rigidbody2D MonsterRb => monsterRb;
     [SerializeField] private Animator animator;
     public Animator Animator => animator;
 
-    public MonsterIdleState IdleState { get; private set; }
-    public MonsterMoveState MoveState { get; private set; }
-    public MonsterAttackState AttackState { get; private set; }
-    public MonsterDieState DieState { get; private set; }
-
     public GameObject playerGO {  get; private set; }
     public Transform playerTransform { get; private set; }
-    public bool IsMove {  get; private set; }
+    public Player CurrentAttackTarget { get; protected set; }
 
-    [HideInInspector] public float CurrentAttackCooldown { get; private set; }
+    [HideInInspector] public float CurrentAttackCooldown { get; protected set; }
 
+    public abstract CharacterState<Monster> CreateIdleState();
+    public abstract CharacterState<Monster> CreateMoveState();
+    public abstract CharacterState<Monster> CreateAttackState();
+    public abstract CharacterState<Monster> CreateDieState();
 
     protected override void Awake()
     {
@@ -30,26 +29,32 @@ public class Monster : Character
         {
             monsterRb = GetComponent<Rigidbody2D>();
         }
-        monsterStateManager = new CharacterStateManager<Monster>(this);
+        if (animator == null)
+        {
+            animator = GetComponent<Animator>();
+        }
+
+        MonsterStateManager = new CharacterStateManager<Monster>(this);
 
         if (_monsterData != null)
         {
             InitCharData(_monsterData.characterData);
             CurrentAttackCooldown = 0f;
+            transform.localScale = new Vector3(_monsterData.xScale, _monsterData.yScale, 1f);
         }
         else
         {
             Debug.LogWarning("MonsterData가 할당되지 않음");
         }
+
+        if (monsterSpriteRenderer == null)
+        {
+            monsterSpriteRenderer = GetComponent<SpriteRenderer>();
+        }
     }
 
     private void Start()
     {
-        IdleState = new MonsterIdleState(this, monsterStateManager);
-        MoveState = new MonsterMoveState(this, monsterStateManager);
-        AttackState = new MonsterAttackState(this, monsterStateManager);
-        DieState = new MonsterDieState(this, monsterStateManager);
-
         playerGO = GameObject.FindGameObjectWithTag("Player");
 
 
@@ -62,14 +67,14 @@ public class Monster : Character
         else
         {
             playerTransform = playerGO.transform;
-            monsterStateManager.ChangeState(IdleState);
+            MonsterStateManager.ChangeState(CreateIdleState());
         }
 
     }
 
     protected override void Update()
     {
-        monsterStateManager.Update();
+        MonsterStateManager.Update();
 
         if (CurrentAttackCooldown > 0f)
         {
@@ -80,9 +85,9 @@ public class Monster : Character
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
-        monsterStateManager.FixedUpdate();
+        MonsterStateManager.FixedUpdate();
 
-        float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
+        /*float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
         if (distanceToPlayer <= MonsterData.detectRange)
         {
             IsMove = true;
@@ -90,7 +95,7 @@ public class Monster : Character
         else
         {
             IsMove = false;
-        }
+        }*/
     }
 
     public override void Attack(Character character)
@@ -98,7 +103,7 @@ public class Monster : Character
         base.Attack(character);
     }
 
-    protected void ResetAttackCooldown()
+    public void ResetAttackCooldown()
     {
         if (_monsterData != null)
         {
@@ -117,6 +122,25 @@ public class Monster : Character
     public override void Die()
     {
         base.Die();
-        monsterStateManager.ChangeState(DieState);
+        MonsterStateManager.ChangeState(CreateDieState());
+    }
+
+    public void SetAttackTarget(Player player)
+    {
+        CurrentAttackTarget = player;
+    }
+
+    public virtual void FlipSprite(Transform targetTransform)
+    {
+        if (targetTransform == null || monsterSpriteRenderer == null) return;
+
+        if (targetTransform.position.x < transform.position.x)
+        {
+            monsterSpriteRenderer.flipX = false;
+        }
+        else
+        {
+            monsterSpriteRenderer.flipX = true;
+        }
     }
 }

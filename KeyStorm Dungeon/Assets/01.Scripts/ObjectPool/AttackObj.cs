@@ -25,6 +25,7 @@ public class AttackObj : MonoBehaviour
         coolTime = cool;
         poolManager = manager;
 
+        // isPlayer bool 값도 받아와야 할 듯
         transform.up = dir;
 
         StartDurate();
