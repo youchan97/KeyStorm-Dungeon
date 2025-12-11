@@ -18,7 +18,7 @@ MonoBehaviour:
     maxHp: 80
     damage: 5
     moveSpeed: 1
-  detectRange: 7
+  detectRange: 10
   targetDistance: 5
   tier: 0
   shotSpeed: 4

@@ -3,9 +3,9 @@ using static ConstValue;
 
 public class MonsterMoveState : CharacterMoveState<Monster>
 {
-    private Transform playerTransform;
-    private Rigidbody2D rb;
-    private Animator animator;
+    protected Transform playerTransform;
+    protected Rigidbody2D rb;
+    protected Animator animator;
 
     public MonsterMoveState(Monster monster, CharacterStateManager<Monster> stateManager) : base(monster, stateManager)
     {
@@ -16,10 +16,15 @@ public class MonsterMoveState : CharacterMoveState<Monster>
         rb = character.MonsterRb;
         animator = character.Animator;
         animator.SetBool(MoveAnim, true);
-        playerTransform = character.playerTransform;
+        playerTransform = character.PlayerTransform;
     }
 
     public override void UpdateState()
+    {
+        
+    }
+
+    public override void FixedUpdateState()
     {
         if (playerTransform == null) return;
 
@@ -32,13 +37,10 @@ public class MonsterMoveState : CharacterMoveState<Monster>
         {
             character.transform.localScale = new Vector3(Mathf.Abs(character.transform.localScale.x), character.transform.localScale.y, character.transform.localScale.z);
         }
-    }
 
-    public override void FixedUpdateState()
-    {
-        if (playerTransform == null || character == null || rb == null) return;
+        if (character == null || rb == null) return;
 
-        character.FlipSprite(character.playerTransform);
+        character.FlipSprite(character.PlayerTransform);
 
         float distanceToPlayer = Vector2.Distance(character.transform.position, playerTransform.position);
 
@@ -78,7 +80,7 @@ public class MonsterMoveState : CharacterMoveState<Monster>
         return true;
     }
 
-    private void UpdateMovement(float distanceToPlayer)
+    protected void UpdateMovement(float distanceToPlayer)
     {
         Vector2 direction = (playerTransform.position - character.transform.position).normalized;
         float currentMoveSpeed = character.MoveSpeed;

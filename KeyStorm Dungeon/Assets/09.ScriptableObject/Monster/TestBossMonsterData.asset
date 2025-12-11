@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 022c38624de0acc44ac949e934164ffb, type: 3}
-  m_Name: TestMonsterData
+  m_Name: TestBossMonsterData
   m_EditorClassIdentifier: 
   characterData:
-    charName: TestMonster
-    id: 0
-    maxHp: 100
-    damage: 10
-    moveSpeed: 1.5
-  detectRange: 8
-  targetDistance: 0.85
-  tier: 0
-  shotSpeed: 0
+    charName: TestBossMonster
+    id: 2
+    maxHp: 1000
+    damage: 20
+    moveSpeed: 4
+  detectRange: 15
+  targetDistance: 1
+  tier: 3
+  shotSpeed: 2
   attackSpeed: 2
   dropGold: 0
   minStage: 0
   maxStage: 0
-  xScale: 1
-  yScale: 1
+  xScale: 3
+  yScale: 3
