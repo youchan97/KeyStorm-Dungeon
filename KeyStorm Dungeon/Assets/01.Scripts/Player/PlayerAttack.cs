@@ -31,6 +31,13 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] int shotGunBulletCount;
     [SerializeField] float shotSpreadAngle;
 
+    #region 폭탄
+    [SerializeField] ThrownBomb bomb;
+    bool isHoldingBomb;
+    ThrownBomb curBomb;
+    #endregion
+
+
     #region readOnly
     private readonly Vector2[] defaultUi =
         {new Vector2(-1.125f, 1.125f), new Vector2(0, 1.125f), new Vector2(1.125f, 1.125f), new Vector2(-1.125f, 0),
@@ -95,6 +102,7 @@ public class PlayerAttack : MonoBehaviour
     public int UseAmmo { get; private set; }
     public int Ammo { get; private set; }
     public Dictionary<string, bool> KeyCoolDic { get => keyCoolDic; }
+    public ThrownBomb Bomb { get => bomb; set => bomb = value; }
     #endregion
 
     private void Start()
@@ -296,18 +304,28 @@ public class PlayerAttack : MonoBehaviour
         } 
     }
 
-    public void Shoot(string keyName, bool isSpecial = false)
+    public void Shoot(string keyName)
     {
         if (keyCoolDic[keyName] || isReloading) return;
 
         if (!keyDic.ContainsKey(keyName)) return;
 
-        int bulletCount = canShotGun ? shotGunBulletCount : defaultBulletCount;
+        if(curBomb != null)
+        {
+            if (player.Inventory.bombCount <= 0 && curBomb == null)
+                return;
 
-        if (canShotGun && bulletCount > Ammo)
-            bulletCount = Ammo;
+            ThrowBomb(keyName);
+        }
+        else
+        {
+            int bulletCount = canShotGun ? shotGunBulletCount : defaultBulletCount;
+            if (canShotGun && bulletCount > Ammo)
+                bulletCount = Ammo;
 
-        SetBullet(keyName, isSpecial, bulletCount);
+            SetBullet(keyName, bulletCount);
+        }
+
 
         DirType type = SwitchType(keyDic[keyName]);
 
@@ -380,8 +398,9 @@ public class PlayerAttack : MonoBehaviour
             }
     }
 
-    void SetBullet(string keyName , bool isSpecial, int count)
+    void SetBullet(string keyName , int count)
     {
+        bool isSpecial = keyName == specialAttackKey;
         for (int i = 0; i < count; i++)
         {
             AttackObj obj = player.AttackPoolManager.GetAttack();
@@ -399,7 +418,7 @@ public class PlayerAttack : MonoBehaviour
             Ammo--;
         }
 
-        if(keyName == specialAttackKey)
+        if(isSpecial)
             SetSpecialAttackKey();
     }
 
@@ -514,4 +533,33 @@ public class PlayerAttack : MonoBehaviour
             coolImage[i].gameObject.SetActive(false);
         }
     }
+
+    #region Bomb
+    public void HoldBomb()
+    {
+        if (curBomb != null || player.Inventory.bombCount <= 0) return;
+
+        ThrownBomb bomb = Instantiate(Bomb);
+        bomb.Hold(transform);
+        curBomb = bomb;
+        player.Inventory.bombCount--;
+        bomb.OnExplode += () => { ExplodingInPlayer(bomb); };
+    }
+
+    void ExplodingInPlayer(ThrownBomb bomb)
+    {
+        if (curBomb == bomb) curBomb = null;
+    }
+
+    void ThrowBomb(string keyName)
+    {
+        if (curBomb == null) return;
+
+        Vector2 dir = keyDic[keyName];
+        curBomb.transform.position = player.transform.position + (Vector3)dir * ShootOffset;
+        curBomb.Throw(dir, ShootSpeed);
+
+        curBomb = null;
+    }
+    #endregion
 }

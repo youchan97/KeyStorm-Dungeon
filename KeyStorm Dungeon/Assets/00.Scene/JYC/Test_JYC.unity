@@ -565,6 +565,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestMeleeMonster
       objectReference: {fileID: 0}
+    - target: {fileID: 8565662801902378472, guid: 67bae2be13a188044bea04cb6c8bf015, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -834,6 +838,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4851458755222282479, guid: e19d910db4bbd334f895f0a9eb2dfd24, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 6127247859964751859}
+    - target: {fileID: 4851458755222282479, guid: e19d910db4bbd334f895f0a9eb2dfd24, type: 3}
       propertyPath: attackPoolManager
       value: 
       objectReference: {fileID: 1459056712}
@@ -846,12 +854,16 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 9001353019542540319, guid: e19d910db4bbd334f895f0a9eb2dfd24, type: 3}
+      propertyPath: bomb
+      value: 
+      objectReference: {fileID: -8631913342669193820, guid: de0f6bee143d7c241a21cf7133aafd82, type: 3}
+    - target: {fileID: 9001353019542540319, guid: e19d910db4bbd334f895f0a9eb2dfd24, type: 3}
       propertyPath: canSniper
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9001353019542540319, guid: e19d910db4bbd334f895f0a9eb2dfd24, type: 3}
       propertyPath: canShotGun
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9001353019542540319, guid: e19d910db4bbd334f895f0a9eb2dfd24, type: 3}
       propertyPath: shotSpreadAngle
@@ -864,8 +876,33 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6054290072008950287, guid: e19d910db4bbd334f895f0a9eb2dfd24, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6127247859964751859}
   m_SourcePrefab: {fileID: 100100000, guid: e19d910db4bbd334f895f0a9eb2dfd24, type: 3}
+--- !u!1 &6127247859964751858 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6054290072008950287, guid: e19d910db4bbd334f895f0a9eb2dfd24, type: 3}
+  m_PrefabInstance: {fileID: 6127247859964751857}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6127247859964751859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6127247859964751858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72fc9d84513506744b172f5f09d7dc2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 0}
+  gold: 0
+  bombCount: 3
+  passiveItems: []
+  activeItem: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
