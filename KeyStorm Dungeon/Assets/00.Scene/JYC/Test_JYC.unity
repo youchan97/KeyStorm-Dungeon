@@ -859,11 +859,11 @@ PrefabInstance:
       objectReference: {fileID: -8631913342669193820, guid: de0f6bee143d7c241a21cf7133aafd82, type: 3}
     - target: {fileID: 9001353019542540319, guid: e19d910db4bbd334f895f0a9eb2dfd24, type: 3}
       propertyPath: canSniper
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9001353019542540319, guid: e19d910db4bbd334f895f0a9eb2dfd24, type: 3}
       propertyPath: canShotGun
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9001353019542540319, guid: e19d910db4bbd334f895f0a9eb2dfd24, type: 3}
       propertyPath: shotSpreadAngle
