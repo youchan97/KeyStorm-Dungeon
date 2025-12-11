@@ -29,6 +29,12 @@ public class MonsterIdleState : CharacterIdleState<Monster>
             stateManager.ChangeState(character.CreateMoveState());
             return;
         }
+
+        if (character.MonsterData.tier == MonsterTier.Boss)
+        {
+            stateManager.ChangeState(character.CreateMoveState());
+            return;
+        }
     }
 
     public override void ExitState()

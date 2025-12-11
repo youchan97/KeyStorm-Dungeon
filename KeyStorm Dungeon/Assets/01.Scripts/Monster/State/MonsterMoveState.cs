@@ -78,7 +78,7 @@ public class MonsterMoveState : CharacterMoveState<Monster>
         return true;
     }
 
-    private void UpdateMovement(float distanceToPlayer)
+    protected void UpdateMovement(float distanceToPlayer)
     {
         Vector2 direction = (playerTransform.position - character.transform.position).normalized;
         float currentMoveSpeed = character.MoveSpeed;
