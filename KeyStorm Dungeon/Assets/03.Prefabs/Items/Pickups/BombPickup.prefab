@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4278868420933977098}
   - component: {fileID: 2704770730672347541}
   - component: {fileID: 8941565077270022247}
-  - component: {fileID: -9089767996796677044}
+  - component: {fileID: -6719173740503038405}
   m_Layer: 0
   m_Name: BombPickup
   m_TagString: Untagged
@@ -121,7 +121,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &-9089767996796677044
+--- !u!114 &-6719173740503038405
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
