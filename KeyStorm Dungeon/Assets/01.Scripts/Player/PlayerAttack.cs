@@ -23,8 +23,13 @@ public class PlayerAttack : MonoBehaviour
     Player player;
     bool isReloading;
 
+    [SerializeField] string specialAttackKey;
+
     [SerializeField] bool canSniper;
-    bool canShotGun;
+    [SerializeField] bool canShotGun;
+
+    [SerializeField] int shotGunBulletCount;
+    [SerializeField] float shotSpreadAngle;
 
     #region readOnly
     private readonly Vector2[] defaultUi =
@@ -45,6 +50,9 @@ public class PlayerAttack : MonoBehaviour
     new Vector2(-1, 0), new Vector2(-1, 0),new Vector2(0, -1),new Vector2(0, -1)};
 
     private readonly DirType[] sniperDirType = { DirType.Up, DirType.Left, DirType.Right, DirType.Down };
+
+    private readonly Color normalColor = Color.white;
+    private readonly Color specialColor = Color.white;
     #endregion
 
     #region UI 관련
@@ -213,6 +221,7 @@ public class PlayerAttack : MonoBehaviour
             dirTextDic[type].Add(keyNames[i]);
         }
         AttackDirUiUpdate();
+        SetSpecialAttackKey();
         InitialKeyCoolTime();
     }
 
@@ -293,26 +302,105 @@ public class PlayerAttack : MonoBehaviour
 
         if (!keyDic.ContainsKey(keyName)) return;
 
-        AttackObj obj = player.AttackPoolManager.GetAttack();
+        int bulletCount = canShotGun ? shotGunBulletCount : defaultBulletCount;
 
-        Sprite sprite = isSpecial ? player.SBullet : player.Bullet;
-        int damage = isSpecial ? (int)(Damage * SpecialDamageMultiple) : Damage;
-        Vector2 dir = keyDic[keyName].normalized;
-        obj.transform.position = player.transform.position + (Vector3)dir * ShootOffset;
+        if (canShotGun && bulletCount > Ammo)
+            bulletCount = Ammo;
 
-        obj.InitData(sprite, damage, dir, ShootSpeed, Range, player.AttackPoolManager);
-
-        Debug.Log(keyName + dir);
+        SetBullet(keyName, isSpecial, bulletCount);
 
         DirType type = SwitchType(keyDic[keyName]);
 
         KeyCool(keyName, type);
 
-        Ammo--;
-        if(Ammo == 0)
+        
+        if(Ammo <= 0)
         {
+            Ammo = 0;
             Reload();
         }
+    }
+
+    void SetSpecialAttackKey()
+    {
+        if (keyNames == null || keyNames.Length <= 1) return;
+
+        string prevKey = specialAttackKey;
+        string resultKey = prevKey;
+
+        while(prevKey == resultKey)
+        {
+            int a = Random.Range(0, keyNames.Length);
+            resultKey = keyNames[a];
+        }
+
+        specialAttackKey = resultKey;
+        UpdateSpecialAttackUI();
+    }
+
+    void UpdateSpecialAttackUI()
+    {
+        ResetKeyUI();
+
+        if (string.IsNullOrEmpty(specialAttackKey)) return;
+
+        DirType type = SwitchType(keyDic[specialAttackKey]);
+
+        Image image;
+
+        if (!canSniper)
+        {
+            image = dirTexts[(int)type].transform.parent.GetComponent<Image>();
+            image.color = Color.yellow;
+            return;
+        }
+
+        int slot = sniperKeySlotIndex[specialAttackKey];
+        image = sniperDirTmpDic[type][slot].transform.parent.GetComponent<Image>();
+        image.color = Color.yellow;
+    }
+
+    void ResetKeyUI()
+    {
+        if(!canSniper)
+        {
+            foreach (var txt in dirTexts)
+            {
+                Image image = txt.transform.parent.GetComponent<Image>();
+                image.color = Color.white;
+            }
+            return;
+        }
+
+        foreach (var list in sniperDirTmpDic.Values)
+            foreach (var txt in list)
+            {
+                Image image = txt.transform.parent.GetComponent<Image>();
+                image.color = Color.white;
+            }
+    }
+
+    void SetBullet(string keyName , bool isSpecial, int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            AttackObj obj = player.AttackPoolManager.GetAttack();
+            Sprite sprite = isSpecial ? player.SBullet : player.Bullet;
+            int damage = isSpecial ? (int)(Damage * SpecialDamageMultiple) : Damage;
+            Vector2 dir = keyDic[keyName].normalized;
+            if(canShotGun)
+            {
+                float angle = Random.Range(-shotSpreadAngle,shotSpreadAngle);
+                dir = Quaternion.Euler(0,0,angle) * dir; 
+            }
+            obj.transform.position = player.transform.position + (Vector3)dir * ShootOffset;
+
+            obj.InitData(sprite, damage, dir, ShootSpeed, Range, player.AttackPoolManager, true);
+            Ammo--;
+        }
+
+        if(keyName == specialAttackKey)
+            SetSpecialAttackKey();
     }
 
     void KeyCool(string keyName, DirType type)
@@ -346,6 +434,7 @@ public class PlayerAttack : MonoBehaviour
             image = sniperDirImageDic[type][slot];
         else
             image = coolImage[(int)type];
+
         float timer = ShootSpeed;
 
         image.fillAmount = 1f;

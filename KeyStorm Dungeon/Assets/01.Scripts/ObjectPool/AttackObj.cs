@@ -16,7 +16,7 @@ public class AttackObj : MonoBehaviour
 
     Coroutine coroutine;
 
-    public void InitData(Sprite sprite, int value, Vector2 vec, float speed, float cool, AttackPoolManager manager)
+    public void InitData(Sprite sprite, int value, Vector2 vec, float speed, float cool, AttackPoolManager manager, bool isPlayerAttack)
     {
         spriteRenderer.sprite = sprite;
         damage = value;
@@ -25,7 +25,7 @@ public class AttackObj : MonoBehaviour
         coolTime = cool;
         poolManager = manager;
 
-        // isPlayer bool 값도 받아와야 할 듯
+        isPlayer = isPlayerAttack;
         transform.up = dir;
 
         StartDurate();
@@ -57,6 +57,12 @@ public class AttackObj : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(collision.CompareTag("Wall"))
+        {
+            poolManager.ReturnPool(this);
+            return;
+        }
+
         Character character;
         if (isPlayer)
             character = collision.GetComponent<Monster>();

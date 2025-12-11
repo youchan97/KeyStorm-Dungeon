@@ -11,4 +11,5 @@ public static class ConstValue
     #endregion
 
     public const float ShootOffset = 1.5f;
+    public const int defaultBulletCount = 1;
 }
