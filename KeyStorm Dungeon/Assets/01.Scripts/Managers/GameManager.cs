@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class GameManager : SingletonManager<GameManager>
 {
-    //게임시작, 일시정지, 게임 종료 관련, 스테이지 관련 정보 전달
     private bool isStart;
     private bool isPaused;
 
