@@ -28,16 +28,6 @@ public class MonsterMoveState : CharacterMoveState<Monster>
     {
         if (playerTransform == null) return;
 
-        Vector2 directionToPlayer = (playerTransform.position - character.transform.position).normalized;
-        if (directionToPlayer.x < 0)
-        {
-            character.transform.localScale = new Vector3(Mathf.Abs(character.transform.localScale.x) * -1, character.transform.localScale.y, character.transform.localScale.z);
-        }
-        else if (directionToPlayer.x > 0)
-        {
-            character.transform.localScale = new Vector3(Mathf.Abs(character.transform.localScale.x), character.transform.localScale.y, character.transform.localScale.z);
-        }
-
         if (character == null || rb == null) return;
 
         character.FlipSprite(character.PlayerTransform);

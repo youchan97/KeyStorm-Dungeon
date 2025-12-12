@@ -1,14 +1,15 @@
-
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class BossMonsterAttackState : MonsterAttackState
 {
     private BossMonster boss;
     private Transform playerTransform;
-    private Vector3 divePosition;
-    private GameObject currentShadow;
+    private Vector3 diveTargetPosition;
+    private GameObject currentShadowInstance;
 
+    private bool _isJumpAnimationFinished = false;
 
     public BossMonsterAttackState(Monster character, CharacterStateManager<Monster> stateManager) : base(character, stateManager)
     {
@@ -17,43 +18,140 @@ public class BossMonsterAttackState : MonsterAttackState
 
     public override void EnterState()
     {
-        Debug.Log("AttackState 진입");
+
         playerTransform = boss.PlayerTransform;
 
-        if(boss.MonsterRb != null)
+        if (boss.MonsterRb != null)
         {
             boss.MonsterRb.velocity = Vector2.zero;
         }
 
-        if(playerTransform == null)
+        if (playerTransform == null)
         {
             stateManager.ChangeState(boss.CreateIdleState());
             return;
         }
 
-        if(boss.BossShadow != null)
+        _isJumpAnimationFinished = false;
+        boss.OnJumpAnimationFinished += HandleJumpAnimationFinished;
+
+        boss.StartCoroutine(DiveAttack());
+    }
+
+    public override void UpdateState()
+    {
+        character.FlipSprite(character.PlayerTransform);
+    }
+
+    private IEnumerator DiveAttack()
+    {
+        boss.Animator.SetTrigger("IsJump");
+
+        yield return new WaitUntil(() => _isJumpAnimationFinished == true);
+
+
+        Vector3 initialBossPos = boss.transform.position;
+        Vector3 groundShadowPos = initialBossPos + Vector3.up * -0.5f;
+        Vector3 peakJumpPos = initialBossPos + Vector3.up * boss.JumpHeight;
+
+        float timer = 0f;
+
+        boss.GetComponent<Collider2D>().enabled = false;
+
+        if (boss.BossShadowPrefab != null)
         {
-            currentShadow = boss.BossShadow;
+            // 풀링 필요
+            currentShadowInstance = GameObject.Instantiate(boss.BossShadowPrefab, groundShadowPos, Quaternion.identity);
+            currentShadowInstance.transform.localScale = Vector3.one * boss.MaxShadowScale;
+        }
+        
+        while (timer < boss.JumpDuration)
+        {
+            timer += Time.deltaTime;
+            boss.transform.position = Vector3.Lerp(initialBossPos, peakJumpPos, timer / boss.JumpDuration);
+            
+            if (currentShadowInstance != null)
+            {
+                float currentScale = Mathf.Lerp(boss.MaxShadowScale, boss.MinShadowScale, timer / boss.JumpDuration);
+                currentShadowInstance.transform.localScale = Vector3.one * currentScale;
+            }
+
+            yield return null;
         }
 
-        divePosition = playerTransform.position;
+        boss.transform.position = peakJumpPos;
 
-        boss.StartCoroutine(boss.DiveAttackCoroutine(divePosition));
+        if (currentShadowInstance != null)
+        {
+            currentShadowInstance.SetActive(false);
+        }
+
+        yield return new WaitForSeconds(boss.DiveDelay);
+
+        diveTargetPosition = playerTransform.position;
+
+        boss.transform.position = diveTargetPosition + Vector3.up * (boss.JumpHeight);
+
+        boss.GetComponent<Collider2D>().enabled = true;
+
+        boss.Animator.SetBool("IsDive", true);
+
+        Vector3 startDivePos = boss.transform.position;
+        Vector3 endDivePos = diveTargetPosition;
+
+        timer = 0f;
+
+        currentShadowInstance.transform.position = diveTargetPosition + Vector3.up * -0.5f;
+        boss.BossShadowPrefab.transform.localScale = Vector3.one * boss.MinShadowScale;
+
+        currentShadowInstance.SetActive(true);
+
+        while(timer < boss.DiveDuration)
+        {
+            timer += Time.deltaTime;
+            boss.transform.position = Vector3.Lerp(startDivePos, endDivePos, timer / boss.DiveDuration);
+            if (currentShadowInstance != null)
+            {
+                float currentScale = Mathf.Lerp(boss.MinShadowScale, boss.MaxShadowScale, timer / boss.DiveDuration);
+                currentShadowInstance.transform.localScale = Vector3.one * currentScale;
+            }
+            yield return null;
+        }
+
+        // 풀링 필요
+        GameObject.Destroy(currentShadowInstance);
+        boss.transform.position = endDivePos;
+
+        boss.ApplyLandingDamage(diveTargetPosition, 2);
+
+        yield return new WaitForSeconds(boss.LandedDelay);
+
+        boss.Animator.SetBool("IsDive", false);
+        boss.ResetPatternCooldown();
+        stateManager.ChangeState(boss.CreateMoveState());
+    }
+
+    private void HandleJumpAnimationFinished()
+    {
+        _isJumpAnimationFinished = true;
     }
 
     public override void ExitState()
     {
         boss.StopAllCoroutines();
 
-        boss.GetComponent<Collider2D>().enabled = true;
+        boss.OnJumpAnimationFinished -= HandleJumpAnimationFinished;
 
-        if(currentShadow != null)
+        if (boss.BossShadowPrefab != null)
         {
-            currentShadow.SetActive(false);
+            GameObject.Destroy(currentShadowInstance);
+            currentShadowInstance = null;
         }
 
+        boss.GetComponent<Collider2D>().enabled = true;
+
         boss.Animator.ResetTrigger("IsJump");
-        boss.Animator.ResetTrigger("IsDive");
-        Debug.Log("AttackState 퇴장");
+        boss.Animator.SetBool("IsDive", false);
+        Debug.Log($"[{boss.name}]: ---- AttackState ExitState 퇴장! (종료) Time: {Time.time}");
     }
 }

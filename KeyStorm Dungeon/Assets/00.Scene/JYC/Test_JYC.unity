@@ -567,7 +567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8565662801902378472, guid: 67bae2be13a188044bea04cb6c8bf015, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -809,6 +809,10 @@ PrefabInstance:
     - target: {fileID: 6054290072008950287, guid: e19d910db4bbd334f895f0a9eb2dfd24, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001353019542540319, guid: e19d910db4bbd334f895f0a9eb2dfd24, type: 3}
+      propertyPath: canShotGun
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

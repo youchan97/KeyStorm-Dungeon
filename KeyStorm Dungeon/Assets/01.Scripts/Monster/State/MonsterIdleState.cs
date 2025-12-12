@@ -16,17 +16,17 @@ public class MonsterIdleState : CharacterIdleState<Monster>
         {
             character.MonsterRb.velocity = Vector2.zero;
         }
-    }
-
-    public override void FixedUpdateState()
-    {
-        if (character.PlayerTransform == null) return;
 
         if (character.MonsterData.tier == MonsterTier.Boss)
         {
             stateManager.ChangeState(character.CreateMoveState());
             return;
         }
+    }
+
+    public override void FixedUpdateState()
+    {
+        if (character.PlayerTransform == null) return;
 
         float distanceToPlayer = Vector2.Distance(character.transform.position, character.PlayerTransform.position);
 

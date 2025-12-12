@@ -319,11 +319,9 @@ public class PlayerAttack : MonoBehaviour
         }
         else
         {
-            int bulletCount = canShotGun ? shotGunBulletCount : defaultBulletCount;
-            if (canShotGun && bulletCount > Ammo)
-                bulletCount = Ammo;
+            UseAmmo = canShotGun ? shotGunBulletCount : defaultBulletCount;
 
-            SetBullet(keyName, bulletCount);
+            SetBullet(keyName);
         }
 
 
@@ -398,10 +396,15 @@ public class PlayerAttack : MonoBehaviour
             }
     }
 
-    void SetBullet(string keyName , int count)
+    void SetBullet(string keyName)
     {
         bool isSpecial = keyName == specialAttackKey;
-        for (int i = 0; i < count; i++)
+
+        int totalUseAmmo = isSpecial ? UseAmmo * 2 : UseAmmo;
+
+        int useAmmo = GetUseAmmo(totalUseAmmo, isSpecial);
+
+        for (int i = 0; i < useAmmo; i++)
         {
             AttackObj obj = player.AttackPoolManager.GetAttack();
             Sprite sprite = isSpecial ? player.SBullet : player.Bullet;
@@ -415,11 +418,28 @@ public class PlayerAttack : MonoBehaviour
             obj.transform.position = player.transform.position + (Vector3)dir * ShootOffset;
 
             obj.InitData(sprite, damage, dir, ShootSpeed, Range, player.AttackPoolManager, true);
-            Ammo--;
         }
+
+        int consumeAmmo = isSpecial ? useAmmo * 2 : useAmmo;
+        Ammo -= Mathf.Min(consumeAmmo, Ammo);
 
         if(isSpecial)
             SetSpecialAttackKey();
+    }
+
+    int GetUseAmmo(int total, bool isSpecial)
+    {
+        int useAmmo = Mathf.Min(total, Ammo);
+        if (isSpecial)
+        {
+            if (total > Ammo)
+            {
+                useAmmo = (Ammo + 1) / 2;
+            }
+            else
+                useAmmo = total / 2;
+        }
+        return useAmmo;
     }
 
     void KeyCool(string keyName, DirType type)
@@ -560,6 +580,21 @@ public class PlayerAttack : MonoBehaviour
         curBomb.Throw(dir, ShootSpeed);
 
         curBomb = null;
+    }
+    #endregion
+
+    #region StatUpdate
+    public void PlayerAttackStatUpdate(ItemData data)
+    {
+        Damage += (int)data.damage;
+        SpecialDamageMultiple += data.specialDamageMultiple;
+        DamageMultiple += data.damageMultiple;
+        AttackSpeed += data.attackSpeed;
+        AttackSpeedMultiple += data.attackSpeedMultiple;
+        Range += data.range;
+        ShootSpeed += data.shotSpeed;
+        MaxAmmo += data.maxAmmo;
+        UseAmmo += data.useAmmo;
     }
     #endregion
 }
