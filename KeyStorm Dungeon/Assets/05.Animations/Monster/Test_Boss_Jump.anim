@@ -22,8 +22,6 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: -1438802861, guid: 2bef218ac89a92d4693278b59b6cb93b, type: 3}
-    - time: 0.25
-      value: {fileID: -15470438, guid: 2bef218ac89a92d4693278b59b6cb93b, type: 3}
     - time: 0.375
       value: {fileID: -1358600600, guid: 2bef218ac89a92d4693278b59b6cb93b, type: 3}
     - time: 0.5
@@ -51,7 +49,6 @@ AnimationClip:
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
     - {fileID: -1438802861, guid: 2bef218ac89a92d4693278b59b6cb93b, type: 3}
-    - {fileID: -15470438, guid: 2bef218ac89a92d4693278b59b6cb93b, type: 3}
     - {fileID: -1358600600, guid: 2bef218ac89a92d4693278b59b6cb93b, type: 3}
     - {fileID: -912570088, guid: 2bef218ac89a92d4693278b59b6cb93b, type: 3}
   m_AnimationClipSettings:
@@ -78,4 +75,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.5
+    functionName: OnJumpAnimationEnd
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

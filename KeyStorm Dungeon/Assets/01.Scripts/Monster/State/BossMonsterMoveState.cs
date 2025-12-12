@@ -3,28 +3,30 @@ using static ConstValue;
 
 public class BossMonsterMoveState : MonsterMoveState
 {
+    private BossMonster boss;
 
-    public BossMonsterMoveState(Monster character, CharacterStateManager<Monster> stateManager) : base(character, stateManager)
+    public BossMonsterMoveState(BossMonster character, CharacterStateManager<Monster> stateManager) : base(character, stateManager)
     {
+        boss = character as BossMonster;
     }
 
     public override void EnterState()
     {
         base.EnterState();
-        character.ResetAttackCooldown();
+        boss.ResetPatternCooldown();
     }
 
     public override void FixedUpdateState()
     {
-        if (playerTransform == null || character == null || rb == null) return;
+        if (playerTransform == null || boss == null || rb == null) return;
 
-        character.FlipSprite(character.PlayerTransform);
+        boss.FlipSprite(boss.PlayerTransform);
 
-        float distanceToPlayer = Vector2.Distance(character.transform.position, playerTransform.position);
+        float distanceToPlayer = Vector2.Distance(boss.transform.position, playerTransform.position);
 
-        if (character.CurrentAttackCooldown <= 0)
+        if (boss.CurrentPatternCooldown <= 0)
         {
-            stateManager.ChangeState(character.CreateAttackState());
+            stateManager.ChangeState(boss.CreateAttackState());
             return;
         }
 

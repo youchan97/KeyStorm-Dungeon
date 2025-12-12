@@ -9,13 +9,26 @@ public class BossMonster : Monster
     [SerializeField] private float jumpDuration;
     [SerializeField] private float diveDelay;
     [SerializeField] private float diveDuration;
-    [SerializeField] private GameObject bossShadow;
+    [SerializeField] private GameObject bossShadowPrefab;
     [SerializeField] private float shadowScaleTime;
     [SerializeField] private float minShadowScale = 0.1f;
     [SerializeField] private float maxShadowScale = 1.0f;
     [SerializeField] private float landedDelay;
+    [SerializeField] private float patternCooldown;
 
-    public GameObject BossShadow => bossShadow;
+    public float JumpHeight => jumpHeight;
+    public float JumpDuration => jumpDuration;
+    public float DiveDelay => diveDelay;
+    public float DiveDuration => diveDuration;
+    public GameObject BossShadowPrefab => bossShadowPrefab;
+    public float ShadowScaleTime => shadowScaleTime;
+    public float MinShadowScale => minShadowScale;
+    public float MaxShadowScale => maxShadowScale;
+    public float LandedDelay => landedDelay;
+    public float PatternCooldown => patternCooldown;
+
+    public float CurrentPatternCooldown { get; private set; }
+
 
     private MonsterIdleState _idleState;
     private BossMonsterMoveState _moveState;
@@ -24,11 +37,16 @@ public class BossMonster : Monster
 
     public Action OnJumpAnimationFinished;
 
+    protected override void Start()
+    {
+        base.Start();
+    }
+
     public void OnJumpAnimationEnd()
     {
         OnJumpAnimationFinished?.Invoke();
     }
-    
+
     public override CharacterState<Monster> CreateIdleState()
     {
         if (_idleState == null) _idleState = new MonsterIdleState(this, MonsterStateManager);
@@ -53,94 +71,16 @@ public class BossMonster : Monster
         return _dieState;
     }
 
-    protected override void Start()
+    protected override void Update()
     {
-        if (bossShadow != null)
+        base.Update();
+        if(CurrentPatternCooldown > 0f)
         {
-            bossShadow.SetActive(false);
+            CurrentPatternCooldown -= Time.deltaTime;
         }
-
-        base.Start();
     }
 
-    public IEnumerator DiveAttackCoroutine(Vector3 targetDivePosition)
-    {
-        Debug.Log("DiveAttackCoroutine 실행됨");
-        Animator.SetTrigger("IsJump");
-
-        bool jumpAnimFinished = false;
-        Action jumpFinishedAction = () => jumpAnimFinished = true;
-        OnJumpAnimationFinished += jumpFinishedAction;
-
-        yield return new WaitUntil(() => jumpAnimFinished == true);
-        OnJumpAnimationFinished -= jumpFinishedAction;
-
-        Vector3 initialBossPos = transform.position;
-        Vector3 peakJumpPos = initialBossPos + Vector3.up * jumpHeight;
-
-        float timer = 0f;
-        while (timer < jumpDuration)
-        {
-            timer += Time.deltaTime;
-            transform.position = Vector3.Lerp(initialBossPos, peakJumpPos, timer / jumpDuration);
-            yield return null;
-        }
-
-        transform.position = peakJumpPos;
-        GetComponent<Collider2D>().enabled = false;
-
-        if (bossShadow != null)
-        {
-            bossShadow.SetActive(true);
-            bossShadow.transform.localScale = Vector3.one * minShadowScale;
-
-            float shadowTimer = 0f;
-            while (shadowTimer < shadowScaleTime)
-            {
-                shadowTimer += Time.deltaTime;
-                float currentScale = Mathf.Lerp(minShadowScale, maxShadowScale, shadowTimer / shadowScaleTime);
-                bossShadow.transform.localScale = Vector3.one * currentScale;
-                yield return null;
-            }
-        }
-        else
-        {
-            Debug.LogWarning("BossMonsterAttackState: ShadowPrefab이 할당되지 않음.");
-        }
-
-        yield return new WaitForSeconds(diveDelay - shadowScaleTime);
-
-        if (bossShadow != null)
-        {
-            bossShadow.SetActive(false);
-        }
-
-        transform.position = targetDivePosition + Vector3.up * jumpHeight * 0.5f;
-        GetComponent<Collider2D>().enabled = true;
-
-        Animator.SetTrigger("IsDive");
-
-        Vector3 startDivePos = transform.position;
-        Vector3 endDivePos = targetDivePosition;
-
-        timer = 0f;
-        while (timer < diveDuration)
-        {
-            timer += Time.deltaTime;
-            transform.position = Vector3.Lerp(startDivePos, endDivePos, timer / diveDuration);
-            yield return null;
-        }
-
-        transform.position = endDivePos;
-
-        ApplyLandingDamage(endDivePos, maxShadowScale);
-
-        yield return new WaitForSeconds(landedDelay);
-
-        Debug.Log("다이브어택코루틴끝남");
-    }
-
-    private void ApplyLandingDamage(Vector3 center, float radius)
+    public void ApplyLandingDamage(Vector3 center, float radius)
     {
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(center, radius);
         foreach (var hitCollider in hitColliders)
@@ -149,7 +89,34 @@ public class BossMonster : Monster
             if (hitPlayer != null)
             {
                 hitPlayer.TakeDamage(Damage);
+                Debug.Log($"낙하 공격으로 {hitPlayer}에게 {Damage}");
             }
         }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        GameObject currentGameObject = collision.gameObject;
+
+        if (CurrentAttackCooldown <= 0f)
+        {
+            if (currentGameObject.CompareTag("Player"))
+            {
+                Player player = currentGameObject.GetComponent<Player>();
+
+                if (player != null)
+                {
+                    Attack(player);
+                    Debug.Log("공격!");
+                    ResetAttackCooldown();
+                }
+            }
+
+        }
+    }
+
+    public void ResetPatternCooldown()
+    {
+        CurrentPatternCooldown = patternCooldown;
     }
 }

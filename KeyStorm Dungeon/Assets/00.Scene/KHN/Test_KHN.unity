@@ -371,11 +371,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8969645377382259084, guid: f143bf35de38027438377ef440643931, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[2].second.m_AnimationSpeed
-      value: 10.000001
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8969645377382259084, guid: f143bf35de38027438377ef440643931, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[3].second.m_AnimationSpeed
-      value: 10
+      value: 10.000001
       objectReference: {fileID: 0}
     - target: {fileID: 8969645377382259084, guid: f143bf35de38027438377ef440643931, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[4].second.m_AnimationSpeed
@@ -497,13 +497,29 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1070596014400995748, guid: cabf294a33c04094ab1638d8c4e8262b, type: 3}
+      propertyPath: bossShadow
+      value: 
+      objectReference: {fileID: 445605593270070937, guid: a6c9513a35861c948acb6ba29dadd095, type: 3}
+    - target: {fileID: 1070596014400995748, guid: cabf294a33c04094ab1638d8c4e8262b, type: 3}
+      propertyPath: diveDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1070596014400995748, guid: cabf294a33c04094ab1638d8c4e8262b, type: 3}
+      propertyPath: maxShadowScale
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1070596014400995748, guid: cabf294a33c04094ab1638d8c4e8262b, type: 3}
+      propertyPath: patternCooldown
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1070596014400995748, guid: cabf294a33c04094ab1638d8c4e8262b, type: 3}
+      propertyPath: bossShadowPrefab
+      value: 
+      objectReference: {fileID: 445605593270070937, guid: a6c9513a35861c948acb6ba29dadd095, type: 3}
+    - target: {fileID: 1070596014400995748, guid: cabf294a33c04094ab1638d8c4e8262b, type: 3}
       propertyPath: attackPoolManager
       value: 
       objectReference: {fileID: 244028271}
-    - target: {fileID: 2611536604133078200, guid: cabf294a33c04094ab1638d8c4e8262b, type: 3}
-      propertyPath: m_Mass
-      value: 1.1
-      objectReference: {fileID: 0}
     - target: {fileID: 4794455509495033604, guid: cabf294a33c04094ab1638d8c4e8262b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 24.16
