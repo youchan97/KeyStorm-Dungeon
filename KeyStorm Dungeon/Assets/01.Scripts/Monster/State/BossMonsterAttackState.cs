@@ -94,7 +94,7 @@ public class BossMonsterAttackState : MonsterAttackState
 
         boss.GetComponent<Collider2D>().enabled = true;
 
-        boss.Animator.SetTrigger("IsDive");
+        boss.Animator.SetBool("IsDive", true);
 
         Vector3 startDivePos = boss.transform.position;
         Vector3 endDivePos = diveTargetPosition;
@@ -126,6 +126,7 @@ public class BossMonsterAttackState : MonsterAttackState
 
         yield return new WaitForSeconds(boss.LandedDelay);
 
+        boss.Animator.SetBool("IsDive", false);
         boss.ResetPatternCooldown();
         stateManager.ChangeState(boss.CreateMoveState());
     }
@@ -150,7 +151,7 @@ public class BossMonsterAttackState : MonsterAttackState
         boss.GetComponent<Collider2D>().enabled = true;
 
         boss.Animator.ResetTrigger("IsJump");
-        boss.Animator.ResetTrigger("IsDive");
+        boss.Animator.SetBool("IsDive", false);
         Debug.Log($"[{boss.name}]: ---- AttackState ExitState 퇴장! (종료) Time: {Time.time}");
     }
 }
