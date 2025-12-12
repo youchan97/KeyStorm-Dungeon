@@ -634,22 +634,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &4054466812022670796
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6614007950040226937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f370ffda9860f9e42ab96139cfa69ecf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackPoolManager: {fileID: 0}
-  _monsterData: {fileID: 11400000, guid: 01b49ae7b91b7364f8ba9f6724e88c69, type: 2}
-  monsterSpriteRenderer: {fileID: 8288827869254561008}
-  animator: {fileID: 8288827869254561009}
 --- !u!1 &6614007950040226937
 GameObject:
   m_ObjectHideFlags: 0
@@ -661,9 +645,9 @@ GameObject:
   - component: {fileID: 433578281859971492}
   - component: {fileID: 1152482708633667916}
   - component: {fileID: 1519125150914550317}
-  - component: {fileID: 4054466812022670796}
   - component: {fileID: 8288827869254561008}
   - component: {fileID: 8288827869254561009}
+  - component: {fileID: 8288827869254561010}
   m_Layer: 0
   m_Name: CombatButterfly
   m_TagString: Untagged
@@ -744,6 +728,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8288827869254561010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6614007950040226937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca71edc52f936840b9c9d9345525e32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPoolManager: {fileID: 0}
+  _monsterData: {fileID: 11400000, guid: 01b49ae7b91b7364f8ba9f6724e88c69, type: 2}
+  monsterSpriteRenderer: {fileID: 8288827869254561008}
+  animator: {fileID: 8288827869254561009}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
