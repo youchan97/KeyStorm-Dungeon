@@ -31,7 +31,12 @@ public class MeleeMonster : Monster
         return _dieState;
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        ContactPlayer(collision);
+    }
+
+    protected void ContactPlayer(Collision2D collision)
     {
         GameObject currentGameObject = collision.gameObject;
 
@@ -44,11 +49,10 @@ public class MeleeMonster : Monster
                 if (player != null)
                 {
                     Attack(player);
-                    Debug.Log("공격!");
+                    Debug.Log($"{MonsterData.name}이 공격!");
                     ResetAttackCooldown();
                 }
             }
-
         }
     }
 }

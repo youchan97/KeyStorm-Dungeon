@@ -4,35 +4,9 @@ using UnityEngine;
 
 public class RangerMonsterAttackState : MonsterAttackState
 {
-    private Player player;
-    private Animator animator;
 
     public RangerMonsterAttackState(Monster character, CharacterStateManager<Monster> stateManager) : base(character, stateManager)
     {
-    }
-
-    public override void EnterState()
-    {
-        animator = character.Animator;
-
-        if (character.PlayerGO != null)
-        {
-            player = character.PlayerGO.GetComponent<Player>();
-            character.SetAttackTarget(player);
-            if (player == null)
-            {
-                Debug.LogError("MonsterAttackState: Player GameObject에 Player컴포넌트가 없음");
-            }
-        }
-        else
-        {
-            Debug.LogError("MonsterAttackState: Monster.playerGO가 할당되지 않음");
-        }
-
-        if (character.MonsterRb != null)
-        {
-            character.MonsterRb.velocity = Vector2.zero;
-        }
     }
 
     public override void UpdateState()
@@ -59,14 +33,5 @@ public class RangerMonsterAttackState : MonsterAttackState
             character.Attack(player);
             character.ResetAttackCooldown();
         }
-    }
-
-    public override void ExitState()
-    {
-        if (animator != null)
-        {
-            animator.ResetTrigger("IsAttack");
-        }
-        character.SetAttackTarget(null);
     }
 }

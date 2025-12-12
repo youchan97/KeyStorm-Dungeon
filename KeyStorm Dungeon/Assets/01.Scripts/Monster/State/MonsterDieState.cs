@@ -34,7 +34,7 @@ public class MonsterDieState : CharacterDieState<Monster>
         }
     }
 
-    IEnumerator WaitForDieAnimation()
+    protected IEnumerator WaitForDieAnimation()
     {
 
         yield return null;

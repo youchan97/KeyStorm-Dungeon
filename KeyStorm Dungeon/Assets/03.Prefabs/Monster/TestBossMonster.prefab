@@ -190,10 +190,10 @@ MonoBehaviour:
   jumpHeight: 50
   jumpDuration: 0.3
   diveDelay: 2
-  diveDuration: 0.4
-  bossShadow: {fileID: 0}
+  diveDuration: 0.5
+  bossShadowPrefab: {fileID: 445605593270070937, guid: a6c9513a35861c948acb6ba29dadd095, type: 3}
   shadowScaleTime: 2
   minShadowScale: 0.1
   maxShadowScale: 1
-  landedDelay: 1
-  patternCooldown: 0
+  landedDelay: 2
+  patternCooldown: 3
