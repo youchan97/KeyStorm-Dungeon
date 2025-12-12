@@ -18,6 +18,7 @@ public class PassiveItemPickup : MonoBehaviour
         if (itemData.isActiveItem) return;
 
         inv.AddPassiveItem(itemData);
+        ItemPoolManager.Instance?.MarkAcquired(itemData);
         ItemPopupUI.Instance.Show(itemData);
         Destroy(gameObject);
     }

@@ -1,12 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Flags]
 public enum ItemDropRoom
 {
-    Treasure,
-    Boss,
-    Shop
+    None = 0,
+    Treasure = 1 << 0,
+    Boss = 1 << 1,
+    Store = 1 << 2,
 }
 
 public enum ItemTier
