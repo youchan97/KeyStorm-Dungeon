@@ -9,15 +9,16 @@ public class PassiveItemPickup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.CompareTag("Player")) return;
+        Player player = other.GetComponent<Player>();
+        if (player == null) return;
 
         var inv = other.GetComponent<PlayerInventory>();
-        var stats = other.GetComponent<PlayerStats>();
-        if (inv == null || stats == null) return;
+        if (inv == null) return;
         if (itemData == null) return;
         if (itemData.isActiveItem) return;
 
         inv.AddPassiveItem(itemData);
+        player.PlayerStatUpdate(itemData);
         ItemPopupUI.Instance.Show(itemData);
         Destroy(gameObject);
     }

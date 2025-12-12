@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Player : Character
 {
@@ -104,5 +105,20 @@ public class Player : Character
     public override void Die()
     {
         playerStateManager.ChangeState(DieState);
+    }
+
+    public void PlayerStatUpdate(ItemData data)
+    {
+        MaxHp += data.maxHp;
+        if (data.maxHp > 0)
+        {
+            Hp += data.maxHp;
+            Hp = Mathf.Min(Hp, MaxHp);
+        }
+
+        MoveSpeed += data.moveSpeed;
+        PlayerAttack.PlayerAttackStatUpdate(data);
+
+        transform.localScale = Vector3.one * data.scale;
     }
 }

@@ -29,7 +29,7 @@ public class PlayerInventory : MonoBehaviour
     public void AddPassiveItem(ItemData data)
     {
         passiveItems.Add(data);
-        stats.ApplyItemStats(data);
+        //stats.ApplyItemStats(data);
 
         //if (data.attackChange)
         //{
