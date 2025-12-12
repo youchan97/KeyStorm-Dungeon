@@ -15,9 +15,11 @@ MonoBehaviour:
   itemId: A2
   itemName: "\uCD08\uB2A5\uB825"
   description: 
+  worldSprite: {fileID: 0}
+  iconSprite: {fileID: 0}
   attackChange: 1
-  isActiveItem: 0
-  itemTier: 1
+  isActiveItem: 1
+  tier: 0
   dropRoom: 0
   maxHp: 0
   moveSpeed: 0

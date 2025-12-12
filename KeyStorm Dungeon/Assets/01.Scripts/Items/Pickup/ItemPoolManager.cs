@@ -63,10 +63,10 @@ public class ItemPoolManager : MonoBehaviour
 
     public ItemData GetRandomItem(ItemDropRoom dropRoom)
     {
-        // 1) 먼저 티어를 하나 뽑는다 (티어 확률표 기반)
+        // 먼저 티어를 하나 뽑는다 (티어 확률표 기반)
         ItemTier chosenTier = GetRandomTier();
 
-        // 2) 해당 DropRoom + Tier 조합에서 아이템 리스트를 가져온다
+        // 해당 DropRoom + Tier 조합에서 아이템 리스트를 가져온다
         List<ItemData> list = pools[dropRoom][chosenTier];
 
         // 만약 해당 티어에 아이템이 하나도 없다면, 다른 티어를 시도하거나 null 반환
@@ -76,7 +76,7 @@ public class ItemPoolManager : MonoBehaviour
             return null;
         }
 
-        // 3) 리스트에서 랜덤 1개 선택
+        // 리스트에서 랜덤 1개 선택
         int index = Random.Range(0, list.Count);
         return list[index];
     }

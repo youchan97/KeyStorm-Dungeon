@@ -31,6 +31,13 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] int shotGunBulletCount;
     [SerializeField] float shotSpreadAngle;
 
+    #region 폭탄
+    [SerializeField] ThrownBomb bomb;
+    bool isHoldingBomb;
+    ThrownBomb curBomb;
+    #endregion
+
+
     #region readOnly
     private readonly Vector2[] defaultUi =
         {new Vector2(-1.125f, 1.125f), new Vector2(0, 1.125f), new Vector2(1.125f, 1.125f), new Vector2(-1.125f, 0),
@@ -95,6 +102,7 @@ public class PlayerAttack : MonoBehaviour
     public int UseAmmo { get; private set; }
     public int Ammo { get; private set; }
     public Dictionary<string, bool> KeyCoolDic { get => keyCoolDic; }
+    public ThrownBomb Bomb { get => bomb; set => bomb = value; }
     #endregion
 
     private void Start()
@@ -296,18 +304,26 @@ public class PlayerAttack : MonoBehaviour
         } 
     }
 
-    public void Shoot(string keyName, bool isSpecial = false)
+    public void Shoot(string keyName)
     {
         if (keyCoolDic[keyName] || isReloading) return;
 
         if (!keyDic.ContainsKey(keyName)) return;
 
-        int bulletCount = canShotGun ? shotGunBulletCount : defaultBulletCount;
+        if(curBomb != null)
+        {
+            if (player.Inventory.bombCount <= 0 && curBomb == null)
+                return;
 
-        if (canShotGun && bulletCount > Ammo)
-            bulletCount = Ammo;
+            ThrowBomb(keyName);
+        }
+        else
+        {
+            UseAmmo = canShotGun ? shotGunBulletCount : defaultBulletCount;
 
-        SetBullet(keyName, isSpecial, bulletCount);
+            SetBullet(keyName);
+        }
+
 
         DirType type = SwitchType(keyDic[keyName]);
 
@@ -380,9 +396,15 @@ public class PlayerAttack : MonoBehaviour
             }
     }
 
-    void SetBullet(string keyName , bool isSpecial, int count)
+    void SetBullet(string keyName)
     {
-        for (int i = 0; i < count; i++)
+        bool isSpecial = keyName == specialAttackKey;
+
+        int totalUseAmmo = isSpecial ? UseAmmo * 2 : UseAmmo;
+
+        int useAmmo = GetUseAmmo(totalUseAmmo, isSpecial);
+
+        for (int i = 0; i < useAmmo; i++)
         {
             AttackObj obj = player.AttackPoolManager.GetAttack();
             Sprite sprite = isSpecial ? player.SBullet : player.Bullet;
@@ -396,11 +418,28 @@ public class PlayerAttack : MonoBehaviour
             obj.transform.position = player.transform.position + (Vector3)dir * ShootOffset;
 
             obj.InitData(sprite, damage, dir, ShootSpeed, Range, player.AttackPoolManager, true);
-            Ammo--;
         }
 
-        if(keyName == specialAttackKey)
+        int consumeAmmo = isSpecial ? useAmmo * 2 : useAmmo;
+        Ammo -= Mathf.Min(consumeAmmo, Ammo);
+
+        if(isSpecial)
             SetSpecialAttackKey();
+    }
+
+    int GetUseAmmo(int total, bool isSpecial)
+    {
+        int useAmmo = Mathf.Min(total, Ammo);
+        if (isSpecial)
+        {
+            if (total > Ammo)
+            {
+                useAmmo = (Ammo + 1) / 2;
+            }
+            else
+                useAmmo = total / 2;
+        }
+        return useAmmo;
     }
 
     void KeyCool(string keyName, DirType type)
@@ -514,4 +553,48 @@ public class PlayerAttack : MonoBehaviour
             coolImage[i].gameObject.SetActive(false);
         }
     }
+
+    #region Bomb
+    public void HoldBomb()
+    {
+        if (curBomb != null || player.Inventory.bombCount <= 0) return;
+
+        ThrownBomb bomb = Instantiate(Bomb);
+        bomb.Hold(transform);
+        curBomb = bomb;
+        player.Inventory.bombCount--;
+        bomb.OnExplode += () => { ExplodingInPlayer(bomb); };
+    }
+
+    void ExplodingInPlayer(ThrownBomb bomb)
+    {
+        if (curBomb == bomb) curBomb = null;
+    }
+
+    void ThrowBomb(string keyName)
+    {
+        if (curBomb == null) return;
+
+        Vector2 dir = keyDic[keyName];
+        curBomb.transform.position = player.transform.position + (Vector3)dir * ShootOffset;
+        curBomb.Throw(dir, ShootSpeed);
+
+        curBomb = null;
+    }
+    #endregion
+
+    #region StatUpdate
+    public void PlayerAttackStatUpdate(ItemData data)
+    {
+        Damage += (int)data.damage;
+        SpecialDamageMultiple += data.specialDamageMultiple;
+        DamageMultiple += data.damageMultiple;
+        AttackSpeed += data.attackSpeed;
+        AttackSpeedMultiple += data.attackSpeedMultiple;
+        Range += data.range;
+        ShootSpeed += data.shotSpeed;
+        MaxAmmo += data.maxAmmo;
+        UseAmmo += data.useAmmo;
+    }
+    #endregion
 }

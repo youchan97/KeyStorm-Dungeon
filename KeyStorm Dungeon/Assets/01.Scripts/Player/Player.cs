@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Player : Character
 {
     CharacterStateManager<Player> playerStateManager;
     [SerializeField] PlayerController playerController;
+    [SerializeField] PlayerInventory inventory;
     [SerializeField] PlayerData data;
     [SerializeField] Rigidbody2D playerRb;
     [SerializeField] Animator anim;
@@ -13,6 +15,7 @@ public class Player : Character
     [SerializeField] Sprite sBullet;
 
     bool isMove;
+
 
     #region Property
     public PlayerAttack PlayerAttack { get; private set; }
@@ -26,6 +29,7 @@ public class Player : Character
     public Animator Anim { get => anim; private set => anim = value; }
     public Sprite Bullet { get => bullet;}
     public Sprite SBullet { get => sBullet;}
+    public PlayerInventory Inventory { get => inventory;}
     #endregion
 
     protected override void Awake()
@@ -74,6 +78,7 @@ public class Player : Character
     {
         PlayerController.OnMove += PlayerMove;
         playerController.OnShoot += Shoot;
+        playerController.OnBomb += Bomb;
     }
 
     void RemoveActions()
@@ -92,8 +97,28 @@ public class Player : Character
         PlayerAttack.Shoot(playerController.KeyName);
     }
 
+    void Bomb()
+    {
+        PlayerAttack.HoldBomb();
+    }
+
     public override void Die()
     {
         playerStateManager.ChangeState(DieState);
+    }
+
+    public void PlayerStatUpdate(ItemData data)
+    {
+        MaxHp += data.maxHp;
+        if (data.maxHp > 0)
+        {
+            Hp += data.maxHp;
+            Hp = Mathf.Min(Hp, MaxHp);
+        }
+
+        MoveSpeed += data.moveSpeed;
+        PlayerAttack.PlayerAttackStatUpdate(data);
+
+        transform.localScale = Vector3.one * data.scale;
     }
 }

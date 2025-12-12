@@ -25,8 +25,8 @@ MonoBehaviour:
   range: 3
   rangeMultiple: 3
   shootSpeed: 3
-  maxAmmo: 10
-  useAmmo: 3
-  ammo: 10
+  maxAmmo: 12
+  useAmmo: 0
+  ammo: 12
   xScale: 3
   yScale: 3

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SoundData", menuName = "ScriptableObjects/Sound")]
+[CreateAssetMenu(fileName = "SoundData", menuName = "ScriptableObject/Sound")]
 public class SoundDatas : ScriptableObject
 {
     public List<AudioData> audioClips;
