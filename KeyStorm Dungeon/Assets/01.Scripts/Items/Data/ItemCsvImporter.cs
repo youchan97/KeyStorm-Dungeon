@@ -183,16 +183,11 @@ public static class ItemCsvImporter
 
         ItemDropRoom result = ItemDropRoom.None;
 
-        // "Treasure, Store, Boss" 같은 문자열 처리
         var parts = s.Split(new[] { ',', '|', ';' }, StringSplitOptions.RemoveEmptyEntries);
 
         foreach (var raw in parts)
         {
             var token = raw.Trim();
-
-            // 엑셀에 Store라고 써놨는데 enum은 Shop이면 매핑해주기
-            if (token.Equals("Store", StringComparison.OrdinalIgnoreCase))
-                token = "Store";
 
             if (Enum.TryParse<ItemDropRoom>(token, true, out var flag))
                 result |= flag;
@@ -202,6 +197,8 @@ public static class ItemCsvImporter
 
         return result;
     }
+
+
 
     // -------------------------
     // CSV parsing (tabs or commas)

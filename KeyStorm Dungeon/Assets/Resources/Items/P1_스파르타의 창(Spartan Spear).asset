@@ -15,8 +15,8 @@ MonoBehaviour:
   itemId: P1
   itemName: "\uC2A4\uD30C\uB974\uD0C0\uC758 \uCC3D(Spartan Spear)"
   description: 
-  worldSprite: {fileID: 0}
-  iconSprite: {fileID: 0}
+  worldSprite: {fileID: 1961019770, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
+  iconSprite: {fileID: 1961019770, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
   attackChange: 0
   isActiveItem: 0
   tier: 0

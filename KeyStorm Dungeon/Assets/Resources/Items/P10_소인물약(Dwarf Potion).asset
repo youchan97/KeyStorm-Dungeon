@@ -15,8 +15,8 @@ MonoBehaviour:
   itemId: P10
   itemName: "\uC18C\uC778\uBB3C\uC57D(Dwarf Potion)"
   description: 
-  worldSprite: {fileID: 0}
-  iconSprite: {fileID: 0}
+  worldSprite: {fileID: -642362214, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
+  iconSprite: {fileID: -642362214, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
   attackChange: 0
   isActiveItem: 0
   tier: 4

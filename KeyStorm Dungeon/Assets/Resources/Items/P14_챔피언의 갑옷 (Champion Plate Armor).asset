@@ -15,8 +15,8 @@ MonoBehaviour:
   itemId: P14
   itemName: "\uCC54\uD53C\uC5B8\uC758 \uAC11\uC637 (Champion Plate Armor)"
   description: 
-  worldSprite: {fileID: 0}
-  iconSprite: {fileID: 0}
+  worldSprite: {fileID: -623812692, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
+  iconSprite: {fileID: -623812692, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
   attackChange: 0
   isActiveItem: 0
   tier: 1

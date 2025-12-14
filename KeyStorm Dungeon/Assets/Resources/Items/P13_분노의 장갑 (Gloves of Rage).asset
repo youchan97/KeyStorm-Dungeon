@@ -15,8 +15,8 @@ MonoBehaviour:
   itemId: P13
   itemName: "\uBD84\uB178\uC758 \uC7A5\uAC11 (Gloves of Rage)"
   description: 
-  worldSprite: {fileID: 0}
-  iconSprite: {fileID: 0}
+  worldSprite: {fileID: 1297427981, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
+  iconSprite: {fileID: 1297427981, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
   attackChange: 0
   isActiveItem: 0
   tier: 1

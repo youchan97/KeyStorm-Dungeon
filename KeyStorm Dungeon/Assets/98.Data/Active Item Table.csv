@@ -1,0 +1,22 @@
+ Name,ID,Tier,DropRoom,CoolDown,,,,,,,
+휴대용폭탄,A1,0,Treasure,30,<-테스트용 4개,,,,명칭,타입,설명
+초능력,A2,1,Treasure,20,,,,, Name,string,이름
+다이너마이트,A3,3,Treasure,20,,,,,ID,int,고유번호
+집어던지기!,A4,4,Treasure,20,,,,,Tier,int,아이템의 등급 0~4
+,A5,,Treasure,,,,,,DropRoom,enum,아이템의 등장 방
+,A6,,Treasure,,,,,,CoolDown,float,아이템의 쿨타임 (초)
+,A7,,Treasure,,,,,,,,
+,A8,,Treasure,,,,,,,,
+,A9,,Treasure,,,,,,,,
+,A10,,Treasure,,,,,,,,
+,,,Treasure,,,,,,,,
+,,,Treasure,,,,,,,,
+,,,Treasure,,,,,,,,
+,,,Treasure,,,,,,,,
+,,,Treasure,,,,,,,,
+,,,Treasure,,,,,,,,
+,,,Treasure,,,,,,,,
+,,,Treasure,,,,,,,,
+,,,Treasure,,,,,,,,
+,,,Treasure,,,,,,,,
+,,,Treasure,,,,,,,,

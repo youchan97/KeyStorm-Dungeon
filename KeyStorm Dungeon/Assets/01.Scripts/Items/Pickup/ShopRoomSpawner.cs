@@ -30,7 +30,7 @@ public class ShopRoomSpawner : MonoBehaviour
     public GameObject potionDisplayPrefab;
     public GameObject bombDisplayPrefab;
 
-    public void SpawnShop()
+    public void SpawnStore()
     {
         foreach (var e in entries)
         {

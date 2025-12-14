@@ -15,8 +15,8 @@ MonoBehaviour:
   itemId: P8
   itemName: "\uB300\uC6A9\uB7C9 \uD0C4\uCC3D(extended magazine)"
   description: 
-  worldSprite: {fileID: 0}
-  iconSprite: {fileID: 0}
+  worldSprite: {fileID: -409205174, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
+  iconSprite: {fileID: -409205174, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
   attackChange: 0
   isActiveItem: 0
   tier: 2
