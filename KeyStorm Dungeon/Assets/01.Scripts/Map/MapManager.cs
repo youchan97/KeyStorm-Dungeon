@@ -20,9 +20,8 @@ public class MapManager : MonoBehaviour
     [SerializeField] int padding;
 
     [SerializeField] Tilemap groundTileMap;
-    [SerializeField] Tilemap wallTileMap;
     [SerializeField] TileBase groundTile;
-    [SerializeField] RuleTile wallTile;
+    [SerializeField] int corridorWidth;
 
 
     private void Start()
@@ -54,9 +53,8 @@ public class MapManager : MonoBehaviour
 
     void SetTileMap()
     {
-        tileMapManager = new TileMapManager(groundTileMap, wallTileMap, groundTile, wallTile);
+        tileMapManager = new TileMapManager(groundTileMap, groundTile, corridorWidth);
         tileMapManager.DrawRooms(rootNode);
         tileMapManager.DrawCorridors(corridorGenerator.corridors);
-        tileMapManager.GenerateWalls();
     }
 }

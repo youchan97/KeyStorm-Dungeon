@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -8,20 +9,24 @@ public class TileMapManager
     private readonly Vector2Int[] directions = new Vector2Int[]
     { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right};
 
+    private readonly Vector2Int[] diagonalDirections = new Vector2Int[]
+    { new Vector2Int(1, 1), new Vector2Int(1, -1), new Vector2Int(-1, 1), new Vector2Int(-1, -1)};
+
     Tilemap groundTileMap;
     Tilemap wallTileMap;
     TileBase groundTile;
     RuleTile wallTile;
 
+    int corridorWidth;
+
     HashSet<Vector2Int> groundTiles = new HashSet<Vector2Int>();
 
 
-    public TileMapManager(Tilemap ground, Tilemap wallTileMap, TileBase groundTile, RuleTile wallTile)
+    public TileMapManager(Tilemap ground, TileBase groundTile, int corridorWidth)
     {
         this.groundTileMap = ground;
-        this.wallTileMap = wallTileMap;
         this.groundTile = groundTile;
-        this.wallTile = wallTile;
+        this.corridorWidth = corridorWidth;
     }
 
     public void DrawRooms(BspNode node)
@@ -32,6 +37,7 @@ public class TileMapManager
             {
                 Vector3Int pos = new Vector3Int(roomTile.x, roomTile.y, 0);
                 groundTileMap.SetTile(pos, groundTile);
+                groundTiles.Add(roomTile);
             }
 
             return;
@@ -44,42 +50,26 @@ public class TileMapManager
     public void DrawCorridors(List<(Vector2Int, Vector2Int)> corridors)
     {
         foreach (var corridor in corridors)
-            DrawLine(corridor.Item1, corridor.Item2);
+            DrawLine(corridor.Item1, corridor.Item2, corridorWidth);
     }
 
-    void DrawLine(Vector2Int start, Vector2Int end)
+    void DrawLine(Vector2Int start, Vector2Int end, int width)
     {
-        /*int minX = Mathf.Min(vecOne.x, vecTwo.x);
-        int maxX = Mathf.Max(vecOne.x, vecTwo.x);
-        int minY = Mathf.Min(vecOne.y, vecTwo.y);
-        int maxY = Mathf.Max(vecOne.y, vecTwo.y);
-
-        for(int i = minX; i < maxX; i++)
-        {
-            Vector3Int pos = new Vector3Int(i, vecOne.y, 0);
-            corridorTileMap.SetTile(pos, corridorTile);
-        }
-
-        for (int i = minY; i < maxY; i++)
-        {
-            Vector3Int pos = new Vector3Int(vecTwo.x, i, 0);
-            corridorTileMap.SetTile(pos, corridorTile);
-        }*/
         int x = start.x;
         int y = start.y;
 
-        AddGroundTile(new Vector2Int(x,y));
+        DrawWall(new Vector2Int(x,y), corridorWidth, true);
 
         while (x != end.x)
         {
             x += (end.x > x) ? 1 : -1;
-            AddGroundTile(new Vector2Int(x, y));
+            DrawWall(new Vector2Int(x, y), corridorWidth, true);
         }
 
         while (y != end.y)
         {
             y += (end.y > y) ? 1 : -1;
-            AddGroundTile(new Vector2Int(x, y));
+            DrawWall(new Vector2Int(x, y), corridorWidth, false);
         }
     }
 
@@ -89,23 +79,28 @@ public class TileMapManager
         groundTileMap.SetTile((Vector3Int)pos, groundTile);
     }
 
-    public void GenerateWalls()
+    void DrawWall(Vector2Int vec, int width, bool isHorizontal)
     {
-        wallTileMap.ClearAllTiles();
-        HashSet<Vector2Int> wallPositions = new HashSet<Vector2Int>();
-
-        foreach(Vector2Int ground in groundTiles)
+        if(width<= 1)
         {
-            for(int i = 0; i < directions.Length; i++)
-            {
-                Vector2Int checkWallPos = ground + directions[i];
-
-                if (!groundTiles.Contains(checkWallPos))
-                    wallPositions.Add(checkWallPos);
-            }
+            AddGroundTile(vec);
+            return;
         }
 
-        foreach (Vector2Int wallpos in wallPositions)
-            wallTileMap.SetTile((Vector3Int)wallpos, wallTile);
+        AddGroundTile(vec);
+
+        int halfWidth = width / 2;
+
+        for (int i = 1; i <= halfWidth; i++)
+        {
+            Vector2Int perVec = isHorizontal ? new Vector2Int(0, i) : new Vector2Int(i, 0);
+            AddGroundTile(vec + perVec);
+        }
+        for (int i = 1; i <= (width - 1) / 2; i++)
+        {
+            Vector2Int perVec = isHorizontal ? new Vector2Int(0,-i) : new Vector2Int(-i, 0);
+            AddGroundTile(vec + perVec);
+        }
+
     }
 }

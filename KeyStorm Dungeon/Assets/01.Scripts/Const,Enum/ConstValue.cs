@@ -8,6 +8,8 @@ public static class ConstValue
     public const string MoveAnim = "IsMove";
     public const string AxisX = "MoveX";
     public const string AxisY = "MoveY";
+    public const string DieAnim = "Die";
+    public const string HurtAnim = "Hurt";
     #endregion
 
     public const float ShootOffset = 1.5f;
