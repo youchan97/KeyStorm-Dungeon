@@ -319,7 +319,7 @@ public class PlayerAttack : MonoBehaviour
         }
         else
         {
-            UseAmmo = canShotGun ? shotGunBulletCount : defaultBulletCount;
+            UseAmmo = canShotGun ? shotGunBulletCount : DefaultBulletCount;
 
             SetBullet(keyName);
         }

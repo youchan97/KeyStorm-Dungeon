@@ -7,6 +7,7 @@ public class ItemCsvImportSettings : ScriptableObject
 {
     [Header("입력 CSV")]
     public TextAsset csvFile;
+    public bool forceIsActiveItem;
 
     [Header("출력 폴더 (Resources 하위 경로)")]
     [Tooltip("예: Items 라고 쓰면 Assets/Resources/Items 에 생성됨")]
@@ -18,5 +19,5 @@ public class ItemCsvImportSettings : ScriptableObject
 
     [Header("기본값 (CSV에 없거나 파싱 실패 시)")]
     public bool defaultIsActiveItem = false; // 패시브 CSV면 false 고정
-    public ItemTier defaultTier = ItemTier.Tier1;
+    public ItemTier defaultTier = ItemTier.Tier0;
 }

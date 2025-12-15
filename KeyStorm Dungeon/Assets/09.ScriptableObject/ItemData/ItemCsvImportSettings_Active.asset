@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f77e02cd364719d439eed654fe2fa9e3, type: 3}
-  m_Name: ItemCsvImportSettings
+  m_Name: ItemCsvImportSettings_Active
   m_EditorClassIdentifier: 
-  csvFile: {fileID: 4900000, guid: 7bb7c182fdc589f4b88146ffef67cbf3, type: 3}
+  csvFile: {fileID: 4900000, guid: b8f9fce656f17d34e97581f62fd2991b, type: 3}
   resourcesFolder: Items
   overwriteExisting: 1
   clearMissingAssets: 0
   defaultIsActiveItem: 0
-  defaultTier: 1
+  defaultTier: 0

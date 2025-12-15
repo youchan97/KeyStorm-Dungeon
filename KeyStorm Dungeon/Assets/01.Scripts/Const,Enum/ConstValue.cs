@@ -8,8 +8,12 @@ public static class ConstValue
     public const string MoveAnim = "IsMove";
     public const string AxisX = "MoveX";
     public const string AxisY = "MoveY";
+    public const string DieAnim = "Die";
+    public const string HurtAnim = "Hurt";
     #endregion
 
     public const float ShootOffset = 1.5f;
-    public const int defaultBulletCount = 1;
+    public const int DefaultBulletCount = 1;
+
+    public const float SplitNodeHeight = 0.5f;
 }

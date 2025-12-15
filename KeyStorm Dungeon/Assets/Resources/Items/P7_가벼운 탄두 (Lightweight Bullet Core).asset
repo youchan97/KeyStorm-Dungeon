@@ -20,7 +20,7 @@ MonoBehaviour:
   attackChange: 0
   isActiveItem: 0
   tier: 1
-  dropRoom: 0
+  dropRoom: 3
   maxHp: 0
   moveSpeed: 0
   damage: 0
@@ -29,8 +29,8 @@ MonoBehaviour:
   attackSpeed: 0
   attackSpeedMultiple: 0
   range: 0
-  shotSpeed: 0
-  maxAmmo: 1
+  shotSpeed: 1
+  maxAmmo: 0
   useAmmo: 0
   scale: 0
   cooldownType: 0
