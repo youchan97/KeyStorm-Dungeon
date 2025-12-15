@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static ConstValue;
 
 public class Player : Character
 {
@@ -85,6 +86,7 @@ public class Player : Character
     {
         PlayerController.OnMove -= PlayerMove;
         playerController.OnShoot -= Shoot;
+        playerController.OnBomb -= Bomb;
     }
 
     void PlayerMove()
@@ -105,6 +107,16 @@ public class Player : Character
     public override void Die()
     {
         playerStateManager.ChangeState(DieState);
+        RemoveActions();
+    }
+
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+        if(Hp > 0)
+        {
+            anim.SetTrigger(HurtAnim);
+        }
     }
 
     public void PlayerStatUpdate(ItemData data)
