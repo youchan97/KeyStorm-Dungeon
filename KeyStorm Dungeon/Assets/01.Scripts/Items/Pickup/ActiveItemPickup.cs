@@ -21,6 +21,7 @@ public class ActiveItemPickup : MonoBehaviour
         }
 
         inv.SetActiveItem(itemData);
+        ItemPoolManager.Instance?.MarkAcquired(itemData);
         ItemPopupUI.Instance.Show(itemData);
         Destroy(gameObject);
     }

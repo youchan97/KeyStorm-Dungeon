@@ -24,15 +24,15 @@ public class RoomItemSpawner : MonoBehaviour
     }
 
     // 상점: 상점 아이템 슬롯 하나에 들어갈 아이템 생성 등
-    public void SpawnShopItem()
+    public void SpawnStoreItem()
     {
-        SpawnItem(ItemDropRoom.Shop);
+        SpawnItem(ItemDropRoom.Store);
     }
 
     void SpawnItem(ItemDropRoom dropRoom)
     {
         // 풀에서 아이템 하나 뽑기
-        ItemData data = ItemPoolManager.Instance.GetRandomItem(dropRoom);
+        ItemData data = ItemPoolManager.Instance.GetRandomItem_ExcludeAcquired(dropRoom);
         if (data == null)
         {
             Debug.LogWarning($"[RoomItemSpawner] {dropRoom} 에서 뽑을 아이템이 없음");

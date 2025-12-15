@@ -1,0 +1,42 @@
+ Name,ID,AttackChange,DropRoom,MaxHP,MoveSpeed,Damage,SpecialDamageMultiple,DamageMultiple,AttackSpeed,AttackSpeedMultiple,Range,ShotSpeed,MaxAmmo,UseAmmo,Scale,Value,Value Tier,Tier,,,,,
+스파르타의 창(Spartan Spear),P1,FALSE,Treasure,0,0,2,0,0,0,0,0,0,0,0,0,2,2.1,0,<- 테스트용 15개,,명칭,타입,설명
+목장갑(work gloves),P2,FALSE,"Treasure, Store",0,0,0,0,0,0.2,0,0,0,0,0,0,1,1.3,1,,,Name,string,아이템 이름
+붉은 심장 조각 (Red Heart Shard),P3,FALSE,"Treasure, Boss",1,0,0,0,0,0,0,0,0,0,0,0,0.5,0.8,2,,,ID,int,고유번호
+고양이 발걸음 (Cat Step Boots),P4,FALSE,"Treasure, Store, Boss",0,3,0,0,0,0,0,0,0,0,0,0,0.99,1.3,3,,,AttackChange,bool,공격형식 변경여부
+대구경 탄환(large-caliber ammunition),P5,FALSE,Store,0,0,0,0,0.5,0,0,0,0,0,0,0,2.5,2.4,4,,,Active,bool,사용아이템 여부
+매의 눈 (Hawk’s Eye),P6,FALSE,"Store, Boss",0,0,0,0,0,0,0,1,0,0,0,0,0.5,0.8,0,,,Tier,int,아이템의 등급 0~4
+가벼운 탄두 (Lightweight Bullet Core),P7,FALSE,"Treasure, Boss",0,0,0,0,0,0,0,0,1,0,0,0,0.3,0.5,1,,,DropRoom,enum,아이템의 등장 방
+대용량 탄창(extended magazine),P8,FALSE,"Treasure, Boss, Store",0,0,0,0,0,0,0,0,0,20,0,0,2,2.1,2,,,MaxHP,int,최대체력
+에너지 과충전기(Overcharge Core),P9,FALSE,"Treasure, Store, Boss",0,0,0,0.5,0,0,0,0,0,0,0,0,1,1.3,3,,,MoveSpeed,float,이동속도
+소인물약(Dwarf Potion),P10,FALSE,Boss,0,3,0,0,0,0,0,0,0,0,0,-0.2,1.99,2.1,4,,,Damage,float,공격력
+거인물약(Giant Potion),P11,FALSE,"Treasure, Boss",1,0,1.5,0,0,0,0,0,0,0,0,0.2,1,1.3,0,,,SpecialDamageMultiple,float,특수공격배수
+바주카포(Bazooka),P12,FALSE,"Treasure, Store, Boss",0,0,0,0,1,0,0.5,0,0,0,0,0,7.5,4,1,,,DamageMultiple,float,공격력배수
+분노의 장갑 (Gloves of Rage),P13,FALSE,"Treasure, Store, Boss",0,0,1.5,0,0,0.2,0,0,0,0,0,0,2.5,2.4,2,,,AttackSpeed,float,공격속도
+챔피언의 갑옷 (Champion Plate Armor),P14,FALSE,"Treasure, Store, Boss",3,-3,0,0,0,0,0,0,0,0,0,0,0.51,0.8,3,,,AttackSpeedMultiple,float,공격속도배수
+저격총(Sniper Rifle),P15,FALSE,Treasure,0,0,3,0,0,0,0,1,1,0,0,0,3.8,3,4,,,Range,float,사거리
+탄환 경량화 장치 (Projectile Optimizer),P16,FALSE,Treasure,0,3,0,0,0,0,0,0,1,0,0,0,1.29,1.6,2,,,ShotSpeed,float,탄알속도
+스나이퍼의 집중력(Sniper's Concentration),P17,FALSE,Treasure,0,0,0,1,0,0,0,0,1,0,0,0,2.3,2.3,3,,,MaxAmmo,int,최대탄수
+완벽한 육각형(Perfect Hexagon),P18,FALSE,Treasure,1,3,1.5,0,0,0.2,0,0.5,1,10,0,0,5.54,3.5,4,,,UseAmmo,int,발사시 소모탄수
+쌍권총(Akimbo),P19,FALSE,Treasure,0,0,0,0,0,0,1,0,0,0,0,0,5,3.4,4,,,Scale,float,캐릭터 크기
+싸구려 반창고 (Cheap Patch Bandage),P20,FALSE,Treasure,1,0,0,0,0,0,0,0,0,0,0,0,0.5,0.8,0,,,,,
+구겨진 체력 부적 (Crumpled Vital Charm),P21,FALSE,Treasure,1,0,0,0,0,0,0,0,0,0,0,0,0.5,0.8,0,,,,,
+약초묶음 (Herb Bundle),P22,FALSE,Treasure,1,0,0,0,0,0,0,0,0,0,0,0,0.5,0.8,0,,,,,
+무뎌진 단검 조각 (Dull Knife Shard),P23,FALSE,Treasure,0,0,1,0,0,0,0,0,0,0,0,0,1,1.3,1,,,,,
+균열난 나무몽둥이 (Cracked Wooden Club),P24,FALSE,Treasure,0,0,1,0,0,0,0,0,0,0,0,0,1,1.3,1,,,,,
+가벼운 러닝화 (Light Runner Shoes),P25,FALSE,Treasure,0,3,0,0,0,0,0,0,0,0,0,0,0.99,1.3,1,,,Stats,1 unit value,
+깃털 부적 (Feather Charm),P26,FALSE,Treasure,0,3,0,0,0,0,0,0,0,0,0,0,0.99,1.3,1,,,MaxHP,0.5,
+충전된 유리구슬 (Charged Marble),P27,FALSE,Treasure,0,0,0,0.5,0,0,0,0,0,0,0,0,1,1.3,2,,,MoveSpeed,0.33,
+작은 괴력의 뿔 (Tiny Might Horn),P28,FALSE,Treasure,0,0,0,0,0.5,0,0,0,0,0,0,0,2.5,2.4,3,,,Damage,1,
+6샷 커피 (6 shots coffee),P29,FALSE,Treasure,-1,0,0,0,0,0.2,1,0,0,0,0,0,5.5,3.5,4,,,SpecialDamageMultiple,2,
+탄띠 (Ammo Belt),P30,FALSE,Treasure,0,0,0,0,0,0,0,0,0,10,0,0,1,1.3,1,,,DamageMultiple,5,
+치즈 20장 햄버거(20-Slice Cheese Hamburger),P31,FALSE,Treasure,3,0,0,0,0,0,0,0,0,0,0,0.2,0.5,0.8,0,,,AttackSpeed,5,
+아레스의 전투 인장 (Ares Battle Seal),P32,FALSE,Treasure,0,0,1,0,0.25,0.2,0,0,0,0,0,0,3.25,2.7,3,,,AttackSpeedMultiple,5,
+헤르메스의 깃털 신발 (Hermes Winged Sandals),P33,FALSE,Treasure,0,5,0,0,0,0,0,0,1,0,0,0,1.95,2,3,,,Range,0.5,
+하데스의 어둠 조각 (Shard of Hades),P34,FALSE,Treasure,0,0,-2,0,1,0,0,0,0,0,0,0,3,2.6,3,,,ShotSpeed,0.3,
+배관공의 장갑(Plumber’s Worn Gloves),P35,FALSE,Treasure,0,0,0,0,0,0.2,0.25,0,0,0,0,0,2.25,2.2,3,,,MaxAmmo,0.1,
+광부의 다이아 곡괭이(Miner's Diamond Pickaxe),P36,FALSE,Treasure,0,0,3,0,0,0,0,0,0,0,0,0,3,2.6,3,,,UseAmmo,-0.1,
+가스조절기(gas regulator),P37,FALSE,Treasure,0,0,0,0,0,0.2,0,0,0,0,0,0,1,1.3,1,,,Scale,-5,
+부러진 화살(Broken Arrow),P38,FALSE,Treasure,0,0,2,0,0,0,0,-1,0,0,0,0,1.5,1.7,1,,,,,
+석궁(crossbow),P39,FALSE,Treasure,0,0,1,0,0,0.2,0,1,1,0,0,0,2.8,2.5,3,,,,,
+단궁(Shortbow),P40,FALSE,Treasure,0,0,0.5,0,0,0.2,0,0,0,0,0,0,1.5,1.7,1,,,,,
+,,,,,,,,,,,,,,,0,,,,,,,,
