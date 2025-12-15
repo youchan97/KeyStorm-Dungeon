@@ -16,7 +16,7 @@ MonoBehaviour:
     charName: TestRangeMonster
     id: 1
     maxHp: 80
-    damage: 5
+    damage: 1
     moveSpeed: 1
   detectRange: 10
   targetDistance: 5

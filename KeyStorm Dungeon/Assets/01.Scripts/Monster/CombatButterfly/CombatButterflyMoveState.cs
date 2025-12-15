@@ -30,11 +30,8 @@ public class CombatButterflyMoveState : MonsterMoveState
 
         float distanceToPlayer = Vector2.Distance(character.transform.position, playerTransform.position);
 
-        Debug.Log("[CombatButterfly] FixedUpdateState: About to call UpdateAnimation().");
         UpdateAnimation();
-        Debug.Log("[CombatButterfly] FixedUpdateState: UpdateAnimation() called.");
         UpdateMovement(distanceToPlayer);
-        Debug.Log("[CombatButterfly] FixedUpdateState 호출 종료.");
     }
 
     public override void ExitState()
@@ -49,9 +46,7 @@ public class CombatButterflyMoveState : MonsterMoveState
 
     public void UpdateAnimation()
     {
-        Debug.Log("--- [CombatButterfly] UpdateAnimation 호출 시작 ---");
         if (character.Animator == null || playerTransform == null) return;
-        Debug.Log("--- [CombatButterfly] UpdateAnimation: 모든 참조 유효성 검증 통과 ---");
         Vector2 monsterPos = character.transform.position;
         Vector2 playerPos = playerTransform.position;
 
@@ -60,10 +55,7 @@ public class CombatButterflyMoveState : MonsterMoveState
         float moveX = desiredMoveDirection.x;
         float moveY = desiredMoveDirection.y;
 
-        Debug.Log($"UpdateAnimation: MoveX = {moveX}, MoveY = {moveY}");
-
         character.Animator.SetFloat(ANIM_PARAM_MOVE_X, moveX);
         character.Animator.SetFloat(ANIM_PARAM_MOVE_Y, moveY);
-        Debug.Log("--- [CombatButterfly] UpdateAnimation 호출 종료 ---");
     }
 }

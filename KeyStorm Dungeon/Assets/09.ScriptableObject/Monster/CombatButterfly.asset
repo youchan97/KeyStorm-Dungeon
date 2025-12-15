@@ -16,7 +16,7 @@ MonoBehaviour:
     charName: CombatButterfly
     id: 7
     maxHp: 15
-    damage: 5
+    damage: 1
     moveSpeed: 2
   detectRange: 20
   targetDistance: 0

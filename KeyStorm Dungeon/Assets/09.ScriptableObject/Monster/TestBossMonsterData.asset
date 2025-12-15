@@ -16,7 +16,7 @@ MonoBehaviour:
     charName: TestBossMonster
     id: 2
     maxHp: 1000
-    damage: 20
+    damage: 1
     moveSpeed: 4
   detectRange: 15
   targetDistance: 1
