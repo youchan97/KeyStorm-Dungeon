@@ -11,5 +11,7 @@ public static class ConstValue
     #endregion
 
     public const float ShootOffset = 1.5f;
-    public const int defaultBulletCount = 1;
+    public const int DefaultBulletCount = 1;
+
+    public const float SplitNodeHeight = 0.5f;
 }
