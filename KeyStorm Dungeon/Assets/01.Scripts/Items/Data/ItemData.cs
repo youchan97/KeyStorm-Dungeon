@@ -25,7 +25,7 @@ public enum ActiveCooldownType
 {
     None,      //패시브
     PerRoom,   //방 클리어마다 1씩 차는 타입
-    perTime    //초당 1씩 차는 타입
+    PerTime    //초당 1씩 차는 타입
 }
 
 [CreateAssetMenu(menuName = "Data/ItemData")]

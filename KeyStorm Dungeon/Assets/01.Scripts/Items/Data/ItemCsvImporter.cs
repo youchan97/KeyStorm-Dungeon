@@ -4,27 +4,47 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text;
 using UnityEditor;
 using UnityEngine;
 
 public static class ItemCsvImporter
 {
-    private const string SettingsAssetName = "ItemCsvImportSettings";
+    // Settings 에셋 이름을 "정확히" 이걸로 만들 것
+    private const string PassiveSettingsName = "ItemCsvImportSettings_Passive";
+    private const string ActiveSettingsName = "ItemCsvImportSettings_Active";
 
-    [MenuItem("Tools/Items/Import ItemData from CSV")]
-    public static void Import()
+    // -------------------------
+    // 메뉴 2개 (패시브 / 액티브)
+    // -------------------------
+    [MenuItem("Tools/Items/Import Passive ItemData from CSV")]
+    public static void ImportPassive()
     {
-        var settings = FindSettings();
+        ImportInternal(PassiveSettingsName);
+    }
+
+    [MenuItem("Tools/Items/Import Active ItemData from CSV")]
+    public static void ImportActive()
+    {
+        ImportInternal(ActiveSettingsName);
+    }
+
+    // -------------------------
+    // 공통 Import 로직
+    // -------------------------
+    private static void ImportInternal(string settingsAssetName)
+    {
+        var settings = FindSettings(settingsAssetName);
         if (settings == null)
         {
-            Debug.LogError($"[ItemCsvImporter] {SettingsAssetName}.asset 을 찾지 못했어. " +
-                           $"Create > Data > Item CSV Import Settings 로 먼저 만들어줘.");
+            Debug.LogError($"[ItemCsvImporter] {settingsAssetName}.asset 을 찾지 못했어. " +
+                           $"Create > Data > Item CSV Import Settings 로 만들고, 이름을 정확히 '{settingsAssetName}'로 바꿔줘.");
             return;
         }
 
         if (settings.csvFile == null)
         {
-            Debug.LogError("[ItemCsvImporter] Settings에 csvFile(TextAsset) 연결이 안 돼 있어.");
+            Debug.LogError($"[ItemCsvImporter] '{settingsAssetName}' Settings에 csvFile(TextAsset) 연결이 안 돼 있어.");
             return;
         }
 
@@ -36,11 +56,11 @@ public static class ItemCsvImporter
             AssetDatabase.Refresh();
         }
 
-        // CSV 파싱
+        // CSV/TSV 파싱 (따옴표 CSV 지원)
         var rows = ParseTable(settings.csvFile.text);
-        if (rows.Count == 0)
+        if (rows.Count <= 1)
         {
-            Debug.LogError("[ItemCsvImporter] CSV에서 유효한 데이터 행을 못 찾았어.");
+            Debug.LogError("[ItemCsvImporter] CSV에서 유효한 데이터 행을 못 찾았어(헤더만 있거나 비어있음).");
             return;
         }
 
@@ -48,16 +68,14 @@ public static class ItemCsvImporter
         var header = rows[0];
         var headerMap = BuildHeaderMap(header);
 
-        // 필수 컬럼 체크 (네 표 기준)
-        // Name, ID, AttackChange, DropRoom ... 나머지는 없어도 기본값으로 처리 가능
+        // 최소 필수: Name, ID, DropRoom, Tier 정도면 충분
         RequireColumn(headerMap, "Name");
         RequireColumn(headerMap, "ID");
-        RequireColumn(headerMap, "AttackChange");
+        RequireColumn(headerMap, "Tier");
         RequireColumn(headerMap, "DropRoom");
 
-        // 생성/업데이트
         int created = 0, updated = 0, skipped = 0;
-        var createdIds = new HashSet<string>();
+        var createdIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
         for (int i = 1; i < rows.Count; i++)
         {
@@ -76,7 +94,6 @@ public static class ItemCsvImporter
 
             createdIds.Add(itemId);
 
-            // 에셋 경로(이름은 안전하게 ID 기반)
             string safeName = MakeSafeFileName($"{itemId}_{itemName}");
             string assetPath = $"{outFolder}/{safeName}.asset";
 
@@ -95,14 +112,13 @@ public static class ItemCsvImporter
                 continue;
             }
 
-            // 값 채우기
             ApplyRowToItemData(asset, r, headerMap, settings);
 
             EditorUtility.SetDirty(asset);
             if (isNew) created++; else updated++;
         }
 
-        // CSV에 없는 에셋 삭제(옵션)
+        // CSV에 없는 에셋 삭제 옵션
         if (settings.clearMissingAssets)
         {
             var allAssets = AssetDatabase.FindAssets("t:ItemData", new[] { outFolder })
@@ -113,6 +129,8 @@ public static class ItemCsvImporter
             {
                 var a = AssetDatabase.LoadAssetAtPath<ItemData>(path);
                 if (a == null) continue;
+                if (string.IsNullOrEmpty(a.itemId)) continue;
+
                 if (!createdIds.Contains(a.itemId))
                 {
                     AssetDatabase.DeleteAsset(path);
@@ -123,34 +141,38 @@ public static class ItemCsvImporter
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
 
-        Debug.Log($"[ItemCsvImporter] 완료! created:{created}, updated:{updated}, skipped:{skipped} / out:{outFolder}");
+        Debug.Log($"[ItemCsvImporter] '{settingsAssetName}' 완료! created:{created}, updated:{updated}, skipped:{skipped} / out:{outFolder}");
     }
 
     // -------------------------
-    // Row -> ItemData
+    // Row -> ItemData 매핑
     // -------------------------
     private static void ApplyRowToItemData(ItemData data, List<string> r, Dictionary<string, int> m, ItemCsvImportSettings settings)
     {
         data.itemId = Get(r, m, "ID");
         data.itemName = Get(r, m, "Name");
 
-        // (옵션) 설명 컬럼이 있으면 사용 (없으면 빈값)
+        // (옵션) 없으면 빈값
         data.description = GetOrDefault(r, m, "Description", "");
 
-        // 패시브 CSV라면 기본 false 강제(엑셀 수정 못 하니까 여기서 제어)
-        data.isActiveItem = GetBoolOrDefault(r, m, "IsActiveItem", settings.defaultIsActiveItem);
+        // 액티브/패시브는 Settings로 강제 가능
+        //  - 액티브 CSV에 IsActiveItem 컬럼이 없으면 settings.defaultIsActiveItem 사용
+        data.isActiveItem = settings.forceIsActiveItem
+            ? settings.defaultIsActiveItem
+            : GetBoolOrDefault(r, m, "IsActiveItem", settings.defaultIsActiveItem);
 
-        // AttackChange
+        // AttackChange (없으면 false)
         data.attackChange = GetBoolOrDefault(r, m, "AttackChange", false);
 
-        // Tier (없으면 defaultTier)
+        // Tier (없으면 Settings 기본값)
         data.tier = GetEnumOrDefault<ItemTier>(r, m, "Tier", settings.defaultTier);
 
-        // DropRoom (Flags 파싱 + Store->Shop 매핑)
+        // DropRoom (Flags 파싱)
+        // 이제 CSV에서 "Treasure, Boss" 처럼 쓰려면 셀을 따옴표로 감싸서 "Treasure, Boss" 로 넣으면 됨
         string dropRoomRaw = Get(r, m, "DropRoom");
         data.dropRoom = ParseDropRooms(dropRoomRaw);
 
-        // 스탯들(컬럼 없으면 0으로)
+        // 스탯들(패시브 CSV에 주로 존재, 액티브 CSV엔 없을 수 있음)
         data.maxHp = GetIntOrDefault(r, m, "MaxHP", 0);
         data.moveSpeed = GetFloatOrDefault(r, m, "MoveSpeed", 0f);
         data.damage = GetFloatOrDefault(r, m, "Damage", 0f);
@@ -164,44 +186,61 @@ public static class ItemCsvImporter
         data.useAmmo = GetIntOrDefault(r, m, "UseAmmo", 0);
         data.scale = GetFloatOrDefault(r, m, "Scale", 0f);
 
-        // 액티브 전용 쿨타임 (패시브 CSV면 보통 없음 → 기본값)
-        data.cooldownType = GetEnumOrDefault<ActiveCooldownType>(r, m, "CooldownType", ActiveCooldownType.None);
-        data.cooldownMax = GetFloatOrDefault(r, m, "CooldownMax", 0f);
+        // 액티브 쿨다운: 네 표는 "CoolDown" 컬럼
+        // 혹시 다른 표는 "CooldownMax"일 수도 있어서 둘 다 지원
+        float cd = GetFloatOrDefault(r, m, "CoolDown", float.NaN);
+        if (float.IsNaN(cd))
+            cd = GetFloatOrDefault(r, m, "CooldownMax", 0f);
 
-        // (Value 컬럼은 ItemData에 필드가 없다면 여기서 무시)
-        // 필요하면 ItemData에 public float value; 추가 후 아래 한 줄로 매핑:
-        // data.value = GetFloatOrDefault(r, m, "Value", 0f);
+        data.cooldownMax = cd;
+
+        // cooldownType은 CSV에 없으면 기본 None (현재 동작 유지)
+        // 필요하면 아래 한 줄을 취향대로 바꿔서 액티브 기본값을 줄 수도 있음:
+        // data.cooldownType = data.isActiveItem ? ActiveCooldownType.PerRoom : ActiveCooldownType.None;
+        data.cooldownType = GetEnumOrDefault<ActiveCooldownType>(r, m, "CooldownType", ActiveCooldownType.None);
     }
 
     // -------------------------
-    // DropRoom Flags parse
+    // DropRoom Flags parse (Treasure, Store, Boss 등)
     // -------------------------
-    static ItemDropRoom ParseDropRooms(string s)
+    private static ItemDropRoom ParseDropRooms(string s)
     {
         if (string.IsNullOrWhiteSpace(s))
             return ItemDropRoom.None;
 
         ItemDropRoom result = ItemDropRoom.None;
 
+        // "Treasure, Store, Boss" / "Treasure|Shop" / "Treasure;Boss" 모두 지원
+        // ★ CSV에서 콤마를 쓸 땐 반드시 셀을 따옴표로 감싸기: "Treasure, Boss"
         var parts = s.Split(new[] { ',', '|', ';' }, StringSplitOptions.RemoveEmptyEntries);
 
         foreach (var raw in parts)
         {
             var token = raw.Trim();
 
+            // Store/Shop 토큰 보정(둘 중 뭐든 받아줌)
+            if (token.Equals("Store", StringComparison.OrdinalIgnoreCase))
+            {
+                if (!Enum.TryParse<ItemDropRoom>("Store", true, out _))
+                    token = "Shop";
+            }
+            else if (token.Equals("Shop", StringComparison.OrdinalIgnoreCase))
+            {
+                if (!Enum.TryParse<ItemDropRoom>("Shop", true, out _))
+                    token = "Store";
+            }
+
             if (Enum.TryParse<ItemDropRoom>(token, true, out var flag))
                 result |= flag;
             else
-                Debug.LogWarning($"DropRoom 파싱 실패: '{token}'");
+                Debug.LogWarning($"[ItemCsvImporter] DropRoom 파싱 실패: '{token}' (원본:'{s}'). CSV라면 여러 값은 \"Treasure, Boss\" 처럼 따옴표로 감싸거나 Treasure|Boss 사용 추천.");
         }
 
         return result;
     }
 
-
-
     // -------------------------
-    // CSV parsing (tabs or commas)
+    // CSV/TSV parsing (따옴표 CSV 지원)
     // -------------------------
     private static List<List<string>> ParseTable(string text)
     {
@@ -212,26 +251,32 @@ public static class ItemCsvImporter
 
         if (lines.Count == 0) return new List<List<string>>();
 
-        // 구분자 자동 추정: 헤더 라인에 탭이 많으면 탭, 아니면 쉼표
-        char delimiter = lines[0].Count(c => c == '\t') >= 2 ? '\t' : ',';
+        char delimiter = DetectDelimiter(lines);
 
         var table = new List<List<string>>();
         foreach (var line in lines)
         {
-            // 단순 split (따옴표 포함 복잡 CSV는 여기선 생략. 너 표는 단순형이라 보통 OK)
-            var cells = line.Split(delimiter).Select(c => c.Trim()).ToList();
+            // ★ 핵심: 따옴표(") 안의 delimiter는 무시
+            var cells = SplitLineRespectQuotes(line, delimiter);
             table.Add(cells);
         }
         return table;
     }
 
-    static List<string> SplitCsvLine(string line)
+    private static char DetectDelimiter(List<string> lines)
+    {
+        // 탭이 많으면 TSV, 아니면 CSV
+        int tabCount = lines[0].Count(c => c == '\t');
+        return tabCount >= 2 ? '\t' : ',';
+    }
+
+    private static List<string> SplitLineRespectQuotes(string line, char delimiter)
     {
         var result = new List<string>();
-        if (string.IsNullOrEmpty(line)) return result;
+        if (line == null) return result;
 
+        var sb = new StringBuilder();
         bool inQuotes = false;
-        var sb = new System.Text.StringBuilder();
 
         for (int i = 0; i < line.Length; i++)
         {
@@ -239,9 +284,10 @@ public static class ItemCsvImporter
 
             if (c == '"')
             {
+                // "" -> " (CSV escape)
                 if (inQuotes && i + 1 < line.Length && line[i + 1] == '"')
                 {
-                    sb.Append('"'); // "" -> "
+                    sb.Append('"');
                     i++;
                 }
                 else
@@ -251,9 +297,9 @@ public static class ItemCsvImporter
                 continue;
             }
 
-            if (c == ',' && !inQuotes)
+            if (c == delimiter && !inQuotes)
             {
-                result.Add(sb.ToString());
+                result.Add(sb.ToString().Trim());
                 sb.Clear();
                 continue;
             }
@@ -261,10 +307,13 @@ public static class ItemCsvImporter
             sb.Append(c);
         }
 
-        result.Add(sb.ToString());
+        result.Add(sb.ToString().Trim());
         return result;
     }
 
+    // -------------------------
+    // Header / Get helpers
+    // -------------------------
     private static Dictionary<string, int> BuildHeaderMap(List<string> header)
     {
         var map = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
@@ -305,8 +354,6 @@ public static class ItemCsvImporter
         s = s.Trim();
         if (s.Equals("TRUE", StringComparison.OrdinalIgnoreCase)) return true;
         if (s.Equals("FALSE", StringComparison.OrdinalIgnoreCase)) return false;
-
-        // 1/0도 지원
         if (s == "1") return true;
         if (s == "0") return false;
 
@@ -321,7 +368,6 @@ public static class ItemCsvImporter
         if (int.TryParse(s, NumberStyles.Integer, CultureInfo.InvariantCulture, out var v))
             return v;
 
-        // "3.0" 같은 경우도 있을 수 있어 float로 파싱 후 캐스팅
         if (float.TryParse(s, NumberStyles.Float, CultureInfo.InvariantCulture, out var f))
             return Mathf.RoundToInt(f);
 
@@ -333,7 +379,7 @@ public static class ItemCsvImporter
         var s = Get(r, m, col);
         if (string.IsNullOrWhiteSpace(s)) return def;
 
-        // 한국 로케일에서 소수점이 , 로 들어오는 경우 보정
+        // "0,2" 같은 한국식 소수점 보정
         s = s.Replace(",", ".");
 
         if (float.TryParse(s, NumberStyles.Float, CultureInfo.InvariantCulture, out var v))
@@ -342,7 +388,8 @@ public static class ItemCsvImporter
         return def;
     }
 
-    private static TEnum GetEnumOrDefault<TEnum>(List<string> r, Dictionary<string, int> m, string col, TEnum def) where TEnum : struct
+    private static TEnum GetEnumOrDefault<TEnum>(List<string> r, Dictionary<string, int> m, string col, TEnum def)
+        where TEnum : struct
     {
         var s = Get(r, m, col);
         if (string.IsNullOrWhiteSpace(s)) return def;
@@ -360,20 +407,14 @@ public static class ItemCsvImporter
         return name.Trim();
     }
 
-    private static ItemCsvImportSettings FindSettings()
+    private static ItemCsvImportSettings FindSettings(string settingsAssetName)
     {
-        // 프로젝트에서 Settings SO 찾기
-        var guids = AssetDatabase.FindAssets($"t:ItemCsvImportSettings {SettingsAssetName}");
-        if (guids == null || guids.Length == 0)
-        {
-            // 이름이 달라도 타입만 있으면 찾게 보완
-            guids = AssetDatabase.FindAssets("t:ItemCsvImportSettings");
-        }
+        // 이름까지 포함해서 정확히 찾기
+        var guids = AssetDatabase.FindAssets($"t:ItemCsvImportSettings {settingsAssetName}");
         if (guids == null || guids.Length == 0) return null;
 
         var path = AssetDatabase.GUIDToAssetPath(guids[0]);
         return AssetDatabase.LoadAssetAtPath<ItemCsvImportSettings>(path);
     }
-
 }
 #endif
