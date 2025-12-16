@@ -20,7 +20,7 @@ MonoBehaviour:
   attackChange: 0
   isActiveItem: 0
   tier: 2
-  dropRoom: 7
+  dropRoom: -1
   maxHp: 0
   moveSpeed: 0
   damage: 1.5
