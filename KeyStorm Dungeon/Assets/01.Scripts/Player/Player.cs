@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static ConstValue;
+using static UnityEngine.Rendering.DebugUI;
 
 public class Player : Character
 {
     CharacterStateManager<Player> playerStateManager;
+    GameManager gameManager;
     [SerializeField] PlayerController playerController;
     [SerializeField] PlayerInventory inventory;
     [SerializeField] PlayerData data;
@@ -37,6 +39,7 @@ public class Player : Character
     {
         playerStateManager = new CharacterStateManager<Player>(this);
         PlayerAttack = GetComponent<PlayerAttack>();
+        gameManager = GameManager.Instance;
         InitPlayer();
     }
 
@@ -72,7 +75,10 @@ public class Player : Character
 
     void InitData()
     {
-        InitCharData(data.characterData);
+        PlayerRunData runData = gameManager.PlayerRunData;
+        InitCharRunData(runData.character);
+        transform.localScale = new Vector3(runData.xScale, runData.yScale, transform.localScale.z);
+        PlayerAttack.InitPlayerAttack(runData);
     }
 
     void InitActions()
@@ -112,25 +118,32 @@ public class Player : Character
 
     public override void TakeDamage(int damage)
     {
-        base.TakeDamage(damage);
-        if(Hp > 0)
-        {
+        CharacterRunData character = gameManager.PlayerRunData.character;
+        character.currentHp = Mathf.Max(0, character.currentHp - damage);
+
+        Hp = character.currentHp;
+
+        if (Hp > 0)
             anim.SetTrigger(HurtAnim);
-        }
+        else
+            Die();
     }
 
     public void PlayerStatUpdate(ItemData data)
     {
-        MaxHp += data.maxHp;
-        if (data.maxHp > 0)
-        {
-            Hp += data.maxHp;
-            Hp = Mathf.Min(Hp, MaxHp);
-        }
+        gameManager.PlayerRunData.ApplyItemStat(data);
+        SyncPlayerStat();
+    }
 
-        MoveSpeed += data.moveSpeed;
-        PlayerAttack.PlayerAttackStatUpdate(data);
+    void SyncPlayerStat()
+    {
+        PlayerRunData playerRundata = gameManager.PlayerRunData;
+        CharacterRunData characterRunData = playerRundata.character;
 
-        transform.localScale = Vector3.one * data.scale;
+        Hp = characterRunData.currentHp;
+        MaxHp = characterRunData.maxHp;
+        MoveSpeed = characterRunData.moveSpeed;
+
+        PlayerAttack.SyncPlayerAttackStat(playerRundata);
     }
 }

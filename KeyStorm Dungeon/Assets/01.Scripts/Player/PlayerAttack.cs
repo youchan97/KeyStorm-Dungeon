@@ -109,8 +109,6 @@ public class PlayerAttack : MonoBehaviour
     {
         player = GetComponent<Player>();
 
-        InitPlayerAttack(player, player.Data);
-
         InitialDic();
         InitSniperDic();
         ShuffleKey();
@@ -119,9 +117,9 @@ public class PlayerAttack : MonoBehaviour
     }
 
 
-    void InitPlayerAttack(Player player, PlayerData data)
+    public void InitPlayerAttack(PlayerRunData data)
     {
-        Damage = player.Damage;
+        Damage = data.character.damage;
         DamageMultiple = data.damageMultiple;
         SpecialDamageMultiple = data.specialDamageMultiple;
         AttackSpeed = data.attackSpeed;
@@ -584,17 +582,17 @@ public class PlayerAttack : MonoBehaviour
     #endregion
 
     #region StatUpdate
-    public void PlayerAttackStatUpdate(ItemData data)
+    public void SyncPlayerAttackStat(PlayerRunData data)
     {
-        Damage += (int)data.damage;
-        SpecialDamageMultiple += data.specialDamageMultiple;
-        DamageMultiple += data.damageMultiple;
-        AttackSpeed += data.attackSpeed;
-        AttackSpeedMultiple += data.attackSpeedMultiple;
-        Range += data.range;
-        ShootSpeed += data.shotSpeed;
-        MaxAmmo += data.maxAmmo;
-        UseAmmo += data.useAmmo;
+        Damage = (int)data.character.damage;
+        SpecialDamageMultiple = data.specialDamageMultiple;
+        DamageMultiple = data.damageMultiple;
+        AttackSpeed = data.attackSpeed;
+        AttackSpeedMultiple = data.attackSpeedMultiple;
+        Range = data.range;
+        ShootSpeed = data.shootSpeed;
+        MaxAmmo = data.maxAmmo;
+        UseAmmo = data.useAmmo;
     }
     #endregion
 }
