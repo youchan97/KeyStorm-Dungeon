@@ -84,7 +84,7 @@ public class Grid
 
     // 특정 노드의 이웃 노드들을 List<Node> 형태로 반환
     // 8방향의 이웃 노드들을 찾음
-    public List<Node> GetNeighbors(Node node)
+    public List<Node> GetNeighbors(Node node, UnitType unitType)
     {
         List<Node> neighbors = new List<Node>();
 
@@ -99,6 +99,31 @@ public class Grid
 
                 if (checkX >= 0 && checkX < gridSize.x && checkY >= 0 && checkY < gridSize.y)
                 {
+                    if(x != 0 && y != 0)
+                    {
+                        Node nodeX = nodes[node.gridPos.x + x, node.gridPos.y];
+                        Node nodeY = nodes[node.gridPos.x, node.gridPos.y + y];
+
+                        bool canMoveDiagonal = true;
+
+                        if(unitType == UnitType.Ground)
+                        {
+                            if (!nodeX.isWalkableGround || !nodeY.isWalkableGround)
+                            {
+                                canMoveDiagonal = false;
+                            }
+                        }
+                        else if (unitType == UnitType.Air)
+                        {
+                            if (!nodeX.isWalkableAir || !nodeY.isWalkableAir)
+                            {
+                                canMoveDiagonal = false;
+                            }
+                        }
+
+                        if (!canMoveDiagonal) continue;
+                    }
+
                     neighbors.Add(nodes[checkX, checkY]);
                 }
             }
