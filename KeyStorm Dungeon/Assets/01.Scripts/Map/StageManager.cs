@@ -22,9 +22,8 @@ public class StageManager : MonoBehaviour
     [Header("Config")]
     public int roomSpacing = 20;
 
-    // 논리 데이터
-    Dictionary<Vector2Int, RoomNode> roomMap = new();
-    Dictionary<Vector2Int, Room> spawnedRooms = new();
+    Dictionary<Vector2Int, RoomNode> roomMap = new Dictionary<Vector2Int, RoomNode>();
+    Dictionary<Vector2Int, Room> spawnedRooms = new Dictionary<Vector2Int, Room>();
 
     readonly Vector2Int[] dirs =
     {
@@ -40,12 +39,8 @@ public class StageManager : MonoBehaviour
         AssignRoomTypes();
         SpawnRooms();
         ConnectRooms();
-        //UpdateDoors();
     }
 
-    // =========================================================
-    // 1. 방 배치 (퍼져나가는 구조)
-    // =========================================================
     void GenerateRoomLayout()
     {
         roomMap.Clear();
@@ -79,14 +74,10 @@ public class StageManager : MonoBehaviour
         }
     }
 
-    // =========================================================
-    // 2. 룸 타입 할당
-    // =========================================================
     void AssignRoomTypes()
     {
         List<RoomNode> nodes = roomMap.Values.ToList();
 
-        // 시작 방 제외
         nodes.Remove(roomMap[Vector2Int.zero]);
 
         List<RoomType> typePool = new();
@@ -103,10 +94,6 @@ public class StageManager : MonoBehaviour
         for (int i = 0; i < nodes.Count; i++)
             nodes[i].type = typePool[i];
     }
-
-    // =========================================================
-    // 3. 방 생성
-    // =========================================================
     void SpawnRooms()
     {
         foreach (RoomNode node in roomMap.Values)
@@ -142,9 +129,6 @@ public class StageManager : MonoBehaviour
         };
     }
 
-    // =========================================================
-    // 4. 방 연결 (직선 복도)
-    // =========================================================
     void ConnectRooms()
     {
         foreach (var kv in spawnedRooms)
@@ -157,7 +141,6 @@ public class StageManager : MonoBehaviour
                 Vector2Int next = pos + dir;
                 if (!spawnedRooms.ContainsKey(next)) continue;
 
-                // 중복 복도 방지
                 if (pos.x > next.x || pos.y > next.y) continue;
 
                 Room other = spawnedRooms[next];
@@ -170,32 +153,6 @@ public class StageManager : MonoBehaviour
         }
     }
 
-    // =========================================================
-    // 5. 문 자동 차단 / 개방
-    // =========================================================
-    void UpdateDoors()
-    {
-        /*foreach (var kv in spawnedRooms)
-        {
-            Vector2Int pos = kv.Key;
-            Room room = kv.Value;
-
-            foreach (var dir in dirs)
-            {
-                Door door = room.GetDoor(dir);
-                if (door == null) continue;
-
-                if (spawnedRooms.ContainsKey(pos + dir))
-                    door.Open();
-                else
-                    door.Close();
-            }
-        }*/
-    }
-
-    // =========================================================
-    // 6. 복도 타일 찍기
-    // =========================================================
     void DrawCorridor(Vector3 from, Vector3 to)
     {
         Vector3Int start = corridorTilemap.WorldToCell(from);
