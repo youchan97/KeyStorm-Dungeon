@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class Pathfinding
@@ -15,6 +13,17 @@ public class Pathfinding
 
     public List<Node> FindPath(Vector3 startWorldPos, Vector3 targetWorldPos, UnitType unitType)
     {
+        for (int x = 0; x < grid.gridSize.x; x++)
+        {
+            for (int y = 0; y < grid.gridSize.y; y++)
+            {
+                var node = grid.nodes[x, y];
+                node.gCost = int.MaxValue;
+                node.hCost = 0;
+                node.parent = null;
+            }
+        }
+
         Node startNode = grid.GetNodeFromWorldPoint(startWorldPos);
         Node targetNode = grid.GetNodeFromWorldPoint(targetWorldPos);
 
@@ -40,7 +49,7 @@ public class Pathfinding
         HashSet<Node> closedSet = new HashSet<Node>();
 
         startNode.gCost = 0;
-        startNode.hCost = GetDistance(startNode, targetNode);
+        startNode.hCost = GetHeuristicCost(startNode, targetNode);
         startNode.parent = null;
         openSet.Add(startNode);
 
@@ -57,7 +66,7 @@ public class Pathfinding
                 return path;
             }
 
-            foreach(Node neighbor in grid.GetNeighbors(currentNode))
+            foreach(Node neighbor in grid.GetNeighbors(currentNode, unitType))
             {
                 bool neighborWalkable = (unitType == UnitType.Ground) ? neighbor.isWalkableGround : neighbor.isWalkableAir;
 
@@ -66,12 +75,12 @@ public class Pathfinding
                     continue;
                 }
 
-                int newMovementCostToNeighbor = currentNode.gCost + GetDistance(currentNode, neighbor);
+                int newMovementCostToNeighbor = currentNode.gCost + GetMovementCost(currentNode, neighbor, unitType);
 
                 if (newMovementCostToNeighbor < neighbor.gCost || !openSet.Contains(neighbor))
                 {
                     neighbor.gCost = newMovementCostToNeighbor;
-                    neighbor.hCost = GetDistance(neighbor, targetNode);
+                    neighbor.hCost = GetHeuristicCost(neighbor, targetNode);
                     neighbor.parent = currentNode;
 
                     if (!openSet.Contains(neighbor))
@@ -112,19 +121,43 @@ public class Pathfinding
         return path;
     }
 
-    private int GetDistance(Node nodeA, Node nodeB)
+    private int GetMovementCost(Node nodeA, Node nodeB, UnitType unitType)
     {
         int distanceX = Mathf.Abs(nodeA.gridPos.x - nodeB.gridPos.x);
         int distanceY = Mathf.Abs(nodeA.gridPos.y - nodeB.gridPos.y);
 
-        float distance = Mathf.Sqrt(distanceX * distanceX + distanceY * distanceY);
-        return Mathf.RoundToInt(distance * 10);
+        int baseCost;
 
-        /*if (distanceX > distanceY)
+        if (distanceX > distanceY)
         {
-            return 14 * distanceY + 10 * (distanceX - distanceY);
+            baseCost = 14 * distanceY + 10 * (distanceX - distanceY);
+        }
+        else
+        {
+            baseCost = 14 * distanceX + 10 * (distanceY - distanceX);
         }
 
-        return 14 * distanceX + 10 * (distanceY - distanceX);*/
+        int penalty = 0;
+        foreach (var neighbor in grid.GetNeighbors(nodeB, unitType))
+        {
+            bool isBlocked = (unitType == UnitType.Ground) ? !neighbor.isWalkableGround : !neighbor.isWalkableAir;
+
+            if (isBlocked)
+            {
+                penalty += 10;
+            }
+        }
+
+        return baseCost + penalty;
+    }
+
+    private int GetHeuristicCost(Node nodeA, Node nodeB)
+    {
+        int distanceX = Mathf.Abs(nodeA.gridPos.x - nodeB.gridPos.x);
+        int distanceY = Mathf.Abs(nodeA.gridPos.y - nodeB.gridPos.y);
+
+        return 10 * (distanceX + distanceY);
+        /*float distance = Mathf.Sqrt(distanceX * distanceX + distanceY * distanceY);
+        return Mathf.RoundToInt(distance * 10);*/
     }
 }
