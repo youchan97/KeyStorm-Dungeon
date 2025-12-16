@@ -48,6 +48,16 @@ public class Character : MonoBehaviour
         MoveSpeed = data.moveSpeed;
     }
 
+    protected void InitCharRunData(CharacterRunData data)
+    {
+        CharName = data.charName;
+        Id = data.id;
+        MaxHp = data.maxHp;
+        Hp = data.currentHp;
+        Damage = data.damage;
+        MoveSpeed = data.moveSpeed;
+    }
+
     /// <summary>
     /// 공격
     /// </summary>

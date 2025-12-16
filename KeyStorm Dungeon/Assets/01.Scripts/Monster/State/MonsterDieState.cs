@@ -36,7 +36,6 @@ public class MonsterDieState : CharacterDieState<Monster>
 
     protected IEnumerator WaitForDieAnimation()
     {
-
         yield return null;
 
         AnimatorStateInfo stateInfo = character.Animator.GetCurrentAnimatorStateInfo(0);
