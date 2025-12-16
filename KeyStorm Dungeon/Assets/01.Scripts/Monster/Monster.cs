@@ -86,16 +86,6 @@ public abstract class Monster : Character
     {
         base.FixedUpdate();
         MonsterStateManager.FixedUpdate();
-
-        /*float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
-        if (distanceToPlayer <= MonsterData.detectRange)
-        {
-            IsMove = true;
-        }
-        else
-        {
-            IsMove = false;
-        }*/
     }
 
     public override void Attack(Character character)

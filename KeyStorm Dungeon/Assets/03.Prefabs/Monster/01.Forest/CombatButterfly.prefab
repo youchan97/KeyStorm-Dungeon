@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3148757246356264059}
   - component: {fileID: 7611685910117723003}
   - component: {fileID: 33210046048572261}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: CombatButterfly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
