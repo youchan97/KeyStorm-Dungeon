@@ -21,6 +21,7 @@ public class StageManager : MonoBehaviour
 
     [Header("Config")]
     public int roomSpacing = 20;
+    public int corridorWidth;
 
     Dictionary<Vector2Int, RoomNode> roomMap = new Dictionary<Vector2Int, RoomNode>();
     Dictionary<Vector2Int, Room> spawnedRooms = new Dictionary<Vector2Int, Room>();
@@ -36,7 +37,6 @@ public class StageManager : MonoBehaviour
     void Start()
     {
         GenerateRoomLayout();
-        AssignRoomTypes();
         SpawnRooms();
         ConnectRooms();
     }
@@ -74,59 +74,42 @@ public class StageManager : MonoBehaviour
         }
     }
 
-    void AssignRoomTypes()
-    {
-        List<RoomNode> nodes = roomMap.Values.ToList();
-
-        nodes.Remove(roomMap[Vector2Int.zero]);
-
-        List<RoomType> typePool = new();
-
-        typePool.AddRange(Enumerable.Repeat(RoomType.Boss, stageData.bossRoomCount));
-        typePool.AddRange(Enumerable.Repeat(RoomType.Treasure, stageData.treasureRoomCount));
-        typePool.AddRange(Enumerable.Repeat(RoomType.Shop, stageData.shopRoomCount));
-
-        int normalCount = nodes.Count - typePool.Count;
-        typePool.AddRange(Enumerable.Repeat(RoomType.Normal, normalCount));
-
-        typePool = typePool.OrderBy(_ => Random.value).ToList();
-
-        for (int i = 0; i < nodes.Count; i++)
-            nodes[i].type = typePool[i];
-    }
     void SpawnRooms()
     {
+        spawnedRooms.Clear();
+
+        int specialTotal = stageData.bossRoomCount + stageData.treasureRoomCount + stageData.shopRoomCount;
+
+        if (specialTotal > roomMap.Count) return;
+
+        List<Room> spawnPool = new List<Room>();
+
+        spawnPool.AddRange(PickRandom(bossRooms, stageData.bossRoomCount));
+        spawnPool.AddRange(PickRandom(treasureRooms, stageData.treasureRoomCount));
+        spawnPool.AddRange(PickRandom(shopRooms, stageData.shopRoomCount));
+
+        int normalCount = roomMap.Count - spawnPool.Count;
+        spawnPool.AddRange(PickRandom(normalRooms, normalCount));
+
+        spawnPool = spawnPool.OrderBy(_ => Random.value).ToList();
+
+        int i = 0;
         foreach (RoomNode node in roomMap.Values)
         {
-            Room prefab = GetRandomRoomPrefab(node.type);
-
-            Vector3 worldPos = new Vector3(
+            Vector3 worldPos = new(
                 node.gridPos.x * roomSpacing,
                 node.gridPos.y * roomSpacing,
                 0
             );
 
-            Room room = Instantiate(prefab, worldPos, Quaternion.identity);
+            Room room = Instantiate(spawnPool[i++], worldPos, Quaternion.identity);
             spawnedRooms[node.gridPos] = room;
         }
     }
 
-    Room GetRandomRoomPrefab(RoomType type)
+    List<Room> PickRandom(List<Room> source, int count)
     {
-        return type switch
-        {
-            RoomType.Boss =>
-                bossRooms[Random.Range(0, bossRooms.Count)],
-
-            RoomType.Treasure =>
-                treasureRooms[Random.Range(0, treasureRooms.Count)],
-
-            RoomType.Shop =>
-                shopRooms[Random.Range(0, shopRooms.Count)],
-
-            _ =>
-                normalRooms[Random.Range(0, normalRooms.Count)]
-        };
+        return source.OrderBy(_ => Random.value).Take(count).ToList();
     }
 
     void ConnectRooms()
@@ -158,21 +141,30 @@ public class StageManager : MonoBehaviour
         Vector3Int start = corridorTilemap.WorldToCell(from);
         Vector3Int end = corridorTilemap.WorldToCell(to);
 
+        int offsetMin = -(corridorWidth - 1) / 2;
+        int offsetMax = corridorWidth / 2;
+
         if (start.x == end.x)
         {
-            int min = Mathf.Min(start.y, end.y);
-            int max = Mathf.Max(start.y, end.y);
+            int minY = Mathf.Min(start.y, end.y);
+            int maxY = Mathf.Max(start.y, end.y);
 
-            for (int y = min; y <= max; y++)
-                corridorTilemap.SetTile(new Vector3Int(start.x, y, 0), corridorTile);
+            for (int y = minY; y <= maxY; y++)
+            {
+                for (int x = offsetMin; x <= offsetMax; x++)
+                    corridorTilemap.SetTile(new Vector3Int(start.x + x, y, 0), corridorTile);
+            }
         }
         else
         {
-            int min = Mathf.Min(start.x, end.x);
-            int max = Mathf.Max(start.x, end.x);
+            int minX = Mathf.Min(start.x, end.x);
+            int maxX = Mathf.Max(start.x, end.x);
 
-            for (int x = min; x <= max; x++)
-                corridorTilemap.SetTile(new Vector3Int(x, start.y, 0), corridorTile);
+            for (int x = minX; x <= maxX; x++)
+            {
+                for (int y = offsetMin; y <= offsetMax; y++)
+                    corridorTilemap.SetTile(new Vector3Int(x, start.y + y, 0), corridorTile);
+            }
         }
     }
 }

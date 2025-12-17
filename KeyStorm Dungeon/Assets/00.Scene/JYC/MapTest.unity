@@ -122,6 +122,55 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &197805553
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 197805555}
+  - component: {fileID: 197805554}
+  m_Layer: 0
+  m_Name: ItemPoolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &197805554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197805553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43a1f36a72cf78d4786c526d49eae1d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tier0Weight: 3
+  tier1Weight: 3
+  tier2Weight: 3
+  tier3Weight: 2
+  tier4Weight: 1
+--- !u!4 &197805555
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197805553}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &428734700
 GameObject:
   m_ObjectHideFlags: 0
@@ -881,6 +930,7 @@ MonoBehaviour:
   corridorTilemap: {fileID: 788293004}
   corridorTile: {fileID: 11400000, guid: 87849d65451029e48a21e44c81db300e, type: 2}
   roomSpacing: 50
+  corridorWidth: 5
 --- !u!4 &2070376767
 Transform:
   m_ObjectHideFlags: 0
@@ -905,3 +955,4 @@ SceneRoots:
   - {fileID: 2070376767}
   - {fileID: 1337324264}
   - {fileID: 859890883}
+  - {fileID: 197805555}
