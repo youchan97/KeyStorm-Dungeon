@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 428734701}
   - component: {fileID: 428734702}
   m_Layer: 0
-  m_Name: Grid (1)
+  m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -886,73 +886,74 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &2070376765
-GameObject:
+--- !u!1001 &2349621495781577149
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2070376767}
-  - component: {fileID: 2070376766}
-  m_Layer: 0
-  m_Name: StageManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2070376766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2070376765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd9c47dfbde37e24ca05b282f4d26c2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stageData: {fileID: 11400000, guid: 6334aee740937214d9c66286bd4327b3, type: 2}
-  normalRooms:
-  - {fileID: -5701023608660036602, guid: f71c04d388c367f4c9f5eb4f81628535, type: 3}
-  - {fileID: 837052703989722770, guid: 1c1427bd3cd408243addc83e8869a40b, type: 3}
-  - {fileID: -6716904118478084081, guid: f7a91cc40712baa4e984dd973e5dfd4a, type: 3}
-  - {fileID: -2860972199739670408, guid: 1e2cc042801a4cb49aa66206257fa12c, type: 3}
-  bossRooms:
-  - {fileID: 5150652526908895158, guid: c91c307d6fea4bf4c810e5dd1a7aef85, type: 3}
-  treasureRooms:
-  - {fileID: 1378694527171304996, guid: 41e775370d76916489a4e514c1df3fd4, type: 3}
-  shopRooms:
-  - {fileID: 2699900805692073484, guid: eb6d3e2fef71c22488a333db12bcce45, type: 3}
-  corridorTilemap: {fileID: 788293004}
-  corridorTile: {fileID: 11400000, guid: 87849d65451029e48a21e44c81db300e, type: 2}
-  roomSpacing: 50
-  corridorWidth: 5
---- !u!4 &2070376767
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2070376765}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1366883, y: -0.3880344, z: 0.02773604}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 302450497200051325, guid: 378dacaf1786eb04290bcd3aec0eae0f, type: 3}
+      propertyPath: corridorTilemap
+      value: 
+      objectReference: {fileID: 788293004}
+    - target: {fileID: 5926055127069528958, guid: 378dacaf1786eb04290bcd3aec0eae0f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.1366883
+      objectReference: {fileID: 0}
+    - target: {fileID: 5926055127069528958, guid: 378dacaf1786eb04290bcd3aec0eae0f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.3880344
+      objectReference: {fileID: 0}
+    - target: {fileID: 5926055127069528958, guid: 378dacaf1786eb04290bcd3aec0eae0f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.02773604
+      objectReference: {fileID: 0}
+    - target: {fileID: 5926055127069528958, guid: 378dacaf1786eb04290bcd3aec0eae0f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5926055127069528958, guid: 378dacaf1786eb04290bcd3aec0eae0f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5926055127069528958, guid: 378dacaf1786eb04290bcd3aec0eae0f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5926055127069528958, guid: 378dacaf1786eb04290bcd3aec0eae0f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5926055127069528958, guid: 378dacaf1786eb04290bcd3aec0eae0f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5926055127069528958, guid: 378dacaf1786eb04290bcd3aec0eae0f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5926055127069528958, guid: 378dacaf1786eb04290bcd3aec0eae0f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7353919232064139219, guid: 378dacaf1786eb04290bcd3aec0eae0f, type: 3}
+      propertyPath: m_Name
+      value: StageManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 378dacaf1786eb04290bcd3aec0eae0f, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1221638854}
   - {fileID: 428734701}
-  - {fileID: 2070376767}
+  - {fileID: 2349621495781577149}
   - {fileID: 1337324264}
   - {fileID: 859890883}
   - {fileID: 197805555}
