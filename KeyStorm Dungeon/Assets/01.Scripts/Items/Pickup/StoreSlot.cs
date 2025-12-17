@@ -92,8 +92,6 @@ public class StoreSlot : MonoBehaviour
 
                 // 먹었을 때만 다시 안 뜸
                 ItemPoolManager.Instance?.MarkAcquired(itemData);
-
-                ItemPopupUI.Instance?.Show(itemData);
             }
 
             Clear(); // 산 뒤 슬롯 비우기

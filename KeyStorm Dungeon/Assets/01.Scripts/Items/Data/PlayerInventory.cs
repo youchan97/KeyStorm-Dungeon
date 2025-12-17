@@ -17,29 +17,20 @@ public class PlayerInventory : MonoBehaviour
     public void AddGold(int amount)
     {
         gold += amount;
-        HudUI.Instance.UpdateGold(gold);
     }
 
     public void AddBomb(int amount)
     {
         bombCount += amount;
-        HudUI.Instance.UpdateBomb(bombCount);
     }
 
     public void AddPassiveItem(ItemData data)
     {
         passiveItems.Add(data);
-        //stats.ApplyItemStats(data);
-
-        //if (data.attackChange)
-        //{
-        //    GetComponent<PlayerAttack>()?.ApplyAttackChange(data);
-        //} 플레이어쪽에서 추가되면 바꾸면됨
     }
 
     public void SetActiveItem(ItemData data)
     {
         activeItem = data;
-        HudUI.Instance.SetActiveItem(data);
     }
 }

@@ -20,7 +20,6 @@ public class PassiveItemPickup : MonoBehaviour
         inv.AddPassiveItem(itemData);
         player.PlayerStatUpdate(itemData);
         ItemPoolManager.Instance?.MarkAcquired(itemData);
-        ItemPopupUI.Instance.Show(itemData);
         Destroy(gameObject);
     }
 }
