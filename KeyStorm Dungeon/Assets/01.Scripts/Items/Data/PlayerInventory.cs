@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     public PlayerStats stats;
+    public InventoryModel inventoryModel;
 
     [Header("자원")]
     public int gold;
@@ -27,6 +28,8 @@ public class PlayerInventory : MonoBehaviour
     public void AddPassiveItem(ItemData data)
     {
         passiveItems.Add(data);
+        inventoryModel.AddItem(data);
+        FindObjectOfType<InventoryUIController>()?.Refresh();
     }
 
     public void SetActiveItem(ItemData data)

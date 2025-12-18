@@ -6,6 +6,13 @@ using UnityEngine;
 public class ActiveItemPickup : MonoBehaviour
 {
     public ItemData itemData;  // isActiveItem == true
+    private ItemPickupView view;
+  
+    private void Awake()
+    {
+        view = GetComponent<ItemPickupView>();
+        if (view != null) view.Apply(itemData);
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -34,4 +41,5 @@ public class ActiveItemPickup : MonoBehaviour
         var pickup = drop.GetComponent<ActiveItemPickup>();
         pickup.itemData = oldItem;
     }
+
 }
