@@ -65,6 +65,11 @@ public class Player : Character
         InitData();
     }
 
+    public void InitAttackPoolManager(AttackPoolManager attackPoolManager)
+    {
+        this.attackPoolManager = attackPoolManager;
+    }
+
     protected override void InitState()
     {
         IdleState = new PlayerIdleState(this, playerStateManager);

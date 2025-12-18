@@ -17,11 +17,6 @@ public class StageDataManager : SingletonManager<StageDataManager>
 
     public StageData CurrentStageData { get; private set; }
 
-    private void Start()
-    {
-        SelectDifficulty(StageDifficulty.Easy);
-    }
-
     void SetStageMap()
     {
         CurrentStageSet = GetCurrentSet();
