@@ -6,6 +6,13 @@ using UnityEngine;
 public class PassiveItemPickup : MonoBehaviour
 {
     public ItemData itemData;
+    private ItemPickupView view;
+
+    private void Awake()
+    {
+        view = GetComponent<ItemPickupView>();
+        if (view != null) view.Apply(itemData);
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -16,6 +23,9 @@ public class PassiveItemPickup : MonoBehaviour
         if (inv == null) return;
         if (itemData == null) return;
         if (itemData.isActiveItem) return;
+
+        FindObjectOfType<InventoryModel>()?.AddItem(itemData);
+        FindObjectOfType<InventoryUIController>()?.Refresh(); // 인벤 열려있을 때 즉시 반영하고 싶으면
 
         inv.AddPassiveItem(itemData);
         player.PlayerStatUpdate(itemData);

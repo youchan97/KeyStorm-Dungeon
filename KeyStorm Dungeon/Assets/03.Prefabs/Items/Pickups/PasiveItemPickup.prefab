@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 8906432119364787837}
   - component: {fileID: 6606509425052204236}
   - component: {fileID: 1636688169185932906}
-  m_Layer: 0
+  - component: {fileID: -8132057266070334062}
+  m_Layer: 16
   m_Name: PasiveItemPickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,4 +134,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fa850b35d424004e8f0f693e01e5c19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemData: {fileID: 0}
+--- !u!114 &-8132057266070334062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7977811986095973617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be34dca7911777642925b23ae360d093, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sr: {fileID: 8906432119364787837}
   itemData: {fileID: 0}

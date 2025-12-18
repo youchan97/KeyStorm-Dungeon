@@ -239,11 +239,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 4885029256339129857}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: -60, y: 0}
+  m_SizeDelta: {x: 633, y: 600}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &7497250413999423309
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -302,8 +302,8 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 80, y: 80}
-  m_Spacing: {x: 0, y: 0}
+  m_CellSize: {x: 110, y: 110}
+  m_Spacing: {x: 10, y: 10}
   m_Constraint: 1
   m_ConstraintCount: 5
 --- !u!1 &8349730602961426476
@@ -339,11 +339,11 @@ RectTransform:
   - {fileID: 791820153568470548}
   m_Father: {fileID: 7322467280065111884}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -40, y: 0}
+  m_SizeDelta: {x: 380, y: 600}
+  m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &1393310932720634519
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -393,6 +393,7 @@ GameObject:
   - component: {fileID: 1656061361356526462}
   - component: {fileID: 1264974997587664226}
   - component: {fileID: 3341566706692451233}
+  - component: {fileID: 7971614803815555531}
   m_Layer: 5
   m_Name: InventoryUI
   m_TagString: Untagged
@@ -442,7 +443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.21960784}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -459,3 +460,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7971614803815555531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9109608145845465687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13a3ee0f7245ba2449828f6d82c3e7f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  root: {fileID: 9109608145845465687}
+  model: {fileID: 0}
+  gridParent: {fileID: 2520615579498463443}
+  slotPrefab: {fileID: -2629973070297178242, guid: c8be78cdc657f4d4582a61738d092bcd, type: 3}
+  columns: 5
+  capacity: 30
