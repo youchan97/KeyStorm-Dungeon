@@ -2535,7 +2535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e86c0b58a2f2a84eaa5b2dac8f6f1ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomType: 0
+  roomType: 1
   doorUp: {fileID: 7690391988302170500}
   doorDown: {fileID: 3425582200723406400}
   doorLeft: {fileID: 4807252382850823612}

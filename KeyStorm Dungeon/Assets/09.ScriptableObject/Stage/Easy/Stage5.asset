@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fd9c117d868649469c13584a638cf64, type: 3}
-  m_Name: RoomData
+  m_Script: {fileID: 11500000, guid: deaf2a358a833744aa26d2d11ba4cad9, type: 3}
+  m_Name: Stage5
   m_EditorClassIdentifier: 
-  roomType: 0
-  room: {fileID: 0}
-  roomSize: {x: 0, y: 0}
-  doorList:
-  - dir: 0
-    doorVec: {x: 0, y: 0}
+  stageIndex: 5
+  totalRoomCount: 6
+  bossRoomCount: 1
+  treasureRoomCount: 1
+  shopRoomCount: 1
