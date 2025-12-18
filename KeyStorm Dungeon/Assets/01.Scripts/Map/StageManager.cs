@@ -9,12 +9,8 @@ public class StageManager : MonoBehaviour
     [Header("Stage Data")]
     public StageData stageData;
 
-    [Header("Room Prefabs")]
-    /*public Room startRoom;
-    public List<Room> normalRooms;
-    public List<Room> bossRooms;
-    public List<Room> treasureRooms;
-    public List<Room> shopRooms;*/
+    [Header("PlayerSpawn")]
+    public PlayerSpawner playerSpawner;
 
     [Header("Corridor Tilemap")]
     public Tilemap corridorTilemap;
@@ -37,6 +33,7 @@ public class StageManager : MonoBehaviour
 
     void Start()
     {
+        StageDataManager.Instance.SelectDifficulty(StageDifficulty.Easy);
         stageData = StageDataManager.Instance.CurrentStageData;
 
         GenerateRoomLayout();
@@ -126,6 +123,8 @@ public class StageManager : MonoBehaviour
             }
 
             Room room = Instantiate(curRoom, worldPos, Quaternion.identity);
+            if (room.roomType == RoomType.Start)
+                playerSpawner.SpawnPlayer(worldPos);
             spawnedRooms[node.gridPos] = room;
         }
     }

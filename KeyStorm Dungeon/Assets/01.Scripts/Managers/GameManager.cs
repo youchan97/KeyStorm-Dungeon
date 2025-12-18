@@ -14,8 +14,9 @@ public class GameManager : SingletonManager<GameManager>
 
     public PlayerRunData PlayerRunData { get => playerRunData;}
 
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
         //스타트가 아니라 캐릭터 커스텀마이징 선택 후 게임 시작 때 불러와야함
         playerRunData = new PlayerRunData(playerData); 
     }

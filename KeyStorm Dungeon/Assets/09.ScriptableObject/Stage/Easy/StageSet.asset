@@ -26,7 +26,6 @@ MonoBehaviour:
   - {fileID: -2860972199739670408, guid: 1e2cc042801a4cb49aa66206257fa12c, type: 3}
   bossRooms:
   - {fileID: 5150652526908895158, guid: c91c307d6fea4bf4c810e5dd1a7aef85, type: 3}
-  - {fileID: 5150652526908895158, guid: c91c307d6fea4bf4c810e5dd1a7aef85, type: 3}
   treasureRooms:
   - {fileID: 1378694527171304996, guid: 41e775370d76916489a4e514c1df3fd4, type: 3}
   shopRooms:
