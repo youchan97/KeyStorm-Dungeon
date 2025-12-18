@@ -1311,7 +1311,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 302450497200051325, guid: 378dacaf1786eb04290bcd3aec0eae0f, type: 3}
       propertyPath: expandWeight
-      value: 0.9
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 302450497200051325, guid: 378dacaf1786eb04290bcd3aec0eae0f, type: 3}
       propertyPath: playerSpawner
