@@ -13,6 +13,8 @@ public class StageDataManager : SingletonManager<StageDataManager>
     public StageDifficulty CurrentDifficulty { get; private set; }
     public int CurrentStageIndex { get; private set; }
 
+    public StageSet CurrentStageSet { get; private set; }
+
     public StageData CurrentStageData { get; private set; }
 
     private void Start()
@@ -22,9 +24,9 @@ public class StageDataManager : SingletonManager<StageDataManager>
 
     void SetStageMap()
     {
-        StageSet set = GetCurrentSet();
+        CurrentStageSet = GetCurrentSet();
 
-        foreach (var stage in set.stageDatas)
+        foreach (var stage in CurrentStageSet.stageDatas)
         {
             if (stageMap.ContainsKey(stage.stageIndex))
             {
