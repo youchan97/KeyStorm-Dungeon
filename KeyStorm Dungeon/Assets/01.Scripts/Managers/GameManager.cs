@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : SingletonManager<GameManager>
 {
@@ -15,6 +16,7 @@ public class GameManager : SingletonManager<GameManager>
 
     private void Start()
     {
+        //스타트가 아니라 캐릭터 커스텀마이징 선택 후 게임 시작 때 불러와야함
         playerRunData = new PlayerRunData(playerData); 
     }
 
@@ -49,6 +51,12 @@ public class GameManager : SingletonManager<GameManager>
 #else
         Application.Quit();
 #endif
+    }
+
+    public void StageClear()
+    {
+        StageDataManager.Instance.NextStage();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
 

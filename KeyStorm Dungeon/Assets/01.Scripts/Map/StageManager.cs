@@ -36,9 +36,19 @@ public class StageManager : MonoBehaviour
 
     void Start()
     {
+        stageData = StageDataManager.Instance.CurrentStageData;
+
         GenerateRoomLayout();
         SpawnRooms();
         ConnectRooms();
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.V))
+        {
+            GameManager.Instance.StageClear();
+        }
     }
 
     void GenerateRoomLayout()
