@@ -40,7 +40,7 @@ public class BossMonsterAttackState : MonsterAttackState
 
     public override void UpdateState()
     {
-        character.FlipSprite(character.PlayerTransform);
+        character.FlipSpariteAttack(playerTransform);
     }
 
     private IEnumerator DiveAttack()

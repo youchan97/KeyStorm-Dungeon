@@ -26,12 +26,27 @@ public class CombatButterflyMoveState : MonsterMoveState
 
         if (character == null || rb == null) return;
 
-        character.FlipSprite(playerTransform);
+        character.FlipSprite(rb.velocity.x);
 
         float distanceToPlayer = Vector2.Distance(character.transform.position, playerTransform.position);
 
         UpdateAnimation();
-        UpdateMovement(distanceToPlayer);
+
+        if (Time.time >= nextPathUpdateTime)
+        {
+            RequestNewPath();
+            nextPathUpdateTime = Time.time + pathUpdateInterval;
+        }
+
+        if (currentPath != null && currentPath.Count > 0)
+        {
+            UpdateMovement();
+        }
+        else
+        {
+            //rb.velocity = Vector2.zero;
+            UpdateDirectionMovement(distanceToPlayer);
+        }
     }
 
     public override void ExitState()

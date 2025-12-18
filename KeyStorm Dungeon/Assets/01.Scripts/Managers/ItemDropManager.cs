@@ -41,7 +41,9 @@ public class ItemDropManager : SingletonManager<ItemDropManager>
 
     public void DropItems(Vector3 dropPosition, MonsterData monsterData)
     {
-        for (int i = 0; i < monsterData.dropGold; i++)
+        int goldToDrop = Random.Range(monsterData.minDropGold, monsterData.maxDropGold + 1);
+
+        for (int i = 0; i < goldToDrop; i++)
         {
             DropGold(dropPosition);
         }

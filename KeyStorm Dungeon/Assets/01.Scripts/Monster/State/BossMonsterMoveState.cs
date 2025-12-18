@@ -20,7 +20,7 @@ public class BossMonsterMoveState : MonsterMoveState
     {
         if (playerTransform == null || boss == null || rb == null) return;
 
-        boss.FlipSprite(boss.PlayerTransform);
+        boss.FlipSprite(rb.velocity.x);
 
         float distanceToPlayer = Vector2.Distance(boss.transform.position, playerTransform.position);
 
@@ -30,7 +30,7 @@ public class BossMonsterMoveState : MonsterMoveState
             return;
         }
 
-        UpdateMovement(distanceToPlayer);
+        UpdateDirectionMovement(distanceToPlayer);
     }
 
     public override void ExitState()

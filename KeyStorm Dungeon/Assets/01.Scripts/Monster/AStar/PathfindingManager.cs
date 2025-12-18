@@ -5,8 +5,6 @@ using UnityEngine.Tilemaps;
 
 public class PathfindingManager : SingletonManager<PathfindingManager>
 {
-    public static PathfindingManager instance { get; private set; }
-
     [Header("타일맵 할당")]
     [SerializeField] private Tilemap baseGroundTilemap;
     [SerializeField] private Tilemap groundObstacleTilemap;
@@ -18,6 +16,7 @@ public class PathfindingManager : SingletonManager<PathfindingManager>
     public Vector3 gizmoDrawOffset = new Vector3(0, 0.1f, 0);
 
     private Grid grid;
+    public Grid Grid => grid;
     private Pathfinding pathfinding;
 
     [Header("임시 경로 테스트용")]
@@ -25,8 +24,10 @@ public class PathfindingManager : SingletonManager<PathfindingManager>
     public Transform debugEndPoint;
     public UnitType debugUnitType;
 
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
+
         InitializePathfinding();
     }
 

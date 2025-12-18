@@ -17,7 +17,7 @@ public class RangerMonsterAttackState : MonsterAttackState
             return;
         }
 
-        character.FlipSprite(character.PlayerTransform);
+        character.FlipSpariteAttack(player.transform);
 
         float distanceToPlayer = Vector2.Distance(character.transform.position, player.transform.position);
 

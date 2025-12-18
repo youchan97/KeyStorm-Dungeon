@@ -30,7 +30,6 @@ public class MonsterData : ScriptableObject
     public float mass;              // 몬스터 질량
 
     [Header("골드 드랍 설정")]
-    public int dropGold;
     public int minDropGold;
     public int maxDropGold;
 
