@@ -19,24 +19,11 @@ public class PathfindingManager : SingletonManager<PathfindingManager>
     public Grid Grid => grid;
     private Pathfinding pathfinding;
 
-    [Header("임시 경로 테스트용")]
-    public Transform debugStartPoint;
-    public Transform debugEndPoint;
-    public UnitType debugUnitType;
-
     protected override void Awake()
     {
         base.Awake();
 
         InitializePathfinding();
-    }
-
-    private void Update()
-    {
-        if (grid != null && pathfinding != null && debugStartPoint != null && debugEndPoint != null)
-        {
-            pathfinding.FindPath(debugStartPoint.position, debugEndPoint.position, debugUnitType);
-        }
     }
 
     // 임시 사용 고정맵 전용
