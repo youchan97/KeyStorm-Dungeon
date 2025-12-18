@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class PathfindingManager : MonoBehaviour
+public class PathfindingManager : SingletonManager<PathfindingManager>
 {
     public static PathfindingManager instance { get; private set; }
 
@@ -25,17 +25,9 @@ public class PathfindingManager : MonoBehaviour
     public Transform debugEndPoint;
     public UnitType debugUnitType;
 
-    private void Awake()
+    private void Start()
     {
-        if (instance != null && instance != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            instance = this;
-            InitializePathfinding();
-        }
+        InitializePathfinding();
     }
 
     private void Update()

@@ -36,6 +36,7 @@ public class GoldPickup : MonoBehaviour
         if (inv == null) return;
 
         inv.AddGold(amount);
-        Destroy(gameObject);
+        
+        ItemDropManager.Instance.ReturnGoldPickup(this);
     }
 }
