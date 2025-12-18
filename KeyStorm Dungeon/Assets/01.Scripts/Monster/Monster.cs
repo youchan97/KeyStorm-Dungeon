@@ -56,9 +56,7 @@ public abstract class Monster : Character
     protected virtual void Start()
     {
         PlayerGO = GameObject.FindGameObjectWithTag("Player");
-
-
-        //GameObject playerGO = GameManager.Instance.player;
+        //PlayerGO = PlayerSpawner.playerObj;
         
         if (PlayerGO == null)
         {
