@@ -5,6 +5,7 @@ public class Pathfinding
 {
     private Grid grid;
     public List<Node> currentDebugPath;
+    public Grid Grid => grid;
 
     public Pathfinding(Grid grid)
     {

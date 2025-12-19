@@ -30,7 +30,7 @@ public class BossMonsterMoveState : MonsterMoveState
             return;
         }
 
-        UpdateDirectionMovement(distanceToPlayer);
+        Move();
     }
 
     public override void ExitState()

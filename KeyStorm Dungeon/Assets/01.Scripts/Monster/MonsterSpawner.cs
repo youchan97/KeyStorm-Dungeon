@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class MonsterSpawner : MonoBehaviour
 {
@@ -11,6 +12,14 @@ public class MonsterSpawner : MonoBehaviour
     public List<Transform> spawnPoints;
 
     private bool monstersSpawned = false;
+
+    private Room parentRoom;
+
+    private void Awake()
+    {
+        parentRoom = GetComponentInParent<Room>();
+        if (parentRoom == null) return;
+    }
 
     public void SpawnMonsters()
     {
@@ -50,9 +59,15 @@ public class MonsterSpawner : MonoBehaviour
                 continue;
             }
 
-            GameObject spawnedMonster = Instantiate(monsterPrefab, spawnPoint.position, Quaternion.identity);
+            GameObject spawnedMonsterGO = Instantiate(monsterPrefab, spawnPoint.position, Quaternion.identity);
+            spawnedMonsterGO.transform.parent = transform;
 
-            spawnedMonster.transform.parent = transform;
+            Monster spawnedMonster = spawnedMonsterGO.GetComponent<Monster>();
+
+            if(spawnedMonster != null)
+            {
+                spawnedMonster.SetMyRoom(parentRoom);
+            }
         }
 
         monstersSpawned = true;

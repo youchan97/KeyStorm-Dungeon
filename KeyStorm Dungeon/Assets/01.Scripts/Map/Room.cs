@@ -39,6 +39,7 @@ public class Room : MonoBehaviour
     public Tilemap roomWallTilemap;
 
     public MonsterSpawner monsterSpawner;
+    public Vector2Int RoomGridPosition { get; set; }
 
     public bool IsPlayerIn { get => isPlayerIn;}
     public bool CanOpenDoor { get => canOpenDoor; }

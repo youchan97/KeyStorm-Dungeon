@@ -6,7 +6,6 @@ using UnityEngine.Tilemaps;
 
 public class StageManager : MonoBehaviour
 {
-    StageDataManager stageDataManager;
     [Header("Stage Data")]
     public StageData stageData;
 
@@ -15,8 +14,7 @@ public class StageManager : MonoBehaviour
 
     [Header("Corridor Tilemap")]
     public Tilemap corridorTilemap;
-    public TileBase horizontalCorridorTile;
-    public TileBase verticalCorridorTile;
+    public TileBase corridorTile;
 
     [Header("Config")]
     public int roomSpacing = 20;
@@ -36,8 +34,7 @@ public class StageManager : MonoBehaviour
 
     void Start()
     {
-        stageDataManager = StageDataManager.Instance;
-        stageData = stageDataManager.CurrentStageData;
+        stageData = StageDataManager.Instance.CurrentStageData;
 
         GenerateRoomLayout();
         SpawnRooms();
@@ -145,12 +142,12 @@ public class StageManager : MonoBehaviour
 
         List<Room> spawnPool = new List<Room>();
 
-        spawnPool.AddRange(PickRandom(stageDataManager.CurrentStageSet.bossRooms, stageData.bossRoomCount));
-        spawnPool.AddRange(PickRandom(stageDataManager.CurrentStageSet.treasureRooms, stageData.treasureRoomCount));
-        spawnPool.AddRange(PickRandom(stageDataManager.CurrentStageSet.shopRooms, stageData.shopRoomCount));
+        spawnPool.AddRange(PickRandom(StageDataManager.Instance.CurrentStageSet.bossRooms, stageData.bossRoomCount));
+        spawnPool.AddRange(PickRandom(StageDataManager.Instance.CurrentStageSet.treasureRooms, stageData.treasureRoomCount));
+        spawnPool.AddRange(PickRandom(StageDataManager.Instance.CurrentStageSet.shopRooms, stageData.shopRoomCount));
 
         int normalCount = roomMap.Count - spawnPool.Count -1;
-        spawnPool.AddRange(PickRandom(stageDataManager.CurrentStageSet.normalRooms, normalCount));
+        spawnPool.AddRange(PickRandom(StageDataManager.Instance.CurrentStageSet.normalRooms, normalCount));
 
         spawnPool = spawnPool.OrderBy(_ => Random.value).ToList();
 
@@ -167,7 +164,7 @@ public class StageManager : MonoBehaviour
             switch (node.type)
             {
                 case RoomType.Start:
-                    curRoom = stageDataManager.CurrentStageSet.startRoom;
+                    curRoom = StageDataManager.Instance.CurrentStageSet.startRoom;
                     break;
 
                 default:
@@ -219,12 +216,6 @@ public class StageManager : MonoBehaviour
         Vector3Int start = corridorTilemap.WorldToCell(from);
         Vector3Int end = corridorTilemap.WorldToCell(to);
 
-        Vector3Int dir = end - start;
-        dir.x = Mathf.Clamp(dir.x, -1, 1);
-        dir.y = Mathf.Clamp(dir.y, -1, 1);
-
-        end -= dir;
-
         int offsetMin = -(corridorWidth - 1) / 2;
         int offsetMax = corridorWidth / 2;
 
@@ -236,7 +227,7 @@ public class StageManager : MonoBehaviour
             for (int y = minY; y <= maxY; y++)
             {
                 for (int x = offsetMin; x <= offsetMax; x++)
-                    corridorTilemap.SetTile(new Vector3Int(start.x + x, y, 0), stageDataManager.CurrentStageSet.verticalCorridor);
+                    corridorTilemap.SetTile(new Vector3Int(start.x + x, y, 0), corridorTile);
             }
         }
         else
@@ -247,7 +238,7 @@ public class StageManager : MonoBehaviour
             for (int x = minX; x <= maxX; x++)
             {
                 for (int y = offsetMin; y <= offsetMax; y++)
-                    corridorTilemap.SetTile(new Vector3Int(x, start.y + y, 0), stageDataManager.CurrentStageSet.horizontalCorridor);
+                    corridorTilemap.SetTile(new Vector3Int(x, start.y + y, 0), corridorTile);
             }
         }
     }

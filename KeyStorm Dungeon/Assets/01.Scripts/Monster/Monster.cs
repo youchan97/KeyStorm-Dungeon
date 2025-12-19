@@ -25,6 +25,8 @@ public abstract class Monster : Character
     public abstract CharacterState<Monster> CreateDieState();
 
     public event Action<Monster> OnMonsterDied;
+    
+    public Room MyRoom { get; set; }
 
     protected override void Awake()
     {
@@ -154,5 +156,10 @@ public abstract class Monster : Character
     public void InvokeOnMonsterDied()
     {
         OnMonsterDied?.Invoke(this);
+    }
+
+    public void SetMyRoom(Room room)
+    {
+        MyRoom = room;
     }
 }

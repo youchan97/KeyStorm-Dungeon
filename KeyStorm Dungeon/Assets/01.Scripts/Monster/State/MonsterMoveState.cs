@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using static ConstValue;
 
 public class MonsterMoveState : CharacterMoveState<Monster>
@@ -14,6 +15,8 @@ public class MonsterMoveState : CharacterMoveState<Monster>
     protected float pathUpdateInterval = 0.1f;
     protected float waypointReachThreshold = 0.1f;
 
+    private Pathfinding roomPathfinding;
+
     public MonsterMoveState(Monster monster, CharacterStateManager<Monster> stateManager) : base(monster, stateManager)
     {
     }
@@ -27,6 +30,9 @@ public class MonsterMoveState : CharacterMoveState<Monster>
 
         currentPath = null;
         targetNodeIndex = 0;
+
+        InitializeRoomPathfindingForMonster();
+
         RequestNewPath();
         nextPathUpdateTime = Time.time + pathUpdateInterval;
     }
@@ -39,7 +45,6 @@ public class MonsterMoveState : CharacterMoveState<Monster>
     public override void FixedUpdateState()
     {
         if (playerTransform == null) return;
-
         if (character == null || rb == null) return;
 
         character.FlipSprite(rb.velocity.x);
@@ -55,27 +60,7 @@ public class MonsterMoveState : CharacterMoveState<Monster>
             }
         }
 
-        if (distanceToPlayer > character.MonsterData.detectRange)
-        {
-            stateManager.ChangeState(character.CreateIdleState());
-            return;
-        }
-
-        if (Time.time >= nextPathUpdateTime)
-        {
-            RequestNewPath();
-            nextPathUpdateTime = Time.time + pathUpdateInterval;
-        }
-
-        if (currentPath != null && currentPath.Count > 0)
-        {
-            UpdateMovement();
-        }
-        else
-        {
-            //rb.velocity = Vector2.zero;
-            UpdateDirectionMovement(distanceToPlayer);
-        }
+        Move();
     }
 
     public override void ExitState()
@@ -92,11 +77,55 @@ public class MonsterMoveState : CharacterMoveState<Monster>
 
         currentPath = null;
         targetNodeIndex = 0;
+        roomPathfinding = null;
     }
 
     public override bool UseFixedUpdate()
     {
         return true;
+    }
+
+    protected void Move()
+    {
+        if (Time.time >= nextPathUpdateTime)
+        {
+            RequestNewPath();
+            nextPathUpdateTime = Time.time + pathUpdateInterval;
+        }
+
+        if (currentPath != null && currentPath.Count > 0)
+        {
+            UpdateMovement();
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
+            //UpdateDirectionMovement(distanceToPlayer);
+        }
+    }
+
+    protected void InitializeRoomPathfindingForMonster()
+    {
+        if (PathfindingManager.Instance == null)
+        {
+            return;
+        }
+
+        Room myRoom = character.MyRoom;
+
+        if (myRoom == null) return;
+
+        Tilemap roomGround = myRoom.GetRoomGroundTilemap();
+        Tilemap roomObstacleGround = null;
+        Tilemap roomObstacleAir = null;
+        Tilemap roomObstacleUniversal = myRoom.GetRoomWallTilemap();
+
+        roomPathfinding = PathfindingManager.Instance.CreateRoomPathfinding(roomGround, roomObstacleGround, roomObstacleAir, roomObstacleUniversal);
+
+        if (roomPathfinding == null)
+        {
+            Debug.LogError($"MonsterMoveState: Pathfinding 객체 생성 실패");
+        }
     }
 
     protected void RequestNewPath()
@@ -108,8 +137,7 @@ public class MonsterMoveState : CharacterMoveState<Monster>
             return;
         }
 
-        currentPath = PathfindingManager.Instance.RequestPath(character.transform.position, playerTransform.position, character.MonsterData.type);
-
+        currentPath = roomPathfinding.FindPath(character.transform.position, playerTransform.position, character.MonsterData.type);
         targetNodeIndex = 0;
     }
     
@@ -121,7 +149,7 @@ public class MonsterMoveState : CharacterMoveState<Monster>
             return;
         }
 
-        Vector3 targetWorldPosition = PathfindingManager.Instance.Grid.GetWorldPointFromNode(currentPath[targetNodeIndex]);
+        Vector3 targetWorldPosition = roomPathfinding.Grid.GetWorldPointFromNode(currentPath[targetNodeIndex]);
         targetWorldPosition.z = character.transform.position.z;
 
         Vector2 direction = (targetWorldPosition - character.transform.position).normalized;
