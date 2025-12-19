@@ -42,4 +42,10 @@ public class PlayerStats : MonoBehaviour
 
         transform.localScale = Vector3.one * scale;
     }
+
+    public void Heal(int amount)
+    {
+        if (amount <= 0) return;
+        hp = Mathf.Min(hp + amount, maxHp);
+    }
 }
