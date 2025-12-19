@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ShopRoomSpawner : MonoBehaviour
-{ 
+{
     public enum StoreSlotType
     {
-        RandomItem,   // Store 풀에서 랜덤 아이템
-        Bomb,         // 고정 폭탄
-        Potion        // 고정 물약
+        RandomItem,
+        Bomb,
+        Potion
     }
 
     [System.Serializable]
@@ -19,16 +19,24 @@ public class ShopRoomSpawner : MonoBehaviour
         public int price;
     }
 
-    [Header("슬롯 구성(원하는 만큼 추가 가능)")]
-    public List<StoreSlotEntry> entries = new List<StoreSlotEntry>();
+    [Header("슬롯 엔트리")]
+    public List<StoreSlotEntry> entries = new();
 
-    [Header("아이템 픽업 프리팹(공용)")]
+    [Header("소모품 설정")]
+    public int bombAmount = 1;
+    public int potionAmount = 1;
+    public int potionHealAmount = 2;
+
+    [Header("프리팹")]
     public GameObject passiveItemPickupPrefab;
     public GameObject activeItemPickupPrefab;
-
-    [Header("소모품 진열 프리팹")]
     public GameObject potionDisplayPrefab;
     public GameObject bombDisplayPrefab;
+
+    private void Start()
+    {
+        SpawnStore(); //이 줄이 없으면 절대 안 뜸
+    }
 
     public void SpawnStore()
     {
@@ -43,11 +51,22 @@ public class ShopRoomSpawner : MonoBehaviour
                     break;
 
                 case StoreSlotType.Bomb:
-                    e.slot.SetConsumableProduct(bombDisplayPrefab, e.price);
+                    e.slot.SetConsumableProduct(
+                        bombDisplayPrefab,
+                        e.price,
+                        StoreSlot.ConsumableType.Bomb,
+                        bombAmount
+                    );
                     break;
 
                 case StoreSlotType.Potion:
-                    e.slot.SetConsumableProduct(potionDisplayPrefab, e.price);
+                    e.slot.SetConsumableProduct(
+                        potionDisplayPrefab,
+                        e.price,
+                        StoreSlot.ConsumableType.Potion,
+                        potionAmount,
+                        potionHealAmount
+                    );
                     break;
             }
         }
@@ -55,14 +74,19 @@ public class ShopRoomSpawner : MonoBehaviour
 
     void SpawnRandomItem(StoreSlot slot, int price)
     {
-        var data = ItemPoolManager.Instance.GetRandomItem_ExcludeAcquired(ItemDropRoom.Store);
+        var data = ItemPoolManager.Instance
+            .GetRandomItem_ExcludeAcquired(ItemDropRoom.Store);
+
         if (data == null)
         {
             slot.Clear();
             return;
         }
 
-        var prefab = data.isActiveItem ? activeItemPickupPrefab : passiveItemPickupPrefab;
+        var prefab = data.isActiveItem
+            ? activeItemPickupPrefab
+            : passiveItemPickupPrefab;
+
         slot.SetItemProduct(prefab, data, price);
     }
 }

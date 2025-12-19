@@ -91,9 +91,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac8170f491cfae74f88f39037ca6dc01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autoSpawn: 1
   spawnPoint: {fileID: 8151026888222254781}
   passiveItemPickupPrefab: {fileID: 7977811986095973617, guid: f4f54a227936e174c95e23c270ceac0a, type: 3}
   activeItemPickupPrefab: {fileID: 6506968681589806263, guid: b1810c1278dc2274485094567ccde1d5, type: 3}
+  spawnOnlyOnce: 1
 --- !u!1 &2715274930072885218
 GameObject:
   m_ObjectHideFlags: 0
