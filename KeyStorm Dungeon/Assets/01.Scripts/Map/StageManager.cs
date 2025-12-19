@@ -19,6 +19,7 @@ public class StageManager : MonoBehaviour
     [Header("Config")]
     public int roomSpacing = 20;
     public int corridorWidth;
+    public float expandWeight; //확장 가중치(랜덤으로 뻗어나가기 위함) 낮을 수록 균등하게 분포될 확률이 증가
 
     Dictionary<Vector2Int, RoomNode> roomMap = new Dictionary<Vector2Int, RoomNode>();
     Dictionary<Vector2Int, Room> spawnedRooms = new Dictionary<Vector2Int, Room>();
@@ -33,7 +34,6 @@ public class StageManager : MonoBehaviour
 
     void Start()
     {
-        StageDataManager.Instance.SelectDifficulty(StageDifficulty.Easy);
         stageData = StageDataManager.Instance.CurrentStageData;
 
         GenerateRoomLayout();
@@ -51,7 +51,7 @@ public class StageManager : MonoBehaviour
 
     void GenerateRoomLayout()
     {
-        roomMap.Clear();
+        /*roomMap.Clear();
 
         Queue<Vector2Int> queue = new();
         Vector2Int start = Vector2Int.zero;
@@ -79,7 +79,57 @@ public class StageManager : MonoBehaviour
                 if (roomMap.Count >= stageData.totalRoomCount)
                     break;
             }
+        }*/
+        roomMap.Clear();
+
+        Vector2Int start = Vector2Int.zero;
+        roomMap[start] = new RoomNode
+        {
+            gridPos = start,
+            type = RoomType.Start
+        };
+
+        List<Vector2Int> expandables = new List<Vector2Int>();
+        expandables.Add(start);
+
+        while (roomMap.Count < stageData.totalRoomCount && expandables.Count > 0)
+        {
+            Vector2Int current = expandables[Random.Range(0, expandables.Count)];
+
+            Vector2Int dir = dirs[Random.Range(0, dirs.Length)];
+            Vector2Int next = current + dir;
+
+            if (roomMap.ContainsKey(next))
+                continue;
+
+            roomMap[next] = new RoomNode
+            {
+                gridPos = next,
+                type = RoomType.Normal
+            };
+
+            // 새 방은 확장 후보
+            expandables.Add(next);
+
+            // 현재 방도 다시 확장 가능 (이게 깊이를 만듦)
+            if (Random.value < expandWeight)
+                expandables.Add(current);
+
+            // 너무 막힌 방은 제거 (선택)
+            if (GetNeighborCount(current) >= dirs.Length)
+                expandables.Remove(current);
         }
+    }
+
+    int GetNeighborCount(Vector2Int pos)
+    {
+        int count = 0;
+        foreach (var dir in dirs)
+        {
+            if (roomMap.ContainsKey(pos + dir))
+                count++;
+        }
+        return count;
     }
 
     void SpawnRooms()
@@ -152,6 +202,9 @@ public class StageManager : MonoBehaviour
 
                 Transform from = room.GetDoor(dir).transform;
                 Transform to = other.GetDoor(-dir).transform;
+
+                from.GetComponent<Door>()?.UseDoor();
+                to.GetComponent<Door>()?.UseDoor();
 
                 DrawCorridor(from.position, to.position);
             }

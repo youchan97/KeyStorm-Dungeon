@@ -24,6 +24,9 @@ public class Room : MonoBehaviour
 {
     public RoomType roomType;
 
+    [SerializeField] bool isPlayerIn;
+    [SerializeField] bool canOpenDoor;
+
     public Transform doorUp;
     public Transform doorDown;
     public Transform doorLeft;
@@ -32,6 +35,9 @@ public class Room : MonoBehaviour
     public Tilemap roomGroundTilemap;
     public Tilemap roomWallTilemap;
 
+    public bool IsPlayerIn { get => isPlayerIn;}
+    public bool CanOpenDoor { get => canOpenDoor; }
+
     public Transform GetDoor(Vector2Int dir)
     {
         if (dir == Vector2Int.up) return doorUp;
@@ -39,6 +45,24 @@ public class Room : MonoBehaviour
         if (dir == Vector2Int.left) return doorLeft;
         if (dir == Vector2Int.right) return doorRight;
         return null;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Player player = collision.GetComponent<Player>();
+
+        if (player == null) return;
+
+        isPlayerIn = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Player player = collision.GetComponent<Player>();
+
+        if (player == null) return;
+
+        isPlayerIn = false;
     }
 
     public Tilemap GetRoomGroundTilemap()
@@ -59,5 +83,4 @@ public class Room : MonoBehaviour
             return null;
         }
         return roomWallTilemap;
-    }
 }
