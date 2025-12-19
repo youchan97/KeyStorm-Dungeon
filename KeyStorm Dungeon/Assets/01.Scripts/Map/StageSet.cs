@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public enum StageDifficulty
 {
@@ -20,4 +21,6 @@ public class StageSet : ScriptableObject
     public List<Room> bossRooms;
     public List<Room> treasureRooms;
     public List<Room> shopRooms;
+    public TileBase horizontalCorridor;
+    public TileBase verticalCorridor;
 }

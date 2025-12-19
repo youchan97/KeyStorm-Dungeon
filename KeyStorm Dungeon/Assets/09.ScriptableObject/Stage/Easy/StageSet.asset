@@ -22,12 +22,25 @@ MonoBehaviour:
   startRoom: {fileID: 837052703989722770, guid: 1c1427bd3cd408243addc83e8869a40b, type: 3}
   normalRooms:
   - {fileID: -5701023608660036602, guid: f71c04d388c367f4c9f5eb4f81628535, type: 3}
-  - {fileID: -6716904118478084081, guid: f7a91cc40712baa4e984dd973e5dfd4a, type: 3}
-  - {fileID: -2860972199739670408, guid: 1e2cc042801a4cb49aa66206257fa12c, type: 3}
+  - {fileID: -5701023608660036602, guid: f71c04d388c367f4c9f5eb4f81628535, type: 3}
+  - {fileID: -5701023608660036602, guid: f71c04d388c367f4c9f5eb4f81628535, type: 3}
+  - {fileID: -5701023608660036602, guid: f71c04d388c367f4c9f5eb4f81628535, type: 3}
+  - {fileID: -5701023608660036602, guid: f71c04d388c367f4c9f5eb4f81628535, type: 3}
+  - {fileID: -5701023608660036602, guid: f71c04d388c367f4c9f5eb4f81628535, type: 3}
+  - {fileID: -5701023608660036602, guid: f71c04d388c367f4c9f5eb4f81628535, type: 3}
+  - {fileID: -5701023608660036602, guid: f71c04d388c367f4c9f5eb4f81628535, type: 3}
+  - {fileID: -5701023608660036602, guid: f71c04d388c367f4c9f5eb4f81628535, type: 3}
+  - {fileID: -5701023608660036602, guid: f71c04d388c367f4c9f5eb4f81628535, type: 3}
+  - {fileID: -5701023608660036602, guid: f71c04d388c367f4c9f5eb4f81628535, type: 3}
+  - {fileID: -5701023608660036602, guid: f71c04d388c367f4c9f5eb4f81628535, type: 3}
+  - {fileID: -5701023608660036602, guid: f71c04d388c367f4c9f5eb4f81628535, type: 3}
+  - {fileID: -5701023608660036602, guid: f71c04d388c367f4c9f5eb4f81628535, type: 3}
+  - {fileID: -5701023608660036602, guid: f71c04d388c367f4c9f5eb4f81628535, type: 3}
   bossRooms:
-  - {fileID: 5150652526908895158, guid: c91c307d6fea4bf4c810e5dd1a7aef85, type: 3}
   - {fileID: 5150652526908895158, guid: c91c307d6fea4bf4c810e5dd1a7aef85, type: 3}
   treasureRooms:
   - {fileID: 1378694527171304996, guid: 41e775370d76916489a4e514c1df3fd4, type: 3}
   shopRooms:
   - {fileID: 2699900805692073484, guid: eb6d3e2fef71c22488a333db12bcce45, type: 3}
+  horizontalCorridor: {fileID: 11400000, guid: d17d3e8c2e67b2844abfa929e037fd4e, type: 2}
+  verticalCorridor: {fileID: 11400000, guid: 50df240177c211d45addfc38330623c7, type: 2}

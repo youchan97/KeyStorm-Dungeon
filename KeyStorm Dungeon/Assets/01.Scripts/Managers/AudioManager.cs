@@ -43,7 +43,7 @@ public class AudioManager : SingletonManager<AudioManager>
     }
     void LoadVolume() //볼륨값
     {
-        bgmAudio.volume = saveLoadManager.datas.soundData.bgmVolume;
+        //bgmAudio.volume = saveLoadManager.datas.soundData.bgmVolume;
     }
 
     public void PlayBgm(string audioName)

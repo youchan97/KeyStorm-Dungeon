@@ -21,7 +21,7 @@ MonoBehaviour:
   type: 1
   detectRange: 20
   targetDistance: 0
-  tier: 0
+  tier: 3
   shotSpeed: 0
   attackSpeed: 0
   separationRaduis: 0
@@ -30,7 +30,8 @@ MonoBehaviour:
   separationWeight: 0
   maxSteeringForce: 0
   mass: 0
-  dropGold: 0
+  minDropGold: 30
+  maxDropGold: 40
   minStage: 0
   maxStage: 0
   xScale: 1

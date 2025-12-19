@@ -18,12 +18,20 @@ MonoBehaviour:
     maxHp: 1000
     damage: 1
     moveSpeed: 4
+  type: 0
   detectRange: 15
   targetDistance: 1
   tier: 3
   shotSpeed: 2
   attackSpeed: 2
-  dropGold: 0
+  separationRaduis: 0
+  separationStrength: 0
+  pathfindingWeight: 0
+  separationWeight: 0
+  maxSteeringForce: 0
+  mass: 0
+  minDropGold: 30
+  maxDropGold: 40
   minStage: 0
   maxStage: 0
   xScale: 3

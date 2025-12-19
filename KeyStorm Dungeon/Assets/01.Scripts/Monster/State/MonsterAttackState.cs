@@ -4,6 +4,7 @@ using static ConstValue;
 public class MonsterAttackState : CharacterAttackState<Monster>
 {
     protected Player player;
+    protected Rigidbody2D rb;
     protected Animator animator;
     public MonsterAttackState(Monster character, CharacterStateManager<Monster> stateManager) : base(character, stateManager)
     {
@@ -11,6 +12,7 @@ public class MonsterAttackState : CharacterAttackState<Monster>
 
     public override void EnterState()
     {
+        rb = character.MonsterRb;
         animator = character.Animator;
         
         if(character.PlayerGO != null)
@@ -41,7 +43,7 @@ public class MonsterAttackState : CharacterAttackState<Monster>
             return;
         }
 
-        character.FlipSprite(character.PlayerTransform);
+        character.FlipSprite(rb.velocity.x);
 
         float distanceToPlayer = Vector2.Distance(character.transform.position, player.transform.position);
 

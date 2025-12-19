@@ -28,5 +28,5 @@ MonoBehaviour:
   maxAmmo: 12
   useAmmo: 0
   ammo: 12
-  xScale: 3
-  yScale: 3
+  xScale: 1
+  yScale: 1

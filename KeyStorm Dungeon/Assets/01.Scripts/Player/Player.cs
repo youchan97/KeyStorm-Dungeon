@@ -16,6 +16,8 @@ public class Player : Character
     [SerializeField] Animator anim;
     [SerializeField] Sprite bullet;
     [SerializeField] Sprite sBullet;
+    [SerializeField] LayerMask itemLayer;
+    [SerializeField] float magnetSpeed;
 
     bool isMove;
 
@@ -63,6 +65,11 @@ public class Player : Character
         InitState();
         InitActions();
         InitData();
+    }
+
+    public void InitAttackPoolManager(AttackPoolManager attackPoolManager)
+    {
+        this.attackPoolManager = attackPoolManager;
     }
 
     protected override void InitState()
@@ -145,5 +152,20 @@ public class Player : Character
         MoveSpeed = characterRunData.moveSpeed;
 
         PlayerAttack.SyncPlayerAttackStat(playerRundata);
+    }
+
+    public void MagnetItems(Bounds bounds)
+    {
+        float detectDis = Mathf.Max(bounds.extents.x, bounds.extents.y);
+        Collider2D[] cols = Physics2D.OverlapCircleAll(bounds.center, detectDis, itemLayer);
+
+        foreach(Collider2D col in cols)
+        {
+            if (!bounds.Contains(col.transform.position)) continue;
+
+            GoldPickup gold = col.GetComponent<GoldPickup>();
+            if (gold != null)
+                gold.EnableMagnet(transform, magnetSpeed);
+        }
     }
 }

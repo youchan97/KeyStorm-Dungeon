@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class PathfindingManager : MonoBehaviour
+public class PathfindingManager : SingletonManager<PathfindingManager>
 {
-    public static PathfindingManager instance { get; private set; }
-
     [Header("타일맵 할당")]
     [SerializeField] private Tilemap baseGroundTilemap;
     [SerializeField] private Tilemap groundObstacleTilemap;
@@ -18,32 +16,12 @@ public class PathfindingManager : MonoBehaviour
     public Vector3 gizmoDrawOffset = new Vector3(0, 0.1f, 0);
 
     private Grid grid;
+    public Grid Grid => grid;
     private Pathfinding pathfinding;
 
-    [Header("임시 경로 테스트용")]
-    public Transform debugStartPoint;
-    public Transform debugEndPoint;
-    public UnitType debugUnitType;
-
-    private void Awake()
+    protected override void Awake()
     {
-        if (instance != null && instance != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            instance = this;
-            InitializePathfinding();
-        }
-    }
-
-    private void Update()
-    {
-        if (grid != null && pathfinding != null && debugStartPoint != null && debugEndPoint != null)
-        {
-            pathfinding.FindPath(debugStartPoint.position, debugEndPoint.position, debugUnitType);
-        }
+        base.Awake();
     }
 
     // 임시 사용 고정맵 전용
@@ -75,7 +53,7 @@ public class PathfindingManager : MonoBehaviour
     {
         if (grid == null || pathfinding == null)
         {
-            Debug.LogError("PathfindingManager가 초기화되지 않음. 맵 생성 완료 이후 InitializeOrUpdateGrid를 호출 바람.");
+            //Debug.LogError("PathfindingManager가 초기화되지 않음. 맵 생성 완료 이후 InitializeOrUpdateGrid를 호출 바람.");
             return null;
         }
         return pathfinding.FindPath(startWorldPos, targetWorldPos, unitType);

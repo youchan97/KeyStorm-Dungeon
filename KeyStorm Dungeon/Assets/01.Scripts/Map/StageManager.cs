@@ -6,23 +6,22 @@ using UnityEngine.Tilemaps;
 
 public class StageManager : MonoBehaviour
 {
+    StageDataManager stageDataManager;
     [Header("Stage Data")]
     public StageData stageData;
 
-    [Header("Room Prefabs")]
-    /*public Room startRoom;
-    public List<Room> normalRooms;
-    public List<Room> bossRooms;
-    public List<Room> treasureRooms;
-    public List<Room> shopRooms;*/
+    [Header("PlayerSpawn")]
+    public PlayerSpawner playerSpawner;
 
     [Header("Corridor Tilemap")]
     public Tilemap corridorTilemap;
-    public TileBase corridorTile;
+    public TileBase horizontalCorridorTile;
+    public TileBase verticalCorridorTile;
 
     [Header("Config")]
     public int roomSpacing = 20;
     public int corridorWidth;
+    public float expandWeight; //확장 가중치(랜덤으로 뻗어나가기 위함) 낮을 수록 균등하게 분포될 확률이 증가
 
     Dictionary<Vector2Int, RoomNode> roomMap = new Dictionary<Vector2Int, RoomNode>();
     Dictionary<Vector2Int, Room> spawnedRooms = new Dictionary<Vector2Int, Room>();
@@ -37,7 +36,8 @@ public class StageManager : MonoBehaviour
 
     void Start()
     {
-        stageData = StageDataManager.Instance.CurrentStageData;
+        stageDataManager = StageDataManager.Instance;
+        stageData = stageDataManager.CurrentStageData;
 
         GenerateRoomLayout();
         SpawnRooms();
@@ -54,7 +54,7 @@ public class StageManager : MonoBehaviour
 
     void GenerateRoomLayout()
     {
-        roomMap.Clear();
+        /*roomMap.Clear();
 
         Queue<Vector2Int> queue = new();
         Vector2Int start = Vector2Int.zero;
@@ -82,7 +82,57 @@ public class StageManager : MonoBehaviour
                 if (roomMap.Count >= stageData.totalRoomCount)
                     break;
             }
+        }*/
+        roomMap.Clear();
+
+        Vector2Int start = Vector2Int.zero;
+        roomMap[start] = new RoomNode
+        {
+            gridPos = start,
+            type = RoomType.Start
+        };
+
+        List<Vector2Int> expandables = new List<Vector2Int>();
+        expandables.Add(start);
+
+        while (roomMap.Count < stageData.totalRoomCount && expandables.Count > 0)
+        {
+            Vector2Int current = expandables[Random.Range(0, expandables.Count)];
+
+            Vector2Int dir = dirs[Random.Range(0, dirs.Length)];
+            Vector2Int next = current + dir;
+
+            if (roomMap.ContainsKey(next))
+                continue;
+
+            roomMap[next] = new RoomNode
+            {
+                gridPos = next,
+                type = RoomType.Normal
+            };
+
+            // 새 방은 확장 후보
+            expandables.Add(next);
+
+            // 현재 방도 다시 확장 가능 (이게 깊이를 만듦)
+            if (Random.value < expandWeight)
+                expandables.Add(current);
+
+            // 너무 막힌 방은 제거 (선택)
+            if (GetNeighborCount(current) >= dirs.Length)
+                expandables.Remove(current);
         }
+    }
+
+    int GetNeighborCount(Vector2Int pos)
+    {
+        int count = 0;
+        foreach (var dir in dirs)
+        {
+            if (roomMap.ContainsKey(pos + dir))
+                count++;
+        }
+        return count;
     }
 
     void SpawnRooms()
@@ -95,12 +145,12 @@ public class StageManager : MonoBehaviour
 
         List<Room> spawnPool = new List<Room>();
 
-        spawnPool.AddRange(PickRandom(StageDataManager.Instance.CurrentStageSet.bossRooms, stageData.bossRoomCount));
-        spawnPool.AddRange(PickRandom(StageDataManager.Instance.CurrentStageSet.treasureRooms, stageData.treasureRoomCount));
-        spawnPool.AddRange(PickRandom(StageDataManager.Instance.CurrentStageSet.shopRooms, stageData.shopRoomCount));
+        spawnPool.AddRange(PickRandom(stageDataManager.CurrentStageSet.bossRooms, stageData.bossRoomCount));
+        spawnPool.AddRange(PickRandom(stageDataManager.CurrentStageSet.treasureRooms, stageData.treasureRoomCount));
+        spawnPool.AddRange(PickRandom(stageDataManager.CurrentStageSet.shopRooms, stageData.shopRoomCount));
 
         int normalCount = roomMap.Count - spawnPool.Count -1;
-        spawnPool.AddRange(PickRandom(StageDataManager.Instance.CurrentStageSet.normalRooms, normalCount));
+        spawnPool.AddRange(PickRandom(stageDataManager.CurrentStageSet.normalRooms, normalCount));
 
         spawnPool = spawnPool.OrderBy(_ => Random.value).ToList();
 
@@ -117,7 +167,7 @@ public class StageManager : MonoBehaviour
             switch (node.type)
             {
                 case RoomType.Start:
-                    curRoom = StageDataManager.Instance.CurrentStageSet.startRoom;
+                    curRoom = stageDataManager.CurrentStageSet.startRoom;
                     break;
 
                 default:
@@ -126,6 +176,8 @@ public class StageManager : MonoBehaviour
             }
 
             Room room = Instantiate(curRoom, worldPos, Quaternion.identity);
+            if (room.roomType == RoomType.Start)
+                playerSpawner.SpawnPlayer(worldPos);
             spawnedRooms[node.gridPos] = room;
         }
     }
@@ -154,6 +206,9 @@ public class StageManager : MonoBehaviour
                 Transform from = room.GetDoor(dir).transform;
                 Transform to = other.GetDoor(-dir).transform;
 
+                from.GetComponent<Door>()?.UseDoor();
+                to.GetComponent<Door>()?.UseDoor();
+
                 DrawCorridor(from.position, to.position);
             }
         }
@@ -163,6 +218,12 @@ public class StageManager : MonoBehaviour
     {
         Vector3Int start = corridorTilemap.WorldToCell(from);
         Vector3Int end = corridorTilemap.WorldToCell(to);
+
+        Vector3Int dir = end - start;
+        dir.x = Mathf.Clamp(dir.x, -1, 1);
+        dir.y = Mathf.Clamp(dir.y, -1, 1);
+
+        end -= dir;
 
         int offsetMin = -(corridorWidth - 1) / 2;
         int offsetMax = corridorWidth / 2;
@@ -175,7 +236,7 @@ public class StageManager : MonoBehaviour
             for (int y = minY; y <= maxY; y++)
             {
                 for (int x = offsetMin; x <= offsetMax; x++)
-                    corridorTilemap.SetTile(new Vector3Int(start.x + x, y, 0), corridorTile);
+                    corridorTilemap.SetTile(new Vector3Int(start.x + x, y, 0), stageDataManager.CurrentStageSet.verticalCorridor);
             }
         }
         else
@@ -186,7 +247,7 @@ public class StageManager : MonoBehaviour
             for (int x = minX; x <= maxX; x++)
             {
                 for (int y = offsetMin; y <= offsetMax; y++)
-                    corridorTilemap.SetTile(new Vector3Int(x, start.y + y, 0), corridorTile);
+                    corridorTilemap.SetTile(new Vector3Int(x, start.y + y, 0), stageDataManager.CurrentStageSet.horizontalCorridor);
             }
         }
     }

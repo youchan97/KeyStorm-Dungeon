@@ -15,6 +15,7 @@ public class BombPickup : MonoBehaviour
         if (inv == null) return;
 
         inv.AddBomb(amount);
-        Destroy(gameObject);
+
+        ItemDropManager.Instance.ReturnBombPickup(this);
     }
 }

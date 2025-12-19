@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public abstract class Monster : Character
@@ -22,6 +23,8 @@ public abstract class Monster : Character
     public abstract CharacterState<Monster> CreateMoveState();
     public abstract CharacterState<Monster> CreateAttackState();
     public abstract CharacterState<Monster> CreateDieState();
+
+    public event Action<Monster> OnMonsterDied;
 
     protected override void Awake()
     {
@@ -56,9 +59,7 @@ public abstract class Monster : Character
     protected virtual void Start()
     {
         PlayerGO = GameObject.FindGameObjectWithTag("Player");
-
-
-        //GameObject playerGO = GameManager.Instance.player;
+        //PlayerGO = PlayerSpawner.playerObj;
         
         if (PlayerGO == null)
         {
@@ -121,11 +122,25 @@ public abstract class Monster : Character
     }
 
     // 몬스터가 플레이어 위치에 따라 스프라이트 반전에서 현재 이동방향에 따라 반전하도록 하는 것이 올바름
-    public virtual void FlipSprite(Transform targetTransform)
+    public virtual void FlipSprite(float moveDirectionX)
     {
-        if (targetTransform == null || monsterSpriteRenderer == null) return;
+        if (monsterSpriteRenderer == null) return;
 
-        if (targetTransform.position.x < transform.position.x)
+        if (moveDirectionX < 0)
+        {
+            monsterSpriteRenderer.flipX = false;
+        }
+        else if(moveDirectionX > 0)
+        {
+            monsterSpriteRenderer.flipX = true;
+        }
+    }
+
+    public virtual void FlipSpariteAttack(Transform playerTransform)
+    {
+        if (playerTransform == null && monsterSpriteRenderer == null) return;
+
+        if (playerTransform.position.x < monsterRb.position.x)
         {
             monsterSpriteRenderer.flipX = false;
         }
@@ -133,5 +148,11 @@ public abstract class Monster : Character
         {
             monsterSpriteRenderer.flipX = true;
         }
+    }
+
+    // 죽음을 알리는 이벤트 메서드
+    public void InvokeOnMonsterDied()
+    {
+        OnMonsterDied?.Invoke(this);
     }
 }

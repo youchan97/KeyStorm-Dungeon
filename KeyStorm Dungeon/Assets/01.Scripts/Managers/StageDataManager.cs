@@ -17,8 +17,9 @@ public class StageDataManager : SingletonManager<StageDataManager>
 
     public StageData CurrentStageData { get; private set; }
 
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
         SelectDifficulty(StageDifficulty.Easy);
     }
 
