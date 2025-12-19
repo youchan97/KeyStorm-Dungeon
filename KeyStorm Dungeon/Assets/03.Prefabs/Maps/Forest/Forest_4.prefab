@@ -2540,6 +2540,8 @@ MonoBehaviour:
   doorDown: {fileID: 3425582200723406400}
   doorLeft: {fileID: 4807252382850823612}
   doorRight: {fileID: 5265738608396972310}
+  roomGroundTilemap: {fileID: 2526432936384946894}
+  roomWallTilemap: {fileID: 2534320276181843513}
 --- !u!1 &7922518506922918818
 GameObject:
   m_ObjectHideFlags: 0

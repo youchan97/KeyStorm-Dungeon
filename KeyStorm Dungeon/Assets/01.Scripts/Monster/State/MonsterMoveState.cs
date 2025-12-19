@@ -73,8 +73,8 @@ public class MonsterMoveState : CharacterMoveState<Monster>
         }
         else
         {
-            rb.velocity = Vector2.zero;
-            //UpdateDirectionMovement(distanceToPlayer);
+            //rb.velocity = Vector2.zero;
+            UpdateDirectionMovement(distanceToPlayer);
         }
     }
 

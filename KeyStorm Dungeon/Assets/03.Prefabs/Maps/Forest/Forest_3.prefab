@@ -5286,3 +5286,5 @@ MonoBehaviour:
   doorDown: {fileID: 2441988854000181511}
   doorLeft: {fileID: 5228717624122031487}
   doorRight: {fileID: 1902613191545570152}
+  roomGroundTilemap: {fileID: 8513521459076937110}
+  roomWallTilemap: {fileID: 7372808048797050874}

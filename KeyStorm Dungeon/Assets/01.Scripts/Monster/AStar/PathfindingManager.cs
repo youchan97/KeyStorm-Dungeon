@@ -22,8 +22,6 @@ public class PathfindingManager : SingletonManager<PathfindingManager>
     protected override void Awake()
     {
         base.Awake();
-
-        InitializePathfinding();
     }
 
     // 임시 사용 고정맵 전용
@@ -55,7 +53,7 @@ public class PathfindingManager : SingletonManager<PathfindingManager>
     {
         if (grid == null || pathfinding == null)
         {
-            Debug.LogError("PathfindingManager가 초기화되지 않음. 맵 생성 완료 이후 InitializeOrUpdateGrid를 호출 바람.");
+            //Debug.LogError("PathfindingManager가 초기화되지 않음. 맵 생성 완료 이후 InitializeOrUpdateGrid를 호출 바람.");
             return null;
         }
         return pathfinding.FindPath(startWorldPos, targetWorldPos, unitType);
