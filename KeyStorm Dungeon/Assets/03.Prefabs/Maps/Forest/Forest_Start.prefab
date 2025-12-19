@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 690384751547593275}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15, y: -7.5, z: 0}
+  m_LocalPosition: {x: -16, y: -7.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   col: {fileID: 3743434964346970309}
   room: {fileID: 837052703989722770}
-  canUse: 1
+  canUse: 0
 --- !u!61 &8748362251938853444
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2356,7 +2356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   col: {fileID: 2608355478682950172}
   room: {fileID: 837052703989722770}
-  canUse: 1
+  canUse: 0
 --- !u!61 &6346850437039968158
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2619,7 +2619,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomType: 0
   isPlayerIn: 0
-  canOpenDoor: 1
+  canOpenDoor: 0
   doorUp: {fileID: 9095079558969029260}
   doorDown: {fileID: 6269500305491489457}
   doorLeft: {fileID: 3608341303704525266}
@@ -2749,7 +2749,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   col: {fileID: 8264976556014504167}
   room: {fileID: 837052703989722770}
-  canUse: 1
+  canUse: 0
 --- !u!61 &7083767582071073758
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4021,7 +4021,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   col: {fileID: 7754297785982639020}
   room: {fileID: 837052703989722770}
-  canUse: 1
+  canUse: 0
 --- !u!61 &7499081626856001780
 BoxCollider2D:
   m_ObjectHideFlags: 0
