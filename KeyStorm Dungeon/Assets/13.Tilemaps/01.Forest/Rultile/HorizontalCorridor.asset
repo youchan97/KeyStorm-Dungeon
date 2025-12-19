@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
-  m_Name: Corridor
+  m_Name: HorizontalCorridor
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: -1081912416, guid: 19e4e6a45f2cca1438d991e509beb3b8, type: 3}
   m_DefaultGameObject: {fileID: 0}
@@ -26,13 +26,14 @@ MonoBehaviour:
     m_Output: 0
     m_ColliderType: 1
     m_RandomTransform: 0
-    m_Neighbors: 0200000002000000020000000200000001000000
+    m_Neighbors: 020000000200000002000000020000000100000002000000
     m_NeighborPositions:
     - {x: 1, y: 0, z: 0}
     - {x: 1, y: 1, z: 0}
     - {x: 0, y: 1, z: 0}
     - {x: -1, y: 1, z: 0}
     - {x: -1, y: 0, z: 0}
+    - {x: 1, y: -1, z: 0}
     m_RuleTransform: 0
   - m_Id: 3
     m_Sprites:
@@ -44,13 +45,14 @@ MonoBehaviour:
     m_Output: 0
     m_ColliderType: 1
     m_RandomTransform: 0
-    m_Neighbors: 0100000002000000020000000200000002000000
+    m_Neighbors: 010000000200000002000000020000000200000002000000
     m_NeighborPositions:
     - {x: 1, y: 0, z: 0}
     - {x: 1, y: 1, z: 0}
     - {x: 0, y: 1, z: 0}
     - {x: -1, y: 1, z: 0}
     - {x: -1, y: 0, z: 0}
+    - {x: -1, y: -1, z: 0}
     m_RuleTransform: 0
   - m_Id: 0
     m_Sprites:
@@ -98,15 +100,16 @@ MonoBehaviour:
     m_Output: 0
     m_ColliderType: 1
     m_RandomTransform: 0
-    m_Neighbors: 0200000001000000020000000200000002000000
+    m_Neighbors: 020000000100000002000000020000000200000002000000
     m_NeighborPositions:
     - {x: -1, y: 0, z: 0}
     - {x: 1, y: 0, z: 0}
     - {x: -1, y: -1, z: 0}
     - {x: 0, y: -1, z: 0}
     - {x: 1, y: -1, z: 0}
+    - {x: -1, y: 1, z: 0}
     m_RuleTransform: 0
-  - m_Id: 6
+  - m_Id: 10
     m_Sprites:
     - {fileID: 2061656834, guid: 19e4e6a45f2cca1438d991e509beb3b8, type: 3}
     m_GameObject: {fileID: 0}
@@ -116,11 +119,12 @@ MonoBehaviour:
     m_Output: 0
     m_ColliderType: 1
     m_RandomTransform: 0
-    m_Neighbors: 0100000002000000020000000200000002000000
+    m_Neighbors: 010000000200000002000000020000000200000002000000
     m_NeighborPositions:
     - {x: -1, y: 0, z: 0}
     - {x: 1, y: 0, z: 0}
     - {x: 1, y: -1, z: 0}
     - {x: 0, y: -1, z: 0}
     - {x: -1, y: -1, z: 0}
+    - {x: 1, y: 1, z: 0}
     m_RuleTransform: 0

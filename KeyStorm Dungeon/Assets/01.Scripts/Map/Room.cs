@@ -24,6 +24,9 @@ public class Room : MonoBehaviour
 {
     public RoomType roomType;
 
+    Player player;
+
+    [SerializeField] BoxCollider2D roomCollider;
     [SerializeField] bool isPlayerIn;
     [SerializeField] bool canOpenDoor;
 
@@ -51,9 +54,9 @@ public class Room : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Player player = collision.GetComponent<Player>();
+        player = collision.GetComponent<Player>();
 
-        if (player == null) return;
+        if(player == null) return;
 
         isPlayerIn = true;
 
@@ -69,9 +72,9 @@ public class Room : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Player player = collision.GetComponent<Player>();
+        player = collision.GetComponent<Player>();
 
-        if (player == null) return;
+        if(player == null) return;
 
         isPlayerIn = false;
     }
@@ -94,5 +97,10 @@ public class Room : MonoBehaviour
             return null;
         }
         return roomWallTilemap;
+    }
+
+    void RoomClear()
+    {
+        player.MagnetItems(roomCollider.bounds);
     }
 }
