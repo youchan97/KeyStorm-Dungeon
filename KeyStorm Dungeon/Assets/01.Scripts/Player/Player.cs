@@ -17,6 +17,7 @@ public class Player : Character
     [SerializeField] Sprite bullet;
     [SerializeField] Sprite sBullet;
     [SerializeField] LayerMask itemLayer;
+    [SerializeField] float magnetSpeed;
 
     bool isMove;
 
@@ -162,7 +163,9 @@ public class Player : Character
         {
             if (!bounds.Contains(col.transform.position)) continue;
 
-            //아이템의 타깃 설정 및 자석기능
+            GoldPickup gold = col.GetComponent<GoldPickup>();
+            if (gold != null)
+                gold.EnableMagnet(transform, magnetSpeed);
         }
     }
 }

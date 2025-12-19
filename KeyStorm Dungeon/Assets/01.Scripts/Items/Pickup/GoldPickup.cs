@@ -8,6 +8,7 @@ public class GoldPickup : MonoBehaviour
 
     private bool magnetMode = false;
     private Transform target;
+    private float speed;
 
     private void Start()
     {
@@ -18,14 +19,15 @@ public class GoldPickup : MonoBehaviour
     {
         if (magnetMode && target)
         {
-            float speed = 10f;
             transform.position = Vector3.MoveTowards(transform.position, target.position, speed*Time.deltaTime);
         }
     }
 
-    public void EnableMagnet()
+    public void EnableMagnet(Transform target, float speed)
     {
         magnetMode = true;
+        this.target = target;
+        this.speed = speed;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
