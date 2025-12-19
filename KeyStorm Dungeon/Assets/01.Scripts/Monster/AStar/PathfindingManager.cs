@@ -5,11 +5,6 @@ using UnityEngine.Tilemaps;
 
 public class PathfindingManager : SingletonManager<PathfindingManager>
 {
-
-    [Header("디버깅 시각화")]
-    public bool drawGizmos = true;
-    public Vector3 gizmoDrawOffset = new Vector3(0, 0.1f, 0);
-
     private Grid grid;
     public Grid Grid => grid;
     private Pathfinding pathfinding;
