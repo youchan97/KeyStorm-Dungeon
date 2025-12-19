@@ -35,6 +35,8 @@ public class Room : MonoBehaviour
     public Tilemap roomGroundTilemap;
     public Tilemap roomWallTilemap;
 
+    public MonsterSpawner monsterSpawner;
+
     public bool IsPlayerIn { get => isPlayerIn;}
     public bool CanOpenDoor { get => canOpenDoor; }
 
@@ -54,6 +56,15 @@ public class Room : MonoBehaviour
         if (player == null) return;
 
         isPlayerIn = true;
+
+        if (monsterSpawner != null)
+        {
+            monsterSpawner.SpawnMonsters();
+        }
+        else
+        {
+            Debug.LogError("monsterSpawner가 없음");
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -83,4 +94,5 @@ public class Room : MonoBehaviour
             return null;
         }
         return roomWallTilemap;
+    }
 }

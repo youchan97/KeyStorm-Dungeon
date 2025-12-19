@@ -50,7 +50,6 @@ public class MonsterSpawner : MonoBehaviour
                 continue;
             }
 
-            // 몬스터 스폰
             GameObject spawnedMonster = Instantiate(monsterPrefab, spawnPoint.position, Quaternion.identity);
 
             spawnedMonster.transform.parent = transform;

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public abstract class Monster : Character
@@ -22,6 +23,8 @@ public abstract class Monster : Character
     public abstract CharacterState<Monster> CreateMoveState();
     public abstract CharacterState<Monster> CreateAttackState();
     public abstract CharacterState<Monster> CreateDieState();
+
+    public event Action<Monster> OnMonsterDied;
 
     protected override void Awake()
     {
@@ -145,5 +148,11 @@ public abstract class Monster : Character
         {
             monsterSpriteRenderer.flipX = true;
         }
+    }
+
+    // 죽음을 알리는 이벤트 메서드
+    public void InvokeOnMonsterDied()
+    {
+        OnMonsterDied?.Invoke(this);
     }
 }

@@ -35,7 +35,7 @@ public class MonsterDieState : CharacterDieState<Monster>
         }
         else
         {
-            Object.Destroy(character.gameObject);
+            OnDeathDestroy();
         }
     }
 
@@ -48,6 +48,13 @@ public class MonsterDieState : CharacterDieState<Monster>
         float animationLength = stateInfo.length;
 
         yield return new WaitForSeconds(animationLength);
+        
+        OnDeathDestroy();
+    }
+
+    private void OnDeathDestroy()
+    {
+        character.InvokeOnMonsterDied();
 
         // 풀링 시 Destroy대신 ReturnPool 등 메서드 사용
         Object.Destroy(character.gameObject);
