@@ -51,7 +51,7 @@ public class RangerMonster : Monster
 
     public override void Attack(Character character)
     {
-        if (CurrentAttackTarget == null)
+        if (player == null)
         {
             Debug.LogWarning($"{CharName}: Animation Event로 투사체 발사 시도했으나, CurrentAttackTarget이 null입니다. AttackState에서 타겟 설정을 확인하세요.", this);
             return;
@@ -75,7 +75,7 @@ public class RangerMonster : Monster
             return;
         }
 
-        Vector2 projectileDirection = (CurrentAttackTarget.transform.position - shootPoint.position).normalized;
+        Vector2 projectileDirection = (player.transform.position - shootPoint.position).normalized;
 
         float calculateProjectileLifeTime = MonsterData.targetDistance / MonsterData.shotSpeed * 1.5f;
 

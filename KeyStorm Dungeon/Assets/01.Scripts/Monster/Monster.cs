@@ -15,7 +15,7 @@ public abstract class Monster : Character
 
     public GameObject PlayerGO {  get; private set; }
     public Transform PlayerTransform { get; private set; }
-    public Player CurrentAttackTarget { get; protected set; }
+    public Player player { get; protected set; }
 
     [HideInInspector] public float CurrentAttackCooldown { get; protected set; }
 
@@ -69,6 +69,7 @@ public abstract class Monster : Character
         }
         else
         {
+            player = PlayerGO.GetComponent<Player>();
             PlayerTransform = PlayerGO.transform;
             MonsterStateManager.ChangeState(CreateIdleState());
         }
@@ -120,7 +121,7 @@ public abstract class Monster : Character
 
     public void SetAttackTarget(Player player)
     {
-        CurrentAttackTarget = player;
+        this.player = player;
     }
 
     // 몬스터가 플레이어 위치에 따라 스프라이트 반전에서 현재 이동방향에 따라 반전하도록 하는 것이 올바름
@@ -161,5 +162,10 @@ public abstract class Monster : Character
     public void SetMyRoom(Room room)
     {
         MyRoom = room;
+    }
+
+    public void ChangeStateToPlayerDied()
+    {
+        MonsterStateManager.ChangeState(CreateIdleState());
     }
 }
