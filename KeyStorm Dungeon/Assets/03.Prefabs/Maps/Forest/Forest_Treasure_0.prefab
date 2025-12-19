@@ -2568,12 +2568,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomType: 3
+  roomCollider: {fileID: 0}
+  isPlayerIn: 0
+  canOpenDoor: 0
   doorUp: {fileID: 4244669076080253250}
   doorDown: {fileID: 6254948859722811915}
   doorLeft: {fileID: 3020069617288084452}
   doorRight: {fileID: 7443692180416569679}
   roomGroundTilemap: {fileID: 5506783669761948187}
   roomWallTilemap: {fileID: 4576363360829898579}
+  monsterSpawner: {fileID: 0}
 --- !u!1 &3633340161960234113
 GameObject:
   m_ObjectHideFlags: 0

@@ -134,7 +134,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 300
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -238,10 +238,13 @@ MonoBehaviour:
   - slot: {fileID: 1226610392462743941}
     type: 2
     price: 100
+  bombAmount: 1
+  potionAmount: 1
+  potionHealAmount: 2
   passiveItemPickupPrefab: {fileID: 7977811986095973617, guid: f4f54a227936e174c95e23c270ceac0a, type: 3}
   activeItemPickupPrefab: {fileID: 6506968681589806263, guid: b1810c1278dc2274485094567ccde1d5, type: 3}
-  potionDisplayPrefab: {fileID: 8084328723791812699}
-  bombDisplayPrefab: {fileID: 7536922854701623819}
+  potionDisplayPrefab: {fileID: 1453774448442847119, guid: 4ff191538c3f8b84caa1cb718840b772, type: 3}
+  bombDisplayPrefab: {fileID: 3682559147175356916, guid: 59c008bda9fa9e34d831e7b5272c155b, type: 3}
 --- !u!1 &5807382043544024287
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,7 +379,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 300
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -615,7 +618,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 300
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -761,7 +764,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 300
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
