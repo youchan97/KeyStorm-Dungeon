@@ -52,7 +52,7 @@ public class StoreSlot : MonoBehaviour
         price = _price;
 
         var point = spawnPoint != null ? spawnPoint : transform;
-        spawnedObj = Instantiate(pickupPrefab, point.position, Quaternion.identity);
+        spawnedObj = Instantiate(pickupPrefab, point.position, Quaternion.identity, point);
 
         if (spawnedObj.TryGetComponent<PassiveItemPickup>(out var p)) p.itemData = data;
         if (spawnedObj.TryGetComponent<ActiveItemPickup>(out var a)) a.itemData = data;
@@ -75,7 +75,7 @@ public class StoreSlot : MonoBehaviour
         potionHealAmount = healAmount;
 
         var point = spawnPoint != null ? spawnPoint : transform;
-        spawnedObj = Instantiate(displayPrefab, point.position, Quaternion.identity);
+        spawnedObj = Instantiate(displayPrefab, point.position, Quaternion.identity, point);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
