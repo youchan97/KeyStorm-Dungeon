@@ -12,8 +12,18 @@ public static class ConstValue
     public const string HurtAnim = "Hurt";
     #endregion
 
+    #region 공격관련
     public const float ShootOffset = 1.5f;
     public const int DefaultBulletCount = 1;
+    #endregion
 
+    #region 방생성 관련(지금은 사용안함)
     public const float SplitNodeHeight = 0.5f;
+    #endregion
+
+    #region 씬 관련
+    public const string LoadingScene = "Test_LoadingScene";
+    public const string StartScene = "Test_StartScene";
+    public const string GameScene = "Test_GameScene";
+    #endregion
 }
