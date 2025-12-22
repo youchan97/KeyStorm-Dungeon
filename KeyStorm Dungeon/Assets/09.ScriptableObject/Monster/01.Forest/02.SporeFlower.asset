@@ -10,29 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 022c38624de0acc44ac949e934164ffb, type: 3}
-  m_Name: Needlehog
+  m_Name: 02.SporeFlower
   m_EditorClassIdentifier: 
   characterData:
-    charName: Needlehog
-    id: 1
-    maxHp: 25
+    charName: SporeFlower
+    id: 2
+    maxHp: 20
     damage: 1
-    moveSpeed: 1
+    moveSpeed: 3
   type: 0
-  detectRange: 8
+  detectRange: 10
   targetDistance: 10
-  tier: 1
-  shotSpeed: 5
-  attackSpeed: 4
+  tier: 0
+  shotSpeed: 1
+  attackSpeed: 5
   separationRaduis: 0
   separationStrength: 0
   pathfindingWeight: 0
   separationWeight: 0
   maxSteeringForce: 0
   mass: 0
-  minDropGold: 30
-  maxDropGold: 40
+  minDropGold: 20
+  maxDropGold: 30
   minStage: 0
   maxStage: 0
-  xScale: 0.7
-  yScale: 0.7
+  xScale: 1
+  yScale: 1

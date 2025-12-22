@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5851141667352724124}
   - component: {fileID: 6774288875342118866}
   - component: {fileID: 1037877877855959395}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: 01.Needlehog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,6 +190,7 @@ MonoBehaviour:
   animator: {fileID: 6774288875342118866}
   shootPoint: {fileID: 4151110777735581097}
   bullet: {fileID: 21300000, guid: a8af6b972bdfa254ba3a57fec712693d, type: 3}
+  projectileLifeTime: 5
 --- !u!1 &5336305704194351128
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,7 +200,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4151110777735581097}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: ShootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
