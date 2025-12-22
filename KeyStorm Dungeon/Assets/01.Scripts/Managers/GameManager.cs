@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using static ConstValue;
 public class GameManager : SingletonManager<GameManager>
 {
     private bool isStart;
@@ -57,7 +57,7 @@ public class GameManager : SingletonManager<GameManager>
     public void StageClear()
     {
         StageDataManager.Instance.NextStage();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        LoadingManager.LoadScene(GameScene);
     }
 }
 

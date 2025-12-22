@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +22,7 @@ public class Player : Character
 
     bool isMove;
 
+    public event Action OnDie;
 
     #region Property
     public PlayerAttack PlayerAttack { get; private set; }
@@ -57,6 +59,7 @@ public class Player : Character
 
     private void OnDisable()
     {
+        OnDie = null;
         RemoveActions();
     }
 
@@ -120,6 +123,7 @@ public class Player : Character
     public override void Die()
     {
         playerStateManager.ChangeState(DieState);
+        OnDie?.Invoke();
         RemoveActions();
     }
 

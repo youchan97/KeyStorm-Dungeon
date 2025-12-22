@@ -71,6 +71,7 @@ public abstract class Monster : Character
         {
             player = PlayerGO.GetComponent<Player>();
             PlayerTransform = PlayerGO.transform;
+            player.OnDie += OnStopChase;
             MonsterStateManager.ChangeState(CreateIdleState());
         }
 
@@ -173,4 +174,6 @@ public abstract class Monster : Character
     {
         MonsterStateManager.ChangeState(CreateIdleState());
     }
+
+    void OnStopChase() => PlayerGO = null;
 }
