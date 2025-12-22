@@ -29,6 +29,7 @@ public class Room : MonoBehaviour
     [SerializeField] BoxCollider2D roomCollider;
     [SerializeField] bool isPlayerIn;
     [SerializeField] bool canOpenDoor;
+    [SerializeField] GameObject portal;
 
     public Transform doorUp;
     public Transform doorDown;
@@ -54,11 +55,13 @@ public class Room : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        player = collision.GetComponent<Player>();
+        Player player = collision.GetComponent<Player>();
 
         if(player == null) return;
 
         isPlayerIn = true;
+
+        this.player = player;
 
         if (monsterSpawner != null)
         {
@@ -72,7 +75,7 @@ public class Room : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        player = collision.GetComponent<Player>();
+        Player player = collision.GetComponent<Player>();
 
         if(player == null) return;
 
@@ -99,8 +102,23 @@ public class Room : MonoBehaviour
         return roomWallTilemap;
     }
 
-    void RoomClear()
+    public void RoomClear()
     {
+        canOpenDoor = true;
         player.MagnetItems(roomCollider.bounds);
+    }
+
+    public void StageClear(Vector3 pos)
+    {
+        if (roomType != RoomType.Boss) return;
+
+        player.MagnetItems(roomCollider.bounds);
+
+        if(portal != null)
+        {
+            GameObject go = Instantiate(portal);
+            go.transform.position = pos;
+        }
+
     }
 }

@@ -24,7 +24,7 @@ public abstract class Monster : Character
     public abstract CharacterState<Monster> CreateAttackState();
     public abstract CharacterState<Monster> CreateDieState();
 
-    public event Action<Monster> OnMonsterDied;
+    public event Action OnMonsterDied;
     
     public Room MyRoom { get; set; }
 
@@ -74,6 +74,11 @@ public abstract class Monster : Character
             MonsterStateManager.ChangeState(CreateIdleState());
         }
 
+    }
+
+    private void OnDisable()
+    {
+        OnMonsterDied = null;
     }
 
     protected override void Update()
@@ -156,7 +161,7 @@ public abstract class Monster : Character
     // 죽음을 알리는 이벤트 메서드
     public void InvokeOnMonsterDied()
     {
-        OnMonsterDied?.Invoke(this);
+        OnMonsterDied?.Invoke();
     }
 
     public void SetMyRoom(Room room)

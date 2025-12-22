@@ -15,7 +15,7 @@ MonoBehaviour:
   characterData:
     charName: TestBossMonster
     id: 2
-    maxHp: 1000
+    maxHp: 1
     damage: 1
     moveSpeed: 4
   type: 0
