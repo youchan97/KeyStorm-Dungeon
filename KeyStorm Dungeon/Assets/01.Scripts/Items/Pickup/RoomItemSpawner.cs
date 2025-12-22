@@ -65,7 +65,7 @@ public class RoomItemSpawner : MonoBehaviour
         if (spawnedObj != null) Destroy(spawnedObj);
 
         Transform point = spawnPoint != null ? spawnPoint : transform;
-        spawnedObj = Instantiate(prefab, point.position, Quaternion.identity);
+        spawnedObj = Instantiate(prefab, point.position, Quaternion.identity, point);
 
         if (spawnedObj.TryGetComponent<PassiveItemPickup>(out var p)) p.itemData = data;
         if (spawnedObj.TryGetComponent<ActiveItemPickup>(out var a)) a.itemData = data;

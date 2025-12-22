@@ -47,7 +47,8 @@ MonoBehaviour:
   stageData: {fileID: 11400000, guid: 6334aee740937214d9c66286bd4327b3, type: 2}
   playerSpawner: {fileID: 0}
   corridorTilemap: {fileID: 0}
-  corridorTile: {fileID: 11400000, guid: 87849d65451029e48a21e44c81db300e, type: 2}
+  horizontalCorridorTile: {fileID: 11400000, guid: d17d3e8c2e67b2844abfa929e037fd4e, type: 2}
+  verticalCorridorTile: {fileID: 11400000, guid: 50df240177c211d45addfc38330623c7, type: 2}
   roomSpacing: 50
   corridorWidth: 5
   expandWeight: 0.7

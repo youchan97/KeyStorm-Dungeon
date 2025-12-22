@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class MonsterSpawner : MonoBehaviour
 {
@@ -11,6 +12,17 @@ public class MonsterSpawner : MonoBehaviour
     public List<Transform> spawnPoints;
 
     private bool monstersSpawned = false;
+
+    private Room parentRoom;
+
+    private int monsterCount;
+
+    private void Awake()
+    {
+        parentRoom = GetComponentInParent<Room>();
+        if (parentRoom == null) return;
+        monsterCount = monsterPrefabsToSpawn.Count;
+    }
 
     public void SpawnMonsters()
     {
@@ -50,11 +62,33 @@ public class MonsterSpawner : MonoBehaviour
                 continue;
             }
 
-            GameObject spawnedMonster = Instantiate(monsterPrefab, spawnPoint.position, Quaternion.identity);
+            GameObject spawnedMonsterGO = Instantiate(monsterPrefab, spawnPoint.position, Quaternion.identity);
+            spawnedMonsterGO.transform.parent = transform;
 
-            spawnedMonster.transform.parent = transform;
+            Monster spawnedMonster = spawnedMonsterGO.GetComponent<Monster>();
+
+            if(spawnedMonster != null)
+            {
+                spawnedMonster.SetMyRoom(parentRoom);
+                spawnedMonster.OnMonsterDied += () => { MonsterDie(spawnedMonster); };
+            }
         }
 
         monstersSpawned = true;
+    }
+
+    void MonsterDie(Monster monster)
+    {
+        if(monster.MonsterData.tier == MonsterTier.Boss)
+        {
+            parentRoom.StageClear(monster.transform.position);
+            return;
+        }
+        monsterCount--;
+        if(monsterCount <= 0)
+        {
+            monsterCount = 0;
+            parentRoom.RoomClear();
+        }
     }
 }

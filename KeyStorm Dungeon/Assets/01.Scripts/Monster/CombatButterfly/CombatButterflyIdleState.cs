@@ -18,6 +18,11 @@ public class CombatButterflyIdleState : MonsterIdleState
             character.MonsterRb.velocity = Vector2.zero;
         }
 
+        if (character.player.Hp <= 0)
+        {
+            return;
+        }
+
         stateManager.ChangeState(character.CreateMoveState());
     }
 

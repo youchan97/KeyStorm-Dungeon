@@ -17,6 +17,11 @@ public class MonsterIdleState : CharacterIdleState<Monster>
             character.MonsterRb.velocity = Vector2.zero;
         }
 
+        if (character.player.Hp <= 0)
+        {
+            return;
+        }
+
         if (character.MonsterData.tier == MonsterTier.Boss)
         {
             stateManager.ChangeState(character.CreateMoveState());
@@ -26,7 +31,7 @@ public class MonsterIdleState : CharacterIdleState<Monster>
 
     public override void FixedUpdateState()
     {
-        if (character.PlayerTransform == null) return;
+        if (character.PlayerTransform == null || character.player.Hp <= 0) return;
 
         float distanceToPlayer = Vector2.Distance(character.transform.position, character.PlayerTransform.position);
 

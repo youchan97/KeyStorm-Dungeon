@@ -20,6 +20,12 @@ public class BossMonsterMoveState : MonsterMoveState
     {
         if (playerTransform == null || boss == null || rb == null) return;
 
+        // 임시로 플레이어의 사망을 체크
+        if (character.player.Hp <= 0)
+        {
+            character.ChangeStateToPlayerDied();
+        }
+
         boss.FlipSprite(rb.velocity.x);
 
         float distanceToPlayer = Vector2.Distance(boss.transform.position, playerTransform.position);
@@ -30,7 +36,7 @@ public class BossMonsterMoveState : MonsterMoveState
             return;
         }
 
-        UpdateDirectionMovement(distanceToPlayer);
+        Move();
     }
 
     public override void ExitState()

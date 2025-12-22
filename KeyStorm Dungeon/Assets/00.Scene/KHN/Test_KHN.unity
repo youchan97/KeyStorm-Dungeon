@@ -1484,6 +1484,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce87fc21abef12c4fa631d1e6753d211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1677199220
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7875450145599868720, guid: 8a6d303c46b103349849c2c9d8410908, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7875450145599868720, guid: 8a6d303c46b103349849c2c9d8410908, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7875450145599868720, guid: 8a6d303c46b103349849c2c9d8410908, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7875450145599868720, guid: 8a6d303c46b103349849c2c9d8410908, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7875450145599868720, guid: 8a6d303c46b103349849c2c9d8410908, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7875450145599868720, guid: 8a6d303c46b103349849c2c9d8410908, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7875450145599868720, guid: 8a6d303c46b103349849c2c9d8410908, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7875450145599868720, guid: 8a6d303c46b103349849c2c9d8410908, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7875450145599868720, guid: 8a6d303c46b103349849c2c9d8410908, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7875450145599868720, guid: 8a6d303c46b103349849c2c9d8410908, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8224345546568658603, guid: 8a6d303c46b103349849c2c9d8410908, type: 3}
+      propertyPath: m_Name
+      value: CombatButterfly
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8a6d303c46b103349849c2c9d8410908, type: 3}
 --- !u!1 &1882289813
 GameObject:
   m_ObjectHideFlags: 0
@@ -2034,18 +2091,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 439835413}
     m_Modifications:
-    - target: {fileID: 1853067855008935894, guid: 790b982f6f158f54c8714400191f35dd, type: 3}
-      propertyPath: baseGroundTilemap
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1853067855008935894, guid: 790b982f6f158f54c8714400191f35dd, type: 3}
-      propertyPath: groundObstacleTilemap
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1853067855008935894, guid: 790b982f6f158f54c8714400191f35dd, type: 3}
-      propertyPath: universalObstacleTilemap
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4178638018092301413, guid: 790b982f6f158f54c8714400191f35dd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2225,3 +2270,4 @@ SceneRoots:
   - {fileID: 620885795}
   - {fileID: 2004880419}
   - {fileID: 7875450145457932865}
+  - {fileID: 1677199220}

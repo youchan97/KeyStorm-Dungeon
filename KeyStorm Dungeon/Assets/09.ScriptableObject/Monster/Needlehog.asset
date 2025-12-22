@@ -21,7 +21,7 @@ MonoBehaviour:
   type: 0
   detectRange: 10
   targetDistance: 10
-  tier: 0
+  tier: 1
   shotSpeed: 5
   attackSpeed: 4
   separationRaduis: 0
