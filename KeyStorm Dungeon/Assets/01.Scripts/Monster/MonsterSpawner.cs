@@ -15,10 +15,13 @@ public class MonsterSpawner : MonoBehaviour
 
     private Room parentRoom;
 
+    private int monsterCount;
+
     private void Awake()
     {
         parentRoom = GetComponentInParent<Room>();
         if (parentRoom == null) return;
+        monsterCount = monsterPrefabsToSpawn.Count;
     }
 
     public void SpawnMonsters()
@@ -67,9 +70,25 @@ public class MonsterSpawner : MonoBehaviour
             if(spawnedMonster != null)
             {
                 spawnedMonster.SetMyRoom(parentRoom);
+                spawnedMonster.OnMonsterDied += () => { MonsterDie(spawnedMonster); };
             }
         }
 
         monstersSpawned = true;
+    }
+
+    void MonsterDie(Monster monster)
+    {
+        if(monster.MonsterData.tier == MonsterTier.Boss)
+        {
+            parentRoom.StageClear(monster.transform.position);
+            return;
+        }
+        monsterCount--;
+        if(monsterCount <= 0)
+        {
+            monsterCount = 0;
+            parentRoom.RoomClear();
+        }
     }
 }
