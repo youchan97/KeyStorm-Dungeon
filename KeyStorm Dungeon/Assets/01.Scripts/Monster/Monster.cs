@@ -139,7 +139,7 @@ public abstract class Monster : Character
         }
     }
 
-    public virtual void FlipSpariteAttack(Transform playerTransform)
+    public virtual void FlipSpriteAttack(Transform playerTransform)
     {
         if (playerTransform == null && monsterSpriteRenderer == null) return;
 

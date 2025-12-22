@@ -23,7 +23,7 @@ public class RangerMonsterAttackState : MonsterAttackState
             character.ChangeStateToPlayerDied();
         }
 
-        character.FlipSpariteAttack(player.transform);
+        character.FlipSpriteAttack(player.transform);
 
         float distanceToPlayer = Vector2.Distance(character.transform.position, player.transform.position);
 
