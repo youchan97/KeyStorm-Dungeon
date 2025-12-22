@@ -1,18 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class NeedlehogDieState : MonoBehaviour
+public class NeedlehogDieState : MonsterDieState
 {
-    // Start is called before the first frame update
-    void Start()
+    public NeedlehogDieState(Monster character, CharacterStateManager<Monster> stateManager) : base(character, stateManager)
     {
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void EnterState()
     {
-        
+        base.EnterState();
     }
 }

@@ -6,7 +6,6 @@ public class NeedlehogMoveState : MonsterMoveState
     private Needlehog needlehog;
     private float currentMoveTime;
     private Vector2 currentRandomDirection;
-
     private Vector2[] cardinalDirections = {Vector2.up, Vector2.down, Vector2.left, Vector2.right};
 
     public NeedlehogMoveState(Monster monster, CharacterStateManager<Monster> stateManager) : base(monster, stateManager)
@@ -24,6 +23,9 @@ public class NeedlehogMoveState : MonsterMoveState
         currentRandomDirection = GetRandomDirection();
 
         currentMoveTime = needlehog.MoveTime;
+        UpdateAnimation();
+
+        needlehog.OnWallOrCollisionHit += OnCollisionDetected;
     }
 
     public override void UpdateState()
@@ -38,10 +40,11 @@ public class NeedlehogMoveState : MonsterMoveState
             rb.velocity = currentRandomDirection * needlehog.MoveSpeed;
             currentMoveTime -= Time.fixedDeltaTime;
 
-            needlehog.UpdateAnimation();
+            UpdateAnimation();
         }
         else
         {
+            rb.velocity = Vector2.zero;
             stateManager.ChangeState(needlehog.CreateIdleState());
             return;
         }
@@ -51,6 +54,7 @@ public class NeedlehogMoveState : MonsterMoveState
             float distanceToPlayer = Vector2.Distance(needlehog.transform.position, needlehog.PlayerTransform.position);
             if (distanceToPlayer <= needlehog.MonsterData.detectRange)
             {
+                rb.velocity = Vector2.zero;
                 stateManager.ChangeState(needlehog.CreateAttackState());
                 return;
             }
@@ -68,6 +72,8 @@ public class NeedlehogMoveState : MonsterMoveState
         {
             animator.SetBool(MoveAnim, false);
         }
+
+        needlehog.OnWallOrCollisionHit -= OnCollisionDetected;
     }
 
     public override bool UseFixedUpdate()
@@ -77,12 +83,20 @@ public class NeedlehogMoveState : MonsterMoveState
 
     private void UpdateAnimation()
     {
-        if (character.Animator == null) return;
+        if (animator == null) return;
 
+        animator.SetFloat(AxisX, currentRandomDirection.x);
+        animator.SetFloat(AxisY, currentRandomDirection.y);
     }
 
     private Vector2 GetRandomDirection()
     {
         return cardinalDirections[Random.Range(0, cardinalDirections.Length)];
+    }
+
+    private void OnCollisionDetected(Collision2D collision)
+    {
+        rb.velocity = Vector2.zero;
+        stateManager.ChangeState(needlehog.CreateIdleState());
     }
 }
