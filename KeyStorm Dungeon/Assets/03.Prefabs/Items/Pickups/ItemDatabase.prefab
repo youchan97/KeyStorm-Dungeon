@@ -46,4 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activePickupEntries:
   - itemId: A1
-    pickupPrefab: {fileID: 0}
+    pickupPrefab: {fileID: 6506968681589806263, guid: b1810c1278dc2274485094567ccde1d5, type: 3}
+  - itemId: A2
+    pickupPrefab: {fileID: 6506968681589806263, guid: b1810c1278dc2274485094567ccde1d5, type: 3}

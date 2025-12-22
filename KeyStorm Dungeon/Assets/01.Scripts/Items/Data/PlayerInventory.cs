@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
@@ -82,8 +83,37 @@ public class PlayerInventory : MonoBehaviour
         FindObjectOfType<InventoryUIController>()?.Refresh();
     }
 
-    public void SetActiveItem(ItemData data)
+    public void SetActiveItem(ItemData newItem)
     {
-        activeItem = data;
+        if (newItem == null || !newItem.isActiveItem) return;
+
+        // 1. 기존 액티브 있으면 뱉기
+        if (activeItem != null)
+        {
+            DropActiveItem(activeItem);
+        }
+
+        // 2. 새 액티브 장착
+        activeItem = newItem;
     }
+    void DropActiveItem(ItemData oldItem)
+    {
+        GameObject prefab =
+            ItemDatabase.Instance.GetActivePickupPrefab(oldItem.itemId);
+
+        if (prefab == null)
+        {
+            Debug.LogWarning($"드랍 프리팹 없음: {oldItem.itemId}");
+            return;
+        }
+
+        GameObject drop = Instantiate(prefab, transform.position, Quaternion.identity);
+
+        var pickup = drop.GetComponent<ActiveItemPickup>();
+        if (pickup != null)
+            pickup.itemData = oldItem;
+
+        drop.GetComponent<ItemPickupView>()?.Apply(oldItem);
+    }
+
 }

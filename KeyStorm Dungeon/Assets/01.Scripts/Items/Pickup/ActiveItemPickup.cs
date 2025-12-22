@@ -20,15 +20,8 @@ public class ActiveItemPickup : MonoBehaviour
 
         var inv = other.GetComponent<PlayerInventory>();
         if (inv == null || itemData == null) return;
-        if (!itemData.isActiveItem) return;
-
-        if (inv.activeItem != null)
-        {
-            DropOldActive(inv.activeItem, transform.position);
-        }
 
         inv.SetActiveItem(itemData);
-        ItemPoolManager.Instance?.MarkAcquired(itemData);
         Destroy(gameObject);
     }
 

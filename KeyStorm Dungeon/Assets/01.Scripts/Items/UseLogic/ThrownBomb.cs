@@ -18,6 +18,10 @@ public class ThrownBomb : MonoBehaviour
     [Header("이펙트")]
     public GameObject explosionEffectPrefab;
 
+    [Header("범위 표시")]
+    public GameObject explosionRangePrefab;
+    public float rangeVisibleTime = 0.3f;
+
     Transform holder;        // 들고 있는 주인(보통 플레이어)
     bool hasExploded = false;
     float timer = 0f;
@@ -78,29 +82,45 @@ public class ThrownBomb : MonoBehaviour
         rb.AddForce(direction.normalized * power, ForceMode2D.Impulse);
     }
 
+    void ShowExplosionRange(Vector3 pos)
+    {
+        if (explosionRangePrefab == null) return;
+
+        GameObject rangeObj = Instantiate(
+            explosionRangePrefab,
+            pos,
+            Quaternion.identity
+        );
+
+        float diameter = explosionRadius * 2f;
+        rangeObj.transform.localScale = new Vector3(diameter, diameter, 1f);
+
+        Destroy(rangeObj, rangeVisibleTime);
+    }
+
     void Explode()
     {
         if (hasExploded) return;
         hasExploded = true;
 
-        // 폭발 이펙트
+        // 폭탄 범위 표시
+        ShowExplosionRange(transform.position);
+
+        // 기존 폭발 이펙트
         if (explosionEffectPrefab != null)
-        {
             Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
-        }
 
-        // 범위 내 피격 판정
+        // 데미지 판정
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
-
         foreach (var hit in hits)
         {
             var damageable = hit.GetComponent<Character>();
-            if (damageable == null)
-                continue;
+            if (damageable == null) continue;
 
             int damage = hit.CompareTag("Player") ? damageToPlayer : damageToEnemy;
             damageable.TakeDamage(damage);
         }
+
         OnExplode?.Invoke();
         Destroy(gameObject);
     }
@@ -114,50 +134,6 @@ public class ThrownBomb : MonoBehaviour
         if (monster != null || collision.gameObject.CompareTag("Wall"))
             Explode();
     }
-
-
-    //플레이어 몬스터 타격 로직
-
-    //void Explode()
-    //{
-    //    if (hasExploded) return;
-    //    hasExploded = true;
-
-    //    // 폭발 이펙트
-    //    if (explosionEffectPrefab != null)
-    //    {
-    //        Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
-    //    }
-
-    //    // 범위 내 피격 판정
-    //    Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
-
-    //    foreach (var hit in hits)
-    //    {
-    //        if (hit.CompareTag("Enemy"))
-    //        {
-    //            //일단 몬스터파트랑 연동을 해야하는거라 주석처리함
-    //            var enemyHealth = hit.GetComponent<EnemyHealth>();
-    //            if (enemyHealth != null)
-    //            {
-    //                enemyHealth.TakeDamage(damageToEnemy);
-    //            }
-    //        }
-
-    //        if (hit.CompareTag("Player"))
-    //        {
-    //            //일단 플레이어파트랑 연동을 해봐야하는거라 주석처리함
-    //            var playerHealth = hit.GetComponent<PlayerHealth>();
-    //            if (playerHealth != null)
-    //            {
-    //                playerHealth.TakeDamage(damageToPlayer);
-    //            }
-    //        }
-    //    }
-
-    //    Destroy(gameObject);
-    //}
-
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

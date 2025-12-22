@@ -1665,14 +1665,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1561061664045822404, guid: cdeb24eb430b21e4ab8e7434bafd94ba, type: 3}
-      propertyPath: activeItemPickupPrefab
-      value: 
-      objectReference: {fileID: 6506968681589806263, guid: b1810c1278dc2274485094567ccde1d5, type: 3}
-    - target: {fileID: 1561061664045822404, guid: cdeb24eb430b21e4ab8e7434bafd94ba, type: 3}
-      propertyPath: passiveItemPickupPrefab
-      value: 
-      objectReference: {fileID: 7977811986095973617, guid: f4f54a227936e174c95e23c270ceac0a, type: 3}
     - target: {fileID: 4636354143607887328, guid: cdeb24eb430b21e4ab8e7434bafd94ba, type: 3}
       propertyPath: m_Name
       value: StoreRoom

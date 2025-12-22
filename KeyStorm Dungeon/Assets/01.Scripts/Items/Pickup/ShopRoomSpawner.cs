@@ -72,10 +72,23 @@ public class ShopRoomSpawner : MonoBehaviour
         }
     }
 
+    HashSet<string> pickedThisStore = new HashSet<string>();
     void SpawnRandomItem(StoreSlot slot, int price)
     {
-        var data = ItemPoolManager.Instance
-            .GetRandomItem_ExcludeAcquired(ItemDropRoom.Store);
+        ItemData data = null;
+
+        for (int i = 0; i < 10; i++)
+        {
+            var candidate = ItemPoolManager.Instance
+                .GetRandomItem_ExcludeAcquired(ItemDropRoom.Store);
+
+            if (candidate == null) break;
+            if (pickedThisStore.Contains(candidate.itemId)) continue;
+
+            data = candidate;
+            pickedThisStore.Add(candidate.itemId);
+            break;
+        }
 
         if (data == null)
         {
@@ -83,10 +96,7 @@ public class ShopRoomSpawner : MonoBehaviour
             return;
         }
 
-        var prefab = data.isActiveItem
-            ? activeItemPickupPrefab
-            : passiveItemPickupPrefab;
-
+        var prefab = data.isActiveItem ? activeItemPickupPrefab : passiveItemPickupPrefab;
         slot.SetItemProduct(prefab, data, price);
     }
 }

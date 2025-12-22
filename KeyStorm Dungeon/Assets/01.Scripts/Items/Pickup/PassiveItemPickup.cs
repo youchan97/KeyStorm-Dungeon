@@ -32,4 +32,11 @@ public class PassiveItemPickup : MonoBehaviour
         ItemPoolManager.Instance?.MarkAcquired(itemData);
         Destroy(gameObject);
     }
+
+    IEnumerator DisableTriggerTemporarily(Collider2D col)
+    {
+        col.enabled = false;
+        yield return new WaitForSeconds(0.3f);
+        col.enabled = true;
+    }
 }
