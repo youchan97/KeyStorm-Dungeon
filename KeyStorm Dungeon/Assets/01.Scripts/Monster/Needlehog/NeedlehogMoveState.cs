@@ -8,6 +8,11 @@ public class NeedlehogMoveState : MonsterMoveState
     private Vector2 currentRandomDirection;
     private Vector2[] cardinalDirections = {Vector2.up, Vector2.down, Vector2.left, Vector2.right};
 
+    private float stoppedThreshold = 0.01f;
+    private float checkInterval = 0.2f;
+    private float timeSinceLastCheck;
+    private Vector3 lastPosition;
+
     public NeedlehogMoveState(Monster monster, CharacterStateManager<Monster> stateManager) : base(monster, stateManager)
     {
         this.needlehog = character as Needlehog;
@@ -25,6 +30,9 @@ public class NeedlehogMoveState : MonsterMoveState
         currentMoveTime = needlehog.MoveTime;
         UpdateAnimation();
 
+        lastPosition = needlehog.transform.position;
+        timeSinceLastCheck = 0f;
+
         needlehog.OnWallOrCollisionHit += OnCollisionDetected;
     }
 
@@ -41,6 +49,22 @@ public class NeedlehogMoveState : MonsterMoveState
             currentMoveTime -= Time.fixedDeltaTime;
 
             UpdateAnimation();
+
+            timeSinceLastCheck += Time.fixedDeltaTime;
+            if (timeSinceLastCheck >= checkInterval)
+            {
+                float distanceMoved = Vector3.Distance(needlehog.transform.position, lastPosition);
+
+                if (distanceMoved < stoppedThreshold && rb.velocity.sqrMagnitude > stoppedThreshold * stoppedThreshold)
+                {
+                    rb.velocity = Vector2.zero;
+                    stateManager.ChangeState(needlehog.CreateIdleState());
+                    return;
+                }
+
+                lastPosition = needlehog.transform.position;
+                timeSinceLastCheck = 0f;
+            }
         }
         else
         {
@@ -49,7 +73,7 @@ public class NeedlehogMoveState : MonsterMoveState
             return;
         }
 
-        if (needlehog.PlayerTransform != null && needlehog.player.Hp > 0)
+        if (needlehog.PlayerTransform != null && needlehog.PlayerGO != null)
         {
             float distanceToPlayer = Vector2.Distance(needlehog.transform.position, needlehog.PlayerTransform.position);
             if (distanceToPlayer <= needlehog.MonsterData.detectRange)

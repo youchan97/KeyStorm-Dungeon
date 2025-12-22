@@ -23,8 +23,7 @@ public class CombatButterflyMoveState : MonsterMoveState
 
         if (character == null || rb == null) return;
 
-        // 임시로 플레이어의 사망을 체크
-        if (character.player.Hp <= 0)
+        if (character.PlayerGO == null)
         {
             character.ChangeStateToPlayerDied();
         }

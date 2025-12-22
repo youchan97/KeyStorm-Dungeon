@@ -17,7 +17,7 @@ public class MonsterIdleState : CharacterIdleState<Monster>
             character.MonsterRb.velocity = Vector2.zero;
         }
 
-        if (character.player.Hp <= 0)
+        if (character.PlayerGO == null)
         {
             return;
         }
@@ -31,7 +31,7 @@ public class MonsterIdleState : CharacterIdleState<Monster>
 
     public override void FixedUpdateState()
     {
-        if (character.PlayerTransform == null || character.player.Hp <= 0) return;
+        if (character.PlayerTransform == null || character.PlayerGO == null) return;
 
         float distanceToPlayer = Vector2.Distance(character.transform.position, character.PlayerTransform.position);
 

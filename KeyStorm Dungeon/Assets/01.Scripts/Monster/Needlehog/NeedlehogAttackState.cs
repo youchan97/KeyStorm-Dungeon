@@ -24,7 +24,7 @@ public class NeedlehogAttackState : MonsterAttackState
 
     public override void UpdateState()
     {
-        if (character.player.Hp <= 0)
+        if (character.PlayerGO == null)
         {
             character.ChangeStateToPlayerDied();
         }

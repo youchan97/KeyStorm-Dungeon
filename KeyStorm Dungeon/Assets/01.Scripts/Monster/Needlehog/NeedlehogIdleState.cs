@@ -20,7 +20,7 @@ public class NeedlehogIdleState : MonsterIdleState
 
     public override void UpdateState()
     {
-        if (character.PlayerTransform == null || character.player.Hp <= 0) return;
+        if (character.PlayerTransform == null || character.PlayerGO == null) return;
 
         currentIdleTime -= Time.deltaTime;
 
