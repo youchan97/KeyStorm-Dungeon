@@ -10,6 +10,7 @@ public class Player : Character
 {
     CharacterStateManager<Player> playerStateManager;
     GameManager gameManager;
+    AudioManager audioManager;
     [SerializeField] PlayerController playerController;
     [SerializeField] PlayerInventory inventory;
     [SerializeField] PlayerData data;
@@ -37,6 +38,7 @@ public class Player : Character
     public Sprite Bullet { get => bullet;}
     public Sprite SBullet { get => sBullet;}
     public PlayerInventory Inventory { get => inventory;}
+    public AudioManager AudioManager { get => audioManager; }
     #endregion
 
     protected override void Awake()
@@ -44,6 +46,7 @@ public class Player : Character
         playerStateManager = new CharacterStateManager<Player>(this);
         PlayerAttack = GetComponent<PlayerAttack>();
         gameManager = GameManager.Instance;
+        audioManager = AudioManager.Instance;
         InitPlayer();
     }
 

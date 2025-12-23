@@ -8,8 +8,8 @@ public class AudioManager : SingletonManager<AudioManager>
     [SerializeField] SoundDatas bgmData;
     [SerializeField] SoundDatas sfxData;
 
-    Dictionary<string, AudioClip> bgmClips = new Dictionary<string, AudioClip>();
-    Dictionary<string, AudioClip> sfxClips = new Dictionary<string, AudioClip>();
+    Dictionary<string, List<AudioClip>> bgmClips = new Dictionary<string, List<AudioClip>>();
+    Dictionary<string, List<AudioClip>> sfxClips = new Dictionary<string, List<AudioClip>>();
 
     SfxPoolManager sfxPoolManager;
     SaveLoadManager saveLoadManager;
@@ -23,7 +23,6 @@ public class AudioManager : SingletonManager<AudioManager>
     }
     private void Start()
     {
-        saveLoadManager = SaveLoadManager.Instance;
         sfxPoolManager = SfxPoolManager.Instance;
         LoadVolume();
     }
@@ -49,16 +48,27 @@ public class AudioManager : SingletonManager<AudioManager>
     public void PlayBgm(string audioName)
     {
         if (!bgmClips.ContainsKey(audioName)) return;
-        bgmAudio.clip = bgmClips[audioName];
+
+        if (bgmClips[audioName].Count == 0) return;
+
+        int clipIndex = bgmClips[audioName].Count > 1 ? Random.Range(0, bgmClips[audioName].Count) : 0;
+
+        AudioClip bgmClip = bgmClips[audioName][clipIndex];
+        bgmAudio.clip = bgmClip;
         bgmAudio.Play();
     }
 
     public void PlayEffect(string audioName, float volume = 0.5f)
     {
         if (!sfxClips.ContainsKey(audioName)) return;
-        AudioClip audioClip = sfxClips[audioName];
+
+        if (sfxClips[audioName].Count == 0) return;
+
+        int clipIndex = sfxClips[audioName].Count > 1 ? Random.Range(0, sfxClips[audioName].Count) : 0;
+
+        AudioClip sfxClip = sfxClips[audioName][clipIndex];
         var sfx = sfxPoolManager.GetObject();
-        sfx.PlaySfx(audioClip, volume);
+        sfx.PlaySfx(sfxClip, volume);
     }
 
     public void UpdateBgmVolume(float value)
