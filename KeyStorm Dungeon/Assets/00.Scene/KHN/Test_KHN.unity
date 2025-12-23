@@ -463,6 +463,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 01.Needlehog
       objectReference: {fileID: 0}
+    - target: {fileID: 2178532899555790044, guid: 10d48c4e243f0264db2760c6a1bfd8e3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8977781970726254638, guid: 10d48c4e243f0264db2760c6a1bfd8e3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
