@@ -57,7 +57,7 @@ public class AttackObj : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Collision"))
+        if(collision.CompareTag("Wall") || collision.CompareTag("Collision"))
         {
             poolManager.ReturnPool(this);
             return;

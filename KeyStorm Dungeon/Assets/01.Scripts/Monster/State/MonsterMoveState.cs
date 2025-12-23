@@ -147,6 +147,7 @@ public class MonsterMoveState : CharacterMoveState<Monster>
         targetNodeIndex = 0;
     }
     
+    // 플레이어에게 접근하는 움직임 (a* 적용)
     protected void UpdateMovement()
     {
         if (currentPath == null || targetNodeIndex >= currentPath.Count)
@@ -176,6 +177,7 @@ public class MonsterMoveState : CharacterMoveState<Monster>
         rb.velocity = direction * character.MoveSpeed;
     }
 
+    // 플레이어에게 접근하는 움직임 (a* 미적용)
     protected void UpdateDirectionMovement(float distanceToPlayer)
     {
         Vector2 direction = (playerTransform.position - character.transform.position).normalized;

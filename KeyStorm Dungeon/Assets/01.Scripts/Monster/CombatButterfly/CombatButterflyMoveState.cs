@@ -1,11 +1,8 @@
 using UnityEngine;
+using static ConstValue;
 
 public class CombatButterflyMoveState : MonsterMoveState
 {
-
-    private const string ANIM_PARAM_MOVE_X = "MoveX";
-    private const string ANIM_PARAM_MOVE_Y = "MoveY";
-
     public CombatButterflyMoveState(Monster monster, CharacterStateManager<Monster> stateManager) : base(monster, stateManager)
     {
     }
@@ -26,8 +23,7 @@ public class CombatButterflyMoveState : MonsterMoveState
 
         if (character == null || rb == null) return;
 
-        // 임시로 플레이어의 사망을 체크
-        if (character.player.Hp <= 0)
+        if (character.PlayerGO == null)
         {
             character.ChangeStateToPlayerDied();
         }
@@ -76,7 +72,7 @@ public class CombatButterflyMoveState : MonsterMoveState
         float moveX = desiredMoveDirection.x;
         float moveY = desiredMoveDirection.y;
 
-        character.Animator.SetFloat(ANIM_PARAM_MOVE_X, moveX);
-        character.Animator.SetFloat(ANIM_PARAM_MOVE_Y, moveY);
+        character.Animator.SetFloat(AxisX, moveX);
+        character.Animator.SetFloat(AxisY, moveY);
     }
 }

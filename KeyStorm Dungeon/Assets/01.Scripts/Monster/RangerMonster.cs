@@ -6,6 +6,9 @@ public class RangerMonster : Monster
     [SerializeField] private Transform shootPoint;
     [SerializeField] private Sprite bullet;
 
+    public Transform ShootPoint => shootPoint;
+    public Sprite Bullet => bullet;
+
     private MonsterIdleState _idleState;
     private MonsterMoveState _moveState;
     private RangerMonsterAttackState _attackState;
@@ -51,7 +54,7 @@ public class RangerMonster : Monster
 
     public override void Attack(Character character)
     {
-        if (player == null)
+        if (character == null)
         {
             Debug.LogWarning($"{CharName}: Animation Event로 투사체 발사 시도했으나, CurrentAttackTarget이 null입니다. AttackState에서 타겟 설정을 확인하세요.", this);
             return;
@@ -75,15 +78,13 @@ public class RangerMonster : Monster
             return;
         }
 
-        Vector2 projectileDirection = (player.transform.position - shootPoint.position).normalized;
+        Vector2 projectileDirection = (character.transform.position - shootPoint.position).normalized;
 
-        float calculateProjectileLifeTime = MonsterData.targetDistance / MonsterData.shotSpeed * 1.5f;
+        float calculateProjectileLifeTime = 10f;
 
         pooledAttackObj.transform.position = shootPoint.position;
         pooledAttackObj.transform.rotation = Quaternion.identity;
 
-        pooledAttackObj.InitData(bullet, Damage, projectileDirection, MonsterData.shotSpeed, MonsterData.targetDistance, attackPoolManager, false);
-
-        Debug.Log($"투사체 발사");
+        pooledAttackObj.InitData(bullet, Damage, projectileDirection, MonsterData.shotSpeed, calculateProjectileLifeTime, attackPoolManager, false);
     }
 }

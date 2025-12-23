@@ -7,6 +7,8 @@ public class CharacterStateManager<T> where T : Character
     private CharacterState<T> curState;
     private Character character;
 
+    public CharacterState<T> CurState => curState;
+
     public CharacterStateManager(Character character)
     {
         this.character = character;

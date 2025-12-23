@@ -18,12 +18,12 @@ public class RangerMonsterAttackState : MonsterAttackState
         }
 
         // 임시로 플레이어의 사망을 체크
-        if (character.player.Hp <= 0)
+        if (character.PlayerGO == null)
         {
             character.ChangeStateToPlayerDied();
         }
 
-        character.FlipSpariteAttack(player.transform);
+        character.FlipSpriteAttack(player.transform);
 
         float distanceToPlayer = Vector2.Distance(character.transform.position, player.transform.position);
 
