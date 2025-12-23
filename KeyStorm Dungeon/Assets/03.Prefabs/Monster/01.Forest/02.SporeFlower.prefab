@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6927650565203159946}
   - component: {fileID: 6372774871022218249}
   - component: {fileID: 7721197238443650735}
+  - component: {fileID: 6773138633674281498}
   m_Layer: 10
   m_Name: 02.SporeFlower
   m_TagString: Untagged
@@ -171,6 +172,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6773138633674281498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193851755899980334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c804f6c22de5d546901c3179acead34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPoolManager: {fileID: 0}
+  _monsterData: {fileID: 11400000, guid: 4d83ac8098a53dd4a8d4979bf81dd580, type: 2}
+  monsterSpriteRenderer: {fileID: 6372774871022218249}
+  animator: {fileID: 7721197238443650735}
+  shootPoint: {fileID: 0}
+  bullet: {fileID: 0}
+  idleTime: 5
+  moveTime: 2
+  toxinCloudEffect: {fileID: 6306512730655677794}
 --- !u!1 &6447416576509414785
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,8 +205,9 @@ GameObject:
   - component: {fileID: 1148470999872870192}
   - component: {fileID: 6466526849129247553}
   - component: {fileID: 8224680063242738835}
+  - component: {fileID: 6306512730655677794}
   m_Layer: 10
-  m_Name: PoisonCloud
+  m_Name: ToxinCloud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -313,3 +336,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.074221656}
   serializedVersion: 2
   m_Radius: 0.20927678
+--- !u!114 &6306512730655677794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6447416576509414785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfa695b62b22a8147ad3678e19b9bf8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1148470999872870192}
+  damageCollider: {fileID: 8224680063242738835}
+  damageTickInterval: 2

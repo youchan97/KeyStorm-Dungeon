@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Poisoncloud_7
+      name: Toxincloud_7
       rect:
         serializedVersion: 2
         x: 96
@@ -144,7 +144,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Poisoncloud_6
+      name: Toxincloud_6
       rect:
         serializedVersion: 2
         x: 64
@@ -165,7 +165,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Poisoncloud_5
+      name: Toxincloud_5
       rect:
         serializedVersion: 2
         x: 32
@@ -186,7 +186,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Poisoncloud_4
+      name: Toxincloud_4
       rect:
         serializedVersion: 2
         x: 0
@@ -207,7 +207,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Poisoncloud_0
+      name: Toxincloud_0
       rect:
         serializedVersion: 2
         x: 0
@@ -228,7 +228,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Poisoncloud_1
+      name: Toxincloud_1
       rect:
         serializedVersion: 2
         x: 32
@@ -249,7 +249,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Poisoncloud_2
+      name: Toxincloud_2
       rect:
         serializedVersion: 2
         x: 64
@@ -270,7 +270,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Poisoncloud_3
+      name: Toxincloud_3
       rect:
         serializedVersion: 2
         x: 96
@@ -301,14 +301,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Poisoncloud_0: 639799216
-      Poisoncloud_1: 1639546315
-      Poisoncloud_2: 168547804
-      Poisoncloud_3: 1938459402
-      Poisoncloud_4: 702224389
-      Poisoncloud_5: 2062974630
-      Poisoncloud_6: -2024200135
-      Poisoncloud_7: 861797858
+      Toxincloud_0: 639799216
+      Toxincloud_1: 1639546315
+      Toxincloud_2: 168547804
+      Toxincloud_3: 1938459402
+      Toxincloud_4: 702224389
+      Toxincloud_5: 2062974630
+      Toxincloud_6: -2024200135
+      Toxincloud_7: 861797858
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
