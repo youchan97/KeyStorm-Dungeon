@@ -26,6 +26,7 @@ public class CombatButterflyMoveState : MonsterMoveState
         if (character.PlayerGO == null)
         {
             character.ChangeStateToPlayerDied();
+            return;
         }
 
         character.FlipSprite(rb.velocity.x);

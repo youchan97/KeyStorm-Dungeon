@@ -20,6 +20,7 @@ public class Player : Character
     [SerializeField] Sprite sBullet;
     [SerializeField] LayerMask itemLayer;
     [SerializeField] float magnetSpeed;
+    [SerializeField] float magnetRangeMargin;
 
     bool isMove;
 
@@ -163,7 +164,7 @@ public class Player : Character
 
     public void MagnetItems(Bounds bounds)
     {
-        float detectDis = Mathf.Max(bounds.extents.x, bounds.extents.y);
+        float detectDis = Mathf.Max(bounds.extents.x + magnetRangeMargin, bounds.extents.y + magnetRangeMargin);
         Collider2D[] cols = Physics2D.OverlapCircleAll(bounds.center, detectDis, itemLayer);
 
         foreach(Collider2D col in cols)

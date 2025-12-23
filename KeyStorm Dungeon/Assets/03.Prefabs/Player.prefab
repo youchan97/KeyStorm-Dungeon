@@ -1776,6 +1776,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 65536
   magnetSpeed: 10
+  magnetRangeMargin: 3
 --- !u!114 &9001353019542540319
 MonoBehaviour:
   m_ObjectHideFlags: 0
