@@ -7141,7 +7141,7 @@ GameObject:
   - component: {fileID: 2816605823868272075}
   - component: {fileID: 7213232730442925548}
   - component: {fileID: 7422026188568982768}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: AerialObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
