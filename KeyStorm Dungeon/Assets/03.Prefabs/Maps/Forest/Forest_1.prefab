@@ -258,9 +258,9 @@ GameObject:
   - component: {fileID: 7788909824641034579}
   - component: {fileID: 8471208208685947293}
   - component: {fileID: 1440320606969984296}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: AerialObject
-  m_TagString: Untagged
+  m_TagString: Collision
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -511,9 +511,9 @@ GameObject:
   - component: {fileID: 6329937109643112280}
   - component: {fileID: 7909360357429990854}
   - component: {fileID: 1294744265546251294}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Object
-  m_TagString: Untagged
+  m_TagString: Collision
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
