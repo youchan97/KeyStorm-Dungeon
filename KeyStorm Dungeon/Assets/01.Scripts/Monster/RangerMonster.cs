@@ -3,11 +3,9 @@ using UnityEngine;
 
 public class RangerMonster : Monster
 {
-    [SerializeField] private Transform shootPoint;
-    [SerializeField] private Sprite bullet;
+    [SerializeField] protected Transform shootPoint;
+    [SerializeField] protected Sprite bullet;
 
-    public Transform ShootPoint => shootPoint;
-    public Sprite Bullet => bullet;
 
     private MonsterIdleState _idleState;
     private MonsterMoveState _moveState;
