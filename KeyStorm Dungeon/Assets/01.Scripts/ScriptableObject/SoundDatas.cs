@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static ConstValue;
 
 [CreateAssetMenu(fileName = "SoundData", menuName = "ScriptableObject/Sound")]
 public class SoundDatas : ScriptableObject
@@ -16,6 +17,6 @@ public class AudioData
 [System.Serializable]
 public class SoundData
 {
-    public float bgmVolume = 0.5f;
-    public float sfxVolume = 0.5f;
+    public float bgmVolume = DefaultBgmVolume;
+    public float sfxVolume = DefaultSfxVolume;
 }

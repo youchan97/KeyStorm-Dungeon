@@ -112,9 +112,9 @@ public class Room : MonoBehaviour
     {
         if (roomType != RoomType.Boss) return;
 
-        player.MagnetItems(roomCollider.bounds);
+        RoomClear();
 
-        if(portal != null)
+        if (portal != null)
         {
             GameObject go = Instantiate(portal);
             go.transform.position = pos;

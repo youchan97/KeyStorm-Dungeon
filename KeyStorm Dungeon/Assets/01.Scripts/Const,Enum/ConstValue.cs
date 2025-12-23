@@ -28,12 +28,14 @@ public static class ConstValue
     #endregion
 
     #region BGM 관련
+    public const float DefaultBgmVolume = 0.5f;
     public const string EasyBgm = "Forest";
     public const string NormalBgm = "Forest";
     public const string HardBgm = "Forest";
     #endregion
 
     #region SFX 관련
+    public const float DefaultSfxVolume = 0.5f;
     public const string ShootSfx = "Shoot";
     public const string GoldSfx = "Gold";
     #endregion

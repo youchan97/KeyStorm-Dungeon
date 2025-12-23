@@ -16,6 +16,7 @@ public class SaveLoadManager : SingletonManager<SaveLoadManager>
     {
         base.Awake();
         path = Path.Combine(Application.persistentDataPath, "GameData.json");
+        LoadDatas();
     }
 
     public void LoadDatas()
@@ -41,5 +42,10 @@ public class SaveLoadManager : SingletonManager<SaveLoadManager>
         };
         string json = JsonConvert.SerializeObject(datas, settings);
         File.WriteAllText(path, json);
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveDatas();
     }
 }
