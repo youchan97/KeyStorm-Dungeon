@@ -76,12 +76,18 @@ public class AudioManager : SingletonManager<AudioManager>
     public void UpdateBgmVolume(float value)
     {
         bgmAudio.volume = value;
+
+        if (saveLoadManager == null) return;
+
         saveLoadManager.datas.soundData.bgmVolume = value;
     }
 
     public void UpdateEffectVolume(float value)
     {
         sfxVolume = value;
+
+        if (saveLoadManager == null) return;
+
         saveLoadManager.datas.soundData.sfxVolume = value;
     }
 }
