@@ -7206,9 +7206,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterPrefabsToSpawn:
   - {fileID: 2178532899555790044, guid: 10d48c4e243f0264db2760c6a1bfd8e3, type: 3}
-  - {fileID: 2178532899555790044, guid: 10d48c4e243f0264db2760c6a1bfd8e3, type: 3}
-  - {fileID: 2178532899555790044, guid: 10d48c4e243f0264db2760c6a1bfd8e3, type: 3}
-  - {fileID: 2178532899555790044, guid: 10d48c4e243f0264db2760c6a1bfd8e3, type: 3}
+  - {fileID: 8565662801902378472, guid: 67bae2be13a188044bea04cb6c8bf015, type: 3}
+  - {fileID: 8937446606822849145, guid: 327c6a06491d1d84a89fdd4cf05a63b3, type: 3}
+  - {fileID: 8224345546568658603, guid: 8a6d303c46b103349849c2c9d8410908, type: 3}
   spawnPoints:
   - {fileID: 833229008867957891}
   - {fileID: 135352169324224101}

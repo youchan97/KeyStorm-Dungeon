@@ -5,7 +5,6 @@ public class Needlehog : RangerMonster
 {
     private float idleTime = 1.0f;
     private float moveTime = 3.0f;
-    private Transform shootPoint;
     [SerializeField] private float projectileLifeTime = 5f;
 
     public float IdleTime => idleTime;
@@ -44,7 +43,6 @@ public class Needlehog : RangerMonster
     protected override void Awake()
     {
         base.Awake();
-        shootPoint = ShootPoint;
     }
 
     public override void TakeDamage(int damage)
@@ -85,7 +83,7 @@ public class Needlehog : RangerMonster
             pooledAttackObj.transform.position = shootPoint.position;
             pooledAttackObj.transform.rotation = rotation;
 
-            pooledAttackObj.InitData(Bullet, Damage, dir, MonsterData.shotSpeed, projectileLifeTime, AttackPoolManager, false);
+            pooledAttackObj.InitData(bullet, Damage, dir, MonsterData.shotSpeed, projectileLifeTime, AttackPoolManager, false);
         }
     }
 
