@@ -7,6 +7,7 @@ public class AudioManager : SingletonManager<AudioManager>
 
     [SerializeField] SoundDatas bgmData;
     [SerializeField] SoundDatas sfxData;
+    [SerializeField] float sfxVolume;
 
     Dictionary<string, List<AudioClip>> bgmClips = new Dictionary<string, List<AudioClip>>();
     Dictionary<string, List<AudioClip>> sfxClips = new Dictionary<string, List<AudioClip>>();
@@ -17,12 +18,12 @@ public class AudioManager : SingletonManager<AudioManager>
     protected override void Awake()
     {
         base.Awake();
-        saveLoadManager = SaveLoadManager.Instance;
         initAudioDic();
 
     }
     private void Start()
     {
+        saveLoadManager = SaveLoadManager.Instance;
         sfxPoolManager = SfxPoolManager.Instance;
         LoadVolume();
     }
@@ -42,7 +43,8 @@ public class AudioManager : SingletonManager<AudioManager>
     }
     void LoadVolume() //볼륨값
     {
-        //bgmAudio.volume = saveLoadManager.datas.soundData.bgmVolume;
+        bgmAudio.volume = saveLoadManager.datas.soundData.bgmVolume;
+        sfxVolume = saveLoadManager.datas.soundData.sfxVolume;
     }
 
     public void PlayBgm(string audioName)
@@ -58,7 +60,7 @@ public class AudioManager : SingletonManager<AudioManager>
         bgmAudio.Play();
     }
 
-    public void PlayEffect(string audioName, float volume = 0.5f)
+    public void PlayEffect(string audioName)
     {
         if (!sfxClips.ContainsKey(audioName)) return;
 
@@ -68,7 +70,7 @@ public class AudioManager : SingletonManager<AudioManager>
 
         AudioClip sfxClip = sfxClips[audioName][clipIndex];
         var sfx = sfxPoolManager.GetObject();
-        sfx.PlaySfx(sfxClip, volume);
+        sfx.PlaySfx(sfxClip, sfxVolume);
     }
 
     public void UpdateBgmVolume(float value)
@@ -79,6 +81,7 @@ public class AudioManager : SingletonManager<AudioManager>
 
     public void UpdateEffectVolume(float value)
     {
+        sfxVolume = value;
         saveLoadManager.datas.soundData.sfxVolume = value;
     }
 }
