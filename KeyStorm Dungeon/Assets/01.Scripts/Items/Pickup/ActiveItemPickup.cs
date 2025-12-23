@@ -5,13 +5,38 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class ActiveItemPickup : MonoBehaviour
 {
-    public ItemData itemData;  // isActiveItem == true
+    public ItemData itemData;
+
     private ItemPickupView view;
-  
+    private Collider2D col;
+
     private void Awake()
     {
         view = GetComponent<ItemPickupView>();
-        if (view != null) view.Apply(itemData);
+        col = GetComponent<Collider2D>();
+
+        if (view != null)
+            view.Apply(itemData);
+
+        // 생성 직후 바로 다시 주워지는 문제 방지
+        if (col != null)
+            col.enabled = false;
+
+        StartCoroutine(EnablePickupAfterDelay());
+    }
+
+    public void SetData(ItemData data)
+    {
+        itemData = data;
+        if (view != null)
+            view.Apply(data);
+    }
+
+    private IEnumerator EnablePickupAfterDelay()
+    {
+        yield return new WaitForSeconds(0.3f);
+        if (col != null)
+            col.enabled = true;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -19,20 +44,12 @@ public class ActiveItemPickup : MonoBehaviour
         if (!other.CompareTag("Player")) return;
 
         var inv = other.GetComponent<PlayerInventory>();
-        if (inv == null || itemData == null) return;
+        if (inv == null) return;
+
+        if (itemData == null || !itemData.isActiveItem) return;
 
         inv.SetActiveItem(itemData);
+        ItemPoolManager.Instance?.MarkAcquired(itemData);
         Destroy(gameObject);
     }
-
-    void DropOldActive(ItemData oldItem, Vector3 position)
-    {
-        GameObject prefab = ItemDatabase.Instance.GetActivePickupPrefab(oldItem.itemId);
-        if (prefab == null) return;
-
-        GameObject drop = Instantiate(prefab, position, Quaternion.identity);
-        var pickup = drop.GetComponent<ActiveItemPickup>();
-        pickup.itemData = oldItem;
-    }
-
 }

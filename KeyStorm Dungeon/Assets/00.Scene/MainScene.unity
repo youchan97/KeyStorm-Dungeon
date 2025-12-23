@@ -1415,22 +1415,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemDatabase
       objectReference: {fileID: 0}
-    - target: {fileID: 4204181547969119683, guid: 8ec7373343b29044280396096dd53d33, type: 3}
-      propertyPath: activePickupEntries.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4204181547969119683, guid: 8ec7373343b29044280396096dd53d33, type: 3}
-      propertyPath: activePickupEntries.Array.data[1].itemId
-      value: A2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4204181547969119683, guid: 8ec7373343b29044280396096dd53d33, type: 3}
-      propertyPath: activePickupEntries.Array.data[0].pickupPrefab
-      value: 
-      objectReference: {fileID: 6506968681589806263, guid: b1810c1278dc2274485094567ccde1d5, type: 3}
-    - target: {fileID: 4204181547969119683, guid: 8ec7373343b29044280396096dd53d33, type: 3}
-      propertyPath: activePickupEntries.Array.data[1].pickupPrefab
-      value: 
-      objectReference: {fileID: 6506968681589806263, guid: b1810c1278dc2274485094567ccde1d5, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
