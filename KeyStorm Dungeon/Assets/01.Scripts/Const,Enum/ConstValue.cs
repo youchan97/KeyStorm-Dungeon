@@ -22,8 +22,8 @@ public static class ConstValue
     #endregion
 
     #region 씬 관련
-    public const string LoadingScene = "Test_LoadingScene";
-    public const string StartScene = "Test_StartScene";
-    public const string GameScene = "Test_GameScene";
+    public const string LoadingScene = "LoadingScene";
+    public const string StartScene = "StartScene";
+    public const string GameScene = "MainScene";
     #endregion
 }

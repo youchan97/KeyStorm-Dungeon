@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/00.Scene/JYC/Test_StartScene.unity
-    guid: 5311470d7b9acc8468ca70c2142a2b59
+    path: Assets/00.Scene/StartScene.unity
+    guid: 58b4295896cee4c4e8809d5a620b4bc9
   - enabled: 1
-    path: Assets/00.Scene/JYC/Test_LoadingScene.unity
-    guid: 78dd02d853f6d09409c69bc5e9f74dbc
+    path: Assets/00.Scene/MainScene.unity
+    guid: 219079aa71dc43545a794809c41da757
   - enabled: 1
-    path: Assets/00.Scene/JYC/Test_GameScene.unity
-    guid: c985de8abf4442c41a38a78342b5b54e
+    path: Assets/00.Scene/LoadingScene.unity
+    guid: d861c4c0b221d6147ac81a5bf51dc0e0
   m_configObjects: {}
