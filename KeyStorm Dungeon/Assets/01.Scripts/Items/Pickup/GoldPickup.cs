@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ConstValue;
 
 public class GoldPickup : MonoBehaviour
 {
@@ -38,7 +39,7 @@ public class GoldPickup : MonoBehaviour
         if (inv == null) return;
 
         inv.AddGold(amount);
-        
+        AudioManager.Instance.PlayEffect(GoldSfx);
         ItemDropManager.Instance.ReturnGoldPickup(this);
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-
+using static ConstValue;
 public class StageManager : MonoBehaviour
 {
     StageDataManager stageDataManager;
@@ -39,9 +39,26 @@ public class StageManager : MonoBehaviour
         stageDataManager = StageDataManager.Instance;
         stageData = stageDataManager.CurrentStageData;
 
+        AudioManager.Instance.PlayBgm(BgmSetting());
+
         GenerateRoomLayout();
         SpawnRooms();
         ConnectRooms();
+    }
+
+    string BgmSetting()
+    {
+        switch(stageDataManager.CurrentDifficulty)
+        {
+            case StageDifficulty.Easy:
+                return EasyBgm;
+            case StageDifficulty.Normal:
+                return NormalBgm;
+            case StageDifficulty.Hard:
+                return HardBgm;
+            default:
+                return EasyBgm;
+        }
     }
 
     private void Update()

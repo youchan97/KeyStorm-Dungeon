@@ -321,6 +321,7 @@ public class PlayerAttack : MonoBehaviour
 
             SetBullet(keyName);
         }
+        player.AudioManager.PlayEffect(ShootSfx);
 
 
         DirType type = SwitchType(keyDic[keyName]);

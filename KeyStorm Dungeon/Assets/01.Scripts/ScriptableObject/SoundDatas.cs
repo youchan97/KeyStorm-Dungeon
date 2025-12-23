@@ -11,7 +11,7 @@ public class SoundDatas : ScriptableObject
 public class AudioData
 {
     public string audioKey;
-    public AudioClip audioClip;
+    public List<AudioClip> audioClip;
 }
 [System.Serializable]
 public class SoundData

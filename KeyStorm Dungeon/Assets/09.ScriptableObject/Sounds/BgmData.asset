@@ -10,12 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4a77785fa688a51459220841a14669ec, type: 3}
-  m_Name: SfxData
+  m_Name: BgmData
   m_EditorClassIdentifier: 
   audioClips:
-  - audioKey: Shot
-    audioClip: {fileID: 8300000, guid: d4c99efa088e49143b4f006b924de3d5, type: 3}
-  - audioKey: Damaged
-    audioClip: {fileID: 8300000, guid: f9f34e5152e05a94b901cdc037fa118c, type: 3}
-  - audioKey: Coin
-    audioClip: {fileID: 8300000, guid: 681cb5878089c5e4eafd9c6cb1264194, type: 3}
+  - audioKey: Forest
+    audioClip:
+    - {fileID: 8300000, guid: df298c48829056d40ac6e0538150aac2, type: 3}
