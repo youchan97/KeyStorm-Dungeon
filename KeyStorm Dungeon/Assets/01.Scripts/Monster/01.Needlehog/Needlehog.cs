@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Needlehog : RangerMonster
 {
-    private float idleTime = 1.0f;
-    private float moveTime = 3.0f;
+    [SerializeField] private float idleTime = 1.0f;
+    [SerializeField] private float moveTime = 3.0f;
     [SerializeField] private float projectileLifeTime = 5f;
 
     public float IdleTime => idleTime;
