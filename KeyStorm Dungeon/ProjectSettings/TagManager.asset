@@ -10,7 +10,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - AttackObject
@@ -24,7 +24,7 @@ TagManager:
   - 
   - 
   - Item
-  - 
+  - MiniMapPlayer
   - 
   - 
   - 

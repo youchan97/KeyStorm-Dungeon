@@ -8,6 +8,7 @@ public class PlayerSpawner : MonoBehaviour
     [SerializeField] GameObject playerObj;
     [SerializeField] AttackPoolManager attackPoolManager;
     [SerializeField] CinemachineVirtualCamera vCam;
+    [SerializeField] MinimapCameraManager minimapCameraManager;
 
     public void SpawnPlayer(Vector3 startPos)
     {
@@ -19,7 +20,13 @@ public class PlayerSpawner : MonoBehaviour
     void SettingPlayer(Player player)
     {
         player.InitAttackPoolManager(attackPoolManager);
+        CameraSetting(player);
+    }
+
+    void CameraSetting(Player player)
+    {
         vCam.LookAt = player.transform;
         vCam.Follow = player.transform;
+        minimapCameraManager.SetTarget(player.transform);
     }
 }
