@@ -19,7 +19,7 @@ public class NeedlehogAttackState : MonsterAttackState
             rb.velocity = Vector2.zero;
         }
 
-        needlehog.Animator.SetTrigger("IsCrouch");
+        animator.SetTrigger("IsCrouch");
     }
 
     public override void UpdateState()
@@ -27,11 +27,12 @@ public class NeedlehogAttackState : MonsterAttackState
         if (character.PlayerGO == null)
         {
             character.ChangeStateToPlayerDied();
+            return;
         }
 
         if (needlehog.CurrentAttackCooldown <= 0)
         {
-            needlehog.Animator.SetTrigger("IsAttack");
+            animator.SetTrigger("IsAttack");
             needlehog.ResetAttackCooldown();
         }
         
