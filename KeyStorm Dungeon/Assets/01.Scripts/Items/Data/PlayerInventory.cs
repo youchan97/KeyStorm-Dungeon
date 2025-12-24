@@ -41,6 +41,16 @@ public class PlayerInventory : MonoBehaviour
     }
 
     // =====================
+    // 포션
+    // =====================
+    public void AddPotion(int amount)
+    {
+        hpPotion += amount;
+        if (hpPotion < 0)
+            hpPotion = 0;
+    }
+
+    // =====================
     // 폭탄
     // =====================
     public void AddBomb(int amount)

@@ -19,84 +19,59 @@ public class ShopRoomSpawner : MonoBehaviour
         public int price;
     }
 
-    [Header("슬롯 엔트리")]
     public List<StoreSlotEntry> entries = new();
 
-    [Header("소모품 설정")]
-    public int bombAmount = 1;
-    public int potionAmount = 1;
-    public int potionHealAmount = 2;
-
-    [Header("프리팹")]
     public GameObject passiveItemPickupPrefab;
     public GameObject activeItemPickupPrefab;
-    public GameObject potionDisplayPrefab;
     public GameObject bombDisplayPrefab;
+    public GameObject potionDisplayPrefab;
+
+    private HashSet<string> pickedThisStore = new();
 
     private void Start()
     {
-        SpawnStore(); //이 줄이 없으면 절대 안 뜸
+        SpawnStore();
     }
 
     public void SpawnStore()
     {
+        var pool = ItemPoolManager.Instance;
+        if (pool == null) return;
+
+        pickedThisStore.Clear();
+
         foreach (var e in entries)
         {
             if (e.slot == null) continue;
 
-            switch (e.type)
+            if (e.type == StoreSlotType.RandomItem)
             {
-                case StoreSlotType.RandomItem:
-                    SpawnRandomItem(e.slot, e.price);
-                    break;
+                ItemData data = null;
 
-                case StoreSlotType.Bomb:
-                    e.slot.SetConsumableProduct(
-                        bombDisplayPrefab,
-                        e.price,
-                        StoreSlot.ConsumableType.Bomb,
-                        bombAmount
-                    );
-                    break;
+                for (int i = 0; i < 15; i++)
+                {
+                    var candidate = pool.GetRandomItem_ExcludeAcquired(ItemDropRoom.Store);
 
-                case StoreSlotType.Potion:
-                    e.slot.SetConsumableProduct(
-                        potionDisplayPrefab,
-                        e.price,
-                        StoreSlot.ConsumableType.Potion,
-                        potionAmount,
-                        potionHealAmount
-                    );
+                    if (candidate == null) break;
+                    if (pickedThisStore.Contains(candidate.itemId)) continue;
+
+                    data = candidate;
+                    pickedThisStore.Add(candidate.itemId);
                     break;
+                }
+                if (data == null) { e.slot.Clear(); continue; }
+
+                var prefab = data.isActiveItem ? activeItemPickupPrefab : passiveItemPickupPrefab;
+                e.slot.SetItemProduct(prefab, data, e.price);
+            }
+            else if (e.type == StoreSlotType.Bomb)
+            {
+                e.slot.SetConsumableProduct(bombDisplayPrefab, e.price, StoreSlot.ConsumableType.Bomb, 1, 0);
+            }
+            else if (e.type == StoreSlotType.Potion)
+            {
+                e.slot.SetConsumableProduct(potionDisplayPrefab, e.price, StoreSlot.ConsumableType.Potion, 1, 0);
             }
         }
-    }
-
-    HashSet<string> pickedThisStore = new HashSet<string>();
-    void SpawnRandomItem(StoreSlot slot, int price)
-    {
-        ItemData data = null;
-
-        for (int i = 0; i < 10; i++)
-        {
-            var candidate = ItemPoolManager.Instance
-                .GetRandomItem_ExcludeAcquired(ItemDropRoom.Store);
-
-            if (candidate == null) break;
-            if (pickedThisStore.Contains(candidate.itemId)) continue;
-
-            data = candidate;
-            pickedThisStore.Add(candidate.itemId);
-            break;
-        }
-
-        if (data == null)
-        {
-            slot.Clear();
-            return;
-        }
-
-        var prefab = data.isActiveItem ? activeItemPickupPrefab : passiveItemPickupPrefab;
-        slot.SetItemProduct(prefab, data, price);
     }
 }

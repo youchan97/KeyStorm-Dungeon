@@ -10,6 +10,9 @@ public class ActiveItemPickup : MonoBehaviour
     private ItemPickupView view;
     private Collider2D col;
 
+    // 상점 진열 여부 (StoreSlot에서 true로 세팅)
+    [HideInInspector] public bool isShopDisplay = false;
+
     private void Awake()
     {
         view = GetComponent<ItemPickupView>();
@@ -18,7 +21,7 @@ public class ActiveItemPickup : MonoBehaviour
         if (view != null)
             view.Apply(itemData);
 
-        // 생성 직후 바로 다시 주워지는 문제 방지
+        // 생성 직후 바로 다시 주워지는 문제 방지(월드 드롭용)
         if (col != null)
             col.enabled = false;
 
@@ -41,16 +44,20 @@ public class ActiveItemPickup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // 상점 진열 아이템은 픽업 금지 (구매는 StoreSlot에서만)
+        if (isShopDisplay) return;
+
         if (!other.CompareTag("Player")) return;
 
         var inv = other.GetComponent<PlayerInventory>();
-        Player player = other.GetComponent<Player>();
+        var player = other.GetComponent<Player>();
         if (inv == null || player == null) return;
 
         if (itemData == null || !itemData.isActiveItem) return;
 
         inv.SetActiveItem(itemData);
         ItemPoolManager.Instance?.MarkAcquired(itemData);
+
         Destroy(gameObject);
     }
 }
