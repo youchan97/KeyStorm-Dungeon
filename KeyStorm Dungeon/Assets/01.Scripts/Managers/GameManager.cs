@@ -146,6 +146,15 @@ public class CharacterRunData
         moveSpeed += itemData.moveSpeed;
     }
 
+    public void Heal(int amount)
+    {
+        currentHp += amount;
+        if(currentHp >= maxHp)
+        {
+            currentHp = maxHp;
+        }
+    }
+
 }
 [System.Serializable]
 public class InventoryRunData
