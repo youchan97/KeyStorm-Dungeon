@@ -26,6 +26,6 @@ public class GameSceneUI : MonoBehaviour
     {
         coinTxt.text = inventory.gold.ToString();
         bombTxt.text = inventory.bombCount.ToString();
-        ammoTxt.text = attack.Ammo.ToString() + "/" + attack.MaxAmmo.ToString();
+        ammoTxt.text = attack.Ammo.ToString() + " / " + attack.MaxAmmo.ToString();
     }
 }

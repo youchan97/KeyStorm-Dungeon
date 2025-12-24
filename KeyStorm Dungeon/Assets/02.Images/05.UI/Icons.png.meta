@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6f73d46a3505e5743a202285307c5bec
+guid: 996139639abab5649bd1a4f4be27bfff
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,70 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HpIcon_0
+      name: HP_full
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 631f6898c1996b84089418c5e0f9d13d
+      internalID: 1816271484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HP_half
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d640a974a1fc5f479eff98c8fefdc24
+      internalID: 924814983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HP_Empty
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ba088debb077f64f89ff7c338d50000
+      internalID: 560630083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coin
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da5e59cee1b0cf44592d5a1345b307f1
-      internalID: -1109194190
+      spriteID: daf5aec63033dd84d85762bb718344f2
+      internalID: -815472236
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HpIcon_1
+      name: Bombs
       rect:
         serializedVersion: 2
         x: 16
@@ -158,29 +221,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 12af1fd07f4b876418054cbb51b88ec5
-      internalID: -713318942
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HpIcon_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2b307492133fde249bd5d82de48581bd
-      internalID: 357474624
+      spriteID: 10f82f2f9de6acc45901b09ffc4888b4
+      internalID: 162229458
       vertices: []
       indices: 
       edges: []
@@ -196,9 +238,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      HpIcon_0: -1109194190
-      HpIcon_1: -713318942
-      HpIcon_2: 357474624
+      Bombs: 162229458
+      Coin: -815472236
+      HP_Empty: 560630083
+      HP_full: 1816271484
+      HP_half: 924814983
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
