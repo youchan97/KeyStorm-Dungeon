@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4d48a9f08d0b4864896f2ab4765da46e
+guid: d5a497ec2528c0d468f2639da33f728d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,12 +123,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Door_Forest_Front_0
+      name: Door_Forest_Horizontal_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 40
+        width: 48
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -137,19 +137,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c8026b5688913545b1e22e2ade3eaab
-      internalID: -1106971424
+      spriteID: 586961ce0396ad8449771cd10f2edc3b
+      internalID: 533070821
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Door_Forest_Front_1
+      name: Door_Forest_Horizontal_1
       rect:
         serializedVersion: 2
-        x: 40
+        x: 48
         y: 0
-        width: 40
+        width: 48
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -158,40 +158,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 17886a059cd83a94ca2c45792a30820a
-      internalID: -1056313462
+      spriteID: 97b6e34d8a69f49409cbde9fd771c53e
+      internalID: -1886118504
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Door_Forest_Front_2
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 0
-        width: 16
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 80cdfbf87c118be479468b4dfd967ec1
-      internalID: 24400827
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Door_Forest_Front_3
+      name: Door_Forest_Horizontal_2
       rect:
         serializedVersion: 2
         x: 96
         y: 0
-        width: 16
+        width: 48
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -200,8 +179,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c882b229072d583469e4c02056aff641
-      internalID: 1807442055
+      spriteID: 952f139839bdfc546a28e7be48b3f29a
+      internalID: -386641828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_Forest_Horizontal_3
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 48
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dbdc8cd194c04e4f95031a6ab0c12a0
+      internalID: -606880948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_Forest_Horizontal_4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 48
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fc05673b760d1e43b7f40dca8385dcd
+      internalID: 29924270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_Forest_Horizontal_5
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 48
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be17bd6ae32845d4e856b3b31c0b9c83
+      internalID: 1040179894
       vertices: []
       indices: 
       edges: []
@@ -217,10 +259,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Door_Forest_Front_0: -1106971424
-      Door_Forest_Front_1: -1056313462
-      Door_Forest_Front_2: 24400827
-      Door_Forest_Front_3: 1807442055
+      Door_Forest_Horizontal_0: 533070821
+      Door_Forest_Horizontal_1: -1886118504
+      Door_Forest_Horizontal_2: -386641828
+      Door_Forest_Horizontal_3: -606880948
+      Door_Forest_Horizontal_4: 29924270
+      Door_Forest_Horizontal_5: 1040179894
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
