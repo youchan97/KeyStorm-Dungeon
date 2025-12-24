@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class PlayerSpawner : MonoBehaviour
 {
+    private readonly Vector2 startPos = new Vector2(-2.5f, -7.5f);
+
     [SerializeField] GameObject playerObj;
     [SerializeField] AttackPoolManager attackPoolManager;
     [SerializeField] CinemachineVirtualCamera vCam;
     [SerializeField] MinimapCameraManager minimapCameraManager;
 
-    public void SpawnPlayer(Vector3 startPos)
+    public void SpawnPlayer()
     {
         Player player = Instantiate(playerObj).GetComponent<Player>();
         player.gameObject.transform.position = startPos;

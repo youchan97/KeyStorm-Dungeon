@@ -28,7 +28,7 @@ public class PassiveItemPickup : MonoBehaviour
         FindObjectOfType<InventoryUIController>()?.Refresh(); // 인벤 열려있을 때 즉시 반영하고 싶으면
 
         inv.AddPassiveItem(itemData);
-        player.PlayerStatUpdate(itemData);
+        player.UpdatePlayerData(itemData);
         ItemPoolManager.Instance?.MarkAcquired(itemData);
         Destroy(gameObject);
     }

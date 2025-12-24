@@ -193,10 +193,9 @@ public class StageManager : MonoBehaviour
             }
 
             Room room = Instantiate(curRoom, worldPos, Quaternion.identity);
-            if (room.roomType == RoomType.Start)
-                playerSpawner.SpawnPlayer(worldPos);
             spawnedRooms[node.gridPos] = room;
         }
+        playerSpawner.SpawnPlayer();
     }
 
     List<Room> PickRandom(List<Room> source, int count)

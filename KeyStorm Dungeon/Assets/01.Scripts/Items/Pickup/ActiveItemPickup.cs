@@ -44,7 +44,8 @@ public class ActiveItemPickup : MonoBehaviour
         if (!other.CompareTag("Player")) return;
 
         var inv = other.GetComponent<PlayerInventory>();
-        if (inv == null) return;
+        Player player = other.GetComponent<Player>();
+        if (inv == null || player == null) return;
 
         if (itemData == null || !itemData.isActiveItem) return;
 

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
+    public InventoryRunData runData;
+
     public PlayerStats stats;
     public InventoryModel inventoryModel;
 
@@ -20,6 +22,14 @@ public class PlayerInventory : MonoBehaviour
     [Header("드롭용 공용 액티브 픽업 프리팹(필수)")]
     public GameObject defaultActivePickupPrefab;
 
+    public void InitInventory(InventoryRunData data)
+    {
+        gold = data.gold;
+        bombCount = data.bombCount;
+        passiveItems = data.passiveItems;
+        activeItem = data.activeItem;
+    }
+
     // =====================
     // 골드
     // =====================
@@ -27,6 +37,7 @@ public class PlayerInventory : MonoBehaviour
     {
         gold += amount;
         if (gold < 0) gold = 0;
+        runData.UpdateGold(gold);
     }
 
     // =====================
@@ -37,6 +48,7 @@ public class PlayerInventory : MonoBehaviour
         bombCount += amount;
         if (bombCount < 0)
             bombCount = 0;
+        runData.UpdateBomb(bombCount);
     }
 
     public bool TrySpendGold(int amount)
@@ -54,9 +66,10 @@ public class PlayerInventory : MonoBehaviour
     {
         if (data == null) return;
 
-        passiveItems.Add(data);
+        //passiveItems.Add(data);
         inventoryModel?.AddItem(data);
         FindObjectOfType<InventoryUIController>()?.Refresh();
+        runData.ApplyInventory(data);
     }
 
     // =====================
@@ -74,6 +87,7 @@ public class PlayerInventory : MonoBehaviour
 
         // 새 액티브 장착
         activeItem = newItem;
+        runData.ApplyInventory(activeItem);
     }
 
     private void DropActiveItem(ItemData oldItem)
