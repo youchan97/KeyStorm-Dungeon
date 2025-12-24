@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class PotionPickup : MonoBehaviour
 {
-    public int healAmount = 2;
+    public int healAmount;
 
     private void Reset()
     {
@@ -16,13 +16,13 @@ public class PotionPickup : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
 
-        var inv = other.GetComponent<PlayerInventory>();
-        if (inv == null || inv.stats == null) return;
+        Player player = other.GetComponent<Player>();
 
-        // 이미 풀피면 안 먹게 (원하면 삭제 가능)
-        if (inv.stats.hp >= inv.stats.maxHp) return;
+        if (player == null) return;
 
-        inv.stats.Heal(healAmount);
+        if (player.Hp == player.MaxHp) return;
+
+        player.Heal(healAmount);
         Destroy(gameObject);
     }
 }

@@ -247,35 +247,6 @@ public class PlayerAttack : MonoBehaviour
 
     void AttackDirUiUpdate()
     {
-        /*DirType type = SwitchType(vec);
-        switch(type)
-        {
-            case DirType.LeftUp:
-                dirTexts[((int)DirType.LeftUp)].text = text;
-                break;
-            case DirType.Up:
-                dirTexts[((int)DirType.Up)].text = text;
-                break;
-            case DirType.RightUp:
-                dirTexts[((int)DirType.RightUp)].text = text;
-                break;
-            case DirType.Left:
-                dirTexts[((int)DirType.Left)].text = text;
-                break;
-            case DirType.Right:
-                dirTexts[((int)DirType.Right)].text = text;
-                break;
-            case DirType.LeftDown:
-                dirTexts[((int)DirType.LeftDown)].text = text;
-                break;
-            case DirType.Down:
-                dirTexts[((int)DirType.Down)].text = text;
-                break;
-            case DirType.RightDown:
-                dirTexts[((int)DirType.RightDown)].text = text;
-                break;
-        }*/
-
         foreach(DirType list in dirTextDic.Keys.ToList())
         {
             string[] keys = dirTextDic[list].OrderBy(x => Random.Range(0f, 1f)).ToArray();
@@ -556,12 +527,14 @@ public class PlayerAttack : MonoBehaviour
     #region Bomb
     public void HoldBomb()
     {
-        if (curBomb != null || player.Inventory.bombCount <= 0) return;
+        PlayerInventory inven = player.Inventory;
+        if (curBomb != null || inven.bombCount <= 0) return;
 
         ThrownBomb bomb = Instantiate(Bomb);
         bomb.Hold(transform);
         curBomb = bomb;
-        player.Inventory.bombCount--;
+        inven.bombCount--;
+        inven.runData.UpdateBomb(inven.bombCount);
         bomb.OnExplode += () => { ExplodingInPlayer(bomb); };
     }
 
