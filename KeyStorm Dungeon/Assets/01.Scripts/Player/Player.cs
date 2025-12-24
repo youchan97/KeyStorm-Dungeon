@@ -14,6 +14,7 @@ public class Player : Character
     [SerializeField] PlayerController playerController;
     [SerializeField] PlayerInventory inventory;
     [SerializeField] PlayerData data;
+    PlayerRunData playerRunData;
     [SerializeField] Rigidbody2D playerRb;
     [SerializeField] Animator anim;
     [SerializeField] Sprite bullet;
@@ -23,6 +24,7 @@ public class Player : Character
     [SerializeField] float magnetRangeMargin;
 
     bool isMove;
+    bool isInvincible;
 
     public event Action OnDie;
 
@@ -89,12 +91,12 @@ public class Player : Character
 
     void InitData()
     {
-        PlayerRunData runData = gameManager.PlayerRunData;
-        InitCharRunData(runData.character);
-        transform.localScale = new Vector3(runData.xScale, runData.yScale, transform.localScale.z);
-        PlayerAttack.InitPlayerAttack(runData);
-        Inventory.InitInventory(runData.inventory);
-        Inventory.runData = runData.inventory;
+        playerRunData = gameManager.PlayerRunData;
+        InitCharRunData(playerRunData.character);
+        transform.localScale = new Vector3(playerRunData.xScale, playerRunData.yScale, transform.localScale.z);
+        PlayerAttack.InitPlayerAttack(playerRunData);
+        Inventory.InitInventory(playerRunData.inventory);
+        Inventory.runData = playerRunData.inventory;
     }
 
     void InitActions()
@@ -135,20 +137,34 @@ public class Player : Character
 
     public override void TakeDamage(int damage)
     {
-        CharacterRunData character = gameManager.PlayerRunData.character;
+        if (isInvincible) return;
+
+        CharacterRunData character = playerRunData.character;
         character.currentHp = Mathf.Max(0, character.currentHp - damage);
 
         Hp = character.currentHp;
 
         if (Hp > 0)
+        {
             anim.SetTrigger(HurtAnim);
+        }
         else
             Die();
     }
 
+    public void SetInvincible(bool isSet)
+    {
+        isInvincible = isSet;
+    }
+
+    public void Heal(int num)
+    {
+        playerRunData.character.Heal(num);
+        Hp = playerRunData.character.currentHp;
+    }
+
     public void UpdatePlayerData(ItemData data)
     {
-        PlayerRunData playerRunData = gameManager.PlayerRunData;
         if (!data.isActiveItem)
         {
             playerRunData.ApplyItemStat(data);

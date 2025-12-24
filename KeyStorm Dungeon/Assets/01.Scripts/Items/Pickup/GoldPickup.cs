@@ -40,6 +40,14 @@ public class GoldPickup : MonoBehaviour
 
         inv.AddGold(amount);
         AudioManager.Instance.PlayEffect(GoldSfx);
+        ResetGoldSetting();
         ItemDropManager.Instance.ReturnGoldPickup(this);
+    }
+
+    void ResetGoldSetting()
+    {
+        magnetMode = false;
+        target = null;
+        speed = 0f;
     }
 }
