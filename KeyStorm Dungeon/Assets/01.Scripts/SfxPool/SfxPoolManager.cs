@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -5,6 +6,8 @@ public class SfxPoolManager : SingletonManager<SfxPoolManager>
 {
     [SerializeField] private SfxPool sfxPrefab;
     [SerializeField] private int poolSize = 10;
+
+    HashSet<AudioClip> playingClips = new HashSet<AudioClip>();
 
     private IObjectPool<SfxPool> pool;
     public IObjectPool<SfxPool> SfxPool
@@ -46,5 +49,19 @@ public class SfxPoolManager : SingletonManager<SfxPoolManager>
     private void OnReturnToPool(SfxPool sfx)
     {
         sfx.gameObject.SetActive(false);
+    }
+
+    public bool TryRegister(AudioClip clip)
+    {
+        if (playingClips.Contains(clip))
+            return false;
+
+        playingClips.Add(clip);
+        return true;
+    }
+
+    public void Unregister(AudioClip clip)
+    {
+        playingClips.Remove(clip);
     }
 }
