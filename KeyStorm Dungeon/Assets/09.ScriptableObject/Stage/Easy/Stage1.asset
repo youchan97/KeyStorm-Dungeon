@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Stage1
   m_EditorClassIdentifier: 
   stageIndex: 1
-  totalRoomCount: 7
+  totalRoomCount: 6
   bossRoomCount: 1
   treasureRoomCount: 1
   shopRoomCount: 1

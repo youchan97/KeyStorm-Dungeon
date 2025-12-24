@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
+    public InventoryRunData runData;
+
     public PlayerStats stats;
     public InventoryModel inventoryModel;
 
@@ -14,14 +16,39 @@ public class PlayerInventory : MonoBehaviour
     public int hpPotion;
 
     [Header("아이템")]
-    public List<ItemData> passiveItems = new List<ItemData>();
+    public List<ItemData> passiveItems = new();
     public ItemData activeItem;
 
+    [Header("드롭용 공용 액티브 픽업 프리팹(필수)")]
+    public GameObject defaultActivePickupPrefab;
+
+    public void InitInventory(InventoryRunData data)
+    {
+        gold = data.gold;
+        bombCount = data.bombCount;
+        passiveItems = data.passiveItems;
+        activeItem = data.activeItem;
+    }
+
+    // =====================
     // 골드
+    // =====================
     public void AddGold(int amount)
     {
         gold += amount;
         if (gold < 0) gold = 0;
+        runData.UpdateGold(gold);
+    }
+
+    // =====================
+    // 폭탄
+    // =====================
+    public void AddBomb(int amount)
+    {
+        bombCount += amount;
+        if (bombCount < 0)
+            bombCount = 0;
+        runData.UpdateBomb(bombCount);
     }
 
     public bool TrySpendGold(int amount)
@@ -32,88 +59,64 @@ public class PlayerInventory : MonoBehaviour
         return true;
     }
 
-    // 폭탄
-    public void AddBomb(int amount)
-    {
-        bombCount += amount;
-        if (bombCount < 0) bombCount = 0;
-    }
-
-    public bool TryUseBomb(int amount = 1)
-    {
-        if (bombCount < amount) return false;
-        bombCount -= amount;
-        return true;
-    }
-
-    //포션
-    public void AddPotion(int amount)
-    {
-        hpPotion += amount;
-        if (hpPotion < 0) hpPotion = 0;
-    }
-
-
-
-    // 포션을 사용해서 회복하는 방식.
-    // stats 쪽에 Heal(int) 같은 함수가 있으면 그걸 호출하면 됨.
-    public bool TryUsePotion(int healAmount)
-    {
-        if (hpPotion <= 0) return false;
-        if (stats == null) return false;
-
-        // 이미 풀피면 사용 안 하게
-        if (stats.hp >= stats.maxHp) return false;
-
-        hpPotion--;
-        stats.Heal(healAmount);
-        return true;
-    }
-
-    //아이템(패시브,액티브)
+    // =====================
+    // 패시브
+    // =====================
     public void AddPassiveItem(ItemData data)
     {
         if (data == null) return;
 
-        passiveItems.Add(data);
-
-        if (inventoryModel != null)
-            inventoryModel.AddItem(data);
-
+        //passiveItems.Add(data);
+        inventoryModel?.AddItem(data);
         FindObjectOfType<InventoryUIController>()?.Refresh();
+        runData.ApplyInventory(data);
     }
 
+    // =====================
+    // 액티브
+    // =====================
     public void SetActiveItem(ItemData newItem)
     {
         if (newItem == null || !newItem.isActiveItem) return;
 
-        // 1. 기존 액티브 있으면 뱉기
+        // 기존 액티브가 있으면 바닥에 드롭
         if (activeItem != null)
         {
             DropActiveItem(activeItem);
         }
 
-        // 2. 새 액티브 장착
+        // 새 액티브 장착
         activeItem = newItem;
+        runData.ApplyInventory(activeItem);
     }
-    void DropActiveItem(ItemData oldItem)
+
+    private void DropActiveItem(ItemData oldItem)
     {
-        GameObject prefab =
-            ItemDatabase.Instance.GetActivePickupPrefab(oldItem.itemId);
+        if (oldItem == null) return;
+
+        // itemId 전용 프리팹 먼저 시도(있으면 사용)
+        GameObject prefab = ItemDatabase.Instance != null
+            ? ItemDatabase.Instance.GetActivePickupPrefab(oldItem.itemId)
+            : null;
+
+        //없으면 공용 프리팹 사용(반드시 연결)
+        if (prefab == null)
+            prefab = defaultActivePickupPrefab;
 
         if (prefab == null)
         {
-            Debug.LogWarning($"드랍 프리팹 없음: {oldItem.itemId}");
+            Debug.LogError("[PlayerInventory] defaultActivePickupPrefab가 비어있습니다. PlayerInventory 인스펙터에 ActiveItemPickup 프리팹을 넣어주세요.");
             return;
         }
 
-        GameObject drop = Instantiate(prefab, transform.position, Quaternion.identity);
+        Vector2 offset = UnityEngine.Random.insideUnitCircle.normalized * 0.6f;
+        Vector3 dropPos = transform.position + (Vector3)offset;
 
-        var pickup = drop.GetComponent<ActiveItemPickup>();
-        if (pickup != null)
-            pickup.itemData = oldItem;
+        GameObject drop = Instantiate(prefab, dropPos, Quaternion.identity);
+
+        if (drop.TryGetComponent<ActiveItemPickup>(out var pickup))
+            pickup.SetData(oldItem);
 
         drop.GetComponent<ItemPickupView>()?.Apply(oldItem);
     }
-
 }

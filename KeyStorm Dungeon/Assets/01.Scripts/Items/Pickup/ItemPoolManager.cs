@@ -6,6 +6,8 @@ public class ItemPoolManager : MonoBehaviour
 {
     public static ItemPoolManager Instance { get; private set; }
 
+    private readonly HashSet<string> spawnedItemIds = new HashSet<string>();
+
     [Header("티어별 확률")]
     public float tier0Weight = 3f;
     public float tier1Weight = 3f;
@@ -110,8 +112,7 @@ public class ItemPoolManager : MonoBehaviour
         if (room == ItemDropRoom.None) return null;
         if (!pools.ContainsKey(room)) return null;
 
-        // 티어 뽑고, 없으면 다른 티어로 몇 번 더 시도(안그러면 null이 자주 나옴)
-        for (int attempt = 0; attempt < 10; attempt++)
+        for (int attempt = 0; attempt < 20; attempt++)
         {
             ItemTier tier = GetRandomTier();
             var list = pools[room][tier];
@@ -122,12 +123,13 @@ public class ItemPoolManager : MonoBehaviour
             foreach (var it in list)
             {
                 if (it == null) continue;
+
+                // 🔴 핵심: 이미 스폰된 것도 제외
+                if (spawnedItemIds.Contains(it.itemId)) continue;
                 if (IsAcquired(it.itemId)) continue;
 
-                if (requireActive.HasValue)
-                {
-                    if (it.isActiveItem != requireActive.Value) continue;
-                }
+                if (requireActive.HasValue && it.isActiveItem != requireActive.Value)
+                    continue;
 
                 candidates ??= new List<ItemData>();
                 candidates.Add(it);
@@ -135,10 +137,14 @@ public class ItemPoolManager : MonoBehaviour
 
             if (candidates == null || candidates.Count == 0) continue;
 
-            return candidates[UnityEngine.Random.Range(0, candidates.Count)];
+            ItemData picked = candidates[UnityEngine.Random.Range(0, candidates.Count)];
+
+            // 🔥 스폰되는 순간 바로 등록
+            spawnedItemIds.Add(picked.itemId);
+
+            return picked;
         }
 
-        // 정말 없으면 null
         return null;
     }
 

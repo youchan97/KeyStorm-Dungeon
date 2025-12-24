@@ -65,6 +65,7 @@ public class GameManager : SingletonManager<GameManager>
 public class PlayerRunData
 {
     public CharacterRunData character;
+    public InventoryRunData inventory;
     public float damageMultiple;
     public float specialDamageMultiple;
     public float attackSpeed;
@@ -82,6 +83,7 @@ public class PlayerRunData
     public PlayerRunData(PlayerData playerData)
     {
         character = new CharacterRunData(playerData.characterData);
+        inventory = new InventoryRunData();
         damageMultiple = playerData.damageMultiple;
         specialDamageMultiple = playerData.specialDamageMultiple;
         attackSpeed = playerData.attackSpeed;
@@ -142,6 +144,27 @@ public class CharacterRunData
         }
         damage += (int)itemData.damage;
         moveSpeed += itemData.moveSpeed;
+    }
+
+}
+[System.Serializable]
+public class InventoryRunData
+{
+    public int gold;
+    public int bombCount;
+    public List<ItemData> passiveItems = new();
+    public ItemData activeItem;
+
+    public void UpdateGold(int gold) => this.gold = gold;
+
+    public void UpdateBomb(int count) => bombCount = count;
+
+    public void ApplyInventory(ItemData itemData)
+    {
+        if (itemData.isActiveItem)
+            activeItem = itemData;
+        else
+            passiveItems.Add(itemData);
     }
 }
 

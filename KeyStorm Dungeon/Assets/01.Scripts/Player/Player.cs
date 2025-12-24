@@ -10,6 +10,7 @@ public class Player : Character
 {
     CharacterStateManager<Player> playerStateManager;
     GameManager gameManager;
+    AudioManager audioManager;
     [SerializeField] PlayerController playerController;
     [SerializeField] PlayerInventory inventory;
     [SerializeField] PlayerData data;
@@ -19,6 +20,7 @@ public class Player : Character
     [SerializeField] Sprite sBullet;
     [SerializeField] LayerMask itemLayer;
     [SerializeField] float magnetSpeed;
+    [SerializeField] float magnetRangeMargin;
 
     bool isMove;
 
@@ -37,6 +39,7 @@ public class Player : Character
     public Sprite Bullet { get => bullet;}
     public Sprite SBullet { get => sBullet;}
     public PlayerInventory Inventory { get => inventory;}
+    public AudioManager AudioManager { get => audioManager; }
     #endregion
 
     protected override void Awake()
@@ -44,6 +47,7 @@ public class Player : Character
         playerStateManager = new CharacterStateManager<Player>(this);
         PlayerAttack = GetComponent<PlayerAttack>();
         gameManager = GameManager.Instance;
+        audioManager = AudioManager.Instance;
         InitPlayer();
     }
 
@@ -89,6 +93,8 @@ public class Player : Character
         InitCharRunData(runData.character);
         transform.localScale = new Vector3(runData.xScale, runData.yScale, transform.localScale.z);
         PlayerAttack.InitPlayerAttack(runData);
+        Inventory.InitInventory(runData.inventory);
+        Inventory.runData = runData.inventory;
     }
 
     void InitActions()
@@ -140,27 +146,30 @@ public class Player : Character
             Die();
     }
 
-    public void PlayerStatUpdate(ItemData data)
+    public void UpdatePlayerData(ItemData data)
     {
-        gameManager.PlayerRunData.ApplyItemStat(data);
-        SyncPlayerStat();
+        PlayerRunData playerRunData = gameManager.PlayerRunData;
+        if (!data.isActiveItem)
+        {
+            playerRunData.ApplyItemStat(data);
+            SyncPlayerStat(playerRunData);
+        }
     }
 
-    void SyncPlayerStat()
+    void SyncPlayerStat(PlayerRunData runData)
     {
-        PlayerRunData playerRundata = gameManager.PlayerRunData;
-        CharacterRunData characterRunData = playerRundata.character;
+        CharacterRunData characterRunData = runData.character;
 
         Hp = characterRunData.currentHp;
         MaxHp = characterRunData.maxHp;
         MoveSpeed = characterRunData.moveSpeed;
 
-        PlayerAttack.SyncPlayerAttackStat(playerRundata);
+        PlayerAttack.SyncPlayerAttackStat(runData);
     }
 
     public void MagnetItems(Bounds bounds)
     {
-        float detectDis = Mathf.Max(bounds.extents.x, bounds.extents.y);
+        float detectDis = Mathf.Max(bounds.extents.x + magnetRangeMargin, bounds.extents.y + magnetRangeMargin);
         Collider2D[] cols = Physics2D.OverlapCircleAll(bounds.center, detectDis, itemLayer);
 
         foreach(Collider2D col in cols)

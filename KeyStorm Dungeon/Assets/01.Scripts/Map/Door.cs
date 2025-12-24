@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Door : MonoBehaviour
 {
+    [SerializeField] Tilemap wallTileMap;
     [SerializeField] BoxCollider2D col;
     [SerializeField] Room room;
 
@@ -36,5 +38,10 @@ public class Door : MonoBehaviour
         return (room.IsPlayerIn && room.CanOpenDoor) || !room.IsPlayerIn;
     }
 
-    public void UseDoor() => canUse = true;
+    public void UseDoor()
+    {
+        canUse = true;
+        if(wallTileMap == null) return;
+        wallTileMap?.gameObject.SetActive(false);
+    }
 }
