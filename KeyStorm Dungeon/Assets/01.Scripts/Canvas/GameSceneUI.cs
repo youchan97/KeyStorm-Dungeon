@@ -10,17 +10,10 @@ public class GameSceneUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI bombTxt;
     [SerializeField] private TextMeshProUGUI ammoTxt;
 
-    private void Start()
+    public void InitPlayerData(Player player)
     {
-        if (inventory == null || attack == null)
-        {
-            var player = GameObject.FindGameObjectWithTag("Player");
-            if (player != null)
-            {
-                if (inventory == null) inventory = player.GetComponent<PlayerInventory>();
-                if (attack == null) attack = player.GetComponent<PlayerAttack>();
-            }
-        }
+        inventory = player.Inventory;
+        attack = player.PlayerAttack;
     }
     void Update()
     {

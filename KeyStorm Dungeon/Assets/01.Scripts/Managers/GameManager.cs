@@ -109,8 +109,8 @@ public class PlayerRunData
         shootSpeed += itemData.shotSpeed;
         maxAmmo += itemData.maxAmmo;
         useAmmo += itemData.useAmmo;
-        xScale = itemData.scale;
-        yScale = itemData.scale;
+        xScale += itemData.scale;
+        yScale += itemData.scale;
     }
 }
 
