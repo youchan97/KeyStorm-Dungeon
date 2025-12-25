@@ -174,6 +174,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestMap
       objectReference: {fileID: 0}
+    - target: {fileID: 8969645377382259084, guid: f143bf35de38027438377ef440643931, type: 3}
+      propertyPath: m_AnimatedTiles.Array.data[3].second.m_AnimationSpeed
+      value: 10.000001
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
