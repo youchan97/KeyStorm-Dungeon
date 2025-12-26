@@ -24,7 +24,7 @@ public class Door : MonoBehaviour
 
         if(!IsMonsterRoom())
         {
-            col.enabled = !ColliderEnable();
+            //col.enabled = !ColliderEnable();
             return;
         }
 
@@ -44,7 +44,7 @@ public class Door : MonoBehaviour
 
         if (!IsMonsterRoom())
         {
-            col.enabled = ColliderEnable();
+            //col.enabled = ColliderEnable();
             return;
         }
 
@@ -74,8 +74,10 @@ public class Door : MonoBehaviour
         if(wallTileMap == null) return;
         wallTileMap?.gameObject.SetActive(false);
 
-        if(IsMonsterRoom())
+        if (IsMonsterRoom())
             wallSprite.enabled = true;
+        else
+            col.enabled = false;
     }
 
     bool IsMonsterRoom()
