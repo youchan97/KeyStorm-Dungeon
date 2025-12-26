@@ -83,7 +83,7 @@ public class Needlehog : RangerMonster
             pooledAttackObj.transform.position = shootPoint.position;
             pooledAttackObj.transform.rotation = rotation;
 
-            pooledAttackObj.InitData(bullet, Damage, dir, MonsterData.shotSpeed, projectileLifeTime, AttackPoolManager, false);
+            pooledAttackObj.InitData(bullet, Damage, dir, MonsterData.shotSpeed, projectileLifeTime, AttackPoolManager, false, MonsterData.projectileColliderOffset, MonsterData.projectileColliderRadius);
         }
     }
 

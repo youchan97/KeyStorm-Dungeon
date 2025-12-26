@@ -20,6 +20,8 @@ public class MonsterData : ScriptableObject
     public MonsterTier tier;    // 몬스터의 등급
     public float shotSpeed;     // 투사체 속도
     public float attackSpeed;   // 공격과 공격 사이의 속도 (공격 쿨타임)
+    public Vector2 projectileColliderOffset;    // 투사체 중심점
+    public float projectileColliderRadius;      // 투사체 크기
 
     [Header("스티어링 비헤이비어 설정")]
     public float separationRaduis;  // 자신 이외 다른 몬스터 감지 반경(분리)

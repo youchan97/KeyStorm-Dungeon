@@ -387,7 +387,7 @@ public class PlayerAttack : MonoBehaviour
             }
             obj.transform.position = player.transform.position + (Vector3)dir * ShootOffset;
 
-            obj.InitData(sprite, damage, dir, ShootSpeed, Range, player.AttackPoolManager, true);
+            //obj.InitData(sprite, damage, dir, ShootSpeed, Range, player.AttackPoolManager, true);
         }
 
         int consumeAmmo = isSpecial ? useAmmo * 2 : useAmmo;

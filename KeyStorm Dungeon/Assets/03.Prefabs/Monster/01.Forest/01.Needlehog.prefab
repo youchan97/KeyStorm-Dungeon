@@ -190,6 +190,8 @@ MonoBehaviour:
   animator: {fileID: 6774288875342118866}
   shootPoint: {fileID: 4151110777735581097}
   bullet: {fileID: 21300000, guid: a8af6b972bdfa254ba3a57fec712693d, type: 3}
+  idleTime: 1
+  moveTime: 3
   projectileLifeTime: 5
 --- !u!1 &5336305704194351128
 GameObject:
