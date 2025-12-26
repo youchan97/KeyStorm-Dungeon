@@ -4,4 +4,6 @@ public class SpitterMoveState : MonsterMoveState
     public SpitterMoveState(Monster monster, CharacterStateManager<Monster> stateManager) : base(monster, stateManager)
     {
     }
+
+
 }
