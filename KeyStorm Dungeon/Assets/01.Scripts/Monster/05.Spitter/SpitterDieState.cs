@@ -2,17 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpitterDieState : MonoBehaviour
+public class SpitterDieState : MonsterDieState
 {
-    // Start is called before the first frame update
-    void Start()
+    public SpitterDieState(Monster character, CharacterStateManager<Monster> stateManager) : base(character, stateManager)
     {
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void EnterState()
     {
-        
+        base.EnterState();
     }
 }

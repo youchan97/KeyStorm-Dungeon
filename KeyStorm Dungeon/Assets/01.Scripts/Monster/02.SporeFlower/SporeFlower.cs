@@ -17,8 +17,6 @@ public class SporeFlower : RangerMonster
     private SporeFlowerAttackState _attackState;
     private SporeFlowerDieState _dieState;
 
-    public event Action<Collision2D> OnWallOrCollisionHit;
-
     private bool _hasMoved = false;
 
     public override CharacterState<Monster> CreateIdleState()
@@ -73,11 +71,6 @@ public class SporeFlower : RangerMonster
         {
             toxinCloudEffect.StartToxinCloudEffect(Damage);
         }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        
     }
 
     private void CheckHp()
