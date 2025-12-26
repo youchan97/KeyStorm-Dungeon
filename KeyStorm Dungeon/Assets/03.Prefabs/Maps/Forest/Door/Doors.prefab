@@ -533,7 +533,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -4.5, y: 0}
+  m_Offset: {x: -4, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -544,7 +544,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7, y: 5}
+  m_Size: {x: 8, y: 5}
   m_EdgeRadius: 0
 --- !u!114 &200794411373061315
 MonoBehaviour:
@@ -653,7 +653,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 4.5}
+  m_Offset: {x: 0, y: 4}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -664,7 +664,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5, y: 7}
+  m_Size: {x: 5, y: 8}
   m_EdgeRadius: 0
 --- !u!114 &385363134729178273
 MonoBehaviour:
@@ -773,7 +773,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -4.5}
+  m_Offset: {x: 0, y: -4}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -784,7 +784,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5, y: 7}
+  m_Size: {x: 5, y: 8}
   m_EdgeRadius: 0
 --- !u!114 &1672636125268958255
 MonoBehaviour:
@@ -893,7 +893,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 4.5, y: 0}
+  m_Offset: {x: 4, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -904,7 +904,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7, y: 5}
+  m_Size: {x: 8, y: 5}
   m_EdgeRadius: 0
 --- !u!114 &1570302527309799846
 MonoBehaviour:
@@ -1369,10 +1369,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: HorizontalDoor
       objectReference: {fileID: 0}
-    - target: {fileID: 5257416374497908286, guid: 123ed8adc58c41046be8aade20ce8fc9, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.25
-      objectReference: {fileID: 0}
     - target: {fileID: 5458118237987217537, guid: 123ed8adc58c41046be8aade20ce8fc9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.5
@@ -1444,10 +1440,6 @@ PrefabInstance:
     - target: {fileID: 1721818249482955117, guid: 123ed8adc58c41046be8aade20ce8fc9, type: 3}
       propertyPath: m_Name
       value: HorizontalDoor
-      objectReference: {fileID: 0}
-    - target: {fileID: 5257416374497908286, guid: 123ed8adc58c41046be8aade20ce8fc9, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 5458118237987217537, guid: 123ed8adc58c41046be8aade20ce8fc9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1557,10 +1549,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6961335867766531785, guid: da322fda613dae4439b2d6fa869a9667, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.75
-      objectReference: {fileID: 0}
     - target: {fileID: 7295630140868278410, guid: da322fda613dae4439b2d6fa869a9667, type: 3}
       propertyPath: m_Name
       value: VerticalDoor
@@ -1632,10 +1620,6 @@ PrefabInstance:
     - target: {fileID: 1672290952021716391, guid: da322fda613dae4439b2d6fa869a9667, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6961335867766531785, guid: da322fda613dae4439b2d6fa869a9667, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 7295630140868278410, guid: da322fda613dae4439b2d6fa869a9667, type: 3}
       propertyPath: m_Name
