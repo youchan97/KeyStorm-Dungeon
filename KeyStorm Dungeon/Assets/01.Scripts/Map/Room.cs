@@ -30,6 +30,7 @@ public class Room : MonoBehaviour
     [SerializeField] bool isPlayerIn;
     [SerializeField] bool canOpenDoor;
     [SerializeField] GameObject portal;
+    [SerializeField] Door[] doors;
 
     public Transform doorUp;
     public Transform doorDown;
@@ -105,7 +106,10 @@ public class Room : MonoBehaviour
     public void RoomClear()
     {
         canOpenDoor = true;
+        for (int i = 0; i < doors.Length; i++)
+            doors[i].ClearDoor();
         player.MagnetItems(roomCollider.bounds);
+
     }
 
     public void StageClear(Vector3 pos)

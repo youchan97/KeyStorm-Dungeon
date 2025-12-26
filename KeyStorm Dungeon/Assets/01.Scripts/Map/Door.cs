@@ -28,7 +28,9 @@ public class Door : MonoBehaviour
             return;
         }
 
-        if(ColliderEnable())
+        if (room.CanOpenDoor) return;
+
+        if(room.IsPlayerIn == false)
             anim.SetBool(DoorAnim, true);
     }
 
@@ -46,9 +48,9 @@ public class Door : MonoBehaviour
             return;
         }
 
+        if (room.CanOpenDoor) return;
 
-        if (ColliderEnable())
-            anim.SetBool(DoorAnim, false);
+        anim.SetBool(DoorAnim, false);
     }
 
     bool ColliderEnable()
@@ -79,5 +81,10 @@ public class Door : MonoBehaviour
     bool IsMonsterRoom()
     {
         return (room.roomType == RoomType.Normal || room.roomType == RoomType.Boss);
+    }
+
+    public void ClearDoor()
+    {
+        anim.SetBool(DoorAnim, true);
     }
 }
