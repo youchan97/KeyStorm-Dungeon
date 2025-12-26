@@ -10,6 +10,8 @@ public static class ConstValue
     public const string AxisY = "MoveY";
     public const string DieAnim = "Die";
     public const string HurtAnim = "Hurt";
+
+    public const string DoorAnim = "OpenDoor";
     #endregion
 
     #region 공격관련

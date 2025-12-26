@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using static ConstValue;
 
 public class Door : MonoBehaviour
 {
     [SerializeField] Tilemap wallTileMap;
     [SerializeField] BoxCollider2D col;
     [SerializeField] Room room;
+    [SerializeField] SpriteRenderer wallSprite;
+    [SerializeField] Animator anim;
 
     public bool canUse;
 
@@ -19,7 +22,14 @@ public class Door : MonoBehaviour
 
         if (player == null) return;
 
-        col.enabled = !ColliderEnable();
+        if(!IsMonsterRoom())
+        {
+            col.enabled = !ColliderEnable();
+            return;
+        }
+
+        if(ColliderEnable())
+            anim.SetBool(DoorAnim, true);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -30,7 +40,15 @@ public class Door : MonoBehaviour
 
         if (player == null) return;
 
-        col.enabled = ColliderEnable();
+        if (!IsMonsterRoom())
+        {
+            col.enabled = ColliderEnable();
+            return;
+        }
+
+
+        if (ColliderEnable())
+            anim.SetBool(DoorAnim, false);
     }
 
     bool ColliderEnable()
@@ -38,10 +56,28 @@ public class Door : MonoBehaviour
         return (room.IsPlayerIn && room.CanOpenDoor) || !room.IsPlayerIn;
     }
 
+    public void OpenDoor()
+    {
+        col.enabled = false;
+    }
+
+    public void CloseDoor()
+    {
+        col.enabled = true;
+    }
+
     public void UseDoor()
     {
         canUse = true;
         if(wallTileMap == null) return;
         wallTileMap?.gameObject.SetActive(false);
+
+        if(IsMonsterRoom())
+            wallSprite.enabled = true;
+    }
+
+    bool IsMonsterRoom()
+    {
+        return (room.roomType == RoomType.Normal || room.roomType == RoomType.Boss);
     }
 }
