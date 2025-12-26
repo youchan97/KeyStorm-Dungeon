@@ -16,6 +16,7 @@ public class BQueenMoveState : MonsterMoveState
     public override void EnterState()
     {
         rb = bQueen.MonsterRb;
+        animator = bQueen.Animator;
 
         moveDirection = Random.insideUnitCircle.normalized;
         currentMoveTime = bQueen.MoveTime;
@@ -60,6 +61,7 @@ public class BQueenMoveState : MonsterMoveState
     {
         return true;
     }
+
     private void UpdateAnimation()
     {
         if (animator == null) return;

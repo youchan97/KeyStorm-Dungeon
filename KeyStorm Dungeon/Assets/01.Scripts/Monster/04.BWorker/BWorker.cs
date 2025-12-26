@@ -52,6 +52,11 @@ public class BWorker : MeleeMonster
         assignedBQueen = bQueen;
         _isSpawnedImpulseActive = true;
         _spawnImpulseRemainingTime = impulseDuration;
+
+        if (bQueen != null)
+        {
+            this.MyRoom = bQueen.MyRoom;
+        }
     }
 
     public void DecrementSpawnImpulseTime(float time)
