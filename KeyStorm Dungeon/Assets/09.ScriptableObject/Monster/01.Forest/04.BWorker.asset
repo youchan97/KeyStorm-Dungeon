@@ -23,7 +23,7 @@ MonoBehaviour:
   targetDistance: 10
   tier: 0
   shotSpeed: 0
-  attackSpeed: 0
+  attackSpeed: 2
   separationRaduis: 0
   separationStrength: 0
   pathfindingWeight: 0

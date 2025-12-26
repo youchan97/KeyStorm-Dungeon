@@ -90,7 +90,7 @@ public class BQueen : MeleeMonster
         Vector3 spawnPosition = transform.position + (Vector3)randomDirection * spawnRangeOffset;
 
         BWorker newBWorker = Instantiate(bWorkerPrefab, spawnPosition, Quaternion.identity, transform);
-        newBWorker.SetAssignedBQueen(this);
+        newBWorker.SetAssignedBQueen(this, spawnDuration);
         bWorkers.Add(newBWorker);
 
         Rigidbody2D workerRb = newBWorker.GetComponent<Rigidbody2D>();
@@ -108,5 +108,10 @@ public class BQueen : MeleeMonster
         {
             bWorkers.Remove(worker);
         }
+    }
+
+    public void OnAttack()
+    {
+        SpawnBWorker();
     }
 }

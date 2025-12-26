@@ -7,6 +7,12 @@ public class BWorker : MeleeMonster
     private BQueen assignedBQueen;
     public BQueen AssignedBQueen => assignedBQueen;
 
+    private bool _isSpawnedImpulseActive = false;
+    private float _spawnImpulseRemainingTime;
+
+    public bool IsSpawnedImpulseActive => _isSpawnedImpulseActive;
+    public float SpawnImpulseRemainingTime => _spawnImpulseRemainingTime;
+
     private BWorkerIdleState _idleState;
     private BWorkerMoveState _moveState;
     private BWorkerAttackState _attackState;
@@ -41,9 +47,23 @@ public class BWorker : MeleeMonster
         ContactPlayer(collision);
     }
 
-    public void SetAssignedBQueen(BQueen bQueen)
+    public void SetAssignedBQueen(BQueen bQueen, float impulseDuration)
     {
         assignedBQueen = bQueen;
+        _isSpawnedImpulseActive = true;
+        _spawnImpulseRemainingTime = impulseDuration;
+    }
+
+    public void DecrementSpawnImpulseTime(float time)
+    {
+        if (_isSpawnedImpulseActive)
+        {
+            _spawnImpulseRemainingTime -= time;
+            if (_spawnImpulseRemainingTime <= 0)
+            {
+                _isSpawnedImpulseActive = false;
+            }
+        }
     }
 
     public override void Die()
