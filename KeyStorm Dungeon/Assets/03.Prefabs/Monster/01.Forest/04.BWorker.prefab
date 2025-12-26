@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6140372949550496265}
   - component: {fileID: 1413746122856216737}
   - component: {fileID: 6728184650229966426}
+  - component: {fileID: 2978706542952038657}
   m_Layer: 11
   m_Name: 04.BWorker
   m_TagString: Untagged
@@ -170,3 +171,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2978706542952038657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209725621322023292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6991b43ca97cdb4abab60f563996e79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPoolManager: {fileID: 0}
+  _monsterData: {fileID: 11400000, guid: a5e4fddcd4f80cc428718c071e6783b1, type: 2}
+  monsterSpriteRenderer: {fileID: 1413746122856216737}
+  animator: {fileID: 6728184650229966426}

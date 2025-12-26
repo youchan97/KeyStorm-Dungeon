@@ -31,6 +31,9 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] int shotGunBulletCount;
     [SerializeField] float shotSpreadAngle;
 
+    [SerializeField] Vector2 projectileColliderOffset;    // 투사체 중심점
+    [SerializeField] float projectileColliderRadius;      // 투사체 크기
+
     #region 폭탄
     [SerializeField] ThrownBomb bomb;
     bool isHoldingBomb;
@@ -387,7 +390,7 @@ public class PlayerAttack : MonoBehaviour
             }
             obj.transform.position = player.transform.position + (Vector3)dir * ShootOffset;
 
-            obj.InitData(sprite, damage, dir, ShootSpeed, Range, player.AttackPoolManager, true);
+            obj.InitData(sprite, damage, dir, ShootSpeed, Range, player.AttackPoolManager, true, projectileColliderOffset, projectileColliderRadius);
         }
 
         int consumeAmmo = isSpecial ? useAmmo * 2 : useAmmo;

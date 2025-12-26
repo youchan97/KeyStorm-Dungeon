@@ -69,9 +69,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.1}
+  m_Offset: {x: 0, y: -0.051444948}
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 0.3932892
 --- !u!50 &6593298926378799910
 Rigidbody2D:
   serializedVersion: 4
@@ -190,6 +190,8 @@ MonoBehaviour:
   animator: {fileID: 6774288875342118866}
   shootPoint: {fileID: 4151110777735581097}
   bullet: {fileID: 21300000, guid: a8af6b972bdfa254ba3a57fec712693d, type: 3}
+  idleTime: 1
+  moveTime: 3
   projectileLifeTime: 5
 --- !u!1 &5336305704194351128
 GameObject:

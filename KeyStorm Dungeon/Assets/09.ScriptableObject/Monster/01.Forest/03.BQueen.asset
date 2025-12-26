@@ -15,7 +15,7 @@ MonoBehaviour:
   characterData:
     charName: BQueen
     id: 3
-    maxHp: 20
+    maxHp: 35
     damage: 1
     moveSpeed: 0.3
   type: 1
@@ -23,7 +23,7 @@ MonoBehaviour:
   targetDistance: 10
   tier: 1
   shotSpeed: 0
-  attackSpeed: 5
+  attackSpeed: 2
   separationRaduis: 0
   separationStrength: 0
   pathfindingWeight: 0

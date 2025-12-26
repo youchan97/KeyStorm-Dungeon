@@ -83,6 +83,6 @@ public class RangerMonster : Monster
         pooledAttackObj.transform.position = shootPoint.position;
         pooledAttackObj.transform.rotation = Quaternion.identity;
 
-        pooledAttackObj.InitData(bullet, Damage, projectileDirection, MonsterData.shotSpeed, calculateProjectileLifeTime, attackPoolManager, false);
+        pooledAttackObj.InitData(bullet, Damage, projectileDirection, MonsterData.shotSpeed, calculateProjectileLifeTime, attackPoolManager, false, MonsterData.projectileColliderOffset, MonsterData.projectileColliderRadius);
     }
 }

@@ -102,6 +102,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 114005627041667001}
   rb: {fileID: 2559676089978735361}
   isPlayer: 1
+  circleCollider: {fileID: 679422950854568670}
 --- !u!50 &2559676089978735361
 Rigidbody2D:
   serializedVersion: 4
