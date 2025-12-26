@@ -1794,6 +1794,8 @@ MonoBehaviour:
   canShotGun: 0
   shotGunBulletCount: 3
   shotSpreadAngle: 5
+  projectileColliderOffset: {x: 0, y: 0}
+  projectileColliderRadius: 0.3
   bomb: {fileID: -8631913342669193820, guid: de0f6bee143d7c241a21cf7133aafd82, type: 3}
   dirImages:
   - {fileID: 3129408851358223910}
