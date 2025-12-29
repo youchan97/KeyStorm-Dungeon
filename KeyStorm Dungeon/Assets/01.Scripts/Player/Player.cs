@@ -185,12 +185,13 @@ public class Player : Character
 
     public void MagnetItems(Bounds bounds)
     {
-        float detectDis = Mathf.Max(bounds.extents.x + magnetRangeMargin, bounds.extents.y + magnetRangeMargin);
-        Collider2D[] cols = Physics2D.OverlapCircleAll(bounds.center, detectDis, itemLayer);
+        //float detectDis = Mathf.Max(bounds.extents.x + magnetRangeMargin, bounds.extents.y + magnetRangeMargin);
+        Vector2 boxSize = (Vector2)bounds.size + Vector2.one * magnetRangeMargin * 2f;
+        Collider2D[] cols = Physics2D.OverlapBoxAll(bounds.center, boxSize, itemLayer);
 
         foreach(Collider2D col in cols)
         {
-            if (!bounds.Contains(col.transform.position)) continue;
+            //if (!bounds.Intersects(col.bounds)) continue;
 
             GoldPickup gold = col.GetComponent<GoldPickup>();
             if (gold != null)

@@ -7,7 +7,7 @@ public class AttackObj : MonoBehaviour
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] bool isPlayer;
-
+    [SerializeField] CircleCollider2D circleCollider;
     AttackPoolManager poolManager;
     int damage;
     Vector2 dir;
@@ -16,7 +16,7 @@ public class AttackObj : MonoBehaviour
 
     Coroutine coroutine;
 
-    public void InitData(Sprite sprite, int value, Vector2 vec, float speed, float cool, AttackPoolManager manager, bool isPlayerAttack)
+    public void InitData(Sprite sprite, int value, Vector2 vec, float speed, float cool, AttackPoolManager manager, bool isPlayerAttack, Vector2 colliderOffset, float colliderRadius)
     {
         spriteRenderer.sprite = sprite;
         damage = value;
@@ -24,6 +24,8 @@ public class AttackObj : MonoBehaviour
         shootSpeed = speed;
         coolTime = cool;
         poolManager = manager;
+        circleCollider.offset = colliderOffset;
+        circleCollider.radius = colliderRadius;
 
         isPlayer = isPlayerAttack;
         transform.up = dir;

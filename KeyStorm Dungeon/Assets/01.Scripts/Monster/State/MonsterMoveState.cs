@@ -51,6 +51,7 @@ public class MonsterMoveState : CharacterMoveState<Monster>
         if (character.PlayerGO == null)
         {
             character.ChangeStateToPlayerDied();
+            return;
         }
 
         character.FlipSprite(rb.velocity.x);

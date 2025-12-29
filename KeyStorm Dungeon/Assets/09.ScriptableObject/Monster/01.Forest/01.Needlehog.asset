@@ -24,6 +24,8 @@ MonoBehaviour:
   tier: 1
   shotSpeed: 3
   attackSpeed: 4
+  projectileColliderOffset: {x: 0.002, y: -0.04}
+  projectileColliderRadius: 0.2
   separationRaduis: 0
   separationStrength: 0
   pathfindingWeight: 0

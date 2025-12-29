@@ -31,6 +31,9 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] int shotGunBulletCount;
     [SerializeField] float shotSpreadAngle;
 
+    [SerializeField] Vector2 projectileColliderOffset;    // 투사체 중심점
+    [SerializeField] float projectileColliderRadius;      // 투사체 크기
+
     #region 폭탄
     [SerializeField] ThrownBomb bomb;
     bool isHoldingBomb;
@@ -387,7 +390,7 @@ public class PlayerAttack : MonoBehaviour
             }
             obj.transform.position = player.transform.position + (Vector3)dir * ShootOffset;
 
-            obj.InitData(sprite, damage, dir, ShootSpeed, Range, player.AttackPoolManager, true);
+            obj.InitData(sprite, damage, dir, ShootSpeed, Range, player.AttackPoolManager, true, projectileColliderOffset, projectileColliderRadius);
         }
 
         int consumeAmmo = isSpecial ? useAmmo * 2 : useAmmo;
@@ -432,7 +435,7 @@ public class PlayerAttack : MonoBehaviour
     IEnumerator StartKeyCool(string key)
     {
         keyCoolDic[key] = true;
-        yield return new WaitForSeconds(ShootSpeed);
+        yield return new WaitForSeconds(AttackSpeed);
         keyCoolDic[key] = false;
     }
 
@@ -444,14 +447,14 @@ public class PlayerAttack : MonoBehaviour
         else
             image = coolImage[(int)type];
 
-        float timer = ShootSpeed;
+        float timer = AttackSpeed;
 
         image.fillAmount = 1f;
         image.gameObject.SetActive(true);
         while(timer >= 0)
         {
             timer -= Time.deltaTime;
-            float fill = timer / ShootSpeed;
+            float fill = timer / AttackSpeed;
             image.fillAmount = fill;
 
             yield return null;
@@ -489,14 +492,14 @@ public class PlayerAttack : MonoBehaviour
     {
         isReloading = true;
         ShuffleKey();
-        yield return new WaitForSeconds(ShootSpeed);
+        yield return new WaitForSeconds(AttackSpeed);
         Ammo = MaxAmmo;
         isReloading = false;
     }
 
     IEnumerator ReloadImage()
     {
-        float timer = ShootSpeed;
+        float timer = AttackSpeed;
 
         for(int i = 0; i<coolImage.Length; i++)
         {
@@ -507,7 +510,7 @@ public class PlayerAttack : MonoBehaviour
         while (timer > 0)
         {
             timer -= Time.deltaTime;
-            float fill = timer / ShootSpeed;
+            float fill = timer / AttackSpeed;
 
             for (int i = 0; i < coolImage.Length; i++)
             {

@@ -123,7 +123,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 25, y: 25}
+  m_Size: {x: 24, y: 24}
   m_EdgeRadius: 0
 --- !u!1 &885636698069177947
 GameObject:
@@ -6739,10 +6739,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterPrefabsToSpawn:
-  - {fileID: 1193851755899980334, guid: 431e7701f3f597846859b9c504a670d4, type: 3}
-  - {fileID: 1193851755899980334, guid: 431e7701f3f597846859b9c504a670d4, type: 3}
-  - {fileID: 1193851755899980334, guid: 431e7701f3f597846859b9c504a670d4, type: 3}
-  - {fileID: 1193851755899980334, guid: 431e7701f3f597846859b9c504a670d4, type: 3}
+  - {fileID: 3877854567330950090, guid: 1e59c7151d6879548a1fcb8931bda6aa, type: 3}
+  - {fileID: 3877854567330950090, guid: 1e59c7151d6879548a1fcb8931bda6aa, type: 3}
+  - {fileID: 3877854567330950090, guid: 1e59c7151d6879548a1fcb8931bda6aa, type: 3}
+  - {fileID: 3877854567330950090, guid: 1e59c7151d6879548a1fcb8931bda6aa, type: 3}
   spawnPoints:
   - {fileID: 833229008867957891}
   - {fileID: 135352169324224101}
