@@ -67,7 +67,7 @@ public class InventoryUIController : MonoBehaviour
     {
         for (int i = 0; i < slots.Count; i++)
         {
-            ItemData data = (model.items.Count > i) ? model.items[i] : null;
+            ItemData data = (model.Items.Count > i) ? model.Items[i] : null;
             slots[i].Set(data);
         }
 
@@ -78,7 +78,7 @@ public class InventoryUIController : MonoBehaviour
 
     private void HandleNavigation()
     {
-        int count = Mathf.Min(model.items.Count, capacity);
+        int count = Mathf.Min(model.Items.Count, capacity);
         if (count <= 0) return;
 
         int prev = selectedIndex;
@@ -100,7 +100,7 @@ public class InventoryUIController : MonoBehaviour
         for (int i = 0; i < slots.Count; i++)
             slots[i].SetSelected(false);
 
-        int count = Mathf.Min(model.items.Count, capacity);
+        int count = Mathf.Min(model.Items.Count, capacity);
         if (count <= 0) return;
 
         selectedIndex = Mathf.Clamp(selectedIndex, 0, count - 1);

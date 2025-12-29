@@ -77,7 +77,7 @@ public class PlayerInventory : MonoBehaviour
         if (data == null) return;
 
         //passiveItems.Add(data);
-        inventoryModel?.AddItem(data);
+        inventoryModel?.Add(data);
         FindObjectOfType<InventoryUIController>()?.Refresh();
         runData.ApplyInventory(data);
     }

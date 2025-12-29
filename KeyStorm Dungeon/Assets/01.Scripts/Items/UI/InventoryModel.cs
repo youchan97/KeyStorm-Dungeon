@@ -1,15 +1,25 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryModel : MonoBehaviour
 {
-    // 최신 획득이 0번(왼쪽 위)
-    public readonly List<ItemData> items = new();
+    [SerializeField] private int maxSlots = 24;
 
-    public void AddItem(ItemData data)
+    private readonly List<ItemData> _items = new();
+    public IReadOnlyList<ItemData> Items => _items;
+
+    public event Action<IReadOnlyList<ItemData>> OnChanged;
+
+    public void Add(ItemData item)
     {
-        if (data == null) return;
-        items.Insert(0, data);
+        if (item == null) return;
+
+        if (_items.Count >= maxSlots)
+            _items.RemoveAt(_items.Count - 1);
+
+        _items.Insert(0, item); // 최신이 0번(좌상단)
+        OnChanged?.Invoke(_items);
     }
 }

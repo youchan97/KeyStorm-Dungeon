@@ -5,24 +5,30 @@ using UnityEngine.UI;
 
 public class InventorySlotUI : MonoBehaviour
 {
-    public Image icon;
-    public GameObject highlight;
+    [SerializeField] private Image iconImage;
+    [SerializeField] private GameObject selectedFrame;
+
+    public ItemData Data { get; private set; }
 
     public void Set(ItemData data)
     {
-        if (data == null || data.iconSprite == null)
-        {
-            icon.sprite = null;
-            icon.color = new Color(1, 1, 1, 0); // 안 보이게
-            return;
-        }
+        Data = data;
 
-        icon.sprite = data.iconSprite;
-        icon.color = Color.white;
+        if (Data != null && Data.iconSprite != null)
+        {
+            iconImage.enabled = true;
+            iconImage.sprite = Data.iconSprite;
+        }
+        else
+        {
+            iconImage.enabled = false;
+            iconImage.sprite = null;
+        }
     }
 
-    public void SetSelected(bool selected)
+    public void SetSelected(bool on)
     {
-        if (highlight != null) highlight.SetActive(selected);
+        if (selectedFrame != null)
+            selectedFrame.SetActive(on);
     }
 }

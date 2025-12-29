@@ -34,7 +34,7 @@ public class PassiveItemPickup : MonoBehaviour
         if (itemData.isActiveItem) return;
 
         // 인벤 모델/UI 반영
-        FindObjectOfType<InventoryModel>()?.AddItem(itemData);
+        FindObjectOfType<InventoryModel>()?.Add(itemData);
         FindObjectOfType<InventoryUIController>()?.Refresh();
 
         inv.AddPassiveItem(itemData);
