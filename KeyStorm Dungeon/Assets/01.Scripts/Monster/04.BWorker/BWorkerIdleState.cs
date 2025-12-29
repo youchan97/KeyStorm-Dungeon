@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BWorkerIdleState : MonsterIdleState
@@ -15,7 +13,7 @@ public class BWorkerIdleState : MonsterIdleState
 
     public BWorkerIdleState(Monster character, CharacterStateManager<Monster> stateManager) : base(character, stateManager)
     {
-        this.bWorker = character as BWorker;
+        bWorker = character as BWorker;
     }
 
     public override void EnterState()

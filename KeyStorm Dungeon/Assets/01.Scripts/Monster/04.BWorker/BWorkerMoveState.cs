@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BWorkerMoveState : MonsterMoveState
@@ -9,7 +7,7 @@ public class BWorkerMoveState : MonsterMoveState
 
     public BWorkerMoveState(Monster monster, CharacterStateManager<Monster> stateManager) : base(monster, stateManager)
     {
-        this.bWorker = character as BWorker;
+        bWorker = character as BWorker;
     }
 
     public override void EnterState()

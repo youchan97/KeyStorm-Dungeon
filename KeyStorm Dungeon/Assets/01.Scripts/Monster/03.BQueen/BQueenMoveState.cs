@@ -10,7 +10,7 @@ public class BQueenMoveState : MonsterMoveState
 
     public BQueenMoveState(Monster monster, CharacterStateManager<Monster> stateManager) : base(monster, stateManager)
     {
-        this.bQueen = character as BQueen;
+        bQueen = character as BQueen;
     }
 
     public override void EnterState()
