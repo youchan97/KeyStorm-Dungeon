@@ -317,8 +317,9 @@ GameObject:
   - component: {fileID: 1098585580781546159}
   - component: {fileID: 1393310932720634519}
   - component: {fileID: 4509017428272047833}
+  - component: {fileID: 823384170212396474}
   m_Layer: 5
-  m_Name: ItemDescriptionPlaceholder
+  m_Name: ItemDescription
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -382,6 +383,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &823384170212396474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8349730602961426476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48dd53e324246084bb3067eb32c41a06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  themeSO: {fileID: 11400000, guid: 76f5f8854d461d64b86a185c3e564123, type: 2}
+  frameImage: {fileID: 0}
+  iconImage: {fileID: 0}
+  nameText: {fileID: 0}
+  statLinesRoot: {fileID: 0}
+  statLinePrefab: {fileID: 0}
+  extraDescText: {fileID: 0}
+  tierEffectRoot: {fileID: 0}
 --- !u!1 &9109608145845465687
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,13 +415,14 @@ GameObject:
   - component: {fileID: 1264974997587664226}
   - component: {fileID: 3341566706692451233}
   - component: {fileID: 7971614803815555531}
+  - component: {fileID: 7757723209542446051}
   m_Layer: 5
   m_Name: InventoryUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1656061361356526462
 RectTransform:
   m_ObjectHideFlags: 0
@@ -476,5 +498,20 @@ MonoBehaviour:
   model: {fileID: 0}
   gridParent: {fileID: 2520615579498463443}
   slotPrefab: {fileID: -2629973070297178242, guid: c8be78cdc657f4d4582a61738d092bcd, type: 3}
+  des: {fileID: 823384170212396474}
+  selection: {fileID: 0}
   columns: 5
   capacity: 30
+--- !u!114 &7757723209542446051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9109608145845465687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04ebc15e52b7d8b46b04cde638a05e91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  columns: 5

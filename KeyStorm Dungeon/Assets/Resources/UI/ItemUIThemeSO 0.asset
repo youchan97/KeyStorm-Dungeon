@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ItemUIThemeSO 0
   m_EditorClassIdentifier: 
   tier0:
-    frameSprite: {fileID: 0}
+    frameSprite: {fileID: 2123827432, guid: 412be825207259543974285a1fd49bd8, type: 3}
     effectPrefab: {fileID: 0}
   tier1:
     frameSprite: {fileID: 0}

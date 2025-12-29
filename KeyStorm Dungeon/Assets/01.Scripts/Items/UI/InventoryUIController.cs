@@ -10,6 +10,9 @@ public class InventoryUIController : MonoBehaviour
     public Transform gridParent;            // ItemGridPanel
     public InventorySlotUI slotPrefab;      // ItemSlot prefab
 
+    [SerializeField] private ItemDescriptionView des;
+    [SerializeField] private InventorySelectionController selection;
+
     [Header("Grid Settings")]
     public int columns = 5;
     public int capacity = 30;
@@ -22,6 +25,11 @@ public class InventoryUIController : MonoBehaviour
     {
         BuildSlots();
         Close();
+    }
+
+    private void OnEnable()
+    {
+        Debug.Log("InventoryUIController Enabled");
     }
 
     private void Update()
@@ -46,6 +54,7 @@ public class InventoryUIController : MonoBehaviour
             s.SetSelected(false);
             slots.Add(s);
         }
+        selection.Init(slots, des);
     }
 
     private void Open()
@@ -70,10 +79,7 @@ public class InventoryUIController : MonoBehaviour
             ItemData data = (model.Items.Count > i) ? model.Items[i] : null;
             slots[i].Set(data);
         }
-
         UpdateSelection();
-
-        // 오른쪽 아이템 설명 UI 갱신 코드는 없음
     }
 
     private void HandleNavigation()
@@ -105,8 +111,6 @@ public class InventoryUIController : MonoBehaviour
 
         selectedIndex = Mathf.Clamp(selectedIndex, 0, count - 1);
         slots[selectedIndex].SetSelected(true);
-
-        // 여기에도 설명 UI 갱신 없음(placeholder만 존재)
     }
 
     private int MoveUp(int idx, int count, int cols)

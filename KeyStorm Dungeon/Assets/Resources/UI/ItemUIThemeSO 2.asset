@@ -19,7 +19,7 @@ MonoBehaviour:
     frameSprite: {fileID: 0}
     effectPrefab: {fileID: 0}
   tier2:
-    frameSprite: {fileID: 0}
+    frameSprite: {fileID: 575301634, guid: 412be825207259543974285a1fd49bd8, type: 3}
     effectPrefab: {fileID: 0}
   tier3:
     frameSprite: {fileID: 0}
