@@ -1,11 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class BWorkerAttackState : MonsterAttackState
 {
-    private BWorker bWorker;
     private Transform playerTransform;
     private float distanceToPlayer;
 
@@ -19,7 +17,6 @@ public class BWorkerAttackState : MonsterAttackState
 
     public BWorkerAttackState(Monster character, CharacterStateManager<Monster> stateManager) : base(character, stateManager)
     {
-        this.bWorker = character as BWorker;
     }
 
     public override void EnterState()

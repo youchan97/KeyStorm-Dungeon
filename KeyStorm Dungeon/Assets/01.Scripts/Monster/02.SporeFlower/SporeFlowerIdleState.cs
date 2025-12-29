@@ -9,7 +9,7 @@ public class SporeFlowerIdleState : MonsterIdleState
 
     public SporeFlowerIdleState(Monster character, CharacterStateManager<Monster> stateManager) : base(character, stateManager)
     {
-        this.sporeFlower = character as SporeFlower;
+        sporeFlower = character as SporeFlower;
     }
 
     public override void EnterState()

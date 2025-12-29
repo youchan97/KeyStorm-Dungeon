@@ -6,7 +6,7 @@ public class NeedlehogAttackState : MonsterAttackState
 
     public NeedlehogAttackState(Monster character, CharacterStateManager<Monster> stateManager) : base(character, stateManager)
     {
-        this.needlehog = character as Needlehog;
+        needlehog = character as Needlehog;
     }
 
     public override void EnterState()
