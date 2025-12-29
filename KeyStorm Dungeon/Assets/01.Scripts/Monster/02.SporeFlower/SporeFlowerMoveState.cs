@@ -23,7 +23,7 @@ public class SporeFlowerMoveState : MonsterMoveState
     private Vector2 moveDirection;
     public SporeFlowerMoveState(Monster monster, CharacterStateManager<Monster> stateManager) : base(monster, stateManager)
     {
-        this.sporeFlower = character as SporeFlower;
+        sporeFlower = character as SporeFlower;
     }
 
     public override void EnterState()

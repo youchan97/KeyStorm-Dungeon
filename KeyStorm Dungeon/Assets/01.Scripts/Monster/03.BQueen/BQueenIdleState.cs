@@ -8,7 +8,7 @@ public class BQueenIdleState : MonsterIdleState
     private float currentIdleTime;
     public BQueenIdleState(Monster character, CharacterStateManager<Monster> stateManager) : base(character, stateManager)
     {
-        this.bQueen = character as BQueen;
+        bQueen = character as BQueen;
     }
 
     public override void EnterState()

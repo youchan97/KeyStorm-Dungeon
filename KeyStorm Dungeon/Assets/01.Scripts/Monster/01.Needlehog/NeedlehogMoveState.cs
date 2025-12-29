@@ -15,7 +15,7 @@ public class NeedlehogMoveState : MonsterMoveState
 
     public NeedlehogMoveState(Monster monster, CharacterStateManager<Monster> stateManager) : base(monster, stateManager)
     {
-        this.needlehog = character as Needlehog;
+        needlehog = character as Needlehog;
     }
 
     public override void EnterState()

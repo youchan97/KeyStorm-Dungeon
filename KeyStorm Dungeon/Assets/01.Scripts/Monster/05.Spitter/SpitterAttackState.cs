@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class SpitterAttackState : MonsterAttackState
 {
-    private Spitter spitter;
-
     public SpitterAttackState(Monster character, CharacterStateManager<Monster> stateManager) : base(character, stateManager)
     {
-        this.spitter = character as Spitter;
     }
 
     public override void EnterState()
