@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 326085460871426121}
   - component: {fileID: 4021978913174189754}
   - component: {fileID: -8130563644815194907}
+  - component: {fileID: 6573742218798509234}
   m_Layer: 16
   m_Name: ActiveItemPickup
   m_TagString: Untagged
@@ -121,7 +122,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.4
 --- !u!114 &4021978913174189754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,6 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 0}
+  isShopDisplay: 0
 --- !u!114 &-8130563644815194907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,3 +151,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sr: {fileID: 2419977659043422578}
   itemData: {fileID: 0}
+--- !u!114 &6573742218798509234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6506968681589806263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd18fb685823735489959b2843cb0d89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData: {fileID: 11400000, guid: 6113f5cec5c08ca4787af09bc843f5ed, type: 2}
+  uiOffset: {x: 0, y: 1, z: 0}

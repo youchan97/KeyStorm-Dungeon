@@ -6,9 +6,7 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     public InventoryRunData runData;
-
     public PlayerStats stats;
-    public InventoryModel inventoryModel;
 
     [Header("자원")]
     public int gold;
@@ -46,8 +44,7 @@ public class PlayerInventory : MonoBehaviour
     public void AddPotion(int amount)
     {
         hpPotion += amount;
-        if (hpPotion < 0)
-            hpPotion = 0;
+        if (hpPotion < 0) hpPotion = 0;
     }
 
     // =====================
@@ -56,8 +53,7 @@ public class PlayerInventory : MonoBehaviour
     public void AddBomb(int amount)
     {
         bombCount += amount;
-        if (bombCount < 0)
-            bombCount = 0;
+        if (bombCount < 0) bombCount = 0;
         runData.UpdateBomb(bombCount);
     }
 
@@ -76,9 +72,10 @@ public class PlayerInventory : MonoBehaviour
     {
         if (data == null) return;
 
-        //passiveItems.Add(data);
-        inventoryModel?.Add(data);
-        FindObjectOfType<InventoryUIController>()?.Refresh();
+        // 인벤 UI/모델 삭제했으니 여기서는 리스트에만 담아도 됨
+        passiveItems.Add(data);
+
+        // 런데이터 반영(스탯 적용 등)
         runData.ApplyInventory(data);
     }
 
@@ -109,7 +106,7 @@ public class PlayerInventory : MonoBehaviour
             ? ItemDatabase.Instance.GetActivePickupPrefab(oldItem.itemId)
             : null;
 
-        //없으면 공용 프리팹 사용(반드시 연결)
+        // 없으면 공용 프리팹 사용(반드시 연결)
         if (prefab == null)
             prefab = defaultActivePickupPrefab;
 
@@ -119,7 +116,7 @@ public class PlayerInventory : MonoBehaviour
             return;
         }
 
-        Vector2 offset = UnityEngine.Random.insideUnitCircle.normalized * 0.6f;
+        Vector2 offset = Random.insideUnitCircle.normalized * 0.6f;
         Vector3 dropPos = transform.position + (Vector3)offset;
 
         GameObject drop = Instantiate(prefab, dropPos, Quaternion.identity);
