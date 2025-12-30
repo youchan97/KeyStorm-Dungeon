@@ -76,7 +76,7 @@ public class PlayerSkill : MonoBehaviour
         if (skill.cooldown > 0) return false;
 
         currentSkill = skill;
-        skill.skill.Enter();
+         skill.skill.Enter();
         return true;
     }
 
