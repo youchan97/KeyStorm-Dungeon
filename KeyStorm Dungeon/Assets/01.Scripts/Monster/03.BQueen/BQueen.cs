@@ -93,6 +93,12 @@ public class BQueen : MeleeMonster
         newBWorker.SetAssignedBQueen(this, spawnDuration);
         bWorkers.Add(newBWorker);
 
+        if (MyRoom != null)
+        {
+            newBWorker.SetMyRoom(MyRoom);
+            MyRoom.AddMonster(newBWorker);
+        }
+
         Rigidbody2D workerRb = newBWorker.GetComponent<Rigidbody2D>();
         if (workerRb != null)
         {

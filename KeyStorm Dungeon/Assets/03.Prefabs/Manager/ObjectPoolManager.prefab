@@ -51,3 +51,6 @@ MonoBehaviour:
   - poolName: BombItem
     prefab: {fileID: 3682559147175356916, guid: 59c008bda9fa9e34d831e7b5272c155b, type: 3}
     initialSize: 20
+  - poolName: PoisonField
+    prefab: {fileID: 6801274708127121250, guid: b8adf5299dc8fc24b9856ebdf409ed2b, type: 3}
+    initialSize: 20

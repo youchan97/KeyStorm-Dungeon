@@ -12,7 +12,7 @@ public class JellyBugMitosisMoveState : MonsterMoveState
     private LayerMask otherMonsterLayer;
     private float otherMonsterDetectionDistance;
     private CapsuleCollider2D currentMonsterCollider;
-    private float poisonCooldown;
+    private float currentPoisonCooldown;
     public JellyBugMitosisMoveState(Monster monster, CharacterStateManager<Monster> stateManager) : base(monster, stateManager)
     {
         jellyBugMitosis = character as JellyBugMitosis;
@@ -25,7 +25,7 @@ public class JellyBugMitosisMoveState : MonsterMoveState
         otherMonsterLayer = jellyBugMitosis.OtherMonsterLayer;
         otherMonsterDetectionDistance = jellyBugMitosis.OtherMonsterDetectionDistance;
         currentMonsterCollider = jellyBugMitosis.GetCurrentMonsterCollider();
-        poisonCooldown = 0f;
+        currentPoisonCooldown = 0f;
 
         lastPosition = jellyBugMitosis.transform.position;
         timeSinceLastCheck = 0f;
@@ -81,12 +81,12 @@ public class JellyBugMitosisMoveState : MonsterMoveState
             timeSinceLastCheck = 0f;
         }
 
-        poisonCooldown -= Time.fixedDeltaTime;
+        currentPoisonCooldown -= Time.fixedDeltaTime;
 
-        if (poisonCooldown <= 0f)
+        if (currentPoisonCooldown <= 0f)
         {
-            jellyBugMitosis.SpawnPoisonField(jellyBugMitosis.transform.position + new Vector3(0, -0.3f, 0));
-            poisonCooldown = jellyBugMitosis.PoisonCooldown;
+            jellyBugMitosis.SpawnPoisonField(jellyBugMitosis.transform.position + jellyBugMitosis.PoisonSpawnPointOffset);
+            currentPoisonCooldown = jellyBugMitosis.PoisonCooldown;
         }
     }
 
