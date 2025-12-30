@@ -10,12 +10,16 @@ public class PlayerController : MonoBehaviour
     InputAction moveAction;
     InputAction shootAction;
     InputAction bombAction;
+    InputAction useActiveItemAction;
+    InputAction pauseAction;
     #endregion
 
     #region events
     public Action OnMove;
     public Action OnShoot;
     public Action OnBomb;
+    public Action OnUseActiveItem;
+    public Action OnPause;
     #endregion
 
     #region Move관련
@@ -26,8 +30,8 @@ public class PlayerController : MonoBehaviour
     string keyName;
     #endregion
 
-    public PlayerInput PlayerInput { get ; private set ; }
     #region Property
+    public PlayerInput PlayerInput { get ; private set ; }
     public Vector2 MoveVec { get => moveVec; private set => moveVec = value; }
     public string KeyName { get => keyName; private set => keyName = value; }
     #endregion
@@ -37,12 +41,14 @@ public class PlayerController : MonoBehaviour
         InitInput();
         InitAction();
         EnableInput();
+        EnablePause();
     }
 
     private void OnDisable()
     {
         RemoveAction();
         DisableInput();
+        DisablePause();
     }
 
     void InitInput()
@@ -51,6 +57,8 @@ public class PlayerController : MonoBehaviour
         moveAction = PlayerInput.Player.Move;
         shootAction = PlayerInput.Player.Shot;
         bombAction = PlayerInput.Player.Bomb;
+        useActiveItemAction = PlayerInput.Player.UseActiveItem;
+        pauseAction = PlayerInput.Player.Pause;
     }
 
     void InitAction()
@@ -59,6 +67,8 @@ public class PlayerController : MonoBehaviour
         moveAction.canceled += MoveCanceled;
         shootAction.performed += ShootPerformed;
         bombAction.performed += BombPerformed;
+        useActiveItemAction.performed += UseActiveItemPerformed;
+        pauseAction.performed += PausePerformed;
     }
 
     void RemoveAction()
@@ -67,6 +77,8 @@ public class PlayerController : MonoBehaviour
         moveAction.canceled -= MoveCanceled;
         shootAction.performed-= ShootPerformed;
         bombAction.performed -= BombPerformed;
+        useActiveItemAction.performed -= UseActiveItemPerformed;
+        pauseAction.performed -= PausePerformed;
     }
 
     public void EnableInput()
@@ -74,6 +86,7 @@ public class PlayerController : MonoBehaviour
         moveAction.Enable();
         shootAction.Enable();
         bombAction.Enable();
+        useActiveItemAction.Enable();
     }
 
     public void DisableInput()
@@ -81,7 +94,12 @@ public class PlayerController : MonoBehaviour
         moveAction.Disable();
         shootAction.Disable();
         bombAction.Disable();
+        useActiveItemAction.Disable();
     }
+
+    public void EnablePause() => pauseAction.Enable();
+
+    public void DisablePause() => pauseAction.Disable();
 
     void MovePerformed(InputAction.CallbackContext context)
     {
@@ -104,5 +122,15 @@ public class PlayerController : MonoBehaviour
     void BombPerformed(InputAction.CallbackContext context)
     {
         OnBomb?.Invoke();
+    }
+
+    void UseActiveItemPerformed(InputAction.CallbackContext context)
+    {
+        OnUseActiveItem?.Invoke();
+    }
+
+    void PausePerformed(InputAction.CallbackContext context)
+    {
+        OnPause?.Invoke();
     }
 }

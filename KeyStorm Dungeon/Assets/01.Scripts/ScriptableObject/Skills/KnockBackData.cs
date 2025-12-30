@@ -1,0 +1,16 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "KnockBackSKill", menuName =("ScriptableObject/Skill/KnockBack"))]
+public class KnockBackData : SkillData
+{
+    public float radius;
+    public float force;
+    public float duration;
+
+    public override ISkill CreateSkill(PlayerSkill playerSkill)
+    {
+        return new KnockBackSkill(playerSkill, this);
+    }
+}

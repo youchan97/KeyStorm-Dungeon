@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 3343479756141598306}
   - component: {fileID: 6748696866597545364}
   - component: {fileID: 8058226628866296329}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -1961,7 +1961,7 @@ MonoBehaviour:
   doorLeft: {fileID: 776440941436975729}
   doorRight: {fileID: 7705997795336000788}
   roomGroundTilemap: {fileID: 2526432936384946894}
-  roomWallTilemap: {fileID: 0}
+  roomWallTilemap: {fileID: 5330619669650398138}
   monsterSpawner: {fileID: 7035562957613682243}
 --- !u!61 &9202093331844313984
 BoxCollider2D:

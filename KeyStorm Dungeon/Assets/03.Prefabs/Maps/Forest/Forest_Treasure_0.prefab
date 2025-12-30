@@ -2482,7 +2482,7 @@ GameObject:
   - component: {fileID: 2130583012473267086}
   - component: {fileID: 1720302997471710989}
   - component: {fileID: 4152035010717423222}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -3674,12 +3674,13 @@ MonoBehaviour:
   isPlayerIn: 0
   canOpenDoor: 0
   portal: {fileID: 0}
+  doors: []
   doorUp: {fileID: 3022748502829395213}
   doorDown: {fileID: 4228523132462202126}
   doorLeft: {fileID: 7595855810298575995}
   doorRight: {fileID: 675164305736815390}
   roomGroundTilemap: {fileID: 5506783669761948187}
-  roomWallTilemap: {fileID: 0}
+  roomWallTilemap: {fileID: 2130583012473267086}
   monsterSpawner: {fileID: 0}
 --- !u!1 &7145665154047554383
 GameObject:

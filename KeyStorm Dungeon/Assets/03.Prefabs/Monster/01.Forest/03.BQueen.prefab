@@ -186,7 +186,12 @@ MonoBehaviour:
   attackPoolManager: {fileID: 0}
   _monsterData: {fileID: 11400000, guid: f476ebef7ed85e740823a4d04fe7440f, type: 2}
   monsterSpriteRenderer: {fileID: 8089565846490255244}
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  spawnCheckRadius: 0.8
   animator: {fileID: 6855363361542580760}
+  isKnockBack: 0
   idleTime: 2
   moveTime: 5
   bWorkerPrefab: {fileID: 2978706542952038657, guid: 63d70f3bcf8d44b4bab3b5fa4fc86f80, type: 3}
@@ -194,4 +199,5 @@ MonoBehaviour:
   spawnImpulseForce: 3
   spawnDuration: 0.5
   spawnRangeOffset: 0.5
+  maxSpawnAttempts: 10
   isDamaged: 0

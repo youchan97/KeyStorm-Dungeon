@@ -67,6 +67,8 @@ public class SporeFlowerMoveState : MonsterMoveState
             return;
         }
 
+        if (character.isKnockBack) return;
+
         if ( currentMoveTime > 0f)
         {
             rb.velocity = moveDirection * sporeFlower.MoveSpeed;

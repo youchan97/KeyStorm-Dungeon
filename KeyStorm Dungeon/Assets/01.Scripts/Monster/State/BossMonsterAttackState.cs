@@ -92,8 +92,6 @@ public class BossMonsterAttackState : MonsterAttackState
 
         boss.transform.position = diveTargetPosition + Vector3.up * (boss.JumpHeight);
 
-        boss.GetComponent<Collider2D>().enabled = true;
-
         boss.Animator.SetBool("IsDive", true);
 
         Vector3 startDivePos = boss.transform.position;
@@ -123,6 +121,10 @@ public class BossMonsterAttackState : MonsterAttackState
         boss.transform.position = endDivePos;
 
         boss.ApplyLandingDamage(diveTargetPosition, 2);
+
+        yield return null;
+
+        boss.GetComponent<Collider2D>().enabled = true;
 
         yield return new WaitForSeconds(boss.LandedDelay);
 

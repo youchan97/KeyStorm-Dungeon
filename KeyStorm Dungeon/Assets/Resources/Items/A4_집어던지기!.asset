@@ -35,3 +35,4 @@ MonoBehaviour:
   scale: 0
   cooldownType: 0
   cooldownMax: 20
+  skillData: {fileID: 0}

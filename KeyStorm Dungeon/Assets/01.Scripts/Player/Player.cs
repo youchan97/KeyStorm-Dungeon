@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static ConstValue;
@@ -14,6 +15,7 @@ public class Player : Character
     [SerializeField] PlayerController playerController;
     [SerializeField] PlayerInventory inventory;
     [SerializeField] PlayerData data;
+    [SerializeField] PlayerSkill playerSkill;
     PlayerRunData playerRunData;
     [SerializeField] Rigidbody2D playerRb;
     [SerializeField] Animator anim;
@@ -42,6 +44,8 @@ public class Player : Character
     public Sprite SBullet { get => sBullet;}
     public PlayerInventory Inventory { get => inventory;}
     public AudioManager AudioManager { get => audioManager; }
+    public PlayerSkill PlayerSkill { get => playerSkill;}
+    public GameSceneUI GameSceneUI { get; private set; }
     #endregion
 
     protected override void Awake()
@@ -81,6 +85,11 @@ public class Player : Character
         this.attackPoolManager = attackPoolManager;
     }
 
+    public void InitGameSceneUi(GameSceneUI gameSceneUI)
+    {
+        GameSceneUI = gameSceneUI;
+    }
+
     protected override void InitState()
     {
         IdleState = new PlayerIdleState(this, playerStateManager);
@@ -104,6 +113,8 @@ public class Player : Character
         PlayerController.OnMove += PlayerMove;
         playerController.OnShoot += Shoot;
         playerController.OnBomb += Bomb;
+        playerController.OnUseActiveItem += UseActiveItem;
+        PlayerController.OnPause += PausePlayer;
     }
 
     void RemoveActions()
@@ -111,6 +122,8 @@ public class Player : Character
         PlayerController.OnMove -= PlayerMove;
         playerController.OnShoot -= Shoot;
         playerController.OnBomb -= Bomb;
+        playerController.OnUseActiveItem -= UseActiveItem;
+        playerController.OnPause -= PausePlayer;
     }
 
     void PlayerMove()
@@ -126,6 +139,34 @@ public class Player : Character
     void Bomb()
     {
         PlayerAttack.HoldBomb();
+    }
+
+    void UseActiveItem()
+    {
+        if (inventory.activeItem == null) return;
+
+        if (inventory.activeItem.skillType == SkillType.Bomb)
+            Bomb();
+        else
+        {
+            playerSkill.TrySkill(inventory.activeItem.skillType);
+        }
+    }
+
+    void PausePlayer()
+    {
+        if (gameManager.isPaused)
+        {
+            gameManager.Resume();
+            playerController.EnableInput();
+            GameSceneUI.CloseAllPopup();
+        }
+        else
+        {
+            gameManager.Pause();
+            playerController.DisableInput();
+            GameSceneUI.OpenOption();
+        }
     }
 
     public override void Die()
@@ -185,14 +226,11 @@ public class Player : Character
 
     public void MagnetItems(Bounds bounds)
     {
-        //float detectDis = Mathf.Max(bounds.extents.x + magnetRangeMargin, bounds.extents.y + magnetRangeMargin);
         Vector2 boxSize = (Vector2)bounds.size + Vector2.one * magnetRangeMargin * 2f;
         Collider2D[] cols = Physics2D.OverlapBoxAll(bounds.center, boxSize, itemLayer);
 
         foreach(Collider2D col in cols)
         {
-            //if (!bounds.Intersects(col.bounds)) continue;
-
             GoldPickup gold = col.GetComponent<GoldPickup>();
             if (gold != null)
                 gold.EnableMagnet(transform, magnetSpeed);

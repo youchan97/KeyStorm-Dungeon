@@ -5,7 +5,8 @@ public class JellyBug : MeleeMonster
     [Header("젤리벌레 설정")]
     [SerializeField] private float mitosisSpawnOffsetX;
     [SerializeField] private GameObject jellyBugMitosisPrefab;
-    [SerializeField] private GameObject poisonFieldPrefab;
+    [SerializeField] private string poisonFieldPoolName = "PoisonField";
+    [SerializeField] private float poisonFieldDuration = 3f;
 
     [Header("몬스터 감지")]
     [SerializeField] private LayerMask otherMonsterLayer;
@@ -61,6 +62,13 @@ public class JellyBug : MeleeMonster
     public void SpawnMitosis(Vector3 spawnPosition)
     {
         GameObject mitosisGO = Instantiate(jellyBugMitosisPrefab, spawnPosition, Quaternion.identity);
+        JellyBugMitosis newMitosis = mitosisGO.GetComponent<JellyBugMitosis>();
+
+        if ( newMitosis != null)
+        {
+            newMitosis.SetMyRoom(MyRoom);
+            MyRoom?.AddMonster(newMitosis);
+        }
     }
 
     public void OnDieEffect()
@@ -70,6 +78,25 @@ public class JellyBug : MeleeMonster
         SpawnMitosis(spawnPosition + Vector3.left * mitosisSpawnOffsetX);
         SpawnMitosis(spawnPosition + Vector3.right * mitosisSpawnOffsetX);
 
-        GameObject poisonFieldObject = Instantiate(poisonFieldPrefab, spawnPosition, Quaternion.identity);
+        GameObject poisonFieldObject = ObjectPoolManager.Instance.GetObject(poisonFieldPoolName, spawnPosition, Quaternion.identity);
+
+        if (poisonFieldObject != null)
+        {
+            PoisonField poisonField = poisonFieldObject.GetComponent<PoisonField>();
+
+            if (poisonField != null)
+            {
+                poisonField.Initialize(poisonFieldDuration);
+            }
+            else
+            {
+                Debug.LogError($"풀매니저에 독장판 컴포넌트가 없음");
+                ObjectPoolManager.Instance.ReturnObject(poisonFieldObject, poisonFieldPoolName);
+            }
+        }
+        else
+        {
+            Debug.LogError($"독장판 풀에서 오브젝트를 가져오지못함");
+        }
     }
 }

@@ -118,6 +118,24 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseActiveItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""84a19407-3f0a-4589-a4b9-7e5d02389dd1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""62420e37-51d5-4ca3-9bdb-f54482fb3923"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -274,6 +292,28 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Bomb"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2e37adf1-d919-4bfd-991b-75e695c3eeb1"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseActiveItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6c5dd737-cbff-43ce-9eaa-fcb23e907222"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -285,6 +325,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Shot = m_Player.FindAction("Shot", throwIfNotFound: true);
         m_Player_Bomb = m_Player.FindAction("Bomb", throwIfNotFound: true);
+        m_Player_UseActiveItem = m_Player.FindAction("UseActiveItem", throwIfNotFound: true);
+        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
     }
 
     ~@PlayerInput()
@@ -368,6 +410,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Shot;
     private readonly InputAction m_Player_Bomb;
+    private readonly InputAction m_Player_UseActiveItem;
+    private readonly InputAction m_Player_Pause;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -391,6 +435,14 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Bomb".
         /// </summary>
         public InputAction @Bomb => m_Wrapper.m_Player_Bomb;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/UseActiveItem".
+        /// </summary>
+        public InputAction @UseActiveItem => m_Wrapper.m_Player_UseActiveItem;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Pause".
+        /// </summary>
+        public InputAction @Pause => m_Wrapper.m_Player_Pause;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -426,6 +478,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Bomb.started += instance.OnBomb;
             @Bomb.performed += instance.OnBomb;
             @Bomb.canceled += instance.OnBomb;
+            @UseActiveItem.started += instance.OnUseActiveItem;
+            @UseActiveItem.performed += instance.OnUseActiveItem;
+            @UseActiveItem.canceled += instance.OnUseActiveItem;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         /// <summary>
@@ -446,6 +504,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Bomb.started -= instance.OnBomb;
             @Bomb.performed -= instance.OnBomb;
             @Bomb.canceled -= instance.OnBomb;
+            @UseActiveItem.started -= instance.OnUseActiveItem;
+            @UseActiveItem.performed -= instance.OnUseActiveItem;
+            @UseActiveItem.canceled -= instance.OnUseActiveItem;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         /// <summary>
@@ -507,5 +571,19 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnBomb(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "UseActiveItem" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnUseActiveItem(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Pause" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPause(InputAction.CallbackContext context);
     }
 }

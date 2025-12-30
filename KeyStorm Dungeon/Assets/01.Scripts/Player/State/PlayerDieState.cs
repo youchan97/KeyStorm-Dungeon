@@ -15,6 +15,7 @@ public class PlayerDieState : CharacterDieState<Player>
         anim = character.Anim;
         anim.SetTrigger(DieAnim);
         character.PlayerController.DisableInput();
+        character.PlayerController.DisablePause();
     }
 
 

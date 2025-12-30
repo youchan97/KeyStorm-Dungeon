@@ -572,4 +572,9 @@ public class PlayerAttack : MonoBehaviour
         UseAmmo = data.useAmmo;
     }
     #endregion
+
+    public void UseActiveItem(SkillType type)
+    {
+
+    }
 }

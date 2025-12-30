@@ -37,6 +37,8 @@ public class BQueenMoveState : MonsterMoveState
             return;
         }
 
+        if (character.isKnockBack) return;
+
         currentMoveTime -= Time.deltaTime;
 
         if (currentMoveTime <= 0)

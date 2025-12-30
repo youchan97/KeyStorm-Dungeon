@@ -13,6 +13,7 @@ public class BQueen : MeleeMonster
     [SerializeField] private float spawnImpulseForce = 3f;
     [SerializeField] private float spawnDuration = 0.5f;
     [SerializeField] private float spawnRangeOffset = 0.5f;
+    [SerializeField] private int maxSpawnAttempts = 10;
 
     public bool isDamaged = false;
 
@@ -85,18 +86,45 @@ public class BQueen : MeleeMonster
     {
         if (bWorkerPrefab == null) return null;
 
-        Vector2 randomDirection = Random.insideUnitCircle.normalized;
+        Vector2 finalRandomDirection = Vector2.zero;
+        Vector3 validSpawnPosition = transform.position;
+        bool foundValidPosition = false;
 
-        Vector3 spawnPosition = transform.position + (Vector3)randomDirection * spawnRangeOffset;
+        for (int i = 0; i < maxSpawnAttempts; i++)
+        {
+            Vector2 randomDirection = Random.insideUnitCircle.normalized;
 
-        BWorker newBWorker = Instantiate(bWorkerPrefab, spawnPosition, Quaternion.identity);
+            Vector3 spawnPosition = transform.position + (Vector3)randomDirection * spawnRangeOffset;
+
+            if(IsSpawnPositionValid(spawnPosition, spawnCheckRadius, obstacleLayer))
+            {
+                finalRandomDirection = randomDirection;
+                validSpawnPosition = spawnPosition;
+                foundValidPosition = true;
+                break;
+            }
+        }
+
+        if (!foundValidPosition)
+        {
+            finalRandomDirection = Vector2.zero;
+            validSpawnPosition = transform.position;
+        }
+
+        BWorker newBWorker = Instantiate(bWorkerPrefab, validSpawnPosition, Quaternion.identity);
         newBWorker.SetAssignedBQueen(this, spawnDuration);
         bWorkers.Add(newBWorker);
+
+        if (MyRoom != null)
+        {
+            newBWorker.SetMyRoom(MyRoom);
+            MyRoom.AddMonster(newBWorker);
+        }
 
         Rigidbody2D workerRb = newBWorker.GetComponent<Rigidbody2D>();
         if (workerRb != null)
         {
-            workerRb.AddForce(randomDirection * spawnImpulseForce, ForceMode2D.Impulse);
+            workerRb.AddForce(finalRandomDirection * spawnImpulseForce, ForceMode2D.Impulse);
         }
 
         return newBWorker;
