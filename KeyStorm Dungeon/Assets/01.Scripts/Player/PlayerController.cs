@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     InputAction shootAction;
     InputAction bombAction;
     InputAction useActiveItemAction;
+    InputAction pauseAction;
     #endregion
 
     #region events
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public Action OnShoot;
     public Action OnBomb;
     public Action OnUseActiveItem;
+    public Action OnPause;
     #endregion
 
     #region Move관련
@@ -39,12 +41,14 @@ public class PlayerController : MonoBehaviour
         InitInput();
         InitAction();
         EnableInput();
+        EnablePause();
     }
 
     private void OnDisable()
     {
         RemoveAction();
         DisableInput();
+        DisablePause();
     }
 
     void InitInput()
@@ -54,6 +58,7 @@ public class PlayerController : MonoBehaviour
         shootAction = PlayerInput.Player.Shot;
         bombAction = PlayerInput.Player.Bomb;
         useActiveItemAction = PlayerInput.Player.UseActiveItem;
+        pauseAction = PlayerInput.Player.Pause;
     }
 
     void InitAction()
@@ -63,6 +68,7 @@ public class PlayerController : MonoBehaviour
         shootAction.performed += ShootPerformed;
         bombAction.performed += BombPerformed;
         useActiveItemAction.performed += UseActiveItemPerformed;
+        pauseAction.performed += PausePerformed;
     }
 
     void RemoveAction()
@@ -72,6 +78,7 @@ public class PlayerController : MonoBehaviour
         shootAction.performed-= ShootPerformed;
         bombAction.performed -= BombPerformed;
         useActiveItemAction.performed -= UseActiveItemPerformed;
+        pauseAction.performed -= PausePerformed;
     }
 
     public void EnableInput()
@@ -89,6 +96,10 @@ public class PlayerController : MonoBehaviour
         bombAction.Disable();
         useActiveItemAction.Disable();
     }
+
+    public void EnablePause() => pauseAction.Enable();
+
+    public void DisablePause() => pauseAction.Disable();
 
     void MovePerformed(InputAction.CallbackContext context)
     {
@@ -116,5 +127,10 @@ public class PlayerController : MonoBehaviour
     void UseActiveItemPerformed(InputAction.CallbackContext context)
     {
         OnUseActiveItem?.Invoke();
+    }
+
+    void PausePerformed(InputAction.CallbackContext context)
+    {
+        OnPause?.Invoke();
     }
 }
