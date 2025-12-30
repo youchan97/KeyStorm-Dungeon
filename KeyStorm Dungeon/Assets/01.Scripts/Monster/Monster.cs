@@ -125,13 +125,14 @@ public abstract class Monster : Character
         if (MyRoom != null)
         {
             MyRoom.RemoveMonster(this);
-
-            if (MonsterData != null && MonsterData.tier == MonsterTier.Boss)
-            {
-                MyRoom.StageClear(transform.position);
-            }
         }
+
         MonsterStateManager.ChangeState(CreateDieState());
+
+        if (MonsterData != null && MonsterData.tier == MonsterTier.Boss)
+        {
+            MyRoom.StageClear(transform.position);
+        }
     }
 
     public void SetAttackTarget(Player player)
