@@ -2778,7 +2778,7 @@ GameObject:
   - component: {fileID: 2794785244841303734}
   - component: {fileID: 5907799993680822193}
   - component: {fileID: 224866944503060489}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -10554,6 +10554,7 @@ MonoBehaviour:
   isPlayerIn: 0
   canOpenDoor: 0
   portal: {fileID: 0}
+  doors: []
   doorUp: {fileID: 3281465033566024747}
   doorDown: {fileID: 4527900839054042152}
   doorLeft: {fileID: 7859071814255961437}

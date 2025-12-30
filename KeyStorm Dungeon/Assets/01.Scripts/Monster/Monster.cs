@@ -8,6 +8,10 @@ public abstract class Monster : Character
     [SerializeField] private MonsterData _monsterData;
     [SerializeField] protected SpriteRenderer monsterSpriteRenderer;
 
+    [Header("소환몹 소환 자리 유효성 검사")]
+    [SerializeField] protected LayerMask obstacleLayer;
+    [SerializeField] protected float spawnCheckRadius;
+
     public MonsterData MonsterData => _monsterData;
     private Rigidbody2D monsterRb;
     public Rigidbody2D MonsterRb => monsterRb;
@@ -216,5 +220,10 @@ public abstract class Monster : Character
         MonsterRb.drag = originDrag;
         isKnockBack = false;
         knockBackCo = null;
+    }
+
+    protected bool IsSpawnPositionValid(Vector3 position, float radius, LayerMask layerMask)
+    {
+        return Physics2D.OverlapCircle(position, radius, layerMask) == null;
     }
 }

@@ -6829,7 +6829,7 @@ GameObject:
   - component: {fileID: 5083776229677106901}
   - component: {fileID: 8877014346071364232}
   - component: {fileID: 7808520519229738523}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: AerialObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7724,7 +7724,7 @@ GameObject:
   - component: {fileID: 2456642166473926122}
   - component: {fileID: 5077013552165819528}
   - component: {fileID: 8776274531441123359}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall
   m_TagString: Wall
   m_Icon: {fileID: 0}
