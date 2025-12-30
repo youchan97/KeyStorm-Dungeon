@@ -1670,6 +1670,7 @@ GameObject:
   - component: {fileID: 4756003735825350821}
   - component: {fileID: 8462432792764299665}
   - component: {fileID: 4851458755222282479}
+  - component: {fileID: 4047890859375845602}
   - component: {fileID: 9001353019542540319}
   - component: {fileID: 4757102522029164033}
   - component: {fileID: 5923574381585424869}
@@ -1768,6 +1769,7 @@ MonoBehaviour:
   playerController: {fileID: 2886997829269024276}
   inventory: {fileID: 4757102522029164033}
   data: {fileID: 11400000, guid: 5637dfef1c82d60449873fbb922104ae, type: 2}
+  playerSkill: {fileID: 4047890859375845602}
   playerRb: {fileID: 2508212066495251963}
   anim: {fileID: 382889259470501132}
   bullet: {fileID: 568474425, guid: 1c6ad60ea7c214c45b35a631c2f91c6a, type: 3}
@@ -1777,6 +1779,22 @@ MonoBehaviour:
     m_Bits: 65536
   magnetSpeed: 10
   magnetRangeMargin: 3
+--- !u!114 &4047890859375845602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6054290072008950287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb2a13f9cffd081408152a503b945c06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillSet: {fileID: 11400000, guid: 399576f1ec1c6c9449e726a5c07b62c7, type: 2}
+  activeItems:
+  - {fileID: 11400000, guid: effad76bd6fccd649ac72258038511e7, type: 2}
+  player: {fileID: 4851458755222282479}
 --- !u!114 &9001353019542540319
 MonoBehaviour:
   m_ObjectHideFlags: 0

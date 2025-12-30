@@ -67,6 +67,7 @@ public class MonsterMoveState : CharacterMoveState<Monster>
             }
         }
 
+        
         Move();
     }
 

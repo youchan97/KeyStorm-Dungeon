@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public abstract class Monster : Character
@@ -27,6 +28,9 @@ public abstract class Monster : Character
     public event Action OnMonsterDied;
     
     public Room MyRoom { get; set; }
+
+    public bool isKnockBack;
+    Coroutine knockBackCo;
 
     protected override void Awake()
     {
@@ -187,4 +191,30 @@ public abstract class Monster : Character
     }
 
     void OnStopChase() => PlayerGO = null;
+
+    public void ApplyKnockBack(Vector2 dir, float force, float duration)
+    {
+        if(knockBackCo != null)
+        {
+            StopCoroutine(knockBackCo);
+            knockBackCo = null;
+        }
+        knockBackCo = StartCoroutine(KnockBackRoutine(dir, force, duration));
+    }
+
+    IEnumerator KnockBackRoutine(Vector2 dir, float force, float duration)
+    {
+        isKnockBack = true;
+        float originDrag = MonsterRb.drag;
+        MonsterRb.drag = 0f;
+
+        MonsterRb.velocity = Vector2.zero;
+        MonsterRb.AddForce(dir * force, ForceMode2D.Impulse);
+
+        yield return new WaitForSeconds(duration);
+
+        MonsterRb.drag = originDrag;
+        isKnockBack = false;
+        knockBackCo = null;
+    }
 }

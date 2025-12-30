@@ -34,7 +34,7 @@ public class CombatButterflyMoveState : MonsterMoveState
         float distanceToPlayer = Vector2.Distance(character.transform.position, playerTransform.position);
 
         UpdateAnimation();
-
+        if (character.isKnockBack) return;
         if (Time.time >= nextPathUpdateTime)
         {
             RequestNewPath();

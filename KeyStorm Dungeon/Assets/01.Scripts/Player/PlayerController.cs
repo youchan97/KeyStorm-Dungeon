@@ -10,12 +10,14 @@ public class PlayerController : MonoBehaviour
     InputAction moveAction;
     InputAction shootAction;
     InputAction bombAction;
+    InputAction useActiveItemAction;
     #endregion
 
     #region events
     public Action OnMove;
     public Action OnShoot;
     public Action OnBomb;
+    public Action OnUseActiveItem;
     #endregion
 
     #region Move관련
@@ -26,8 +28,8 @@ public class PlayerController : MonoBehaviour
     string keyName;
     #endregion
 
-    public PlayerInput PlayerInput { get ; private set ; }
     #region Property
+    public PlayerInput PlayerInput { get ; private set ; }
     public Vector2 MoveVec { get => moveVec; private set => moveVec = value; }
     public string KeyName { get => keyName; private set => keyName = value; }
     #endregion
@@ -51,6 +53,7 @@ public class PlayerController : MonoBehaviour
         moveAction = PlayerInput.Player.Move;
         shootAction = PlayerInput.Player.Shot;
         bombAction = PlayerInput.Player.Bomb;
+        useActiveItemAction = PlayerInput.Player.UseActiveItem;
     }
 
     void InitAction()
@@ -59,6 +62,7 @@ public class PlayerController : MonoBehaviour
         moveAction.canceled += MoveCanceled;
         shootAction.performed += ShootPerformed;
         bombAction.performed += BombPerformed;
+        useActiveItemAction.performed += UseActiveItemPerformed;
     }
 
     void RemoveAction()
@@ -67,6 +71,7 @@ public class PlayerController : MonoBehaviour
         moveAction.canceled -= MoveCanceled;
         shootAction.performed-= ShootPerformed;
         bombAction.performed -= BombPerformed;
+        useActiveItemAction.performed -= UseActiveItemPerformed;
     }
 
     public void EnableInput()
@@ -74,6 +79,7 @@ public class PlayerController : MonoBehaviour
         moveAction.Enable();
         shootAction.Enable();
         bombAction.Enable();
+        useActiveItemAction.Enable();
     }
 
     public void DisableInput()
@@ -81,6 +87,7 @@ public class PlayerController : MonoBehaviour
         moveAction.Disable();
         shootAction.Disable();
         bombAction.Disable();
+        useActiveItemAction.Disable();
     }
 
     void MovePerformed(InputAction.CallbackContext context)
@@ -104,5 +111,10 @@ public class PlayerController : MonoBehaviour
     void BombPerformed(InputAction.CallbackContext context)
     {
         OnBomb?.Invoke();
+    }
+
+    void UseActiveItemPerformed(InputAction.CallbackContext context)
+    {
+        OnUseActiveItem?.Invoke();
     }
 }
