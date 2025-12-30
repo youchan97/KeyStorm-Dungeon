@@ -7,7 +7,7 @@ using static ConstValue;
 public class GameManager : SingletonManager<GameManager>
 {
     private bool isStart;
-    private bool isPaused;
+    public bool isPaused;
 
     [SerializeField] PlayerData playerData;
     [SerializeField] PlayerRunData playerRunData;
@@ -47,6 +47,7 @@ public class GameManager : SingletonManager<GameManager>
 
     public void ExitGame()
     {
+        SaveLoadManager.Instance.SaveDatas();
 #if UNITY_EDITOR
         EditorApplication.isPlaying = false;
 #else

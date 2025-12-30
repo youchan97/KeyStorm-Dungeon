@@ -45,6 +45,7 @@ public class Player : Character
     public PlayerInventory Inventory { get => inventory;}
     public AudioManager AudioManager { get => audioManager; }
     public PlayerSkill PlayerSkill { get => playerSkill;}
+    public GameSceneUI GameSceneUI { get; private set; }
     #endregion
 
     protected override void Awake()
@@ -84,6 +85,11 @@ public class Player : Character
         this.attackPoolManager = attackPoolManager;
     }
 
+    public void InitGameSceneUi(GameSceneUI gameSceneUI)
+    {
+        GameSceneUI = gameSceneUI;
+    }
+
     protected override void InitState()
     {
         IdleState = new PlayerIdleState(this, playerStateManager);
@@ -108,6 +114,7 @@ public class Player : Character
         playerController.OnShoot += Shoot;
         playerController.OnBomb += Bomb;
         playerController.OnUseActiveItem += UseActiveItem;
+        PlayerController.OnPause += PausePlayer;
     }
 
     void RemoveActions()
@@ -116,6 +123,7 @@ public class Player : Character
         playerController.OnShoot -= Shoot;
         playerController.OnBomb -= Bomb;
         playerController.OnUseActiveItem -= UseActiveItem;
+        playerController.OnPause -= PausePlayer;
     }
 
     void PlayerMove()
@@ -142,6 +150,22 @@ public class Player : Character
         else
         {
             playerSkill.TrySkill(inventory.activeItem.skillType);
+        }
+    }
+
+    void PausePlayer()
+    {
+        if (gameManager.isPaused)
+        {
+            gameManager.Resume();
+            playerController.EnableInput();
+            GameSceneUI.CloseAllPopup();
+        }
+        else
+        {
+            gameManager.Pause();
+            playerController.DisableInput();
+            GameSceneUI.OpenOption();
         }
     }
 
