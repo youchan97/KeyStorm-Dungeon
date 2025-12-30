@@ -32,6 +32,9 @@ public class Room : MonoBehaviour
     [SerializeField] GameObject portal;
     [SerializeField] Door[] doors;
 
+    private float clearDelay = 1.0f;
+    private Coroutine clearRoomCoroutine;
+
     public Transform doorUp;
     public Transform doorDown;
     public Transform doorLeft;
@@ -44,7 +47,7 @@ public class Room : MonoBehaviour
 
     private List<Monster> activeMonsters = new List<Monster>();
 
-    public bool IsPlayerIn { get => isPlayerIn;}
+    public bool IsPlayerIn { get => isPlayerIn; }
     public bool CanOpenDoor { get => canOpenDoor; }
 
     public Transform GetDoor(Vector2Int dir)
@@ -60,7 +63,7 @@ public class Room : MonoBehaviour
     {
         Player player = collision.GetComponent<Player>();
 
-        if(player == null) return;
+        if (player == null) return;
 
         isPlayerIn = true;
 
@@ -80,7 +83,7 @@ public class Room : MonoBehaviour
     {
         Player player = collision.GetComponent<Player>();
 
-        if(player == null) return;
+        if (player == null) return;
 
         isPlayerIn = false;
     }
@@ -147,7 +150,30 @@ public class Room : MonoBehaviour
     {
         if (activeMonsters.Count == 0 && roomType != RoomType.Boss)
         {
+            if (clearRoomCoroutine == null)
+            {
+                clearRoomCoroutine = StartCoroutine(ClearRoomAfterDelay(clearDelay));
+            }
+        }
+        else
+        {
+            if (clearRoomCoroutine != null)
+            {
+                StopCoroutine(clearRoomCoroutine);
+                clearRoomCoroutine = null;
+            }
+        }
+    }
+
+    private IEnumerator ClearRoomAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (activeMonsters.Count == 0)
+        {
             RoomClear();
         }
+
+        clearRoomCoroutine = null;
     }
 }
