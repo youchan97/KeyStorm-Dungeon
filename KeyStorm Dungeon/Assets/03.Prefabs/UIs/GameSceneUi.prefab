@@ -261,7 +261,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8798679856566876160}
         m_TargetAssemblyTypeName: GameSceneUI, Assembly-CSharp
         m_MethodName: OpenSoundSetting
         m_Mode: 1
@@ -393,7 +393,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8798679856566876160}
         m_TargetAssemblyTypeName: GameSceneUI, Assembly-CSharp
         m_MethodName: OnClickHomeButton
         m_Mode: 1
@@ -774,7 +774,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8798679856566876160}
         m_TargetAssemblyTypeName: GameSceneUI, Assembly-CSharp
         m_MethodName: OnClickHomeButton
         m_Mode: 1
@@ -907,7 +907,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8798679856566876160}
         m_TargetAssemblyTypeName: GameSceneUI, Assembly-CSharp
         m_MethodName: OnClickExitButton
         m_Mode: 1
@@ -1173,7 +1173,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8798679856566876160}
         m_TargetAssemblyTypeName: GameSceneUI, Assembly-CSharp
         m_MethodName: OnClickRetryButton
         m_Mode: 1
@@ -1848,7 +1848,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8798679856566876160}
         m_TargetAssemblyTypeName: GameSceneUI, Assembly-CSharp
         m_MethodName: OnClickExitButton
         m_Mode: 1
