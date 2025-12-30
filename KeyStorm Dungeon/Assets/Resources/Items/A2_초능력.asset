@@ -33,6 +33,6 @@ MonoBehaviour:
   maxAmmo: 0
   useAmmo: 0
   scale: 0
-  cooldownType: 0
-  cooldownMax: 20
+  cooldownType: 2
+  cooldownMax: 3
   skillType: 1
