@@ -69,4 +69,6 @@ public class UiManager : SingletonManager<UiManager>
         while (popupStack.Count > 0)
             ClosePopup();
     }
+
+    public void ClearStack() => popupStack.Clear();
 }

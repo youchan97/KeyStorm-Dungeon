@@ -73,6 +73,7 @@ public class GameSceneUI : MonoBehaviour
 
     public void OnClickHomeButton()
     {
+        uiManager.ClearStack();
         gameManager.GoHome();
     }
 
