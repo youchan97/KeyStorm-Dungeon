@@ -3680,7 +3680,7 @@ MonoBehaviour:
   doorLeft: {fileID: 7595855810298575995}
   doorRight: {fileID: 675164305736815390}
   roomGroundTilemap: {fileID: 5506783669761948187}
-  roomWallTilemap: {fileID: 0}
+  roomWallTilemap: {fileID: 2130583012473267086}
   monsterSpawner: {fileID: 0}
 --- !u!1 &7145665154047554383
 GameObject:
