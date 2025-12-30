@@ -41,4 +41,8 @@ public static class ConstValue
     public const string ShootSfx = "Shoot";
     public const string GoldSfx = "Gold";
     #endregion
+
+    #region 게임 종료 관련
+    public const string GameOverText = "Game Over...";
+    #endregion
 }
