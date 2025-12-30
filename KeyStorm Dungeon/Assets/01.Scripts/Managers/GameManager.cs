@@ -18,8 +18,11 @@ public class GameManager : SingletonManager<GameManager>
     {
         base.Awake();
         //스타트가 아니라 캐릭터 커스텀마이징 선택 후 게임 시작 때 불러와야함
-        playerRunData = new PlayerRunData(playerData); 
+        InitializeRunData();
     }
+
+    void InitializeRunData() => playerRunData = new PlayerRunData(playerData);
+
 
     public void GameStart()
     {
@@ -41,8 +44,7 @@ public class GameManager : SingletonManager<GameManager>
     }
     public void GameOver()
     {
-        isStart = false;
-        Time.timeScale = 0f;
+        InitializeRunData();
     }
 
     public void ExitGame()
@@ -53,6 +55,20 @@ public class GameManager : SingletonManager<GameManager>
 #else
         Application.Quit();
 #endif
+    }
+
+    public void GoHome()
+    {
+        if (Time.timeScale < 1f)
+            Time.timeScale = 1f;
+        InitializeRunData();
+        LoadingManager.LoadScene(StartScene);
+    }
+
+    public void RetryGame()
+    {
+        InitializeRunData();
+        LoadingManager.LoadScene(GameScene);
     }
 
     public void StageClear()

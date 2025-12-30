@@ -20,7 +20,7 @@ public class StageDataManager : SingletonManager<StageDataManager>
     protected override void Awake()
     {
         base.Awake();
-        SelectDifficulty(StageDifficulty.Easy);
+        //SelectDifficulty(StageDifficulty.Easy);
     }
 
     void SetStageMap()

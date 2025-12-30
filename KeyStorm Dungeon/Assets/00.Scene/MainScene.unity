@@ -487,11 +487,11 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 81023
+    m_Bits: 81151
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -832,11 +832,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43a1f36a72cf78d4786c526d49eae1d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tier0Weight: 0
-  tier1Weight: 33
-  tier2Weight: 0
-  tier3Weight: 0
-  tier4Weight: 0
+  tier0Weight: 3
+  tier1Weight: 3
+  tier2Weight: 3
+  tier3Weight: 2
+  tier4Weight: 1
 --- !u!4 &595709303
 Transform:
   m_ObjectHideFlags: 0
@@ -1057,7 +1057,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 34
-    OrthographicSize: 5
+    OrthographicSize: 6
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -1373,6 +1373,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -465
       objectReference: {fileID: 0}
+    - target: {fileID: 2721526828355385450, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2721526828355385450, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2721526828355385450, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2721526828355385450, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3242573271190014597, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 444
@@ -1380,6 +1396,22 @@ PrefabInstance:
     - target: {fileID: 3942536750736878028, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -101
+      objectReference: {fileID: 0}
+    - target: {fileID: 3970199587786495747, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3970199587786495747, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3970199587786495747, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3970199587786495747, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4570740728687568063, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
       propertyPath: m_Color.b
@@ -1420,6 +1452,22 @@ PrefabInstance:
     - target: {fileID: 5001811830021518033, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 383
+      objectReference: {fileID: 0}
+    - target: {fileID: 5401457266628657727, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5401457266628657727, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5401457266628657727, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5401457266628657727, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6666980126985427679, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
       propertyPath: m_Name
