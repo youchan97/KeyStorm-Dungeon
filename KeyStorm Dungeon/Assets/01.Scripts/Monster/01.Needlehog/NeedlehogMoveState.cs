@@ -43,6 +43,8 @@ public class NeedlehogMoveState : MonsterMoveState
 
     public override void FixedUpdateState()
     {
+        if (character.isKnockBack) return;
+
         if (currentMoveTime > 0f)
         {
             rb.velocity = currentRandomDirection * needlehog.MoveSpeed;

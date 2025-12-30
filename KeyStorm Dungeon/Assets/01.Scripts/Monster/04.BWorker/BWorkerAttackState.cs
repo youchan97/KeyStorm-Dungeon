@@ -50,6 +50,7 @@ public class BWorkerAttackState : MonsterAttackState
 
         if (playerTransform == null) return;
         if (character == null || rb == null) return;
+        if (character.isKnockBack) return;
 
         distanceToPlayer = Vector2.Distance(character.transform.position, playerTransform.position);
 

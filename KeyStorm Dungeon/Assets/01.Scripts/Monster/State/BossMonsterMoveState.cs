@@ -20,6 +20,8 @@ public class BossMonsterMoveState : MonsterMoveState
     {
         if (playerTransform == null || boss == null || rb == null) return;
 
+        if (character.isKnockBack) return;
+
         if (character.PlayerGO == null)
         {
             character.ChangeStateToPlayerDied();

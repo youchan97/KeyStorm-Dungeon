@@ -38,6 +38,8 @@ public class JellyBugMoveState : MonsterMoveState
     {
         if (rb == null) return;
 
+        if (character.isKnockBack) return;
+
         rb.velocity = jellyBug.CurrentMoveDirection * character.MoveSpeed;
 
         jellyBug.FlipSprite(jellyBug.CurrentMoveDirection.x);

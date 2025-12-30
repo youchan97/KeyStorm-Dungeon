@@ -44,7 +44,9 @@ public class BWorkerIdleState : MonsterIdleState
             return;
         }
 
-        if(bWorker.AssignedBQueen == null || bWorker.AssignedBQueen.isDamaged == true)
+        if (character.isKnockBack) return;
+
+        if (bWorker.AssignedBQueen == null || bWorker.AssignedBQueen.isDamaged == true)
         {
             stateManager.ChangeState(character.CreateAttackState());
             return;

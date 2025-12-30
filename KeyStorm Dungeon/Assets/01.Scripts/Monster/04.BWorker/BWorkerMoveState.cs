@@ -35,6 +35,8 @@ public class BWorkerMoveState : MonsterMoveState
             return;
         }
 
+        if (character.isKnockBack) return;
+
         Vector2 bQueenPosition = bWorker.AssignedBQueen.transform.position;
         Vector2 currentPosition = bWorker.transform.position;
 
