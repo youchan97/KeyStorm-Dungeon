@@ -220,6 +220,7 @@ MonoBehaviour:
   monsterSpriteRenderer: {fileID: 2654661095196259248}
   animator: {fileID: 410744042963909494}
   poisonFieldPrefab: {fileID: 6801274708127121250, guid: b8adf5299dc8fc24b9856ebdf409ed2b, type: 3}
+  poisonSpawnPointOffset: {x: 0, y: -0.4, z: 0}
   poisonCooldown: 1
   otherMonsterLayer:
     serializedVersion: 2

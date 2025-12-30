@@ -122,6 +122,15 @@ public abstract class Monster : Character
     public override void Die()
     {
         base.Die();
+        if (MyRoom != null)
+        {
+            MyRoom.RemoveMonster(this);
+
+            if (MonsterData != null && MonsterData.tier == MonsterTier.Boss)
+            {
+                MyRoom.StageClear(transform.position);
+            }
+        }
         MonsterStateManager.ChangeState(CreateDieState());
     }
 

@@ -3,8 +3,10 @@ using UnityEngine;
 public class JellyBugMitosis : MeleeMonster
 {
     [Header("독 장판 생성")]
-    [SerializeField] private GameObject poisonFieldPrefab;
+    [SerializeField] private Vector3 poisonSpawnPointOffset;
     [SerializeField] private float poisonCooldown;
+    [SerializeField] private string poisonFieldPoolName = "PoisonField";
+    [SerializeField] private float poisonFieldDuration = 3f;
 
     [Header("몬스터 감지")]
     [SerializeField] private LayerMask otherMonsterLayer;
@@ -17,6 +19,7 @@ public class JellyBugMitosis : MeleeMonster
     public LayerMask OtherMonsterLayer => otherMonsterLayer;
     public float OtherMonsterDetectionDistance => otherMonsterDetectionDistance;
     public CapsuleCollider2D GetCurrentMonsterCollider() => currentMonsterCollider;
+    public Vector3 PoisonSpawnPointOffset => poisonSpawnPointOffset;
 
     private JellyBugMitosisIdleState _idleState;
     private JellyBugMitosisMoveState _moveState;
@@ -60,7 +63,26 @@ public class JellyBugMitosis : MeleeMonster
 
     public void SpawnPoisonField(Vector3 spawnPosition)
     {
-        GameObject poisonFieldObject = Instantiate(poisonFieldPrefab, spawnPosition, Quaternion.identity);
-        poisonFieldObject.transform.localScale = new Vector3(0.5f, 0.3f, 1f);
+        GameObject poisonFieldObject = ObjectPoolManager.Instance.GetObject(poisonFieldPoolName, spawnPosition, Quaternion.identity);
+
+        if (poisonFieldObject != null)
+        {
+            PoisonField poisonField = poisonFieldObject.GetComponent<PoisonField>();
+
+            if (poisonField != null)
+            {
+                poisonFieldObject.transform.localScale = new Vector3(0.5f, 0.3f, 1f);
+                poisonField.Initialize(poisonFieldDuration);
+            }
+            else
+            {
+                Debug.LogError($"풀매니저에 독장판 컴포넌트가 없음");
+                ObjectPoolManager.Instance.ReturnObject(poisonFieldObject, poisonFieldPoolName);
+            }
+        }
+        else
+        {
+            Debug.LogError($"독장판 풀에서 오브젝트를 가져오지못함");
+        }
     }
 }

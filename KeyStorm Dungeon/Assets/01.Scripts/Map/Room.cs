@@ -42,6 +42,8 @@ public class Room : MonoBehaviour
 
     public MonsterSpawner monsterSpawner;
 
+    private List<Monster> activeMonsters = new List<Monster>();
+
     public bool IsPlayerIn { get => isPlayerIn;}
     public bool CanOpenDoor { get => canOpenDoor; }
 
@@ -109,7 +111,6 @@ public class Room : MonoBehaviour
         for (int i = 0; i < doors.Length; i++)
             doors[i].ClearDoor();
         player.MagnetItems(roomCollider.bounds);
-
     }
 
     public void StageClear(Vector3 pos)
@@ -124,5 +125,29 @@ public class Room : MonoBehaviour
             go.transform.position = pos;
         }
 
+    }
+
+    public void AddMonster(Monster monster)
+    {
+        if (!activeMonsters.Contains(monster))
+        {
+            activeMonsters.Add(monster);
+        }
+    }
+
+    public void RemoveMonster(Monster monster)
+    {
+        if (activeMonsters.Remove(monster))
+        {
+            CheckRoomClear();
+        }
+    }
+
+    private void CheckRoomClear()
+    {
+        if (activeMonsters.Count == 0 && roomType != RoomType.Boss)
+        {
+            RoomClear();
+        }
     }
 }

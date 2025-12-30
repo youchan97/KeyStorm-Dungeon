@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Collision
   - Wall
+  - PlayerFoot
   layers:
   - Default
   - TransparentFX
