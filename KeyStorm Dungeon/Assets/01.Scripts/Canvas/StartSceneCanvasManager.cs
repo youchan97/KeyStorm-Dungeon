@@ -14,6 +14,7 @@ public class StartSceneCanvasManager : MonoBehaviour
     public void GameStartButton()
     {
         StageDataManager.Instance.SelectDifficulty(StageDifficulty.Easy);
+        AudioManager.Instance.PlayButton();
         LoadingManager.LoadScene(GameScene);
     }
 }

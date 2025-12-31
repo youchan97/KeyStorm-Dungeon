@@ -8,6 +8,7 @@ public class GameSceneUI : MonoBehaviour
 {
     UiManager uiManager;
     GameManager gameManager;
+    AudioManager audioManager;
 
     [SerializeField] private PlayerInventory inventory;
     [SerializeField] private PlayerAttack attack;
@@ -30,6 +31,7 @@ public class GameSceneUI : MonoBehaviour
     {
         uiManager = UiManager.Instance;
         gameManager = GameManager.Instance;
+        audioManager = AudioManager.Instance;
     }
 
     void Update()
@@ -74,16 +76,19 @@ public class GameSceneUI : MonoBehaviour
     public void OnClickHomeButton()
     {
         uiManager.ClearStack();
+        audioManager.PlayButton();
         gameManager.GoHome();
     }
 
     public void OnClickExitButton()
     {
+        audioManager.PlayButton();
         gameManager.ExitGame();
     }
 
     public void OnClickRetryButton()
     {
+        audioManager.PlayButton();
         gameManager.RetryGame();
     }
 

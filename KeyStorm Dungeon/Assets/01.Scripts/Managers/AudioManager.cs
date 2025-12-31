@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static ConstValue;
 
 public class AudioManager : SingletonManager<AudioManager>
 {
@@ -60,7 +61,8 @@ public class AudioManager : SingletonManager<AudioManager>
         bgmAudio.Play();
     }
 
-    public void PlayEffect(string audioName)
+
+    public void PlayEffect(string audioName, bool isButton = false)
     {
         if (!sfxClips.ContainsKey(audioName)) return;
 
@@ -70,8 +72,13 @@ public class AudioManager : SingletonManager<AudioManager>
 
         AudioClip sfxClip = sfxClips[audioName][clipIndex];
         var sfx = sfxPoolManager.GetObject();
-        sfx.PlaySfx(sfxClip, sfxVolume);
+        if(!sfx.PlaySfx(sfxClip, sfxVolume, isButton))
+        {
+            sfxPoolManager.ReturnObject(sfx);
+        }
     }
+
+    public void PlayButton() => PlayEffect(ButtonSfx, true);
 
     public void UpdateBgmVolume(float value)
     {

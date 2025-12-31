@@ -40,6 +40,7 @@ public static class ConstValue
     public const float DefaultSfxVolume = 0.5f;
     public const string ShootSfx = "Shoot";
     public const string GoldSfx = "Gold";
+    public const string ButtonSfx = "Button";
     #endregion
 
     #region 게임 종료 관련
