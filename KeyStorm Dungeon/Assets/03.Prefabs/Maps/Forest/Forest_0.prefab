@@ -7103,8 +7103,8 @@ MonoBehaviour:
   monsterPrefabsToSpawn:
   - {fileID: 8271604993102863093, guid: a0f5d765d34768e4a8e621c40211732f, type: 3}
   - {fileID: 8271604993102863093, guid: a0f5d765d34768e4a8e621c40211732f, type: 3}
-  - {fileID: 2531600712657036599, guid: 9e0eb555c66f07a45a0eb6dd6b97f0dc, type: 3}
-  - {fileID: 2531600712657036599, guid: 9e0eb555c66f07a45a0eb6dd6b97f0dc, type: 3}
+  - {fileID: 8271604993102863093, guid: a0f5d765d34768e4a8e621c40211732f, type: 3}
+  - {fileID: 8271604993102863093, guid: a0f5d765d34768e4a8e621c40211732f, type: 3}
   spawnPoints:
   - {fileID: 833229008867957891}
   - {fileID: 135352169324224101}
