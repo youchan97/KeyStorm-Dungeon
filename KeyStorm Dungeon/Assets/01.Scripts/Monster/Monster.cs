@@ -126,6 +126,7 @@ public abstract class Monster : Character
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
+        animator.SetTrigger("IsHit");
     }
 
     public override void Die()
