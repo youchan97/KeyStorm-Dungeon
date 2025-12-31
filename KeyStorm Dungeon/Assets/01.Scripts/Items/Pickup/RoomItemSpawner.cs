@@ -65,13 +65,39 @@ public class RoomItemSpawner : MonoBehaviour
         if (spawnedObj != null) Destroy(spawnedObj);
 
         Transform point = spawnPoint != null ? spawnPoint : transform;
-        spawnedObj = Instantiate(prefab, point.position, Quaternion.identity, point);
 
-        if (spawnedObj.TryGetComponent<PassiveItemPickup>(out var p)) p.itemData = data;
-        if (spawnedObj.TryGetComponent<ActiveItemPickup>(out var a)) a.itemData = data;
+        spawnedObj = Instantiate(prefab, point.position, Quaternion.identity);
 
-        // 여기서 스프라이트 적용(픽업 프리팹에 ItemPickupView가 있어야 함)
+        Debug.Log($"════════════════════════════════════════");
+        Debug.Log($"[RoomItemSpawner] 아이템 스폰");
+        Debug.Log($"  Room: {dropRoom}");
+        Debug.Log($"  ItemData: {data.itemName}");
+        Debug.Log($"  IsActive: {data.isActiveItem}");
+        Debug.Log($"  Position: {point.position}");
+
+        if (spawnedObj.TryGetComponent<PassiveItemPickup>(out var passive))
+        {
+            passive.itemData = data;
+            passive.isShopDisplay = false; 
+            Debug.Log($"  → PassiveItemPickup 설정 완료");
+            Debug.Log($"     itemData: {passive.itemData.itemName}");
+            Debug.Log($"     isShopDisplay: {passive.isShopDisplay}");
+        }
+
+        if (spawnedObj.TryGetComponent<ActiveItemPickup>(out var active))
+        {
+            active.itemData = data;
+            active.isShopDisplay = false; 
+            active.SetData(data); 
+            Debug.Log($"  → ActiveItemPickup 설정 완료");
+            Debug.Log($"     itemData: {active.itemData.itemName}");
+            Debug.Log($"     isShopDisplay: {active.isShopDisplay}");
+        }
+
+        // View 적용
         spawnedObj.GetComponent<ItemPickupView>()?.Apply(data);
+
+        Debug.Log($"════════════════════════════════════════");
 
         spawned = true;
     }
