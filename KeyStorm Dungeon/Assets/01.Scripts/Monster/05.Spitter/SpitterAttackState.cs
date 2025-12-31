@@ -24,6 +24,7 @@ public class SpitterAttackState : MonsterAttackState
         if (character.PlayerGO == null)
         {
             character.ChangeStateToPlayerDied();
+            return;
         }
 
         character.FlipSpriteAttack(player.transform);

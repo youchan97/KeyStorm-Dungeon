@@ -11,16 +11,11 @@ public class RangerMonsterAttackState : MonsterAttackState
 
     public override void UpdateState()
     {
-        if (player == null)
-        {
-            stateManager.ChangeState(character.CreateIdleState());
-            return;
-        }
-
         // 임시로 플레이어의 사망을 체크
         if (character.PlayerGO == null)
         {
             character.ChangeStateToPlayerDied();
+            return;
         }
 
         character.FlipSpriteAttack(player.transform);
