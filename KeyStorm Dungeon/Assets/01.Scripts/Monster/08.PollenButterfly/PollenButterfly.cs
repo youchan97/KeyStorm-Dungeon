@@ -53,6 +53,15 @@ public class PollenButterfly : MeleeMonster
         spawnPosition = transform.position;
     }
 
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+        if (MonsterStateManager.CurState != _attackState && MonsterStateManager.CurState != _dieState)
+        {
+            MonsterStateManager.ChangeState(CreateAttackState());
+        }
+    }
+
     void OnCollisionStay2D(Collision2D collision)
     {
         ContactPlayer(collision);
