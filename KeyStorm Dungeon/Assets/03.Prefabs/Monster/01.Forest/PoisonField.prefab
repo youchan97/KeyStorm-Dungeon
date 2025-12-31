@@ -136,6 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCooldown: 2
   poisonFieldDuration: 3
+  poolName: PoisonField
 --- !u!95 &8089110107643970410
 Animator:
   serializedVersion: 5

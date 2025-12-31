@@ -4,111 +4,241 @@ using UnityEngine;
 
 public class WorldItemUIController : MonoBehaviour
 {
-    [Header("Refs")]
-    public Transform player;
-    public ItemDescriptionView widgetView;
-    public RectTransform widgetRoot;
-
-    [Header("UI Space")]
-    public Camera cam;
-    public Canvas parentCanvas;
-
-    [Header("Detect (Physics2D OverlapCircle)")]
-    public LayerMask itemLayer;
-    public float tileRange = 3f;
-    public float tileSize = 1f;
-
-    [Header("UI")]
-    public Vector3 uiOffset = new Vector3(0f, 1f, 0f);
-
-    private ItemData _lastData;
+    #region Singleton
+    public static WorldItemUIController Instance { get; private set; }
 
     private void Awake()
     {
-        if (cam == null) cam = Camera.main;
-        if (parentCanvas == null && widgetRoot != null)
-            parentCanvas = widgetRoot.GetComponentInParent<Canvas>();
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
 
-        if (widgetRoot != null) widgetRoot.gameObject.SetActive(false);
+        AutoBind();
+        if (widget != null) widget.gameObject.SetActive(false);
     }
 
-    private void Update()
+    private void OnDestroy()
     {
-        if (player == null || widgetRoot == null || widgetView == null || cam == null || parentCanvas == null)
-            return;
+        if (Instance == this) Instance = null;
+    }
+    #endregion
 
-        float radius = tileRange * tileSize;
+    [Header("연결")]
+    [SerializeField] private Transform player;
+    [SerializeField] private WorldItemUIWidget widget;
 
-        var hits = Physics2D.OverlapCircleAll(player.position, radius, itemLayer);
+    [Header("디버그")]
+    [SerializeField] private bool showDebugLog = true;
 
-        if (hits == null || hits.Length == 0)
+    // 현재 범위 내 아이템 목록
+    private List<PassiveItemPickup> nearbyPassiveItems = new List<PassiveItemPickup>();
+    private List<ActiveItemPickup> nearbyActiveItems = new List<ActiveItemPickup>();
+
+    // 현재 표시 중인 아이템
+    private object currentItem;
+    private bool isCurrentPassive;
+
+    private void AutoBind()
+    {
+        if (player == null)
         {
-            widgetRoot.gameObject.SetActive(false);
-            _lastData = null;
+            var p = GameObject.FindGameObjectWithTag("Player");
+            if (p != null) player = p.transform;
+        }
+
+        if (widget == null)
+        {
+            widget = FindObjectOfType<WorldItemUIWidget>(true);
+        }
+    }
+
+
+    public void OnItemEnterPassive(PassiveItemPickup item)
+    {
+        if (item == null) return;
+
+        if (nearbyPassiveItems.Contains(item))
+        {
+            if (showDebugLog)
+                Debug.LogWarning($"[WorldItemUI] {item.name}이 이미 목록에 있습니다.");
             return;
         }
 
-        Collider2D nearest = null;
-        float best = float.MaxValue;
+        nearbyPassiveItems.Add(item);
 
-        foreach (var col in hits)
+        if (showDebugLog)
+            Debug.Log($"[WorldItemUI] Passive {item.itemData?.itemName} 진입 (총 {nearbyPassiveItems.Count + nearbyActiveItems.Count}개)");
+
+        SelectNearestItem();
+    }
+
+    public void OnItemExitPassive(PassiveItemPickup item)
+    {
+        if (item == null)
         {
-            if (col == null) continue;
-
-            float d = (col.transform.position - player.position).sqrMagnitude;
-            if (d < best)
+            nearbyPassiveItems.RemoveAll(x => x == null);
+            if (nearbyPassiveItems.Count + nearbyActiveItems.Count == 0)
             {
-                best = d;
-                nearest = col;
+                HideUI();
+            }
+            return;
+        }
+
+        bool removed = nearbyPassiveItems.Remove(item);
+
+        if (showDebugLog && removed)
+            Debug.Log($"[WorldItemUI]  Passive {item.itemData?.itemName} 이탈 (남은 {nearbyPassiveItems.Count + nearbyActiveItems.Count}개)");
+
+        if (currentItem == item)
+        {
+            currentItem = null;
+            SelectNearestItem();
+        }
+    }
+
+    public void OnItemEnterActive(ActiveItemPickup item)
+    {
+        if (item == null) return;
+
+        if (nearbyActiveItems.Contains(item))
+        {
+            if (showDebugLog)
+                Debug.LogWarning($"[WorldItemUI] {item.name}이 이미 목록에 있습니다.");
+            return;
+        }
+
+        nearbyActiveItems.Add(item);
+
+        if (showDebugLog)
+            Debug.Log($"[WorldItemUI] Active {item.itemData?.itemName} 진입 (총 {nearbyPassiveItems.Count + nearbyActiveItems.Count}개)");
+
+        SelectNearestItem();
+    }
+
+    public void OnItemExitActive(ActiveItemPickup item)
+    {
+        if (item == null)
+        {
+            nearbyActiveItems.RemoveAll(x => x == null);
+            if (nearbyPassiveItems.Count + nearbyActiveItems.Count == 0)
+            {
+                HideUI();
+            }
+            return;
+        }
+
+        bool removed = nearbyActiveItems.Remove(item);
+
+        if (showDebugLog && removed)
+            Debug.Log($"[WorldItemUI] Active {item.itemData?.itemName} 이탈 (남은 {nearbyPassiveItems.Count + nearbyActiveItems.Count}개)");
+
+        if (currentItem == item)
+        {
+            currentItem = null;
+            SelectNearestItem();
+        }
+    }
+
+    private void SelectNearestItem()
+    {
+        if (player == null || widget == null)
+        {
+            Debug.LogWarning("[WorldItemUI] Player 또는 Widget이 없습니다.");
+            return;
+        }
+
+        nearbyPassiveItems.RemoveAll(item => item == null || !item.gameObject.activeInHierarchy);
+        nearbyActiveItems.RemoveAll(item => item == null || !item.gameObject.activeInHierarchy);
+
+        if (nearbyPassiveItems.Count == 0 && nearbyActiveItems.Count == 0)
+        {
+            HideUI();
+            return;
+        }
+
+        object nearest = null;
+        bool isPassive = false;
+        float bestDistance = float.MaxValue;
+        Vector3 uiOffset = Vector3.zero;
+
+        foreach (var item in nearbyPassiveItems)
+        {
+            float dist = Vector2.Distance(player.position, item.transform.position);
+            if (dist < bestDistance)
+            {
+                bestDistance = dist;
+                nearest = item;
+                isPassive = true;
+                uiOffset = item.uiOffset;
             }
         }
 
-        if (nearest == null)
+        foreach (var item in nearbyActiveItems)
         {
-            widgetRoot.gameObject.SetActive(false);
-            _lastData = null;
-            return;
+            float dist = Vector2.Distance(player.position, item.transform.position);
+            if (dist < bestDistance)
+            {
+                bestDistance = dist;
+                nearest = item;
+                isPassive = false;
+                uiOffset = item.uiOffset;
+            }
         }
 
-        ItemPickup pickup = nearest.GetComponentInParent<ItemPickup>();
-        if (pickup == null || pickup.itemData == null)
+        if (nearest != currentItem)
         {
-            widgetRoot.gameObject.SetActive(false);
-            _lastData = null;
-            return;
+            currentItem = nearest;
+            isCurrentPassive = isPassive;
+
+            if (currentItem != null)
+            {
+                ShowUI(nearest, isPassive, uiOffset);
+            }
+            else
+            {
+                HideUI();
+            }
         }
-
-        widgetRoot.gameObject.SetActive(true);
-
-        if (_lastData != pickup.itemData)
-        {
-            widgetView.SetItem(pickup.itemData);
-            _lastData = pickup.itemData;
-        }
-
-        Vector3 worldPos = pickup.transform.position + uiOffset;
-        Vector3 screenPos = cam.WorldToScreenPoint(worldPos);
-
-        RectTransform canvasRect = parentCanvas.transform as RectTransform;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            canvasRect,
-            screenPos,
-            parentCanvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : cam,
-            out Vector2 localPoint);
-
-        widgetRoot.anchoredPosition = localPoint;
-        Debug.Log("hits=" + Physics2D.OverlapCircleAll(player.position, tileRange * tileSize, itemLayer).Length);
     }
 
-#if UNITY_EDITOR
-    // 에디터에서 탐색 반경 시각화(선택사항)
-    private void OnDrawGizmosSelected()
+    private void ShowUI(object item, bool isPassive, Vector3 uiOffset)
     {
-        if (player == null) return;
-        float radius = tileRange * tileSize;
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(player.position, radius);
-    }
-#endif
-}
+        if (widget == null || item == null) return;
 
+        widget.gameObject.SetActive(true);
+
+        if (isPassive)
+        {
+            PassiveItemPickup passive = item as PassiveItemPickup;
+            passive.ConfigureUI(widget);
+            widget.SetTrackingTarget(passive.transform, uiOffset);
+        }
+        else
+        {
+            ActiveItemPickup active = item as ActiveItemPickup;
+            active.ConfigureUI(widget);
+            widget.SetTrackingTarget(active.transform, uiOffset);
+        }
+
+        if (showDebugLog)
+        {
+            string typeName = isPassive ? "Passive" : "Active";
+            MonoBehaviour mb = item as MonoBehaviour;
+            Debug.Log($"[WorldItemUI] UI 표시: {mb.name} ({typeName})");
+        }
+    }
+
+    private void HideUI()
+    {
+        if (widget == null) return;
+
+        widget.gameObject.SetActive(false);
+        widget.ClearTrackingTarget();
+
+        if (showDebugLog)
+            Debug.Log($"[WorldItemUI] UI 숨김");
+    }
+}

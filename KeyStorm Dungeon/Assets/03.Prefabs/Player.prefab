@@ -1860,7 +1860,6 @@ MonoBehaviour:
     passiveItems: []
     activeItem: {fileID: 0}
   stats: {fileID: 0}
-  inventoryModel: {fileID: 0}
   gold: 0
   bombCount: 3
   hpPotion: 0

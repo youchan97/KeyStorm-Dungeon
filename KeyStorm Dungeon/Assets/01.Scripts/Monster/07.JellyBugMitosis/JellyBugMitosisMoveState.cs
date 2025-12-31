@@ -9,9 +9,6 @@ public class JellyBugMitosisMoveState : MonsterMoveState
     private float timeSinceLastCheck;
     private Vector3 lastPosition;
 
-    private LayerMask otherMonsterLayer;
-    private float otherMonsterDetectionDistance;
-    private CapsuleCollider2D currentMonsterCollider;
     private float currentPoisonCooldown;
     public JellyBugMitosisMoveState(Monster monster, CharacterStateManager<Monster> stateManager) : base(monster, stateManager)
     {
@@ -22,11 +19,7 @@ public class JellyBugMitosisMoveState : MonsterMoveState
     {
         rb = character.MonsterRb;
 
-        otherMonsterLayer = jellyBugMitosis.OtherMonsterLayer;
-        otherMonsterDetectionDistance = jellyBugMitosis.OtherMonsterDetectionDistance;
-        currentMonsterCollider = jellyBugMitosis.GetCurrentMonsterCollider();
         currentPoisonCooldown = 0f;
-
         lastPosition = jellyBugMitosis.transform.position;
         timeSinceLastCheck = 0f;
     }
@@ -45,27 +38,6 @@ public class JellyBugMitosisMoveState : MonsterMoveState
 
         jellyBugMitosis.FlipSprite(jellyBugMitosis.CurrentMoveDirection.x);
 
-        if (currentMonsterCollider != null && otherMonsterLayer != 0)
-        {
-            Vector2 detectionCenter = (Vector2)jellyBugMitosis.transform.position
-                + (jellyBugMitosis.CurrentMoveDirection.normalized * (currentMonsterCollider.bounds.extents.magnitude + otherMonsterDetectionDistance / 2));
-
-            Vector2 detectionSize = new Vector2(currentMonsterCollider.size.x, currentMonsterCollider.size.y);
-
-            CapsuleDirection2D capsuleDir = currentMonsterCollider.direction;
-
-            Collider2D[] hits = Physics2D.OverlapCapsuleAll(detectionCenter, detectionSize, CapsuleDirection2D.Horizontal, 0f, otherMonsterLayer);
-
-            foreach (Collider2D hit in hits)
-            {
-                if (hit.gameObject != jellyBugMitosis.gameObject)
-                {
-                    rb.velocity = Vector2.zero;
-                    stateManager.ChangeState(jellyBugMitosis.CreateIdleState());
-                    return;
-                }
-            }
-        }
         timeSinceLastCheck += Time.fixedDeltaTime;
 
         if (timeSinceLastCheck >= checkInterval)
