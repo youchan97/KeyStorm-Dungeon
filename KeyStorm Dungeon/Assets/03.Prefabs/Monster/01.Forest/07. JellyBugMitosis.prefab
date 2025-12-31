@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 410744042963909494}
   - component: {fileID: 8696637051273502855}
   - component: {fileID: 2351120593558244102}
+  - component: {fileID: 8361272898529967730}
   m_Layer: 10
   m_Name: 07. JellyBugMitosis
   m_TagString: Untagged
@@ -218,11 +219,52 @@ MonoBehaviour:
   attackPoolManager: {fileID: 0}
   _monsterData: {fileID: 11400000, guid: ff472dba7dc7aef4aafa62ff10e59971, type: 2}
   monsterSpriteRenderer: {fileID: 2654661095196259248}
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  spawnCheckRadius: 0
   animator: {fileID: 410744042963909494}
-  poisonFieldPrefab: {fileID: 6801274708127121250, guid: b8adf5299dc8fc24b9856ebdf409ed2b, type: 3}
-  poisonSpawnPointOffset: {x: 0, y: -0.4, z: 0}
+  isKnockBack: 0
+  poisonSpawnPointOffset: {x: 0, y: -0.8, z: 0}
   poisonCooldown: 1
+  poisonFieldPoolName: PoisonField
+  poisonFieldDuration: 3
   otherMonsterLayer:
     serializedVersion: 2
     m_Bits: 3072
-  otherMonsterDetectionDistance: 0.1
+  poisonFieldLocalScale: {x: 2, y: 2, z: 2}
+--- !u!70 &8361272898529967730
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8845917623184997288}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.03, y: -0.25}
+  m_Size: {x: 0.44, y: 0.35}
+  m_Direction: 1
