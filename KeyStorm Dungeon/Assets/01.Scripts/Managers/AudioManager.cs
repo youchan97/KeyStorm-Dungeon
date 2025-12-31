@@ -27,6 +27,7 @@ public class AudioManager : SingletonManager<AudioManager>
         saveLoadManager = SaveLoadManager.Instance;
         sfxPoolManager = SfxPoolManager.Instance;
         LoadVolume();
+        PlayBgm(StartBgm);
     }
 
     void initAudioDic() //사운드 초기화

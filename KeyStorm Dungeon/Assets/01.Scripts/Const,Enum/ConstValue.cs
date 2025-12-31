@@ -34,6 +34,7 @@ public static class ConstValue
     public const string EasyBgm = "Forest";
     public const string NormalBgm = "Forest";
     public const string HardBgm = "Forest";
+    public const string StartBgm = "StartBgm";
     #endregion
 
     #region SFX 관련
