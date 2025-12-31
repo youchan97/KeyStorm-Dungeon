@@ -49,6 +49,6 @@ MonoBehaviour:
   corridorTilemap: {fileID: 0}
   horizontalCorridorTile: {fileID: 11400000, guid: d17d3e8c2e67b2844abfa929e037fd4e, type: 2}
   verticalCorridorTile: {fileID: 11400000, guid: 50df240177c211d45addfc38330623c7, type: 2}
-  roomSpacing: 50
+  roomSpacing: 40
   corridorWidth: 5
   expandWeight: 0.7

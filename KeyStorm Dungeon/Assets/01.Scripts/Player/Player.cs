@@ -176,6 +176,11 @@ public class Player : Character
         RemoveActions();
     }
 
+    public void GameOverCanvas()
+    {
+        GameSceneUI.GameOver();
+    }
+
     public override void TakeDamage(int damage)
     {
         if (isInvincible) return;

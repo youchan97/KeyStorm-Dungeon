@@ -6,8 +6,10 @@ using static ConstValue;
 
 public class StartSceneCanvasManager : MonoBehaviour
 {
-    [SerializeField] Slider bgmSlider;
-    [SerializeField] Slider sfxSlider;
+    private void Start()
+    {
+        AudioManager.Instance.PlayBgm(StartBgm);
+    }
 
     public void OpenSoundSetting()
     {
@@ -16,6 +18,8 @@ public class StartSceneCanvasManager : MonoBehaviour
 
     public void GameStartButton()
     {
+        StageDataManager.Instance.SelectDifficulty(StageDifficulty.Easy);
+        AudioManager.Instance.PlayButton();
         LoadingManager.LoadScene(GameScene);
     }
 }

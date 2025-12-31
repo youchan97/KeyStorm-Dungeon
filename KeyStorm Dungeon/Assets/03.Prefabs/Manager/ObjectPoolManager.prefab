@@ -54,3 +54,6 @@ MonoBehaviour:
   - poolName: PoisonField
     prefab: {fileID: 6801274708127121250, guid: b8adf5299dc8fc24b9856ebdf409ed2b, type: 3}
     initialSize: 20
+  - poolName: PollenBurstEffect
+    prefab: {fileID: 6316945150070615000, guid: 8fc128738f095ec4497e59ea2b321fce, type: 3}
+    initialSize: 10

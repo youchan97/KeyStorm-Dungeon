@@ -218,10 +218,16 @@ MonoBehaviour:
   attackPoolManager: {fileID: 0}
   _monsterData: {fileID: 11400000, guid: c4aa8fe1bd5420c4ab9fe640253db636, type: 2}
   monsterSpriteRenderer: {fileID: 4917274565195878714}
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  spawnCheckRadius: 0
   animator: {fileID: 8512429093769839660}
-  mitosisSpawnOffsetX: 0.5
+  isKnockBack: 0
+  mitosisSpawnOffsetX: 0.3
   jellyBugMitosisPrefab: {fileID: 8845917623184997288, guid: 032b9c895eb424a4587e6aacc08f002d, type: 3}
-  poisonFieldPrefab: {fileID: 6801274708127121250, guid: b8adf5299dc8fc24b9856ebdf409ed2b, type: 3}
+  poisonFieldPoolName: PoisonField
+  poisonFieldDuration: 3
   otherMonsterLayer:
     serializedVersion: 2
     m_Bits: 3072

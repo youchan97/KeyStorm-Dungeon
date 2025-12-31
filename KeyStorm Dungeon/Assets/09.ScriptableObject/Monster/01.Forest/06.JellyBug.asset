@@ -36,5 +36,5 @@ MonoBehaviour:
   maxDropGold: 0
   minStage: 0
   maxStage: 0
-  xScale: 1
-  yScale: 1
+  xScale: 2
+  yScale: 2

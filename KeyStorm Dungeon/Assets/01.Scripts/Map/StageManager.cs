@@ -7,6 +7,7 @@ using static ConstValue;
 public class StageManager : MonoBehaviour
 {
     StageDataManager stageDataManager;
+
     [Header("Stage Data")]
     public StageData stageData;
 
@@ -69,37 +70,9 @@ public class StageManager : MonoBehaviour
         }
     }
 
+    #region 스테이지 생성
     void GenerateRoomLayout()
     {
-        /*roomMap.Clear();
-
-        Queue<Vector2Int> queue = new();
-        Vector2Int start = Vector2Int.zero;
-
-        roomMap[start] = new RoomNode
-        {
-            gridPos = start,
-            type = RoomType.Start
-        };
-
-        queue.Enqueue(start);
-
-        while (roomMap.Count < stageData.totalRoomCount)
-        {
-            Vector2Int current = queue.Dequeue();
-
-            foreach (var dir in dirs.OrderBy(_ => Random.value))
-            {
-                Vector2Int next = current + dir;
-                if (roomMap.ContainsKey(next)) continue;
-
-                roomMap[next] = new RoomNode { gridPos = next, type = RoomType.Normal };
-                queue.Enqueue(next);
-
-                if (roomMap.Count >= stageData.totalRoomCount)
-                    break;
-            }
-        }*/
         roomMap.Clear();
 
         Vector2Int start = Vector2Int.zero;
@@ -267,4 +240,5 @@ public class StageManager : MonoBehaviour
             }
         }
     }
+    #endregion
 }

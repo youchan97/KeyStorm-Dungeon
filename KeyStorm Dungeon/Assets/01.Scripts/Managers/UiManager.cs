@@ -52,6 +52,7 @@ public class UiManager : SingletonManager<UiManager>
     {
         popupStack.Push(obj);
         obj.SetActive(true);
+        audioManager.PlayButton();
     }
 
     public void ClosePopup()
@@ -60,6 +61,7 @@ public class UiManager : SingletonManager<UiManager>
 
         GameObject obj = popupStack.Pop();
         obj.SetActive(false);
+        audioManager.PlayButton();
     }
 
     public void CloseAllPopup()
@@ -69,4 +71,6 @@ public class UiManager : SingletonManager<UiManager>
         while (popupStack.Count > 0)
             ClosePopup();
     }
+
+    public void ClearStack() => popupStack.Clear();
 }

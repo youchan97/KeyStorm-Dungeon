@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class ObjectPoolManager : SingletonManager<ObjectPoolManager>
+public class ObjectPoolManager : MonoBehaviour
 {
     [System.Serializable]
     public class PoolData
@@ -13,14 +13,24 @@ public class ObjectPoolManager : SingletonManager<ObjectPoolManager>
         public int initialSize;
     }
 
+    private static ObjectPoolManager instance;
+
+    public static ObjectPoolManager Instance { get { return instance; } }
+
     [SerializeField] private List<PoolData> pools = new List<PoolData>();
 
     private Dictionary<string, Queue<GameObject>> objectPools = new Dictionary<string, Queue<GameObject>>();
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
-
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
         InitializePools();
     }
 
@@ -73,7 +83,7 @@ public class ObjectPoolManager : SingletonManager<ObjectPoolManager>
 
         obj.transform.position = position;
         obj.transform.rotation = rotation;
-        obj.SetActive (true);
+        obj.SetActive(true);
 
         return obj;
     }
