@@ -128,8 +128,8 @@ public class PlayerAttack : MonoBehaviour
         Damage = data.character.damage;
         DamageMultiple = data.damageMultiple;
         SpecialDamageMultiple = data.specialDamageMultiple;
-        AttackSpeed = data.attackSpeed;
         AttackSpeedMultiple = data.attackSpeedMultiple;
+        AttackSpeed = 1/data.attackSpeed*AttackSpeedMultiple;
         Range = data.range;
         RangeMultiple = data.rangeMultiple;
         ShootSpeed = data.shootSpeed;
@@ -568,8 +568,8 @@ public class PlayerAttack : MonoBehaviour
         Damage = (int)data.character.damage;
         SpecialDamageMultiple = data.specialDamageMultiple;
         DamageMultiple = data.damageMultiple;
-        AttackSpeed = data.attackSpeed;
         AttackSpeedMultiple = data.attackSpeedMultiple;
+        AttackSpeed = 1/data.attackSpeed*AttackSpeedMultiple;
         Range = data.range;
         ShootSpeed = data.shootSpeed;
         MaxAmmo = data.maxAmmo;

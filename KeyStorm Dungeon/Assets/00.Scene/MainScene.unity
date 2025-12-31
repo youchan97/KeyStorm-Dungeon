@@ -131,6 +131,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 302450497200051325, guid: 378dacaf1786eb04290bcd3aec0eae0f, type: 3}
+      propertyPath: roomSpacing
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 302450497200051325, guid: 378dacaf1786eb04290bcd3aec0eae0f, type: 3}
       propertyPath: corridorTile
       value: 
       objectReference: {fileID: 11400000, guid: d17d3e8c2e67b2844abfa929e037fd4e, type: 2}
