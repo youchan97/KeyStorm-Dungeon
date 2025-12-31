@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PollenButterfly : MeleeMonster
 {
+    [Header("꽃가루나비 설정")]
     [SerializeField] private float idleMoveTime;
     [SerializeField] private float idleRange;
     [SerializeField] private float idleMoveSpeedMultiplier;
+    [SerializeField] private GameObject pollenBurstEffectPrefab;
 
     private Vector3 spawnPosition;
 
@@ -53,10 +55,36 @@ public class PollenButterfly : MeleeMonster
         spawnPosition = transform.position;
     }
 
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+        if (MonsterStateManager.CurState != _attackState && MonsterStateManager.CurState != _dieState)
+        {
+            MonsterStateManager.ChangeState(CreateAttackState());
+        }
+    }
+
+    public override void Die()
+    {
+        pollenEffect();
+        base.Die();
+    }
+
     void OnCollisionStay2D(Collision2D collision)
     {
         ContactPlayer(collision);
     }
 
-    // 꽃가루 소환 메서드
+    private void pollenEffect()
+    {
+        if (pollenBurstEffectPrefab != null)
+        {
+            GameObject burstEffect = ObjectPoolManager.Instance.GetObject("PollenBurstEffect", transform.position, Quaternion.identity);
+
+            if(burstEffect != null)
+            {
+                burstEffect.SetActive(true);
+            }
+        }
+    }
 }
