@@ -43,9 +43,8 @@ GameObject:
   - component: {fileID: 1440449537658092181}
   - component: {fileID: 2654661095196259248}
   - component: {fileID: 410744042963909494}
-  - component: {fileID: 8696637051273502855}
   - component: {fileID: 2351120593558244102}
-  - component: {fileID: 8361272898529967730}
+  - component: {fileID: 8624749910687900742}
   m_Layer: 10
   m_Name: 07. JellyBugMitosis
   m_TagString: Untagged
@@ -169,41 +168,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!70 &8696637051273502855
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8845917623184997288}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.03, y: -0.25}
-  m_Size: {x: 0.35, y: 0.3}
-  m_Direction: 1
 --- !u!114 &2351120593558244102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,16 +189,16 @@ MonoBehaviour:
   spawnCheckRadius: 0
   animator: {fileID: 410744042963909494}
   isKnockBack: 0
-  poisonSpawnPointOffset: {x: 0, y: -0.8, z: 0}
+  poisonSpawnPointOffset: {x: 0, y: -0.4, z: 0}
   poisonCooldown: 1
   poisonFieldPoolName: PoisonField
   poisonFieldDuration: 3
   otherMonsterLayer:
     serializedVersion: 2
     m_Bits: 3072
-  poisonFieldLocalScale: {x: 2, y: 2, z: 2}
---- !u!70 &8361272898529967730
-CapsuleCollider2D:
+  otherMonsterDetectionDistance: 0.2
+--- !u!58 &8624749910687900742
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -265,6 +229,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.03, y: -0.25}
-  m_Size: {x: 0.44, y: 0.35}
-  m_Direction: 1
+  m_Offset: {x: -0.031854242, y: -0.25058672}
+  serializedVersion: 2
+  m_Radius: 0.16234502
