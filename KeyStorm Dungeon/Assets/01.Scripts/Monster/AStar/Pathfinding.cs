@@ -157,8 +157,8 @@ public class Pathfinding
         int distanceX = Mathf.Abs(nodeA.gridPos.x - nodeB.gridPos.x);
         int distanceY = Mathf.Abs(nodeA.gridPos.y - nodeB.gridPos.y);
 
-        return 10 * (distanceX + distanceY);
-        /*float distance = Mathf.Sqrt(distanceX * distanceX + distanceY * distanceY);
-        return Mathf.RoundToInt(distance * 10);*/
+        /*return 10 * (distanceX + distanceY);*/
+        float distance = Mathf.Sqrt(distanceX * distanceX + distanceY * distanceY);
+        return Mathf.RoundToInt(distance * 10);
     }
 }
