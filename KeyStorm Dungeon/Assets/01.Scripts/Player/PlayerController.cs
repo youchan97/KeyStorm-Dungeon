@@ -40,15 +40,15 @@ public class PlayerController : MonoBehaviour
     {
         InitInput();
         InitAction();
-        EnableInput();
-        EnablePause();
+        AllEnable();
+        Room.OnGameCleared += AllDisable;
     }
 
     private void OnDisable()
     {
         RemoveAction();
-        DisableInput();
-        DisablePause();
+        AllDisable();
+        Room.OnGameCleared -= AllDisable;
     }
 
     void InitInput()
@@ -100,6 +100,18 @@ public class PlayerController : MonoBehaviour
     public void EnablePause() => pauseAction.Enable();
 
     public void DisablePause() => pauseAction.Disable();
+
+    public void AllEnable()
+    {
+        EnableInput();
+        EnablePause();
+    }
+
+    public void AllDisable()
+    {
+        DisableInput();
+        DisablePause();
+    }
 
     void MovePerformed(InputAction.CallbackContext context)
     {

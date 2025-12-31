@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 using static ConstValue;
 public class GameManager : SingletonManager<GameManager>
 {
+    SaveLoadManager saveLoadManager;
+    StageDataManager stageDataManager;
+
     private bool isStart;
     public bool isPaused;
 
@@ -21,8 +24,18 @@ public class GameManager : SingletonManager<GameManager>
         InitializeRunData();
     }
 
+    private void Start()
+    {
+        InitManager();
+    }
+
     void InitializeRunData() => playerRunData = new PlayerRunData(playerData);
 
+    void InitManager()
+    {
+        saveLoadManager = SaveLoadManager.Instance;
+        stageDataManager = StageDataManager.Instance;
+    }
 
     public void GameStart()
     {
@@ -49,7 +62,7 @@ public class GameManager : SingletonManager<GameManager>
 
     public void ExitGame()
     {
-        SaveLoadManager.Instance.SaveDatas();
+        saveLoadManager.SaveDatas();
 #if UNITY_EDITOR
         EditorApplication.isPlaying = false;
 #else
@@ -68,12 +81,13 @@ public class GameManager : SingletonManager<GameManager>
     public void RetryGame()
     {
         InitializeRunData();
+        stageDataManager.SelectDifficulty(stageDataManager.CurrentDifficulty);
         LoadingManager.LoadScene(GameScene);
     }
 
     public void StageClear()
     {
-        StageDataManager.Instance.NextStage();
+        stageDataManager.NextStage();
         LoadingManager.LoadScene(GameScene);
     }
 }

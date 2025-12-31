@@ -6,6 +6,11 @@ using static ConstValue;
 
 public class StartSceneCanvasManager : MonoBehaviour
 {
+    private void Start()
+    {
+        AudioManager.Instance.PlayBgm(StartBgm);
+    }
+
     public void OpenSoundSetting()
     {
         UiManager.Instance.OpenSoundPopup();

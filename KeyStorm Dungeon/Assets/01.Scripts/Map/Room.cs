@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -22,6 +23,7 @@ public class RoomNode
 
 public class Room : MonoBehaviour
 {
+    public static event Action OnGameCleared;
     public RoomType roomType;
 
     Player player;
@@ -122,12 +124,24 @@ public class Room : MonoBehaviour
 
         RoomClear();
 
+        if (IsFinalStage())
+        {
+            OnGameCleared?.Invoke();
+            return;
+        }
+
         if (portal != null)
         {
             GameObject go = Instantiate(portal);
             go.transform.position = pos;
         }
 
+    }
+
+    bool IsFinalStage()
+    {
+        StageDataManager manager = StageDataManager.Instance;
+        return manager.CurrentStageIndex == manager.CurrentStageSet.stageDatas.Count;
     }
 
     public void AddMonster(Monster monster)

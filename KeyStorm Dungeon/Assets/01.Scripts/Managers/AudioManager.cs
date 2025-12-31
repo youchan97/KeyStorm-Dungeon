@@ -20,14 +20,12 @@ public class AudioManager : SingletonManager<AudioManager>
     {
         base.Awake();
         initAudioDic();
-
     }
     private void Start()
     {
         saveLoadManager = SaveLoadManager.Instance;
         sfxPoolManager = SfxPoolManager.Instance;
         LoadVolume();
-        PlayBgm(StartBgm);
     }
 
     void initAudioDic() //사운드 초기화

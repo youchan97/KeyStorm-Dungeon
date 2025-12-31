@@ -35,6 +35,8 @@ public static class ConstValue
     public const string NormalBgm = "Forest";
     public const string HardBgm = "Forest";
     public const string StartBgm = "StartBgm";
+    public const string ClearBgm = "GameClear";
+    public const string GameOverBgm = "GameOver";
     #endregion
 
     #region SFX 관련
@@ -46,5 +48,6 @@ public static class ConstValue
 
     #region 게임 종료 관련
     public const string GameOverText = "Game Over...";
+    public const string GameClearText = "Game Clear!!!";
     #endregion
 }
