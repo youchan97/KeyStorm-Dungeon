@@ -20,7 +20,7 @@ MonoBehaviour:
     moveSpeed: 7
   damageMultiple: 1
   specialDamageMultiple: 3
-  attackSpeed: 3
+  attackSpeed: 0.5
   attackSpeedMultiple: 1
   range: 3
   rangeMultiple: 3
