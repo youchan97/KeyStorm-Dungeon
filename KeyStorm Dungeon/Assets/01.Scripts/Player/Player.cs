@@ -5,7 +5,6 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static ConstValue;
-using static UnityEngine.Rendering.DebugUI;
 
 public class Player : Character
 {
@@ -13,6 +12,7 @@ public class Player : Character
     GameManager gameManager;
     AudioManager audioManager;
     [SerializeField] PlayerController playerController;
+    [SerializeField] PlayerAttack playerAttack;
     [SerializeField] PlayerInventory inventory;
     [SerializeField] PlayerData data;
     [SerializeField] PlayerSkill playerSkill;
@@ -31,7 +31,7 @@ public class Player : Character
     public event Action OnDie;
 
     #region Property
-    public PlayerAttack PlayerAttack { get; private set; }
+    public PlayerAttack PlayerAttack { get => playerAttack; private set=> playerAttack = value; }
     public bool IsMove { get => isMove; private set => isMove = value; }
     public PlayerIdleState IdleState { get; private set; }
     public PlayerMoveState MoveState { get; private set; }
@@ -51,7 +51,6 @@ public class Player : Character
     protected override void Awake()
     {
         playerStateManager = new CharacterStateManager<Player>(this);
-        PlayerAttack = GetComponent<PlayerAttack>();
         gameManager = GameManager.Instance;
         audioManager = AudioManager.Instance;
         InitPlayer();
@@ -146,7 +145,10 @@ public class Player : Character
         if (inventory.activeItem == null) return;
 
         if (inventory.activeItem.skillType == SkillType.Bomb)
-            Bomb();
+        {
+            return; //현재 미구현이다
+            //Bomb();
+        }
         else
         {
             playerSkill.TrySkill(inventory.activeItem.skillType);
