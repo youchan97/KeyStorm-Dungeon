@@ -69,7 +69,7 @@ public class RangerMonster : Monster
             shootPoint = this.transform;
         }
 
-        AttackObj pooledAttackObj = attackPoolManager.GetAttack();
+        AttackObj pooledAttackObj = attackPoolManager.GetObj();
         if (pooledAttackObj == null)
         {
             Debug.LogError("오브젝트 풀에서 AttackObj를 가져오지 못함.");

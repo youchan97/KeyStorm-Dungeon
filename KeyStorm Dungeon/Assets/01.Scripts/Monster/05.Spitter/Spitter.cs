@@ -54,7 +54,7 @@ public class Spitter : RangerMonster
             shootPoint = this.transform;
         }
 
-        AttackObj pooledAttackObj = attackPoolManager.GetAttack();
+        AttackObj pooledAttackObj = attackPoolManager.GetObj();
         if (pooledAttackObj == null)
         {
             return;

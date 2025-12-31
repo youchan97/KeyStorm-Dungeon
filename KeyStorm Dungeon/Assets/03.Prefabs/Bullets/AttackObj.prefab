@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4379815588428868619}
   - component: {fileID: 2559676089978735361}
   - component: {fileID: 679422950854568670}
+  - component: {fileID: 1696302613379488488}
   m_Layer: 6
   m_Name: AttackObj
   m_TagString: Untagged
@@ -100,6 +101,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 114005627041667001}
+  anim: {fileID: 1696302613379488488}
+  defalutController: {fileID: 9100000, guid: ee88b2cdfaad8c048aecee3436a63d07, type: 2}
   rb: {fileID: 2559676089978735361}
   isPlayer: 1
   circleCollider: {fileID: 679422950854568670}
@@ -165,3 +168,24 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.3
+--- !u!95 &1696302613379488488
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6713507529412248684}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ee88b2cdfaad8c048aecee3436a63d07, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

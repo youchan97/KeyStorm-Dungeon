@@ -1004,8 +1004,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4897994978481459714, guid: 3e98139ad831df44aa675463c7295987, type: 3}
       propertyPath: m_Name
-      value: PoolManager
+      value: AttackPoolManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8254111070137232088, guid: 3e98139ad831df44aa675463c7295987, type: 3}
+      propertyPath: effectPoolManager
+      value: 
+      objectReference: {fileID: 1158209262}
     - target: {fileID: 9134673825971838917, guid: 3e98139ad831df44aa675463c7295987, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.4083703
@@ -1178,6 +1182,52 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1158209261
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1158209263}
+  - component: {fileID: 1158209262}
+  m_Layer: 0
+  m_Name: EffectPoolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1158209262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1158209261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af41e5f2231cbbe44b781f184d075c41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolObj: {fileID: 7882535548164513021, guid: f50d5c0985fb15443ac5d82f023c73b1, type: 3}
+  poolSize: 5
+--- !u!4 &1158209263
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1158209261}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.322341, y: -6.8908415, z: -0.060750928}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1844,3 +1894,4 @@ SceneRoots:
   - {fileID: 1345337968}
   - {fileID: 126257236}
   - {fileID: 1172645880}
+  - {fileID: 1158209263}

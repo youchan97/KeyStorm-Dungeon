@@ -22,4 +22,9 @@ public class StartSceneCanvasManager : MonoBehaviour
         AudioManager.Instance.PlayButton();
         LoadingManager.LoadScene(GameScene);
     }
+
+    public void OnClickExit()
+    {
+        GameManager.Instance.ExitGame();
+    }
 }
