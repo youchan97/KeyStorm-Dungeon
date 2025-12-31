@@ -7,4 +7,9 @@ public class PollenButterflyDieState : MonsterDieState
     public PollenButterflyDieState(Monster character, CharacterStateManager<Monster> stateManager) : base(character, stateManager)
     {
     }
+
+    public override void EnterState()
+    {
+        base.EnterState();
+    }
 }

@@ -122,6 +122,7 @@ public abstract class Monster : Character
             Debug.LogWarning("MonsterData가 할당되지 않아 쿨타임을 초기화할 수 없음");
         }
     }
+
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
