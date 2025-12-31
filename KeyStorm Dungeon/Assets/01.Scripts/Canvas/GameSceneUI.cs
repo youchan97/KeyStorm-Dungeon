@@ -20,18 +20,25 @@ public class GameSceneUI : MonoBehaviour
     [SerializeField] GameObject optionPanel;
 
 
-    [SerializeField] GameObject gameoverPanel;
-    [SerializeField] TextMeshProUGUI gameoverText;
+    [SerializeField] GameObject gameResultPanel;
+    /*[SerializeField] TextMeshProUGUI gameOverText;
     [SerializeField] float typingInterval;
-    [SerializeField] GameObject gameoverMenu;
+    [SerializeField] GameObject gameOverMenu;
+
+    [SerializeField] GameObject gameClearPanel;
+    [SerializeField] TextMeshProUGUI gameClearText;
+    [SerializeField] GameObject gameClearMenu;*/
 
     Player player;
 
     private void Awake()
     {
-        uiManager = UiManager.Instance;
-        gameManager = GameManager.Instance;
-        audioManager = AudioManager.Instance;
+        InitManager();     
+    }
+
+    private void OnEnable()
+    {
+        Room.OnGameCleared += GameClear;
     }
 
     void Update()
@@ -42,7 +49,14 @@ public class GameSceneUI : MonoBehaviour
     }
     private void OnDisable()
     {
-        player.OnDie -= GameOverCanvas;
+        Room.OnGameCleared -= GameClear;
+    }
+
+    void InitManager()
+    {
+        uiManager = UiManager.Instance;
+        gameManager = GameManager.Instance;
+        audioManager = AudioManager.Instance;
     }
 
     public void InitPlayerData(Player player)
@@ -50,7 +64,6 @@ public class GameSceneUI : MonoBehaviour
         this.player = player;
         inventory = player.Inventory;
         attack = player.PlayerAttack;
-        player.OnDie += GameOverCanvas;
     }
 
     public void OpenOption()
@@ -92,23 +105,29 @@ public class GameSceneUI : MonoBehaviour
         gameManager.RetryGame();
     }
 
-    public void GameOverCanvas()
+    public void GameOver()
     {
-        gameoverPanel.SetActive(true);
-        StartCoroutine(StartGameOver(GameOverText));
+        audioManager.PlayBgm(GameOverBgm);
+        gameResultPanel.SetActive(true);
+    }
+    public void GameClear()
+    {
+        audioManager.PlayBgm(GameOverBgm);
+        gameResultPanel.SetActive(true);
     }
 
-    IEnumerator StartGameOver(string message)
+    /*IEnumerator StartResult(string message, GameObject menu)
     {
-        gameoverText.text = "";
+        gameOverText.text = "";
 
         foreach (char c in message)
         {
-            gameoverText.text += c;
+            gameOverText.text += c;
             yield return new WaitForSeconds(typingInterval);
         }
 
-        gameoverMenu.SetActive(true);
+        gameOverMenu.SetActive(true);
         yield return null;
-    }
+    }*/
+
 }
