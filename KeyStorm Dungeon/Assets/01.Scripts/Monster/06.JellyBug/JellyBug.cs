@@ -73,7 +73,7 @@ public class JellyBug : MeleeMonster
 
     public void OnDieEffect()
     {
-        Vector3 spawnPosition = transform.position + new Vector3(0, -0.3f, 0);
+        Vector3 spawnPosition = transform.position + new Vector3(0, -0.1f, 0);
 
         SpawnMitosis(spawnPosition + Vector3.left * mitosisSpawnOffsetX);
         SpawnMitosis(spawnPosition + Vector3.right * mitosisSpawnOffsetX);

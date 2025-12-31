@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 022c38624de0acc44ac949e934164ffb, type: 3}
-  m_Name: CombatButterfly
+  m_Name: 09.CombatButterfly
   m_EditorClassIdentifier: 
   characterData:
     charName: CombatButterfly
-    id: 7
+    id: 9
     maxHp: 15
     damage: 1
     moveSpeed: 2
@@ -24,6 +24,8 @@ MonoBehaviour:
   tier: 0
   shotSpeed: 0
   attackSpeed: 2
+  projectileColliderOffset: {x: 0, y: 0}
+  projectileColliderRadius: 0
   separationRaduis: 0
   separationStrength: 0
   pathfindingWeight: 0
