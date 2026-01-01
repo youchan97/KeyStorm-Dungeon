@@ -40,12 +40,12 @@ public class PassiveItemPickup : MonoBehaviour
         if (uiCollider != null)
         {
             uiCollider.isTrigger = true;
-            uiCollider.radius = uiDisplayRadius;
+            //uiCollider.radius = uiDisplayRadius;
         }
 
-        pickupCollider = gameObject.AddComponent<CircleCollider2D>();
+        /*pickupCollider = gameObject.AddComponent<CircleCollider2D>();
         pickupCollider.isTrigger = true;
-        pickupCollider.radius = pickupRadius;
+        pickupCollider.radius = pickupRadius;*/
 
         view = GetComponent<ItemPickupView>();
         if (view != null) view.Apply(itemData);

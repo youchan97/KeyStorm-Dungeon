@@ -78,7 +78,7 @@ public class StoreSlot : MonoBehaviour
             {
                 circleCol.enabled = true;
                 circleCol.isTrigger = true;
-                circleCol.radius = 1.5f;
+                //circleCol.radius = 1.5f;
             }
 
             foreach (var rb in obj.GetComponentsInChildren<Rigidbody2D>(true))

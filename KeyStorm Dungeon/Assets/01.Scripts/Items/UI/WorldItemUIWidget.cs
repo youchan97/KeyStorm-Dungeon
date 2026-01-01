@@ -71,7 +71,7 @@ public class WorldItemUIWidget : MonoBehaviour
         // 1. 아이템 이름
         if (itemNameText != null)
         {
-            itemNameText.text = data.itemName;
+            itemNameText.text = string.Format("{0}\n{1}", data.itemName, data.itemEnglishName);
             itemNameText.color = GetTierColor(data.tier);
             Debug.Log($"[Widget] 이름 설정: {data.itemName}");
         }
