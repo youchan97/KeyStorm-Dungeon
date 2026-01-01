@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ConstValue;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CircleCollider2D))]
@@ -129,9 +130,9 @@ public class ThrownBomb : MonoBehaviour
     {
         if (canTrigger == false) return;
 
-        Monster monster = collision.gameObject.GetComponent<Monster>();
-
-        if (monster != null || collision.gameObject.CompareTag("Wall"))
+        Monster monster = collision.GetComponent<Monster>();
+        bool isWall = ((1 << collision.gameObject.layer) & WallLayer) != 0;
+        if (monster != null || isWall)
             Explode();
     }
     void OnDrawGizmosSelected()

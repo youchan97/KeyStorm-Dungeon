@@ -187,6 +187,7 @@ public class Player : Character
     {
         if (isInvincible) return;
 
+        isInvincible = true;
         CharacterRunData character = playerRunData.character;
         character.currentHp = Mathf.Max(0, character.currentHp - damage);
 

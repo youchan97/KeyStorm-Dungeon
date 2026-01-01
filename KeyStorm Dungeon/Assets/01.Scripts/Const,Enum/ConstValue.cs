@@ -21,7 +21,7 @@ public static class ConstValue
 
     #region 방생성 관련(지금은 사용안함)
     public const float SplitNodeHeight = 0.5f;
-    public const int wallLayer = 1 << 8;
+    public const int WallLayer = 1 << 7;
     #endregion
 
     #region 씬 관련

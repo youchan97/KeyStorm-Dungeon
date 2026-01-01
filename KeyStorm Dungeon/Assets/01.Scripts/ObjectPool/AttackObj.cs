@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ConstValue;
 
 public class AttackObj : MonoBehaviour
 {
@@ -72,9 +73,12 @@ public class AttackObj : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Vector3 vec = collision.ClosestPoint(transform.position);
-        if(collision.CompareTag("Wall") || collision.CompareTag("Collision"))
+        bool isWall = ((1 << collision.gameObject.layer) & WallLayer) != 0;
+        if(isWall || collision.CompareTag("Collision"))
         {
-            ShowEffect(vec);
+            if(isPlayer)
+                ShowEffect(vec);
+
             poolManager.ReturnPool(this);
             return;
         }

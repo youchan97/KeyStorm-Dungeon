@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5458118237987217537}
   - component: {fileID: 5257416374497908286}
   - component: {fileID: 2982573789360551042}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HorizontalDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
