@@ -60,6 +60,10 @@ public class Spitter : RangerMonster
             return;
         }
 
+
+        /* null 뜸
+        NullReferenceException: Object reference not set to an instance of an object
+        Spitter.OnAttack()(at Assets / 01.Scripts / Monster / 05.Spitter / Spitter.cs:63)*/
         Vector2 porjectileDirection = (player.transform.position - shootPoint.position).normalized;
 
         pooledAttackObj.transform.position = shootPoint.position;

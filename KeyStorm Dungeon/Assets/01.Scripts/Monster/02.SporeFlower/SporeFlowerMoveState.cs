@@ -51,7 +51,7 @@ public class SporeFlowerMoveState : MonsterMoveState
 
     public override void UpdateState()
     {
-        
+
     }
 
     public override void FixedUpdateState()
@@ -69,34 +69,33 @@ public class SporeFlowerMoveState : MonsterMoveState
 
         if (character.isKnockBack) return;
 
-        if ( currentMoveTime > 0f)
-        {
-            rb.velocity = moveDirection * sporeFlower.MoveSpeed;
-            
-            currentMoveTime -= Time.fixedDeltaTime;
-
-            timeSinceLastCheck += Time.fixedDeltaTime;
-            if (timeSinceLastCheck >= checkInterval)
-            {
-                float distanceMoved = Vector3.Distance(sporeFlower.transform.position, lastPosition);
-
-                if(distanceMoved < stoppedThreshold && rb.velocity.sqrMagnitude > stoppedThreshold * stoppedThreshold)
-                {
-                    rb.velocity = Vector2.zero;
-                    stateManager.ChangeState(sporeFlower.CreateAttackState());
-                    return;
-                }
-                lastPosition = sporeFlower.transform.position;
-                timeSinceLastCheck = 0f;
-            }
-        }
-        else
+        currentMoveTime -= Time.fixedDeltaTime;
+        if (currentMoveTime <= 0f)
         {
             rb.velocity = Vector2.zero;
             isChangedAttackAnimation = true;
             float changeAttackClipLength = GetAnimationClipLength("SporeFlower_ChangeAttack");
             changeAttackCoroutine = sporeFlower.StartCoroutine(WaitForAnimationToAttack(changeAttackClipLength));
             return;
+        }
+
+        rb.velocity = moveDirection * sporeFlower.MoveSpeed;
+
+        timeSinceLastCheck += Time.fixedDeltaTime;
+        if (timeSinceLastCheck >= checkInterval)
+        {
+            float distanceMoved = Vector3.Distance(sporeFlower.transform.position, lastPosition);
+
+            if (distanceMoved < stoppedThreshold && rb.velocity.sqrMagnitude > stoppedThreshold * stoppedThreshold)
+            {
+                rb.velocity = Vector2.zero;
+                isChangedAttackAnimation = true;
+                float changeAttackClipLength = GetAnimationClipLength("SporeFlower_ChangeAttack");
+                changeAttackCoroutine = sporeFlower.StartCoroutine(WaitForAnimationToAttack(changeAttackClipLength));
+                return;
+            }
+            lastPosition = sporeFlower.transform.position;
+            timeSinceLastCheck = 0f;
         }
     }
 

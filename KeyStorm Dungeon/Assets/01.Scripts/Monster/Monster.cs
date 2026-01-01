@@ -22,6 +22,7 @@ public abstract class Monster : Character
     public Transform PlayerTransform { get; private set; }
     public Player player { get; protected set; }
 
+    
     [HideInInspector] public float CurrentAttackCooldown { get; protected set; }
 
     public abstract CharacterState<Monster> CreateIdleState();

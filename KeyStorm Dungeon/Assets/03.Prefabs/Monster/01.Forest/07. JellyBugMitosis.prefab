@@ -196,7 +196,7 @@ MonoBehaviour:
   otherMonsterLayer:
     serializedVersion: 2
     m_Bits: 3072
-  otherMonsterDetectionDistance: 0.2
+  poisonFieldLocalScale: {x: 2, y: 2, z: 2}
 --- !u!58 &8624749910687900742
 CircleCollider2D:
   m_ObjectHideFlags: 0
