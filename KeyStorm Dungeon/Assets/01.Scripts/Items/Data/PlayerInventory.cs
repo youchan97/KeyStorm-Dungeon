@@ -7,6 +7,7 @@ public class PlayerInventory : MonoBehaviour
 {
     public InventoryRunData runData;
     public PlayerStats stats;
+    public GameSceneUI gameSceneUI;
 
     [Header("자원")]
     public int gold;
@@ -33,6 +34,7 @@ public class PlayerInventory : MonoBehaviour
         gold += amount;
         if (gold < 0) gold = 0;
         runData.UpdateGold(gold);
+        gameSceneUI.UpdateGold(amount);
     }
 
     public void AddPotion(int amount)
@@ -46,6 +48,7 @@ public class PlayerInventory : MonoBehaviour
         bombCount += amount;
         if (bombCount < 0) bombCount = 0;
         runData.UpdateBomb(bombCount);
+        gameSceneUI.UpdateBomb(amount);
     }
 
     public bool TrySpendGold(int amount)

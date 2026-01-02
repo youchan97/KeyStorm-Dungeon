@@ -46,6 +46,7 @@ public class Player : Character
     public AudioManager AudioManager { get => audioManager; }
     public PlayerSkill PlayerSkill { get => playerSkill;}
     public GameSceneUI GameSceneUI { get; private set; }
+    public HealthUI HealthUI { get; private set; }
     #endregion
 
     protected override void Awake()
@@ -133,6 +134,7 @@ public class Player : Character
     void Shoot()
     {
         PlayerAttack.Shoot(playerController.KeyName);
+        GameSceneUI.UpdateAmmo(playerAttack.Ammo, playerAttack.MaxAmmo);
     }
 
     void Bomb()
@@ -192,6 +194,7 @@ public class Player : Character
         character.currentHp = Mathf.Max(0, character.currentHp - damage);
 
         Hp = character.currentHp;
+        HealthUI.SetHp(Hp);
 
         if (Hp > 0)
         {
@@ -210,6 +213,7 @@ public class Player : Character
     {
         playerRunData.character.Heal(num);
         Hp = playerRunData.character.currentHp;
+        HealthUI.SetHp(Hp);
     }
 
     public void UpdatePlayerData(ItemData data)
@@ -230,6 +234,10 @@ public class Player : Character
         MoveSpeed = characterRunData.moveSpeed;
 
         PlayerAttack.SyncPlayerAttackStat(runData);
+
+        HealthUI.SetHp(Hp);
+        HealthUI.SetMaxHp(MaxHp);
+        GameSceneUI.UpdateAmmo(runData.ammo, runData.maxAmmo);
     }
 
     public void MagnetItems(Bounds bounds)
