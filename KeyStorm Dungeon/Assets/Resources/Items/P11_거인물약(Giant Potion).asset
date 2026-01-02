@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: "P11_\uAC70\uC778\uBB3C\uC57D(Giant Potion)"
   m_EditorClassIdentifier: 
   itemId: P11
-  itemName: "\uAC70\uC778\uBB3C\uC57D(Giant Potion)"
+  itemName: "\uAC70\uC778\uBB3C\uC57D"
+  itemEnglishName: Giant Potion
   description: 
   worldSprite: {fileID: 110764233, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
   iconSprite: {fileID: 110764233, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
@@ -35,3 +36,4 @@ MonoBehaviour:
   scale: 0.2
   cooldownType: 0
   cooldownMax: 0
+  skillType: 0

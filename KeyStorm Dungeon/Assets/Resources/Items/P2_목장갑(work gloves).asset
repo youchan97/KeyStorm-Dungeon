@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: "P2_\uBAA9\uC7A5\uAC11(work gloves)"
   m_EditorClassIdentifier: 
   itemId: P2
-  itemName: "\uBAA9\uC7A5\uAC11(work gloves)"
+  itemName: "\uBAA9\uC7A5\uAC11"
+  itemEnglishName: work gloves
   description: 
   worldSprite: {fileID: -1158313504, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
   iconSprite: {fileID: -1158313504, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
@@ -35,3 +36,4 @@ MonoBehaviour:
   scale: 0
   cooldownType: 0
   cooldownMax: 0
+  skillType: 0

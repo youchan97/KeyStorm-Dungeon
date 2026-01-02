@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: "P14_\uCC54\uD53C\uC5B8\uC758 \uAC11\uC637 (Champion Plate Armor)"
   m_EditorClassIdentifier: 
   itemId: P14
-  itemName: "\uCC54\uD53C\uC5B8\uC758 \uAC11\uC637 (Champion Plate Armor)"
+  itemName: "\uCC54\uD53C\uC5B8\uC758 \uAC11\uC637"
+  itemEnglishName: Champion Plate Armor
   description: 
   worldSprite: {fileID: -623812692, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
   iconSprite: {fileID: -623812692, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
@@ -35,3 +36,4 @@ MonoBehaviour:
   scale: 0
   cooldownType: 0
   cooldownMax: 0
+  skillType: 0

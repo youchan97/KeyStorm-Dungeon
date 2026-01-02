@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: "P4_\uACE0\uC591\uC774 \uBC1C\uAC78\uC74C (Cat Step Boots)"
   m_EditorClassIdentifier: 
   itemId: P4
-  itemName: "\uACE0\uC591\uC774 \uBC1C\uAC78\uC74C (Cat Step Boots)"
+  itemName: "\uACE0\uC591\uC774 \uBC1C\uAC78\uC74C"
+  itemEnglishName: Cat Step Boots
   description: 
   worldSprite: {fileID: 98873075, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
   iconSprite: {fileID: 98873075, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
@@ -35,3 +36,4 @@ MonoBehaviour:
   scale: 0
   cooldownType: 0
   cooldownMax: 0
+  skillType: 0

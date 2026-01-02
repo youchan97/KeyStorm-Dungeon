@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: "P6_\uB9E4\uC758 \uB208 (Hawk\u2019s Eye)"
   m_EditorClassIdentifier: 
   itemId: P6
-  itemName: "\uB9E4\uC758 \uB208 (Hawk\u2019s Eye)"
+  itemName: "\uB9E4\uC758 \uB208"
+  itemEnglishName: "Hawk\u2019s Eye"
   description: 
   worldSprite: {fileID: -34985914, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
   iconSprite: {fileID: -34985914, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
@@ -35,3 +36,4 @@ MonoBehaviour:
   scale: 0
   cooldownType: 0
   cooldownMax: 0
+  skillType: 0

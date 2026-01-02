@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: "P8_\uB300\uC6A9\uB7C9 \uD0C4\uCC3D(extended magazine)"
   m_EditorClassIdentifier: 
   itemId: P8
-  itemName: "\uB300\uC6A9\uB7C9 \uD0C4\uCC3D(extended magazine)"
+  itemName: "\uB300\uC6A9\uB7C9 \uD0C4\uCC3D"
+  itemEnglishName: Extended Magazine
   description: 
   worldSprite: {fileID: -409205174, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
   iconSprite: {fileID: -409205174, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
@@ -35,3 +36,4 @@ MonoBehaviour:
   scale: 0
   cooldownType: 0
   cooldownMax: 0
+  skillType: 0

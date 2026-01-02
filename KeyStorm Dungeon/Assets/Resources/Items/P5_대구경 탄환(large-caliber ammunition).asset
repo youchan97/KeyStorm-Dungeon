@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: P5
   itemName: "\uB300\uAD6C\uACBD \uD0C4\uD658(large-caliber ammunition)"
+  itemEnglishName: Large Caliber Bullet
   description: 
   worldSprite: {fileID: -2099723677, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
   iconSprite: {fileID: -2099723677, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
@@ -35,3 +36,4 @@ MonoBehaviour:
   scale: 0
   cooldownType: 0
   cooldownMax: 0
+  skillType: 0

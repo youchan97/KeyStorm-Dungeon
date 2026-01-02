@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: "P13_\uBD84\uB178\uC758 \uC7A5\uAC11 (Gloves of Rage)"
   m_EditorClassIdentifier: 
   itemId: P13
-  itemName: "\uBD84\uB178\uC758 \uC7A5\uAC11 (Gloves of Rage)"
+  itemName: "\uBD84\uB178\uC758 \uC7A5\uAC11"
+  itemEnglishName: Gloves of Rage
   description: 
   worldSprite: {fileID: 1297427981, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
   iconSprite: {fileID: 1297427981, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
@@ -35,3 +36,4 @@ MonoBehaviour:
   scale: 0
   cooldownType: 0
   cooldownMax: 0
+  skillType: 0

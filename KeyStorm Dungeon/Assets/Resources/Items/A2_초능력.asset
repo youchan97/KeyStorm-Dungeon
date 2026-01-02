@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: A2
   itemName: "\uCD08\uB2A5\uB825"
+  itemEnglishName: Esp
   description: 
   worldSprite: {fileID: -1019815630, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
   iconSprite: {fileID: -1019815630, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}

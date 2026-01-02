@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: "P3_\uBD89\uC740 \uC2EC\uC7A5 \uC870\uAC01 (Red Heart Shard)"
   m_EditorClassIdentifier: 
   itemId: P3
-  itemName: "\uBD89\uC740 \uC2EC\uC7A5 \uC870\uAC01 (Red Heart Shard)"
+  itemName: "\uBD89\uC740 \uC2EC\uC7A5 \uC870\uAC01"
+  itemEnglishName: Red Heart Shard
   description: 
   worldSprite: {fileID: 215270955, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
   iconSprite: {fileID: 215270955, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
@@ -35,3 +36,4 @@ MonoBehaviour:
   scale: 0
   cooldownType: 0
   cooldownMax: 0
+  skillType: 0
