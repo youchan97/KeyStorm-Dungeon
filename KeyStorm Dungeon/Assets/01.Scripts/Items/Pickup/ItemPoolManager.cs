@@ -15,7 +15,6 @@ public class ItemPoolManager : MonoBehaviour
     public float tier3Weight = 2f;
     public float tier4Weight = 1f;
 
-    // 먹은 아이템(다시 안 나오게)
     private readonly HashSet<string> acquiredItemIds = new HashSet<string>();
 
     private readonly Dictionary<ItemDropRoom, Dictionary<ItemTier, List<ItemData>>> pools
@@ -38,7 +37,6 @@ public class ItemPoolManager : MonoBehaviour
     {
         pools.Clear();
 
-        // 드랍룸 / 티어별 리스트 초기화
         foreach (ItemDropRoom room in Enum.GetValues(typeof(ItemDropRoom)))
         {
             if (room == ItemDropRoom.None) continue;
@@ -50,10 +48,8 @@ public class ItemPoolManager : MonoBehaviour
             }
         }
 
-        // 모든 아이템데이터 로드해서 분류
         ItemData[] allItems = Resources.LoadAll<ItemData>("Items");
 
-        //키 컬렉션 복사해서 안정적으로 순회
         var rooms = new List<ItemDropRoom>(pools.Keys);
 
         foreach (var item in allItems)
@@ -65,7 +61,6 @@ public class ItemPoolManager : MonoBehaviour
             {
                 if ((item.dropRoom & room) != 0)
                 {
-                    // tier가 범위를 벗어나면 예외날 수 있으니 막아버림
                     if (!pools[room].ContainsKey(item.tier))
                         continue;
 
@@ -85,28 +80,20 @@ public class ItemPoolManager : MonoBehaviour
         acquiredItemIds.Add(data.itemId);
     }
 
-    // 아무거나(패시브/액티브 섞임) 뽑기
     public ItemData GetRandomItem_ExcludeAcquired(ItemDropRoom room)
     {
         return GetRandomFiltered(room, requireActive: null);
     }
 
-    // 패시브만 뽑기 (상점 패시브 슬롯용)
     public ItemData GetRandomPassive_ExcludeAcquired(ItemDropRoom room)
     {
         return GetRandomFiltered(room, requireActive: false);
     }
 
-    // 액티브만 뽑기 (상점 액티브 슬롯용)
     public ItemData GetRandomActive_ExcludeAcquired(ItemDropRoom room)
     {
         return GetRandomFiltered(room, requireActive: true);
     }
-
-    // requireActive:
-    // - null  : 패시브/액티브 섞어서
-    // - false : 패시브만
-    // - true  : 액티브만
     private ItemData GetRandomFiltered(ItemDropRoom room, bool? requireActive)
     {
         if (room == ItemDropRoom.None) return null;
@@ -124,7 +111,6 @@ public class ItemPoolManager : MonoBehaviour
             {
                 if (it == null) continue;
 
-                // 🔴 핵심: 이미 스폰된 것도 제외
                 if (spawnedItemIds.Contains(it.itemId)) continue;
                 if (IsAcquired(it.itemId)) continue;
 
@@ -139,7 +125,6 @@ public class ItemPoolManager : MonoBehaviour
 
             ItemData picked = candidates[UnityEngine.Random.Range(0, candidates.Count)];
 
-            // 🔥 스폰되는 순간 바로 등록
             spawnedItemIds.Add(picked.itemId);
 
             return picked;
