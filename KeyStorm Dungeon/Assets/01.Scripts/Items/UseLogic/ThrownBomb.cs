@@ -48,32 +48,28 @@ public class ThrownBomb : MonoBehaviour
 
     void Update()
     {
-        // 시간 흐름
         timer += Time.deltaTime;
         if (!hasExploded && timer >= fuseTime)
         {
             Explode();
         }
 
-        // 들고 있는 상태면 항상 holder 위에 위치
         if (holder != null)
         {
-            Vector3 offset = new Vector3(0, 1f, 0); // 머리 위로 약간 올려서 표시
+            Vector3 offset = new Vector3(0, 1f, 0); 
             transform.position = holder.position + offset;
         }
     }
 
-    // 플레이어가 폭탄을 들기 시작할 때 호출
     public void Hold(Transform _holder)
     {
         holder = _holder;
-        timer = 0f;          // 들기 시작한 순간부터 타이머 재시작
+        timer = 0f;          
 
         rb.velocity = Vector2.zero;
         rb.angularVelocity = 0f;
     }
 
-    // 들고 있던 폭탄을 던질 때 호출
     public void Throw(Vector2 direction, float power)
     {
         holder = null;
@@ -104,14 +100,11 @@ public class ThrownBomb : MonoBehaviour
         if (hasExploded) return;
         hasExploded = true;
 
-        // 폭탄 범위 표시
         ShowExplosionRange(transform.position);
 
-        // 기존 폭발 이펙트
         if (explosionEffectPrefab != null)
             Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
 
-        // 데미지 판정
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
         foreach (var hit in hits)
         {

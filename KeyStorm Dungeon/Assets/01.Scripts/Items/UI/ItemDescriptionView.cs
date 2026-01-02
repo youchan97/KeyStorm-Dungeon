@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class ItemDescriptionView : MonoBehaviour
 {
-    [Header("Theme")]
-    public ItemUIThemeSO themeSO;
 
     [Header("UI Refs")]
     public Image frameImage;
@@ -35,14 +33,9 @@ public class ItemDescriptionView : MonoBehaviour
 
         gameObject.SetActive(true);
 
-        // 기본
         if (nameText) nameText.text = data.itemName;
         if (iconImage) iconImage.sprite = data.iconSprite;
 
-        // 티어 프레임/이펙트
-        ApplyTierTheme(data.tier);
-
-        // 스탯 라인 갱신
         ClearStatLines();
         AddStatLine("MaxHp", data.maxHp);
         AddStatLine("MoveSpeed", data.moveSpeed);
@@ -57,26 +50,13 @@ public class ItemDescriptionView : MonoBehaviour
         AddStatLine("UseAmmo", data.useAmmo);
         AddStatLine("Scale", data.scale);
 
-        // 부가설명(공격방식 변화 등)
         if (extraDescText)
         {
             extraDescText.text = data.description;
         }
     }
 
-    private void ApplyTierTheme(ItemTier tier)
-    {
-        if (themeSO == null) return;
-
-        var theme = themeSO.Get(tier);
-        if (frameImage) frameImage.sprite = theme.frameSprite;
-
-        if (_tierFx != null) Destroy(_tierFx);
-        if (tierEffectRoot != null && theme.effectPrefab != null)
-        {
-            _tierFx = Instantiate(theme.effectPrefab, tierEffectRoot);
-        }
-    }
+   
 
     private void ClearStatLines()
     {
@@ -104,13 +84,11 @@ public class ItemDescriptionView : MonoBehaviour
         var line = Instantiate(statLinePrefab, statLinesRoot);
         _spawned.Add(line);
 
-        // 표시값 만들기
         string sign = value > 0 ? "+" : "";
         string textValue;
 
         if (isMultiplier)
         {
-            // A(최종배수 1.2) vs B(증가량 0.2)
             float shown = multiplierStoredAsFinal ? value : (1f + value);
             textValue = $"x{shown:0.##}";
         }
@@ -121,7 +99,6 @@ public class ItemDescriptionView : MonoBehaviour
 
         line.text = $"{label} {textValue}";
 
-        // 색(증가=초록 / 감소=빨강)
         line.color = value >= 0 ? Color.green : Color.red;
     }
 }
