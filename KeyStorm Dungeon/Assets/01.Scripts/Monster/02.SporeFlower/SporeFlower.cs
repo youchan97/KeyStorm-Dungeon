@@ -81,8 +81,8 @@ public class SporeFlower : RangerMonster
         {
             if (MonsterStateManager.CurState != CreateDieState())
             {
-                MonsterStateManager.ChangeState(CreateMoveState());
                 _hasMoved = true;
+                MonsterStateManager.ChangeState(CreateMoveState());
             }
         }
     }

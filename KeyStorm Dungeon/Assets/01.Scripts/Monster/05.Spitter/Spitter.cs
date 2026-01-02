@@ -38,6 +38,10 @@ public class Spitter : RangerMonster
     protected override void Awake()
     {
         base.Awake();
+        if (shootPoint == null)
+        {
+            shootPoint = this.transform;
+        }
     }
 
     protected override void Start()
@@ -49,13 +53,12 @@ public class Spitter : RangerMonster
     {
         if (attackPoolManager == null) return;
 
-        if (shootPoint == null)
-        {
-            shootPoint = this.transform;
-        }
-
-        AttackObj pooledAttackObj = attackPoolManager.GetAttack();
+        AttackObj pooledAttackObj = attackPoolManager.GetObj();
         if (pooledAttackObj == null)
+        {
+            return;
+        }
+        if (player == null)
         {
             return;
         }

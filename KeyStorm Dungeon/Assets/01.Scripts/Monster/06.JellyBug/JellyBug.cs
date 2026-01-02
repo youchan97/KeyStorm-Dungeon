@@ -10,14 +10,11 @@ public class JellyBug : MeleeMonster
 
     [Header("몬스터 감지")]
     [SerializeField] private LayerMask otherMonsterLayer;
-    [SerializeField] private float otherMonsterDetectionDistance;
+
+    [Header("독장판 크기 설정")]
+    [SerializeField] private Vector3 poisonFieldLocalScale;
 
     public Vector2 CurrentMoveDirection { get; set; } = Vector2.zero;
-    private CapsuleCollider2D currentMonsterCollider;
-
-    public LayerMask OtherMonsterLayer => otherMonsterLayer;
-    public float OtherMonsterDetectionDistance => otherMonsterDetectionDistance;
-    public CapsuleCollider2D GetCurrentMonsterCollider() => currentMonsterCollider;
 
     private JellyBugIdleState _idleState;
     private JellyBugMoveState _moveState;
@@ -51,7 +48,6 @@ public class JellyBug : MeleeMonster
     protected override void Awake()
     {
         base.Awake();
-        currentMonsterCollider = GetComponent<CapsuleCollider2D>();
     }
 
     void OnCollisionStay2D(Collision2D collision)
@@ -59,12 +55,20 @@ public class JellyBug : MeleeMonster
         ContactPlayer(collision);
     }
 
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision == null) return;
+        if (collision.gameObject == gameObject) return;
+
+        ContactEnemy(collision);
+    }
+
     public void SpawnMitosis(Vector3 spawnPosition)
     {
         GameObject mitosisGO = Instantiate(jellyBugMitosisPrefab, spawnPosition, Quaternion.identity);
         JellyBugMitosis newMitosis = mitosisGO.GetComponent<JellyBugMitosis>();
 
-        if ( newMitosis != null)
+        if (newMitosis != null)
         {
             newMitosis.SetMyRoom(MyRoom);
             MyRoom?.AddMonster(newMitosis);
@@ -73,7 +77,7 @@ public class JellyBug : MeleeMonster
 
     public void OnDieEffect()
     {
-        Vector3 spawnPosition = transform.position + new Vector3(0, -0.3f, 0);
+        Vector3 spawnPosition = transform.position + new Vector3(0, -0.1f, 0);
 
         SpawnMitosis(spawnPosition + Vector3.left * mitosisSpawnOffsetX);
         SpawnMitosis(spawnPosition + Vector3.right * mitosisSpawnOffsetX);
@@ -86,6 +90,7 @@ public class JellyBug : MeleeMonster
 
             if (poisonField != null)
             {
+                poisonFieldObject.transform.localScale = poisonFieldLocalScale;
                 poisonField.Initialize(poisonFieldDuration);
             }
             else
@@ -97,6 +102,17 @@ public class JellyBug : MeleeMonster
         else
         {
             Debug.LogError($"독장판 풀에서 오브젝트를 가져오지못함");
+        }
+    }
+
+    private void ContactEnemy(Collider2D collision)
+    {
+        GameObject currentGameObject = collision.gameObject;
+
+        if (((1 << currentGameObject.layer) & otherMonsterLayer) != 0)
+        {
+            MonsterRb.velocity = Vector2.zero;
+            MonsterStateManager.ChangeState(CreateIdleState());
         }
     }
 }

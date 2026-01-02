@@ -6,45 +6,25 @@ using static ConstValue;
 
 public class StartSceneCanvasManager : MonoBehaviour
 {
-    [SerializeField] GameObject soundPopup;
-
-    [SerializeField] Slider bgmSlider;
-    [SerializeField] Slider sfxSlider;
-
-    AudioManager audioManager;
-    SaveLoadManager saveLoadManager;
-
     private void Start()
     {
-        audioManager = AudioManager.Instance;
-        saveLoadManager = SaveLoadManager.Instance;
-        InitSoundSlider();
+        AudioManager.Instance.PlayBgm(StartBgm);
+    }
+
+    public void OpenSoundSetting()
+    {
+        UiManager.Instance.OpenSoundPopup();
     }
 
     public void GameStartButton()
     {
+        StageDataManager.Instance.SelectDifficulty(StageDifficulty.Easy);
+        AudioManager.Instance.PlayButton();
         LoadingManager.LoadScene(GameScene);
     }
 
-    public void InitSoundSlider()
+    public void OnClickExit()
     {
-        bgmSlider.value = saveLoadManager.datas.soundData.bgmVolume;
-        sfxSlider.value = saveLoadManager.datas.soundData.sfxVolume;
-    }
-
-    public void ChangeBgmVolume()
-    {
-        audioManager.UpdateBgmVolume(bgmSlider.value);
-    }
-
-    public void ChangeSfxVolume()
-    {
-        audioManager.UpdateEffectVolume(sfxSlider.value);
-    }
-
-    public void CloseSoundPopup()
-    {
-        saveLoadManager.SaveDatas();
-        soundPopup.SetActive(false);
+        GameManager.Instance.ExitGame();
     }
 }

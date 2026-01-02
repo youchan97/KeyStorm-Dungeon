@@ -37,9 +37,10 @@ public class MonsterAttackState : CharacterAttackState<Monster>
 
     public override void UpdateState()
     {
-        if (player == null)
+        // 임시로 플레이어의 사망을 체크
+        if (character.PlayerGO == null)
         {
-            stateManager.ChangeState(character.CreateIdleState());
+            character.ChangeStateToPlayerDied();
             return;
         }
 
@@ -63,11 +64,7 @@ public class MonsterAttackState : CharacterAttackState<Monster>
             character.ResetAttackCooldown();
         }
 
-        // 임시로 플레이어의 사망을 체크
-        if (character.PlayerGO == null)
-        {
-            character.ChangeStateToPlayerDied();
-        }
+        
     }
 
     public override void ExitState()

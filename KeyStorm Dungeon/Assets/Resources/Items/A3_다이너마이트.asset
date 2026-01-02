@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: A3
   itemName: "\uB2E4\uC774\uB108\uB9C8\uC774\uD2B8"
+  itemEnglishName: Dynamite
   description: 
   worldSprite: {fileID: -1284043481, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
   iconSprite: {fileID: -1284043481, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
@@ -35,4 +36,4 @@ MonoBehaviour:
   scale: 0
   cooldownType: 0
   cooldownMax: 20
-  skillData: {fileID: 0}
+  skillType: 0

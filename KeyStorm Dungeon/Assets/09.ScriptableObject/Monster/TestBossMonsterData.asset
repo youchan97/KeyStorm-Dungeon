@@ -15,7 +15,7 @@ MonoBehaviour:
   characterData:
     charName: TestBossMonster
     id: 2
-    maxHp: 1
+    maxHp: 100
     damage: 1
     moveSpeed: 4
   type: 0
@@ -24,6 +24,8 @@ MonoBehaviour:
   tier: 3
   shotSpeed: 2
   attackSpeed: 2
+  projectileColliderOffset: {x: 0, y: 0}
+  projectileColliderRadius: 0
   separationRaduis: 0
   separationStrength: 0
   pathfindingWeight: 0

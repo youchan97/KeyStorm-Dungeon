@@ -16,3 +16,12 @@ MonoBehaviour:
   - audioKey: Forest
     audioClip:
     - {fileID: 8300000, guid: df298c48829056d40ac6e0538150aac2, type: 3}
+  - audioKey: StartBgm
+    audioClip:
+    - {fileID: 8300000, guid: 819a932954629c948be3b973e4c495c8, type: 3}
+  - audioKey: GameClear
+    audioClip:
+    - {fileID: 8300000, guid: da307ef979f3eb4498cd974dea0c07f2, type: 3}
+  - audioKey: GameOver
+    audioClip:
+    - {fileID: 8300000, guid: 1f4d5accc00dcca48a35a9332975cca8, type: 3}

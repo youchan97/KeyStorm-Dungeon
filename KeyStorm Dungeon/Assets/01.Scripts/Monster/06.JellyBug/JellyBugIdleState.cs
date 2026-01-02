@@ -22,7 +22,17 @@ public class JellyBugIdleState : MonsterIdleState
         }
 
         Vector2[] directions = {Vector2.up,  Vector2.down, Vector2.left, Vector2.right};
-        jellyBug.CurrentMoveDirection = directions[Random.Range(0, directions.Length)];
+        Vector2 newMoveDirection;
+        int maxAttempts = 10;
+        int attempts = 0;
+
+        do
+        {
+            newMoveDirection = directions[Random.Range(0, directions.Length)];
+            attempts++;
+        } while (newMoveDirection == jellyBug.CurrentMoveDirection && attempts < maxAttempts);
+
+        jellyBug.CurrentMoveDirection = newMoveDirection;
 
         jellyBug.FlipSprite(jellyBug.CurrentMoveDirection.x);
 

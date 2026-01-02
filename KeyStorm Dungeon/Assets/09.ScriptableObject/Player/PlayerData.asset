@@ -20,11 +20,11 @@ MonoBehaviour:
     moveSpeed: 7
   damageMultiple: 1
   specialDamageMultiple: 3
-  attackSpeed: 3
-  attackSpeedMultiple: 3
+  attackSpeed: 0.5
+  attackSpeedMultiple: 1
   range: 3
   rangeMultiple: 3
-  shootSpeed: 7
+  shootSpeed: 10
   maxAmmo: 10
   useAmmo: 0
   ammo: 12

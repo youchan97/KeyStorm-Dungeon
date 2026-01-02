@@ -34,6 +34,7 @@ public class ItemData : ScriptableObject
     [Header("기본 정보")]
     public string itemId;
     public string itemName;
+    public string itemEnglishName;
     [TextArea] public string description;
 
     [Header("스프라이트")]

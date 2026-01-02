@@ -26,3 +26,6 @@ MonoBehaviour:
   - audioKey: Gold
     audioClip:
     - {fileID: 8300000, guid: 681cb5878089c5e4eafd9c6cb1264194, type: 3}
+  - audioKey: Button
+    audioClip:
+    - {fileID: 8300000, guid: 96004ca84a2bf614dbb1abda519ecdc9, type: 3}

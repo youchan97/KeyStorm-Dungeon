@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: "P9_\uC5D0\uB108\uC9C0 \uACFC\uCDA9\uC804\uAE30(Overcharge Core)"
   m_EditorClassIdentifier: 
   itemId: P9
-  itemName: "\uC5D0\uB108\uC9C0 \uACFC\uCDA9\uC804\uAE30(Overcharge Core)"
+  itemName: "\uC5D0\uB108\uC9C0 \uACFC\uCDA9\uC804\uAE30"
+  itemEnglishName: Overcharge Core
   description: 
   worldSprite: {fileID: -943711624, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
   iconSprite: {fileID: -943711624, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
@@ -35,3 +36,4 @@ MonoBehaviour:
   scale: 0
   cooldownType: 0
   cooldownMax: 0
+  skillType: 0

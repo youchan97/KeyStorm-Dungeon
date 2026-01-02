@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: A4
   itemName: "\uC9D1\uC5B4\uB358\uC9C0\uAE30!"
+  itemEnglishName: Throwing
   description: 
   worldSprite: {fileID: -409194311, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
   iconSprite: {fileID: -409194311, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
@@ -35,4 +36,4 @@ MonoBehaviour:
   scale: 0
   cooldownType: 0
   cooldownMax: 20
-  skillData: {fileID: 0}
+  skillType: 0

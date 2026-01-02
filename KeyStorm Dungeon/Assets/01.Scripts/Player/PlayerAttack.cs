@@ -34,6 +34,9 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] Vector2 projectileColliderOffset;    // 투사체 중심점
     [SerializeField] float projectileColliderRadius;      // 투사체 크기
 
+    [SerializeField] AttackData normalAttack;
+    [SerializeField] AttackData specialAttack;
+
     #region 폭탄
     [SerializeField] ThrownBomb bomb;
     bool isHoldingBomb;
@@ -125,8 +128,8 @@ public class PlayerAttack : MonoBehaviour
         Damage = data.character.damage;
         DamageMultiple = data.damageMultiple;
         SpecialDamageMultiple = data.specialDamageMultiple;
-        AttackSpeed = data.attackSpeed;
         AttackSpeedMultiple = data.attackSpeedMultiple;
+        AttackSpeed = 1/data.attackSpeed*AttackSpeedMultiple;
         Range = data.range;
         RangeMultiple = data.rangeMultiple;
         ShootSpeed = data.shootSpeed;
@@ -379,8 +382,9 @@ public class PlayerAttack : MonoBehaviour
 
         for (int i = 0; i < useAmmo; i++)
         {
-            AttackObj obj = player.AttackPoolManager.GetAttack();
+            AttackObj obj = player.AttackPoolManager.GetObj();
             Sprite sprite = isSpecial ? player.SBullet : player.Bullet;
+            AttackData attackData = isSpecial ? specialAttack : normalAttack;
             int damage = isSpecial ? (int)(Damage * SpecialDamageMultiple) : Damage;
             Vector2 dir = keyDic[keyName].normalized;
             if(canShotGun)
@@ -390,7 +394,7 @@ public class PlayerAttack : MonoBehaviour
             }
             obj.transform.position = player.transform.position + (Vector3)dir * ShootOffset;
 
-            obj.InitData(sprite, damage, dir, ShootSpeed, Range, player.AttackPoolManager, true, projectileColliderOffset, projectileColliderRadius);
+            obj.InitData(sprite, damage, dir, ShootSpeed, Range, player.AttackPoolManager, true, projectileColliderOffset, projectileColliderRadius, attackData);
         }
 
         int consumeAmmo = isSpecial ? useAmmo * 2 : useAmmo;
@@ -564,8 +568,8 @@ public class PlayerAttack : MonoBehaviour
         Damage = (int)data.character.damage;
         SpecialDamageMultiple = data.specialDamageMultiple;
         DamageMultiple = data.damageMultiple;
-        AttackSpeed = data.attackSpeed;
         AttackSpeedMultiple = data.attackSpeedMultiple;
+        AttackSpeed = 1/data.attackSpeed*AttackSpeedMultiple;
         Range = data.range;
         ShootSpeed = data.shootSpeed;
         MaxAmmo = data.maxAmmo;

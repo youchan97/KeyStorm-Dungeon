@@ -21,6 +21,7 @@ public static class ConstValue
 
     #region 방생성 관련(지금은 사용안함)
     public const float SplitNodeHeight = 0.5f;
+    public const int WallLayer = 1 << 7;
     #endregion
 
     #region 씬 관련
@@ -34,11 +35,20 @@ public static class ConstValue
     public const string EasyBgm = "Forest";
     public const string NormalBgm = "Forest";
     public const string HardBgm = "Forest";
+    public const string StartBgm = "StartBgm";
+    public const string ClearBgm = "GameClear";
+    public const string GameOverBgm = "GameOver";
     #endregion
 
     #region SFX 관련
     public const float DefaultSfxVolume = 0.5f;
     public const string ShootSfx = "Shoot";
     public const string GoldSfx = "Gold";
+    public const string ButtonSfx = "Button";
+    #endregion
+
+    #region 게임 종료 관련
+    public const string GameOverText = "Game Over...";
+    public const string GameClearText = "Game Clear!!!";
     #endregion
 }

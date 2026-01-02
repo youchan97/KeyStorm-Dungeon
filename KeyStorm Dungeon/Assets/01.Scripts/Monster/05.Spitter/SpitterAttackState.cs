@@ -15,15 +15,10 @@ public class SpitterAttackState : MonsterAttackState
 
     public override void UpdateState()
     {
-        if (player == null)
-        {
-            stateManager.ChangeState(character.CreateIdleState());
-            return;
-        }
-
         if (character.PlayerGO == null)
         {
             character.ChangeStateToPlayerDied();
+            return;
         }
 
         character.FlipSpriteAttack(player.transform);

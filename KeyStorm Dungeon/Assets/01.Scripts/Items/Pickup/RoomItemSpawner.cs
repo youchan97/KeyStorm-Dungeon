@@ -44,34 +44,43 @@ public class RoomItemSpawner : MonoBehaviour
 
         if (ItemPoolManager.Instance == null)
         {
-            Debug.LogError("[RoomItemSpawner] ItemPoolManager.Instance가 NULL");
             return;
         }
 
         ItemData data = ItemPoolManager.Instance.GetRandomItem_ExcludeAcquired(dropRoom);
         if (data == null)
         {
-            Debug.LogWarning($"[RoomItemSpawner] {dropRoom} 풀에 아이템이 없음");
             return;
         }
 
         GameObject prefab = data.isActiveItem ? activeItemPickupPrefab : passiveItemPickupPrefab;
         if (prefab == null)
         {
-            Debug.LogError("[RoomItemSpawner] 픽업 프리팹이 인스펙터에 비어있음");
             return;
         }
 
         if (spawnedObj != null) Destroy(spawnedObj);
 
         Transform point = spawnPoint != null ? spawnPoint : transform;
-        spawnedObj = Instantiate(prefab, point.position, Quaternion.identity, point);
 
-        if (spawnedObj.TryGetComponent<PassiveItemPickup>(out var p)) p.itemData = data;
-        if (spawnedObj.TryGetComponent<ActiveItemPickup>(out var a)) a.itemData = data;
+        spawnedObj = Instantiate(prefab, point.position, Quaternion.identity);
 
-        // 여기서 스프라이트 적용(픽업 프리팹에 ItemPickupView가 있어야 함)
+        if (spawnedObj.TryGetComponent<PassiveItemPickup>(out var passive))
+        {
+            passive.itemData = data;
+            passive.isShopDisplay = false; 
+        }
+
+        if (spawnedObj.TryGetComponent<ActiveItemPickup>(out var active))
+        {
+            active.itemData = data;
+            active.isShopDisplay = false; 
+            active.SetData(data); 
+        }
+
+        // View 적용
         spawnedObj.GetComponent<ItemPickupView>()?.Apply(data);
+
 
         spawned = true;
     }

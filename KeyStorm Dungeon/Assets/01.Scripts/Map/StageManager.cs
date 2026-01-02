@@ -7,6 +7,7 @@ using static ConstValue;
 public class StageManager : MonoBehaviour
 {
     StageDataManager stageDataManager;
+
     [Header("Stage Data")]
     public StageData stageData;
 
@@ -69,37 +70,9 @@ public class StageManager : MonoBehaviour
         }
     }
 
+    #region 스테이지 생성
     void GenerateRoomLayout()
     {
-        /*roomMap.Clear();
-
-        Queue<Vector2Int> queue = new();
-        Vector2Int start = Vector2Int.zero;
-
-        roomMap[start] = new RoomNode
-        {
-            gridPos = start,
-            type = RoomType.Start
-        };
-
-        queue.Enqueue(start);
-
-        while (roomMap.Count < stageData.totalRoomCount)
-        {
-            Vector2Int current = queue.Dequeue();
-
-            foreach (var dir in dirs.OrderBy(_ => Random.value))
-            {
-                Vector2Int next = current + dir;
-                if (roomMap.ContainsKey(next)) continue;
-
-                roomMap[next] = new RoomNode { gridPos = next, type = RoomType.Normal };
-                queue.Enqueue(next);
-
-                if (roomMap.Count >= stageData.totalRoomCount)
-                    break;
-            }
-        }*/
         roomMap.Clear();
 
         Vector2Int start = Vector2Int.zero;
@@ -109,12 +82,12 @@ public class StageManager : MonoBehaviour
             type = RoomType.Start
         };
 
-        List<Vector2Int> expandables = new List<Vector2Int>();
-        expandables.Add(start);
+        List<Vector2Int> expandList = new List<Vector2Int>();
+        expandList.Add(start);
 
-        while (roomMap.Count < stageData.totalRoomCount && expandables.Count > 0)
+        while (roomMap.Count < stageData.totalRoomCount && expandList.Count > 0)
         {
-            Vector2Int current = expandables[Random.Range(0, expandables.Count)];
+            Vector2Int current = expandList[Random.Range(0, expandList.Count)];
 
             Vector2Int dir = dirs[Random.Range(0, dirs.Length)];
             Vector2Int next = current + dir;
@@ -129,15 +102,15 @@ public class StageManager : MonoBehaviour
             };
 
             // 새 방은 확장 후보
-            expandables.Add(next);
+            expandList.Add(next);
 
             // 현재 방도 다시 확장 가능 (이게 깊이를 만듦)
             if (Random.value < expandWeight)
-                expandables.Add(current);
+                expandList.Add(current);
 
             // 너무 막힌 방은 제거 (선택)
             if (GetNeighborCount(current) >= dirs.Length)
-                expandables.Remove(current);
+                expandList.Remove(current);
         }
     }
 
@@ -205,10 +178,10 @@ public class StageManager : MonoBehaviour
 
     void ConnectRooms()
     {
-        foreach (var kv in spawnedRooms)
+        foreach (var spawnedRoom in spawnedRooms)
         {
-            Vector2Int pos = kv.Key;
-            Room room = kv.Value;
+            Vector2Int pos = spawnedRoom.Key;
+            Room room = spawnedRoom.Value;
 
             foreach (var dir in dirs)
             {
@@ -219,13 +192,13 @@ public class StageManager : MonoBehaviour
 
                 Room other = spawnedRooms[next];
 
-                Transform from = room.GetDoor(dir).transform;
-                Transform to = other.GetDoor(-dir).transform;
+                Transform start = room.GetDoor(dir).transform;
+                Transform end = other.GetDoor(-dir).transform;
 
-                from.GetComponent<Door>()?.UseDoor();
-                to.GetComponent<Door>()?.UseDoor();
+                start.GetComponent<Door>()?.UseDoor();
+                end.GetComponent<Door>()?.UseDoor();
 
-                DrawCorridor(from.position, to.position);
+                DrawCorridor(start.position, end.position);
             }
         }
     }
@@ -267,4 +240,5 @@ public class StageManager : MonoBehaviour
             }
         }
     }
+    #endregion
 }

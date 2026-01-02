@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: "P12_\uBC14\uC8FC\uCE74\uD3EC(Bazooka)"
   m_EditorClassIdentifier: 
   itemId: P12
-  itemName: "\uBC14\uC8FC\uCE74\uD3EC(Bazooka)"
+  itemName: "\uBC14\uC8FC\uCE74\uD3EC"
+  itemEnglishName: Bazooka
   description: 
   worldSprite: {fileID: -1425258904, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
   iconSprite: {fileID: -1425258904, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
@@ -35,3 +36,4 @@ MonoBehaviour:
   scale: 0
   cooldownType: 0
   cooldownMax: 0
+  skillType: 0

@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: "P1_\uC2A4\uD30C\uB974\uD0C0\uC758 \uCC3D(Spartan Spear)"
   m_EditorClassIdentifier: 
   itemId: P1
-  itemName: "\uC2A4\uD30C\uB974\uD0C0\uC758 \uCC3D(Spartan Spear)"
+  itemName: "\uC2A4\uD30C\uB974\uD0C0\uC758 \uCC3D"
+  itemEnglishName: Spartan Spear
   description: 
   worldSprite: {fileID: 1961019770, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
   iconSprite: {fileID: 1961019770, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
@@ -35,3 +36,4 @@ MonoBehaviour:
   scale: 0
   cooldownType: 0
   cooldownMax: 0
+  skillType: 0

@@ -6,9 +6,7 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     public InventoryRunData runData;
-
     public PlayerStats stats;
-    public InventoryModel inventoryModel;
 
     [Header("자원")]
     public int gold;
@@ -30,9 +28,6 @@ public class PlayerInventory : MonoBehaviour
         activeItem = data.activeItem;
     }
 
-    // =====================
-    // 골드
-    // =====================
     public void AddGold(int amount)
     {
         gold += amount;
@@ -40,24 +35,16 @@ public class PlayerInventory : MonoBehaviour
         runData.UpdateGold(gold);
     }
 
-    // =====================
-    // 포션
-    // =====================
     public void AddPotion(int amount)
     {
         hpPotion += amount;
-        if (hpPotion < 0)
-            hpPotion = 0;
+        if (hpPotion < 0) hpPotion = 0;
     }
 
-    // =====================
-    // 폭탄
-    // =====================
     public void AddBomb(int amount)
     {
         bombCount += amount;
-        if (bombCount < 0)
-            bombCount = 0;
+        if (bombCount < 0) bombCount = 0;
         runData.UpdateBomb(bombCount);
     }
 
@@ -68,34 +55,22 @@ public class PlayerInventory : MonoBehaviour
         gold -= amount;
         return true;
     }
-
-    // =====================
-    // 패시브
-    // =====================
     public void AddPassiveItem(ItemData data)
     {
         if (data == null) return;
 
-        //passiveItems.Add(data);
-        inventoryModel?.Add(data);
-        FindObjectOfType<InventoryUIController>()?.Refresh();
-        runData.ApplyInventory(data);
+        passiveItems.Add(data);
     }
 
-    // =====================
-    // 액티브
-    // =====================
     public void SetActiveItem(ItemData newItem)
     {
         if (newItem == null || !newItem.isActiveItem) return;
 
-        // 기존 액티브가 있으면 바닥에 드롭
         if (activeItem != null)
         {
             DropActiveItem(activeItem);
         }
 
-        // 새 액티브 장착
         activeItem = newItem;
         runData.ApplyInventory(activeItem);
     }
@@ -104,12 +79,10 @@ public class PlayerInventory : MonoBehaviour
     {
         if (oldItem == null) return;
 
-        // itemId 전용 프리팹 먼저 시도(있으면 사용)
         GameObject prefab = ItemDatabase.Instance != null
             ? ItemDatabase.Instance.GetActivePickupPrefab(oldItem.itemId)
             : null;
 
-        //없으면 공용 프리팹 사용(반드시 연결)
         if (prefab == null)
             prefab = defaultActivePickupPrefab;
 
@@ -119,7 +92,7 @@ public class PlayerInventory : MonoBehaviour
             return;
         }
 
-        Vector2 offset = UnityEngine.Random.insideUnitCircle.normalized * 0.6f;
+        Vector2 offset = Random.insideUnitCircle.normalized * 0.6f;
         Vector3 dropPos = transform.position + (Vector3)offset;
 
         GameObject drop = Instantiate(prefab, dropPos, Quaternion.identity);

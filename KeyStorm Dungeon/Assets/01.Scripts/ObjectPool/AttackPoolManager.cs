@@ -2,47 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackPoolManager : MonoBehaviour
+public class AttackPoolManager : PoolManager<AttackObj>
 {
-    [SerializeField] AttackObj attackObj;
+    public EffectPoolManager effectPoolManager;
 
-    [SerializeField] int poolSize;
-
-    Queue<AttackObj> queue = new Queue<AttackObj>();
-
-    private void Start()
+    public override void ReturnPool(AttackObj obj)
     {
-        InitPool();
-    }
-
-    void InitPool()
-    {
-        for(int i = 0; i < poolSize; i++)
-        {
-            CreatePool();
-        }
-    }
-
-    void CreatePool()
-    {
-        AttackObj obj = Instantiate(attackObj, transform);
-        obj.gameObject.SetActive(false);
-        queue.Enqueue(obj);
-    }
-
-    public AttackObj GetAttack()
-    {
-        if (queue.Count == 0)
-            CreatePool();
-
-        AttackObj obj = queue.Dequeue();
-        obj.gameObject.SetActive(true);
-        return obj;
-    }
-
-    public void ReturnPool(AttackObj obj)
-    {
-        obj.gameObject.SetActive(false);
-        queue.Enqueue(obj);
+        obj.ResetObj();
+        base.ReturnPool(obj);
     }
 }

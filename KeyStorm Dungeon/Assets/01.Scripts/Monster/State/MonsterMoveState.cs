@@ -54,6 +54,8 @@ public class MonsterMoveState : CharacterMoveState<Monster>
             return;
         }
 
+        if (character.isKnockBack) return;
+        
         character.FlipSprite(rb.velocity.x);
 
         float distanceToPlayer = Vector2.Distance(character.transform.position, playerTransform.position);
