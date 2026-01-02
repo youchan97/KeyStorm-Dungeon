@@ -17,7 +17,27 @@
 |[![My Skills](https://skillicons.dev/icons?i=cs&perline=1)](https://skillicons.dev)|[![My Skills](https://skillicons.dev/icons?i=unity&perline=1)](https://skillicons.dev)|[![My Skills](https://skillicons.dev/icons?i=git,github&perline=1)](https://skillicons.dev)|[![My Skills](https://skillicons.dev/icons?i=visualstudio&perline=1)](https://skillicons.dev)|
 
 ## [팀원 구성]
-| 이승민(기획) | 정유찬(팀장) | 김문경 | 김하늘 | 황준영 |
-|--|--|--|--|--|
-| 기획, 맵 | 맵 생성, 플레이어 | 아이템 | 몬스터 | UI/UX |
+|기획, 맵|
+|:---:|
+|<img src="https://avatars.githubusercontent.com/u/208426399?v=4" width="100"/>|
+|[이승민](https://github.com/Seungmin0514)|
 
+|맵 생성, 플레이어|
+|:---:|
+|<img src="https://avatars.githubusercontent.com/u/151013695?v=4" width="100"/>|
+|[정유찬](https://github.com/youchan97)|
+
+|아이템|
+|:---:|
+|<img src="https://avatars.githubusercontent.com/u/233680526?v=4" width="100"/>|
+|[김문경](https://github.com/moon7441-dev)|
+
+|몬스터|
+|:---:|
+|<img src="https://avatars.githubusercontent.com/u/101345563?v=4" width="100">|
+|[김하늘](https://github.com/Hagill)|
+
+|UI/UX|
+|:---:|
+|<img src="https://avatars.githubusercontent.com/u/127909764?v=4" width="100"/>|
+|[황준영](https://github.com/PeacefulKim)|
