@@ -38,6 +38,10 @@ public class Spitter : RangerMonster
     protected override void Awake()
     {
         base.Awake();
+        if (shootPoint == null)
+        {
+            shootPoint = this.transform;
+        }
     }
 
     protected override void Start()
@@ -49,21 +53,16 @@ public class Spitter : RangerMonster
     {
         if (attackPoolManager == null) return;
 
-        if (shootPoint == null)
-        {
-            shootPoint = this.transform;
-        }
-
         AttackObj pooledAttackObj = attackPoolManager.GetObj();
         if (pooledAttackObj == null)
         {
             return;
         }
+        if (player == null)
+        {
+            return;
+        }
 
-
-        /* null 뜸
-        NullReferenceException: Object reference not set to an instance of an object
-        Spitter.OnAttack()(at Assets / 01.Scripts / Monster / 05.Spitter / Spitter.cs:63)*/
         Vector2 porjectileDirection = (player.transform.position - shootPoint.position).normalized;
 
         pooledAttackObj.transform.position = shootPoint.position;
