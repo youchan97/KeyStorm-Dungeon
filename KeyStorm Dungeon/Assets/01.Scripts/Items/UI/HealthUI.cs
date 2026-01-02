@@ -18,12 +18,6 @@ public class HealthUI : MonoBehaviour
     private int maxHp;
     private int hp;
 
-    private void Update()
-    {
-        SetMaxHp(GameManager.Instance.PlayerRunData.character.maxHp);
-        SetHp(GameManager.Instance.PlayerRunData.character.currentHp);
-    }
-
     public void SetMaxHp(int newMaxHp)
     {
         maxHp = Mathf.Max(0, newMaxHp);
