@@ -41,12 +41,19 @@ public class GameSceneUI : MonoBehaviour
         Room.OnGameCleared += GameClear;
     }
 
-    void Update()
+    public void UpdateGold(int amount)
     {
-        coinTxt.text = inventory.gold.ToString();
-        bombTxt.text = inventory.bombCount.ToString();
-        ammoTxt.text = attack.Ammo.ToString() + " / " + attack.MaxAmmo.ToString();
+        coinTxt.text = amount.ToString();
     }
+    public void UpdateBomb(int amount)
+    {
+        bombTxt.text = amount.ToString();
+    }
+    public void UpdateAmmo(int ammo, int maxAmmo)
+    {
+        ammoTxt.text = string.Format("{0} / {1}", ammo, maxAmmo);
+    }
+
     private void OnDisable()
     {
         Room.OnGameCleared -= GameClear;
