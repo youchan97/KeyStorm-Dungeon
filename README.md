@@ -12,9 +12,9 @@
 
 ## [사용한 기술]
 
-- **개발 엔진** : Unity 2022.3.62f2
-- **개발 언어** : C#
-- **버전 관리** : GitHub
+|Language|Engine|Version Control|IDE|
+|--|--|--|--|
+|[![My Skills](https://skillicons.dev/icons?i=cs&perline=1)](https://skillicons.dev)|[![My Skills](https://skillicons.dev/icons?i=unity&perline=1)](https://skillicons.dev)|[![My Skills](https://skillicons.dev/icons?i=git,github&perline=1)](https://skillicons.dev)|[![My Skills](https://skillicons.dev/icons?i=visualstudio&perline=1)](https://skillicons.dev)|
 
 ## [팀원 구성]
 | 이승민(기획) | 정유찬(팀장) | 김문경 | 김하늘 | 황준영 |
