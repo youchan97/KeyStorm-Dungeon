@@ -10,15 +10,12 @@ public class GameSceneUI : MonoBehaviour
     GameManager gameManager;
     AudioManager audioManager;
 
-    [SerializeField] private PlayerInventory inventory;
-    [SerializeField] private PlayerAttack attack;
-
     [SerializeField] private TextMeshProUGUI coinTxt;
     [SerializeField] private TextMeshProUGUI bombTxt;
     [SerializeField] private TextMeshProUGUI ammoTxt;
 
     [SerializeField] GameObject optionPanel;
-
+    [SerializeField] HealthUI healthUI;
 
     [SerializeField] GameObject gameResultPanel;
     /*[SerializeField] TextMeshProUGUI gameOverText;
@@ -29,7 +26,9 @@ public class GameSceneUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI gameClearText;
     [SerializeField] GameObject gameClearMenu;*/
 
-    Player player;
+    public Player player;
+
+    public HealthUI HealthUI { get => healthUI; }
 
     private void Awake()
     {
@@ -41,17 +40,25 @@ public class GameSceneUI : MonoBehaviour
         Room.OnGameCleared += GameClear;
     }
 
-    public void UpdateGold(int amount)
+    public void UpdateGold()
     {
-        coinTxt.text = amount.ToString();
+        coinTxt.text = player.Inventory.gold.ToString();
     }
-    public void UpdateBomb(int amount)
+    public void UpdateBomb()
     {
-        bombTxt.text = amount.ToString();
+        bombTxt.text = player.Inventory.bombCount.ToString();
     }
-    public void UpdateAmmo(int ammo, int maxAmmo)
+    public void UpdateAmmo()
     {
-        ammoTxt.text = string.Format("{0} / {1}", ammo, maxAmmo);
+        ammoTxt.text = string.Format("{0} / {1}", player.PlayerAttack.Ammo, player.PlayerAttack.MaxAmmo);
+    }
+    public void InitGameUi()
+    {
+        UpdateGold();
+        UpdateBomb();
+        UpdateAmmo();
+        healthUI.SetMaxHp(player.MaxHp);
+        healthUI.SetHp(player.Hp);
     }
 
     private void OnDisable()
@@ -69,8 +76,7 @@ public class GameSceneUI : MonoBehaviour
     public void InitPlayerData(Player player)
     {
         this.player = player;
-        inventory = player.Inventory;
-        attack = player.PlayerAttack;
+        InitGameUi();
     }
 
     public void OpenOption()

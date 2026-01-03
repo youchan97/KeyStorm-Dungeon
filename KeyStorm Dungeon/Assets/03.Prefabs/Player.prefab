@@ -1862,7 +1862,7 @@ MonoBehaviour:
     bombCount: 0
     passiveItems: []
     activeItem: {fileID: 0}
-  stats: {fileID: 0}
+  player: {fileID: 4851458755222282479}
   gold: 0
   bombCount: 3
   hpPotion: 0

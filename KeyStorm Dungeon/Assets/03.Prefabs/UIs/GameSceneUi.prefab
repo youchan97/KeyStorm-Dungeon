@@ -3231,13 +3231,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a1d42a8680449f4898f71b29c595678, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 0}
-  attack: {fileID: 0}
   coinTxt: {fileID: 8179110771701614684}
   bombTxt: {fileID: 3287107305176513122}
   ammoTxt: {fileID: 8069608062687496086}
   optionPanel: {fileID: 8476490738379516251}
+  healthUI: {fileID: 3799351101584330392}
   gameResultPanel: {fileID: 3242520794520738358}
+  player: {fileID: 0}
 --- !u!1 &7073253783467694729
 GameObject:
   m_ObjectHideFlags: 0

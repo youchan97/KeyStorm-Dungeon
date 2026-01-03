@@ -1,13 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
     public InventoryRunData runData;
-    public PlayerStats stats;
-    public GameSceneUI gameSceneUI;
+    public Player player;
 
     [Header("자원")]
     public int gold;
@@ -20,7 +18,6 @@ public class PlayerInventory : MonoBehaviour
 
     [Header("드롭용 공용 액티브 픽업 프리팹(필수)")]
     public GameObject defaultActivePickupPrefab;
-
     public void InitInventory(InventoryRunData data)
     {
         gold = data.gold;
@@ -29,12 +26,17 @@ public class PlayerInventory : MonoBehaviour
         activeItem = data.activeItem;
     }
 
+    public void InitInven(Player player)
+    {
+        this.player = player;
+    }
+
     public void AddGold(int amount)
     {
         gold += amount;
         if (gold < 0) gold = 0;
         runData.UpdateGold(gold);
-        gameSceneUI.UpdateGold(amount);
+        player.GameSceneUI.UpdateGold();
     }
 
     public void AddPotion(int amount)
@@ -48,7 +50,7 @@ public class PlayerInventory : MonoBehaviour
         bombCount += amount;
         if (bombCount < 0) bombCount = 0;
         runData.UpdateBomb(bombCount);
-        gameSceneUI.UpdateBomb(amount);
+        player.GameSceneUI.UpdateBomb();
     }
 
     public bool TrySpendGold(int amount)
@@ -56,6 +58,7 @@ public class PlayerInventory : MonoBehaviour
         if (amount <= 0) return true;
         if (gold < amount) return false;
         gold -= amount;
+        player.GameSceneUI.UpdateGold();
         return true;
     }
     public void AddPassiveItem(ItemData data)
