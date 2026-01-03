@@ -24,8 +24,9 @@ public class PlayerSpawner : MonoBehaviour
     {
         player.InitAttackPoolManager(attackPoolManager);
         player.InitGameSceneUi(gameSceneUI);
-        gameSceneUI.InitPlayerData(player);
         CameraSetting(player);
+        gameSceneUI.InitPlayerData(player);
+        player.Inventory.InitInven(player);
     }
 
     void CameraSetting(Player player)
