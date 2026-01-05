@@ -26,7 +26,6 @@ public class PlayerSpawner : MonoBehaviour
         player.InitGameSceneUi(gameSceneUI);
         CameraSetting(player);
         gameSceneUI.InitPlayerData(player);
-        player.Inventory.InitInven(player);
     }
 
     void CameraSetting(Player player)
