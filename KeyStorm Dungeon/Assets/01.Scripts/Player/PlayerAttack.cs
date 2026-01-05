@@ -499,6 +499,7 @@ public class PlayerAttack : MonoBehaviour
         yield return new WaitForSeconds(AttackSpeed);
         Ammo = MaxAmmo;
         isReloading = false;
+        player.GameSceneUI.UpdateAmmo();
     }
 
     IEnumerator ReloadImage()
