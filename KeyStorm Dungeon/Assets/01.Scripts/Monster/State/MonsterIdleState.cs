@@ -21,12 +21,6 @@ public class MonsterIdleState : CharacterIdleState<Monster>
         {
             return;
         }
-
-        if (character.MonsterData.tier == MonsterTier.Boss)
-        {
-            stateManager.ChangeState(character.CreateMoveState());
-            return;
-        }
     }
 
     public override void FixedUpdateState()

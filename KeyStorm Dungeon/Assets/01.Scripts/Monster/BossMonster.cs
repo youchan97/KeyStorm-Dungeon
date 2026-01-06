@@ -30,7 +30,7 @@ public class BossMonster : Monster
     public float CurrentPatternCooldown { get; private set; }
 
 
-    private MonsterIdleState _idleState;
+    private BossIdleState _idleState;
     private BossMonsterMoveState _moveState;
     private BossMonsterAttackState _attackState;
     private MonsterDieState _dieState;
@@ -49,7 +49,7 @@ public class BossMonster : Monster
 
     public override CharacterState<Monster> CreateIdleState()
     {
-        if (_idleState == null) _idleState = new MonsterIdleState(this, MonsterStateManager);
+        if (_idleState == null) _idleState = new BossIdleState(this, MonsterStateManager);
         return _idleState;
     }
 

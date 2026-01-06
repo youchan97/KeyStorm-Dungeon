@@ -38,13 +38,11 @@ public class MeleeMonster : Monster
 
     protected void ContactPlayer(Collision2D collision)
     {
-        GameObject currentGameObject = collision.gameObject;
-
         if (CurrentAttackCooldown <= 0f)
         {
-            if (currentGameObject.CompareTag("Player"))
+            if (playerLayer == (playerLayer | (1 << collision.gameObject.layer)))
             {
-                Player player = currentGameObject.GetComponent<Player>();
+                Player player = collision.gameObject.GetComponent<Player>();
 
                 if (player != null)
                 {

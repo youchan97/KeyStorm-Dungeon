@@ -12,6 +12,9 @@ public abstract class Monster : Character
     [SerializeField] protected LayerMask obstacleLayer;
     [SerializeField] protected float spawnCheckRadius;
 
+    [Header("플레이어 레이어")]
+    [SerializeField] protected LayerMask playerLayer;
+
     public MonsterData MonsterData => _monsterData;
     private Rigidbody2D monsterRb;
     public Rigidbody2D MonsterRb => monsterRb;
@@ -69,8 +72,8 @@ public abstract class Monster : Character
 
     protected virtual void Start()
     {
-        PlayerGO = GameObject.FindGameObjectWithTag("Player");
-        //PlayerGO = PlayerSpawner.playerObj;
+        //PlayerGO = GameObject.FindGameObjectWithTag("Player");
+        PlayerGO = player.gameObject;
         
         if (PlayerGO == null)
         {
@@ -78,7 +81,7 @@ public abstract class Monster : Character
         }
         else
         {
-            player = PlayerGO.GetComponent<Player>();
+            //player = PlayerGO.GetComponent<Player>();
             PlayerTransform = PlayerGO.transform;
             player.OnDie += OnStopChase;
             MonsterStateManager.ChangeState(CreateIdleState());
@@ -190,6 +193,7 @@ public abstract class Monster : Character
     public void SetMyRoom(Room room)
     {
         MyRoom = room;
+        player = room.Player;
     }
 
     public void ChangeStateToPlayerDied()
