@@ -6,6 +6,8 @@ using UnityEngine.Tilemaps;
 using static ConstValue;
 public class StageManager : MonoBehaviour
 {
+    private readonly int distanceWeight = 2;
+
     StageDataManager stageDataManager;
 
     [Header("Stage Data")]
@@ -125,21 +127,57 @@ public class StageManager : MonoBehaviour
         return count;
     }
 
+    int GetBossRouteWeight(RoomNode node)
+    {
+        int distance = Mathf.Abs(node.gridPos.x) + Mathf.Abs(node.gridPos.y);
+        int neighbor = GetNeighborCount(node.gridPos);
+
+        return distance * distanceWeight - neighbor;
+    }
+
+    List<RoomNode> GetBossRoomNodes()
+    {
+        List<(RoomNode node, int score)> bossRoomList = new List<(RoomNode node, int score)>();
+
+        foreach (RoomNode node in roomMap.Values)
+        {
+            if (node.type == RoomType.Start)
+                continue;
+
+            int score = GetBossRouteWeight(node);
+            bossRoomList.Add((node, score));
+        }
+
+        bossRoomList.Sort((a, b) => b.score.CompareTo(a.score));
+
+        List<RoomNode> boosRoomNodes = new();
+        for (int i = 0; i < stageData.bossRoomCount && i < bossRoomList.Count; i++)
+        {
+            boosRoomNodes.Add(bossRoomList[i].node);
+        }
+
+        return boosRoomNodes;
+    }
+
     void SpawnRooms()
     {
         spawnedRooms.Clear();
 
-        int specialTotal = stageData.bossRoomCount + stageData.treasureRoomCount + stageData.shopRoomCount;
+        List<RoomNode> bossNodes = GetBossRoomNodes();
 
-        if (specialTotal > roomMap.Count -1) return;
+        int startRoom = 1;
+        int fixTotal = stageData.bossRoomCount + startRoom;
+
+        int specialTotal = stageData.treasureRoomCount + stageData.shopRoomCount;
+
+        if (specialTotal + fixTotal > roomMap.Count) return;
 
         List<Room> spawnPool = new List<Room>();
 
-        spawnPool.AddRange(PickRandom(stageDataManager.CurrentStageSet.bossRooms, stageData.bossRoomCount));
         spawnPool.AddRange(PickRandom(stageDataManager.CurrentStageSet.treasureRooms, stageData.treasureRoomCount));
         spawnPool.AddRange(PickRandom(stageDataManager.CurrentStageSet.shopRooms, stageData.shopRoomCount));
 
-        int normalCount = roomMap.Count - spawnPool.Count -1;
+        int normalCount = roomMap.Count - spawnPool.Count - fixTotal;
         spawnPool.AddRange(PickRandom(stageDataManager.CurrentStageSet.normalRooms, normalCount));
 
         spawnPool = spawnPool.OrderBy(_ => Random.value).ToList();
@@ -161,7 +199,10 @@ public class StageManager : MonoBehaviour
                     break;
 
                 default:
-                    curRoom = spawnPool[i++];
+                    if(bossNodes.Contains(node))
+                        curRoom = stageDataManager.CurrentStageSet.bossRooms[Random.Range(0, stageDataManager.CurrentStageSet.bossRooms.Count)];
+                    else
+                        curRoom = spawnPool[i++];
                     break;
             }
 

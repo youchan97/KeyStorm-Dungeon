@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -6,6 +7,8 @@ using UnityEngine.SceneManagement;
 using static ConstValue;
 public class GameManager : SingletonManager<GameManager>
 {
+    public bool isCheatMode;
+
     SaveLoadManager saveLoadManager;
     StageDataManager stageDataManager;
 
@@ -16,7 +19,6 @@ public class GameManager : SingletonManager<GameManager>
     [SerializeField] PlayerRunData playerRunData;
 
     public PlayerRunData PlayerRunData { get => playerRunData;}
-
     protected override void Awake()
     {
         base.Awake();
@@ -74,6 +76,7 @@ public class GameManager : SingletonManager<GameManager>
     {
         if (Time.timeScale < 1f)
             Time.timeScale = 1f;
+        isPaused = false;
         InitializeRunData();
         LoadingManager.LoadScene(StartScene);
     }
@@ -81,6 +84,7 @@ public class GameManager : SingletonManager<GameManager>
     public void RetryGame()
     {
         InitializeRunData();
+        isPaused = false;
         stageDataManager.SelectDifficulty(stageDataManager.CurrentDifficulty);
         LoadingManager.LoadScene(GameScene);
     }
@@ -97,6 +101,7 @@ public class PlayerRunData
 {
     public CharacterRunData character;
     public InventoryRunData inventory;
+    public PlayerAttackRundata attackRundata;
     public float damageMultiple;
     public float specialDamageMultiple;
     public float attackSpeed;
@@ -115,6 +120,7 @@ public class PlayerRunData
     {
         character = new CharacterRunData(playerData.characterData);
         inventory = new InventoryRunData();
+        attackRundata = new PlayerAttackRundata();
         damageMultiple = playerData.damageMultiple;
         specialDamageMultiple = playerData.specialDamageMultiple;
         attackSpeed = playerData.attackSpeed;
@@ -142,7 +148,33 @@ public class PlayerRunData
         useAmmo += itemData.useAmmo;
         xScale += itemData.scale;
         yScale += itemData.scale;
+
+        if(itemData.attackChange)
+        {
+            switch(itemData.attackChangeType)
+            {
+                case AttackChangeType.ShotGun:
+                    attackRundata.UpdateShotGun();
+                    break;
+                case AttackChangeType.Sniper:
+                    attackRundata.UpdateSniper();
+                    break;
+                default:
+                    break;
+            }
+        }
     }
+}
+
+[System.Serializable]
+public class PlayerAttackRundata
+{
+    public bool isShotGun;
+    public bool isSniper;
+
+    public void UpdateShotGun() => isShotGun = true;
+    public void UpdateSniper() => isSniper = true;
+
 }
 
 [System.Serializable]

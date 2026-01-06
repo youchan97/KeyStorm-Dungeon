@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +22,8 @@ public class PlayerSkill : MonoBehaviour
     RuntimeSkill currentSkill;
     List<RuntimeSkill> cooldownSkills = new List<RuntimeSkill>();
 
+    public event Action<float> StartSkill;
+
     public Player player;
 
     void Awake()
@@ -39,11 +42,7 @@ public class PlayerSkill : MonoBehaviour
 
         if (currentSkill.skill.IsFinish)
         {
-            currentSkill.skill.Exit();
-            currentSkill.cooldown = currentSkill.baseCooldown;
-            if(currentSkill.cooldownType == ActiveCooldownType.PerTime)
-                cooldownSkills.Add(currentSkill);
-            currentSkill = null;
+            FinishSkill();
         }
     }
 
@@ -56,7 +55,7 @@ public class PlayerSkill : MonoBehaviour
             skillDic.Add(skillData.skillType, new RuntimeSkill
             {
                 skill = skill,
-                cooldown = 0
+                coolTime = 0
             });
         }
     }
@@ -68,7 +67,7 @@ public class PlayerSkill : MonoBehaviour
             if (!skillDic.TryGetValue(item.skillType, out var skill))
                 continue;
 
-            skill.baseCooldown = item.cooldownMax;
+            skill.baseCoolTime = item.cooldownMax;
             skill.cooldownType = item.cooldownType;
         }
     }
@@ -77,11 +76,21 @@ public class PlayerSkill : MonoBehaviour
     public bool TrySkill(SkillType type)
     {
         if (!skillDic.TryGetValue(type, out var skill)) return false;
-        if (skill.cooldown > 0 || currentSkill != null) return false;
+        if (skill.coolTime > 0 || currentSkill != null) return false;
 
         currentSkill = skill;
         skill.skill.Enter();
         return true;
+    }
+
+    void FinishSkill()
+    {
+        currentSkill.skill.Exit();
+        currentSkill.coolTime = currentSkill.baseCoolTime;
+        StartSkill?.Invoke(currentSkill.coolTime);
+        if (currentSkill.cooldownType == ActiveCooldownType.PerTime)
+            cooldownSkills.Add(currentSkill);
+        currentSkill = null;
     }
 
     void UpdateCooldowns()
@@ -94,11 +103,11 @@ public class PlayerSkill : MonoBehaviour
         for (int i = cooldownSkills.Count - 1; i >= 0; i--)
         {
             RuntimeSkill skill = cooldownSkills[i];
-            skill.cooldown -= time;
+            skill.coolTime -= time;
 
-            if (skill.cooldown <= 0f)
+            if (skill.coolTime <= 0f)
             {
-                skill.cooldown = 0f;
+                skill.coolTime = 0f;
                 cooldownSkills.RemoveAt(i);
             }
         }
@@ -113,9 +122,9 @@ public class PlayerSkill : MonoBehaviour
             if (skill.cooldownType != ActiveCooldownType.PerRoom)
                 continue;
 
-            skill.cooldown = Mathf.Max(0, skill.cooldown - 1);
+            skill.coolTime = Mathf.Max(0, skill.coolTime - 1);
 
-            if (skill.cooldown <= 0)
+            if (skill.coolTime <= 0)
                 cooldownSkills.RemoveAt(i);
         }
     }
@@ -126,8 +135,8 @@ public class RuntimeSkill
     public SkillType skillType;
     public ISkill skill;
 
-    public float baseCooldown;
+    public float baseCoolTime;
     public ActiveCooldownType cooldownType;
 
-    public float cooldown;
+    public float coolTime;
 }

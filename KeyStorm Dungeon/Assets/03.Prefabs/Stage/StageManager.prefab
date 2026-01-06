@@ -51,4 +51,4 @@ MonoBehaviour:
   verticalCorridorTile: {fileID: 11400000, guid: 50df240177c211d45addfc38330623c7, type: 2}
   roomSpacing: 40
   corridorWidth: 5
-  expandWeight: 0.7
+  expandWeight: 0.1
