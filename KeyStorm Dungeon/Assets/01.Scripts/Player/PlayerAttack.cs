@@ -499,6 +499,7 @@ public class PlayerAttack : MonoBehaviour
         yield return new WaitForSeconds(AttackSpeed);
         Ammo = MaxAmmo;
         isReloading = false;
+        player.GameSceneUI.UpdateAmmo();
     }
 
     IEnumerator ReloadImage()
@@ -532,16 +533,27 @@ public class PlayerAttack : MonoBehaviour
     }
 
     #region Bomb
+
+    public void ActiveItemBomb()
+    {
+        if (curBomb != null) return;
+        InstantiateBoom();
+    }
     public void HoldBomb()
     {
         PlayerInventory inven = player.Inventory;
         if (curBomb != null || inven.bombCount <= 0) return;
 
+        InstantiateBoom();
+        inven.bombCount--;
+        inven.runData.UpdateBomb(inven.bombCount);
+    }
+
+    void InstantiateBoom()
+    {
         ThrownBomb bomb = Instantiate(Bomb);
         bomb.Hold(transform);
         curBomb = bomb;
-        inven.bombCount--;
-        inven.runData.UpdateBomb(inven.bombCount);
         bomb.OnExplode += () => { ExplodingInPlayer(bomb); };
     }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     public InventoryRunData runData;
-    public Player player;
+    [SerializeField] Player player;
 
     [Header("자원")]
     public int gold;
@@ -24,11 +24,6 @@ public class PlayerInventory : MonoBehaviour
         bombCount = data.bombCount;
         passiveItems = data.passiveItems;
         activeItem = data.activeItem;
-    }
-
-    public void InitInven(Player player)
-    {
-        this.player = player;
     }
 
     public void AddGold(int amount)
