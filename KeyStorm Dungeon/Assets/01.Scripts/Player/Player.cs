@@ -146,15 +146,7 @@ public class Player : Character
     {
         if (inventory.activeItem == null) return;
 
-        if (inventory.activeItem.skillType == SkillType.Bomb)
-        {
-            return; //현재 미구현이다
-            //Bomb();
-        }
-        else
-        {
-            playerSkill.TrySkill(inventory.activeItem.skillType);
-        }
+        playerSkill.TrySkill(inventory.activeItem.skillType);
     }
 
     void PausePlayer()
