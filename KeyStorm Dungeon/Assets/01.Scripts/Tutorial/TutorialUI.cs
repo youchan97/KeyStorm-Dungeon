@@ -6,25 +6,29 @@ using UnityEngine.UI;
 
 public class TutorialUI : MonoBehaviour
 {
-    [Header("UI 패널")]
     [SerializeField] private GameObject tutorialPanel;
 
-    [Header("좌측 페이지 (설명)")]
-    [SerializeField] private TextMeshProUGUI titleText;
-    [SerializeField] private TextMeshProUGUI descriptionText;
+    [Header("좌측 페이지")]
+    [SerializeField] private GameObject leftPage;
+    [SerializeField] private TextMeshProUGUI leftTitleText;
+    [SerializeField] private Image leftExampleImage;
+    [SerializeField] private Image leftExampleImage1;
+    [SerializeField] private TextMeshProUGUI leftDescriptionText;
 
-    [Header("우측 페이지 (예시 화면)")]
-    [SerializeField] private Image exampleImage;
+    [Header("우측 페이지")]
+    [SerializeField] private GameObject rightPage;
+    [SerializeField] private TextMeshProUGUI rightTitleText;
+    [SerializeField] private Image rightExampleImage;
+    [SerializeField] private Image rightExampleImage1;
+    [SerializeField] private TextMeshProUGUI rightDescriptionText;
 
     [Header("버튼")]
     [SerializeField] private Button closeButton;
     [SerializeField] private Button previousButton;
     [SerializeField] private Button nextButton;
 
-    [Header("버튼 텍스트/아이콘")]
-    [SerializeField] private TextMeshProUGUI closeButtonText;
-    [SerializeField] private TextMeshProUGUI previousButtonText;
-    [SerializeField] private TextMeshProUGUI nextButtonText;
+    [Header("페이지 번호")]
+    [SerializeField] private TextMeshProUGUI pageNumberText;
 
     private TutorialManager tutorialManager;
 
@@ -32,82 +36,81 @@ public class TutorialUI : MonoBehaviour
     {
         tutorialManager = GetComponentInParent<TutorialManager>();
         if (tutorialManager == null)
-        {
             tutorialManager = FindObjectOfType<TutorialManager>();
-        }
 
-        if (closeButton != null)
-            closeButton.onClick.AddListener(OnCloseClicked);
-
-        if (previousButton != null)
-            previousButton.onClick.AddListener(OnPreviousClicked);
-
-        if (nextButton != null)
-            nextButton.onClick.AddListener(OnNextClicked);
-
-        if (closeButtonText != null)
-            closeButtonText.text = "X";
-
-        if (previousButtonText != null)
-            previousButtonText.text = "←";
-
-        if (nextButtonText != null)
-            nextButtonText.text = "→";
+        closeButton.onClick.AddListener(() => tutorialManager.CloseTutorial());
+        previousButton.onClick.AddListener(() => tutorialManager.PreviousPage());
+        nextButton.onClick.AddListener(() => tutorialManager.NextPage());
     }
 
-    public void ShowPage(TutorialPage page, bool hasPrevious, bool hasNext)
+    public void ShowPage(TutorialPage leftPageData, TutorialPage rightPageData, bool hasPrevious, bool hasNext)
     {
-        if (page == null)
-        {
-            Debug.LogError("TutorialPage가 null입니다!");
-            return;
-        }
-
         tutorialPanel.SetActive(true);
 
-        if (titleText != null)
-            titleText.text = page.title;
-
-        if (descriptionText != null)
-            descriptionText.text = page.description;
-
-        if (exampleImage != null && page.exampleImage != null)
+        // 좌측 페이지
+        if (leftPageData != null)
         {
-            exampleImage.sprite = page.exampleImage;
-            exampleImage.gameObject.SetActive(true);
+            leftPage.SetActive(true);
+            leftTitleText.text = leftPageData.title;
+            leftDescriptionText.text = leftPageData.description;
+
+            if (leftPageData.exampleImage != null)
+            {
+                leftExampleImage.sprite = leftPageData.exampleImage;
+                leftExampleImage.gameObject.SetActive(true);
+            }
+            else
+            {
+                leftExampleImage.gameObject.SetActive(false);
+            }
         }
-        else if (exampleImage != null)
+        else
         {
-            exampleImage.gameObject.SetActive(false);
+            leftPage.SetActive(false);
         }
 
-        if (previousButton != null)
-            previousButton.gameObject.SetActive(hasPrevious);
+        // 우측 페이지
+        if (rightPageData != null)
+        {
+            rightPage.SetActive(true);
+            rightTitleText.text = rightPageData.title;
+            rightDescriptionText.text = rightPageData.description;
 
-        if (nextButton != null)
-            nextButton.gameObject.SetActive(hasNext);
+            if (rightPageData.exampleImage != null)
+            {
+                rightExampleImage.sprite = rightPageData.exampleImage;
+                rightExampleImage.gameObject.SetActive(true);
+            }
+            else
+            {
+                rightExampleImage.gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            rightPage.SetActive(false);
+        }
+
+        // 페이지 번호
+        if (pageNumberText != null)
+        {
+            int currentLeft = leftPageData != null ? leftPageData.pageNumber + 1 : 0;
+            int currentRight = rightPageData != null ? rightPageData.pageNumber + 1 : 0;
+            int total = tutorialManager.GetTotalPages();
+
+            if (rightPageData != null)
+                pageNumberText.text = $"{currentLeft}-{currentRight} / {total}";
+            else
+                pageNumberText.text = $"{currentLeft} / {total}";
+        }
+
+        // 버튼
+        previousButton.gameObject.SetActive(hasPrevious);
+        nextButton.gameObject.SetActive(hasNext);
     }
 
     public void HideTutorial()
     {
         tutorialPanel.SetActive(false);
-    }
-
-    private void OnCloseClicked()
-    {
-        if (tutorialManager != null)
-            tutorialManager.CloseTutorial();
-    }
-
-    private void OnPreviousClicked()
-    {
-        if (tutorialManager != null)
-            tutorialManager.PreviousPage();
-    }
-
-    private void OnNextClicked()
-    {
-        if (tutorialManager != null)
-            tutorialManager.NextPage();
     }
 }
