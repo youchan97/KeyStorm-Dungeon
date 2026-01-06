@@ -11,6 +11,11 @@ public class BossMonsterAttackState : MonsterAttackState
 
     private bool _isJumpAnimationFinished = false;
 
+    #region 애니메이션
+    private const string JumpAnim = "IsJump";
+    private const string DiveAnim = "IsDive";
+    #endregion
+
     public BossMonsterAttackState(Monster character, CharacterStateManager<Monster> stateManager) : base(character, stateManager)
     {
         this.boss = character as BossMonster;
@@ -45,7 +50,7 @@ public class BossMonsterAttackState : MonsterAttackState
 
     private IEnumerator DiveAttack()
     {
-        boss.Animator.SetTrigger("IsJump");
+        boss.Animator.SetTrigger(JumpAnim);
 
         yield return new WaitUntil(() => _isJumpAnimationFinished == true);
 
@@ -92,7 +97,7 @@ public class BossMonsterAttackState : MonsterAttackState
 
         boss.transform.position = diveTargetPosition + Vector3.up * (boss.JumpHeight);
 
-        boss.Animator.SetBool("IsDive", true);
+        boss.Animator.SetBool(DiveAnim, true);
 
         Vector3 startDivePos = boss.transform.position;
         Vector3 endDivePos = diveTargetPosition;
@@ -128,7 +133,7 @@ public class BossMonsterAttackState : MonsterAttackState
 
         yield return new WaitForSeconds(boss.LandedDelay);
 
-        boss.Animator.SetBool("IsDive", false);
+        boss.Animator.SetBool(DiveAnim, false);
         boss.ResetPatternCooldown();
         stateManager.ChangeState(boss.CreateMoveState());
     }
@@ -152,8 +157,8 @@ public class BossMonsterAttackState : MonsterAttackState
 
         boss.GetComponent<Collider2D>().enabled = true;
 
-        boss.Animator.ResetTrigger("IsJump");
-        boss.Animator.SetBool("IsDive", false);
+        boss.Animator.ResetTrigger(JumpAnim);
+        boss.Animator.SetBool(DiveAnim, false);
         Debug.Log($"[{boss.name}]: ---- AttackState ExitState 퇴장! (종료) Time: {Time.time}");
     }
 }

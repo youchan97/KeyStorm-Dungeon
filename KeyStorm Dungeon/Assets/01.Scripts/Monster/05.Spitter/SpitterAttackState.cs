@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using static ConstValue;
 
 public class SpitterAttackState : MonsterAttackState
 {
@@ -33,7 +32,7 @@ public class SpitterAttackState : MonsterAttackState
 
         if (character.CurrentAttackCooldown <= 0)
         {
-            animator.SetTrigger("IsAttack");
+            animator.SetTrigger(AttackAnim);
             character.ResetAttackCooldown();
         }
     }

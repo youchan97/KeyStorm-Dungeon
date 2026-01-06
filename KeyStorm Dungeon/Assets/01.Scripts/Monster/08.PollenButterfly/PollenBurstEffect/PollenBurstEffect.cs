@@ -11,7 +11,8 @@ public class PollenBurstEffect : MonoBehaviour
     [SerializeField] private int damage;
 
     private float currentDamageTimer;
-    
+
+    private const string PollenBurstEffectPool = "PollenBurstEffect";
 
     private void Awake()
     {
@@ -62,7 +63,7 @@ public class PollenBurstEffect : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
 
-        ObjectPoolManager.Instance.ReturnObject(gameObject, "PollenBurstEffect");
+        ObjectPoolManager.Instance.ReturnObject(gameObject, PollenBurstEffectPool);
     }
 
     private void OnTriggerStay2D(Collider2D collision)

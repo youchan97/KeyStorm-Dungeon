@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using static ConstValue;
 
 public class BWorkerAttackState : MonsterAttackState
 {
@@ -25,7 +26,7 @@ public class BWorkerAttackState : MonsterAttackState
         animator = character.Animator;
         playerTransform = character.PlayerTransform;
 
-        animator.SetBool("IsAttack", true);
+        animator.SetBool(AttackAnim, true);
 
         currentPath = null;
         targetNodeIndex = 0;

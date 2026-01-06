@@ -21,6 +21,14 @@ public class SporeFlowerMoveState : MonsterMoveState
 
     private Vector2 directionToPlayer;
     private Vector2 moveDirection;
+
+    #region 애니메이션
+    private const string ChangeMoveAnim = "IsChangeMove";
+    private const string ChangeAttackAnim = "IsChangeAttack";
+    private const string ChangeMoveClip = "SporeFlower_ChangeMove";
+    private const string ChangeAttackClip = "SporeFlower_ChangeAttack";
+    #endregion
+
     public SporeFlowerMoveState(Monster monster, CharacterStateManager<Monster> stateManager) : base(monster, stateManager)
     {
         sporeFlower = character as SporeFlower;
@@ -31,9 +39,9 @@ public class SporeFlowerMoveState : MonsterMoveState
         rb = character.MonsterRb;
         animator = character.Animator;
 
-        animator.SetTrigger("IsChangeMove");
+        animator.SetTrigger(ChangeMoveAnim);
 
-        float clipLength = GetAnimationClipLength("SporeFlower_ChangeMove");
+        float clipLength = GetAnimationClipLength(ChangeMoveClip);
         changeMoveCoroutine = sporeFlower.StartCoroutine(WaitForAnimationToMove(clipLength));
 
         isMoving = false;
@@ -72,11 +80,7 @@ public class SporeFlowerMoveState : MonsterMoveState
         currentMoveTime -= Time.fixedDeltaTime;
         if (currentMoveTime <= 0f)
         {
-            rb.velocity = Vector2.zero;
-            isChangedAttackAnimation = true;
-            float changeAttackClipLength = GetAnimationClipLength("SporeFlower_ChangeAttack");
-            changeAttackCoroutine = sporeFlower.StartCoroutine(WaitForAnimationToAttack(changeAttackClipLength));
-            return;
+            ChangeAttackForm();
         }
 
         rb.velocity = moveDirection * sporeFlower.MoveSpeed;
@@ -88,11 +92,7 @@ public class SporeFlowerMoveState : MonsterMoveState
 
             if (distanceMoved < stoppedThreshold && rb.velocity.sqrMagnitude > stoppedThreshold * stoppedThreshold)
             {
-                rb.velocity = Vector2.zero;
-                isChangedAttackAnimation = true;
-                float changeAttackClipLength = GetAnimationClipLength("SporeFlower_ChangeAttack");
-                changeAttackCoroutine = sporeFlower.StartCoroutine(WaitForAnimationToAttack(changeAttackClipLength));
-                return;
+                ChangeAttackForm();
             }
             lastPosition = sporeFlower.transform.position;
             timeSinceLastCheck = 0f;
@@ -120,8 +120,8 @@ public class SporeFlowerMoveState : MonsterMoveState
         if (animator != null)
         {
             animator.SetBool(MoveAnim, false);
-            animator.ResetTrigger("IsChangeMove");
-            animator.ResetTrigger("IsChangeAttack");
+            animator.ResetTrigger(ChangeMoveAnim);
+            animator.ResetTrigger(ChangeAttackAnim);
         }
 
         isMoving = false;
@@ -155,11 +155,20 @@ public class SporeFlowerMoveState : MonsterMoveState
 
     private IEnumerator WaitForAnimationToAttack(float waitTime)
     {
-        animator.SetTrigger("IsChangeAttack");
+        animator.SetTrigger(ChangeAttackAnim);
 
         yield return new WaitForSeconds(waitTime);
 
         stateManager.ChangeState(sporeFlower.CreateAttackState());
         changeAttackCoroutine = null;
+    }
+
+    private void ChangeAttackForm()
+    {
+        rb.velocity = Vector2.zero;
+        isChangedAttackAnimation = true;
+        float changeAttackClipLength = GetAnimationClipLength(ChangeAttackClip);
+        changeAttackCoroutine = sporeFlower.StartCoroutine(WaitForAnimationToAttack(changeAttackClipLength));
+        return;
     }
 }

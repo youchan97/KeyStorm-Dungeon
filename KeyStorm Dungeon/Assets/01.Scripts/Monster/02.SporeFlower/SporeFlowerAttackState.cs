@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ConstValue;
 
 public class SporeFlowerAttackState : MonsterAttackState
 {
@@ -21,7 +22,7 @@ public class SporeFlowerAttackState : MonsterAttackState
             rb.velocity = Vector2.zero;
         }
 
-        animator.SetTrigger("IsAttack");
+        animator.SetTrigger(AttackAnim);
         sporeFlower.ResetAttackCooldown();
     }
 
@@ -43,7 +44,7 @@ public class SporeFlowerAttackState : MonsterAttackState
     {
         if (animator != null)
         {
-            animator.ResetTrigger("IsAttack");
+            animator.ResetTrigger(AttackAnim);
         }
     }
 }

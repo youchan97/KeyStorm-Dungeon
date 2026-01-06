@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ConstValue;
 
 public class RangerMonsterAttackState : MonsterAttackState
 {
@@ -30,7 +31,7 @@ public class RangerMonsterAttackState : MonsterAttackState
 
         if (character.CurrentAttackCooldown <= 0)
         {
-            animator.SetTrigger("IsAttack");
+            animator.SetTrigger(AttackAnim);
             character.Attack(player);
             character.ResetAttackCooldown();
         }
