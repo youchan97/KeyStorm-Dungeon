@@ -137,6 +137,8 @@ public class PlayerAttack : MonoBehaviour
         UseAmmo = data.useAmmo;
         Ammo = data.ammo;
 
+        canShotGun = data.attackRundata.isShotGun;
+        canSniper = data.attackRundata.isSniper;
     }
 
     void InitialDic()
@@ -586,6 +588,17 @@ public class PlayerAttack : MonoBehaviour
         ShootSpeed = data.shootSpeed;
         MaxAmmo = data.maxAmmo;
         UseAmmo = data.useAmmo;
+
+        if(data.attackRundata.isShotGun)
+            canShotGun = data.attackRundata.isShotGun;
+
+        if(data.attackRundata.isSniper)
+        {
+            canSniper = data.attackRundata.isSniper;
+            ShuffleKey();
+            SetAttackUi();
+        }
+
     }
     #endregion
 

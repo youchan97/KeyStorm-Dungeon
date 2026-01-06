@@ -12,6 +12,13 @@ public enum ItemDropRoom
     Store = 1 << 2,
 }
 
+public enum AttackChangeType
+{
+    None,
+    ShotGun,
+    Sniper
+}
+
 public enum ItemTier
 {
     Tier0 = 0,
@@ -46,6 +53,7 @@ public class ItemData : ScriptableObject
     public bool isActiveItem;
     public ItemTier tier;
     public ItemDropRoom dropRoom;
+    public AttackChangeType attackChangeType;
 
     [Header("스탯 변화량")]
     public int maxHp;

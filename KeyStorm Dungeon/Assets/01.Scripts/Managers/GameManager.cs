@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -100,6 +101,7 @@ public class PlayerRunData
 {
     public CharacterRunData character;
     public InventoryRunData inventory;
+    public PlayerAttackRundata attackRundata;
     public float damageMultiple;
     public float specialDamageMultiple;
     public float attackSpeed;
@@ -118,6 +120,7 @@ public class PlayerRunData
     {
         character = new CharacterRunData(playerData.characterData);
         inventory = new InventoryRunData();
+        attackRundata = new PlayerAttackRundata();
         damageMultiple = playerData.damageMultiple;
         specialDamageMultiple = playerData.specialDamageMultiple;
         attackSpeed = playerData.attackSpeed;
@@ -145,7 +148,33 @@ public class PlayerRunData
         useAmmo += itemData.useAmmo;
         xScale += itemData.scale;
         yScale += itemData.scale;
+
+        if(itemData.attackChange)
+        {
+            switch(itemData.attackChangeType)
+            {
+                case AttackChangeType.ShotGun:
+                    attackRundata.UpdateShotGun();
+                    break;
+                case AttackChangeType.Sniper:
+                    attackRundata.UpdateSniper();
+                    break;
+                default:
+                    break;
+            }
+        }
     }
+}
+
+[System.Serializable]
+public class PlayerAttackRundata
+{
+    public bool isShotGun;
+    public bool isSniper;
+
+    public void UpdateShotGun() => isShotGun = true;
+    public void UpdateSniper() => isSniper = true;
+
 }
 
 [System.Serializable]
