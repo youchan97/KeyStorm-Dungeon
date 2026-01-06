@@ -22,9 +22,8 @@ public class Wood : MeleeMonster
     public int MaxFootStepCount => maxFootStepCount;
     
 
-
     [Header("돌진 패턴 수치")]
-    private float moveSpeed;
+    private float rushMoveSpeed;
 
     [Header("도약 패턴 수치")]
     [SerializeField] private float jumpHeight;
@@ -93,7 +92,7 @@ public class Wood : MeleeMonster
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(center, radius, damageLayers);
         foreach (var hitCollider in hitColliders)
         {
-            if (playerLayer == (playerLayer | (1 << hitCollider.gameObject.layer)))
+            if (((1 << hitCollider.gameObject.layer) & playerLayer.value) > 0)
             {
                 Player hitPlayer = hitCollider.GetComponent<Player>();
                 if (hitPlayer != null)
@@ -101,7 +100,7 @@ public class Wood : MeleeMonster
                     hitPlayer.TakeDamage(Damage);
                 }
             }
-            else if(rootLayer == (rootLayer | (1 << hitCollider.gameObject.layer)))
+            else if(((1 << hitCollider.gameObject.layer) & rootLayer.value) > 0)
             {
                 WoodsRoot hitRoot = hitCollider.GetComponent<WoodsRoot>();
                 if (hitRoot != null)

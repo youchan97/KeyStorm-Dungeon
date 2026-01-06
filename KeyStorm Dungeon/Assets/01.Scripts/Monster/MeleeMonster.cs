@@ -40,7 +40,7 @@ public class MeleeMonster : Monster
     {
         if (CurrentAttackCooldown <= 0f)
         {
-            if (playerLayer == (playerLayer | (1 << collision.gameObject.layer)))
+            if (((1 << collision.gameObject.layer) & playerLayer.value) > 0)
             {
                 Player player = collision.gameObject.GetComponent<Player>();
 

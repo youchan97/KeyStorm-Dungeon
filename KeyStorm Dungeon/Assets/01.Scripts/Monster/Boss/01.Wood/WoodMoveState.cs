@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static ConstValue;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class WoodMoveState : MonsterMoveState
 {
@@ -11,8 +12,6 @@ public class WoodMoveState : MonsterMoveState
 
     private int currentFootStep; // 현재 걸음 수
     private int targetFootStep; // 목표 걸음 수
-
-    private float distanceToPlayer;
 
     public WoodMoveState(Monster monster, CharacterStateManager<Monster> stateManager) : base(monster, stateManager)
     {
@@ -26,6 +25,7 @@ public class WoodMoveState : MonsterMoveState
         playerTransform = wood.PlayerTransform;
         currentMoveDelay = wood.MoveDelay;
         isMoving = false;
+        currentFootStep = 0;
         targetFootStep = Random.Range(wood.MinFootStepCount, wood.MaxFootStepCount + 1);
     }
 
@@ -35,6 +35,7 @@ public class WoodMoveState : MonsterMoveState
 
         if (currentFootStep >= targetFootStep)
         {
+            rb.velocity = Vector2.zero;
             stateManager.ChangeState(wood.CreateAttackState());
             return;
         }
@@ -44,6 +45,7 @@ public class WoodMoveState : MonsterMoveState
         if (currentMoveDelay <= 0 && !isMoving)
         {
             animator.SetTrigger(MoveAnim);
+            WoodMove();
         }
     }
 
@@ -54,11 +56,17 @@ public class WoodMoveState : MonsterMoveState
 
     public override bool UseFixedUpdate()
     {
-        return true;
+        return false;
     }
 
-    public void OnMove()
+
+
+    public void WoodMove()
     {
+        Vector2 direction = (playerTransform.position - wood.transform.position).normalized;
+
+        rb.velocity = direction * wood.MonsterData.characterData.moveSpeed;
+
 
     }
 }
