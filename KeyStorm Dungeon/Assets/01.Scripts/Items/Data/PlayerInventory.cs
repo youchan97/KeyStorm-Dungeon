@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,12 +19,24 @@ public class PlayerInventory : MonoBehaviour
 
     [Header("드롭용 공용 액티브 픽업 프리팹(필수)")]
     public GameObject defaultActivePickupPrefab;
+
+    public event Action<ItemData> OnAddActiveItem;
     public void InitInventory(InventoryRunData data)
     {
-        gold = data.gold;
-        bombCount = data.bombCount;
-        passiveItems = data.passiveItems;
-        activeItem = data.activeItem;
+        if (GameManager.Instance.isCheatMode)
+        {
+            gold = 999999;
+            bombCount = 100;
+            passiveItems = data.passiveItems;
+            activeItem = data.activeItem;
+        }
+        else
+        {
+            gold = data.gold;
+            bombCount = data.bombCount;
+            passiveItems = data.passiveItems;
+            activeItem = data.activeItem;
+        }
     }
 
     public void AddGold(int amount)
@@ -73,6 +86,7 @@ public class PlayerInventory : MonoBehaviour
         }
 
         activeItem = newItem;
+        OnAddActiveItem?.Invoke(activeItem);
         runData.ApplyInventory(activeItem);
     }
 
@@ -93,7 +107,7 @@ public class PlayerInventory : MonoBehaviour
             return;
         }
 
-        Vector2 offset = Random.insideUnitCircle.normalized * 0.6f;
+        Vector2 offset = UnityEngine.Random.insideUnitCircle.normalized * 0.6f;
         Vector3 dropPos = transform.position + (Vector3)offset;
 
         GameObject drop = Instantiate(prefab, dropPos, Quaternion.identity);

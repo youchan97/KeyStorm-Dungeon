@@ -45,7 +45,9 @@ public class Player : Character
     public PlayerInventory Inventory { get => inventory;}
     public AudioManager AudioManager { get => audioManager; }
     public PlayerSkill PlayerSkill { get => playerSkill;}
-    public GameSceneUI GameSceneUI { get; private set; }
+    public GameSceneUI GameSceneUI { get; set; }
+
+    public EffectPoolManager EffectPoolManager { get; set; }
     #endregion
 
     protected override void Awake()
@@ -82,11 +84,6 @@ public class Player : Character
     public void InitAttackPoolManager(AttackPoolManager attackPoolManager)
     {
         this.attackPoolManager = attackPoolManager;
-    }
-
-    public void InitGameSceneUi(GameSceneUI gameSceneUI)
-    {
-        GameSceneUI = gameSceneUI;
     }
 
     protected override void InitState()

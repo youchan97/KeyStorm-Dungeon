@@ -1794,7 +1794,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillSet: {fileID: 11400000, guid: 399576f1ec1c6c9449e726a5c07b62c7, type: 2}
   activeItems:
+  - {fileID: 11400000, guid: 6113f5cec5c08ca4787af09bc843f5ed, type: 2}
   - {fileID: 11400000, guid: effad76bd6fccd649ac72258038511e7, type: 2}
+  - {fileID: 11400000, guid: ae53ecaf28fd7754f8cf586676be134f, type: 2}
   player: {fileID: 4851458755222282479}
 --- !u!114 &9001353019542540319
 MonoBehaviour:

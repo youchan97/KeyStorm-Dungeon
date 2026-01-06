@@ -1341,6 +1341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerObj: {fileID: 6054290072008950287, guid: e19d910db4bbd334f895f0a9eb2dfd24, type: 3}
   attackPoolManager: {fileID: 848869543}
+  effectPoolManager: {fileID: 1158209262}
   vCam: {fileID: 893130340}
   minimapCameraManager: {fileID: 401985101}
   gameSceneUI: {fileID: 7603790901816875767}

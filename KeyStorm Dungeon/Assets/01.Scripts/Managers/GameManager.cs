@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 using static ConstValue;
 public class GameManager : SingletonManager<GameManager>
 {
+    public bool isCheatMode;
+
     SaveLoadManager saveLoadManager;
     StageDataManager stageDataManager;
 
@@ -16,7 +18,6 @@ public class GameManager : SingletonManager<GameManager>
     [SerializeField] PlayerRunData playerRunData;
 
     public PlayerRunData PlayerRunData { get => playerRunData;}
-
     protected override void Awake()
     {
         base.Awake();
@@ -74,6 +75,7 @@ public class GameManager : SingletonManager<GameManager>
     {
         if (Time.timeScale < 1f)
             Time.timeScale = 1f;
+        isPaused = false;
         InitializeRunData();
         LoadingManager.LoadScene(StartScene);
     }
@@ -81,6 +83,7 @@ public class GameManager : SingletonManager<GameManager>
     public void RetryGame()
     {
         InitializeRunData();
+        isPaused = false;
         stageDataManager.SelectDifficulty(stageDataManager.CurrentDifficulty);
         LoadingManager.LoadScene(GameScene);
     }
