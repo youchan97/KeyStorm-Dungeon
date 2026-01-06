@@ -9,6 +9,7 @@ public class PlayerSpawner : MonoBehaviour
 
     [SerializeField] GameObject playerObj;
     [SerializeField] AttackPoolManager attackPoolManager;
+    [SerializeField] EffectPoolManager effectPoolManager;
     [SerializeField] CinemachineVirtualCamera vCam;
     [SerializeField] MinimapCameraManager minimapCameraManager;
     [SerializeField] GameSceneUI gameSceneUI;
@@ -23,7 +24,8 @@ public class PlayerSpawner : MonoBehaviour
     void SettingPlayer(Player player)
     {
         player.InitAttackPoolManager(attackPoolManager);
-        player.InitGameSceneUi(gameSceneUI);
+        player.EffectPoolManager = effectPoolManager;
+        player.GameSceneUI = gameSceneUI;
         CameraSetting(player);
         gameSceneUI.InitPlayerData(player);
     }

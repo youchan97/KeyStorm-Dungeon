@@ -17,16 +17,24 @@ public class DynamiteSkill : ISkill
 
     public void Enter()
     {
-        throw new System.NotImplementedException();
+        GameObject go = Object.Instantiate(data.dynamite);
+        go.transform.position = Player.transform.position;
+        Dynamite dynamite = go.GetComponent<Dynamite>();
+
+        if (dynamite == null)
+            return;
+
+        dynamite.InitData(data, Player);
+        IsFinish = true;
     }
 
     public void Exit()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public void Update()
     {
-        throw new System.NotImplementedException();
+        
     }
 }

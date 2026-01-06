@@ -324,6 +324,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 81379983088076664, guid: cd80d71101dc86540aa4e44f1fee74d1, type: 3}
+      propertyPath: isCheatMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1476054276389039121, guid: cd80d71101dc86540aa4e44f1fee74d1, type: 3}
       propertyPath: m_Name
       value: GameManger

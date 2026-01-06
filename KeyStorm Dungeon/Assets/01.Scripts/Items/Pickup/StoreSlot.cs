@@ -226,7 +226,8 @@ public class StoreSlot : MonoBehaviour
         if (!other.CompareTag("Player")) return;
 
         var inv = other.GetComponent<PlayerInventory>();
-        if (inv == null) return;
+        Player player = other.GetComponent<Player>();
+        if (inv == null || player == null) return;
 
         if (spawnedObj == null) return;
 
@@ -247,8 +248,15 @@ public class StoreSlot : MonoBehaviour
 
         if (itemData == null) { Clear(); return; }
 
-        if (itemData.isActiveItem) inv.SetActiveItem(itemData);
-        else inv.AddPassiveItem(itemData);
+        if (itemData.isActiveItem)
+        {
+            inv.SetActiveItem(itemData);
+        }
+        else
+        {
+            inv.AddPassiveItem(itemData);
+            player.UpdatePlayerData(itemData);
+        }
 
         ItemPoolManager.Instance?.MarkAcquired(itemData);
         Clear();
