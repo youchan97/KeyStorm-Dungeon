@@ -10,6 +10,7 @@ public static class ConstValue
     public const string AxisY = "MoveY";
     public const string DieAnim = "Die";
     public const string HurtAnim = "Hurt";
+    public const string AttackAnim = "IsAttack";
 
     public const string DoorAnim = "OpenDoor";
     #endregion

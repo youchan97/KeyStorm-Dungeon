@@ -6,7 +6,7 @@ public class PoisonField : MonoBehaviour
     [SerializeField] private float attackCooldown;
     [SerializeField] private float poisonFieldDuration;
 
-    [SerializeField] private string poolName = "PoisonField";
+    private const string PoisonFieldPoolName = "PoisonField";
 
     private float currentAttackCooldown;
     private float currentFieldDuration;
@@ -35,7 +35,7 @@ public class PoisonField : MonoBehaviour
 
     public void ReturnToPool()
     {
-        ObjectPoolManager.Instance.ReturnObject(gameObject, poolName);
+        ObjectPoolManager.Instance.ReturnObject(gameObject, PoisonFieldPoolName);
     }
 
     private void OnDisable()

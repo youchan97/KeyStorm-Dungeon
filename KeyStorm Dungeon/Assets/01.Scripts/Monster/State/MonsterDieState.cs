@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ConstValue;
 
 public class MonsterDieState : CharacterDieState<Monster>
 {
@@ -30,7 +31,7 @@ public class MonsterDieState : CharacterDieState<Monster>
 
         if (character.Animator != null)
         {
-            character.Animator.SetTrigger("IsDie");
+            character.Animator.SetTrigger(DieAnim);
             character.StartCoroutine(WaitForDieAnimation());
         }
         else
@@ -56,7 +57,6 @@ public class MonsterDieState : CharacterDieState<Monster>
     {
         character.InvokeOnMonsterDied();
 
-        // 풀링 시 Destroy대신 ReturnPool 등 메서드 사용
         Object.Destroy(character.gameObject);
     }
 }

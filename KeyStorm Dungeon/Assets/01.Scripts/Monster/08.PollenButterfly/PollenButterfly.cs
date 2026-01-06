@@ -18,7 +18,7 @@ public class PollenButterfly : MeleeMonster
     
     public Vector3 SpawnPosition => spawnPosition;
 
-
+    private const string PollenBurstEffectPool = "PollenBurstEffect";
 
     private PollenButterflyIdleState _idleState;
     private PollenButterflyMoveState _moveState;
@@ -79,7 +79,7 @@ public class PollenButterfly : MeleeMonster
     {
         if (pollenBurstEffectPrefab != null)
         {
-            GameObject burstEffect = ObjectPoolManager.Instance.GetObject("PollenBurstEffect", transform.position, Quaternion.identity);
+            GameObject burstEffect = ObjectPoolManager.Instance.GetObject(PollenBurstEffectPool, transform.position, Quaternion.identity);
 
             if(burstEffect != null)
             {

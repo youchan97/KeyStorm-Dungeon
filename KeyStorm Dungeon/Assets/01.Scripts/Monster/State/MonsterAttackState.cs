@@ -59,7 +59,7 @@ public class MonsterAttackState : CharacterAttackState<Monster>
 
         if (character.CurrentAttackCooldown <= 0)
         {
-            animator.SetTrigger("IsAttack");
+            animator.SetTrigger(AttackAnim);
             character.Attack(player);
             character.ResetAttackCooldown();
         }
@@ -71,7 +71,7 @@ public class MonsterAttackState : CharacterAttackState<Monster>
     {
         if (animator != null)
         {
-            animator.ResetTrigger("IsAttack");
+            animator.ResetTrigger(AttackAnim);
         }
         character.SetAttackTarget(null);
     }

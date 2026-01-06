@@ -4,6 +4,7 @@ using UnityEngine;
 
 public interface ISkill
 {
+    Player Player { get; }
     void Enter();
     void Update();
     void Exit();
@@ -18,6 +19,7 @@ public class PlayerSkill : MonoBehaviour
 
     Dictionary<SkillType, RuntimeSkill> skillDic = new Dictionary<SkillType, RuntimeSkill>();
     RuntimeSkill currentSkill;
+    List<RuntimeSkill> cooldownSkills = new List<RuntimeSkill>();
 
     public Player player;
 
@@ -39,6 +41,8 @@ public class PlayerSkill : MonoBehaviour
         {
             currentSkill.skill.Exit();
             currentSkill.cooldown = currentSkill.baseCooldown;
+            if(currentSkill.cooldownType == ActiveCooldownType.PerTime)
+                cooldownSkills.Add(currentSkill);
             currentSkill = null;
         }
     }
@@ -73,28 +77,47 @@ public class PlayerSkill : MonoBehaviour
     public bool TrySkill(SkillType type)
     {
         if (!skillDic.TryGetValue(type, out var skill)) return false;
-        if (skill.cooldown > 0) return false;
+        if (skill.cooldown > 0 || currentSkill != null) return false;
 
         currentSkill = skill;
-         skill.skill.Enter();
+        skill.skill.Enter();
         return true;
     }
 
     void UpdateCooldowns()
     {
-        foreach (var skill in skillDic.Values)
+        if (cooldownSkills.Count == 0)
+            return;
+
+        float time = Time.deltaTime;
+
+        for (int i = cooldownSkills.Count - 1; i >= 0; i--)
         {
-            if (skill.cooldown <= 0) continue;
-            if (skill.cooldownType == ActiveCooldownType.PerTime)
-                skill.cooldown -= Time.deltaTime;
+            RuntimeSkill skill = cooldownSkills[i];
+            skill.cooldown -= time;
+
+            if (skill.cooldown <= 0f)
+            {
+                skill.cooldown = 0f;
+                cooldownSkills.RemoveAt(i);
+            }
         }
     }
 
     public void OnRoomClear()
     {
-        foreach (var skill in skillDic.Values)
-            if (skill.cooldownType == ActiveCooldownType.PerRoom)
-                skill.cooldown = Mathf.Max(0, skill.cooldown - 1);
+        for (int i = cooldownSkills.Count - 1; i >= 0; i--)
+        {
+            var skill = cooldownSkills[i];
+
+            if (skill.cooldownType != ActiveCooldownType.PerRoom)
+                continue;
+
+            skill.cooldown = Mathf.Max(0, skill.cooldown - 1);
+
+            if (skill.cooldown <= 0)
+                cooldownSkills.RemoveAt(i);
+        }
     }
 }
 

@@ -26,7 +26,7 @@ public class BQueenAttackState : MonsterAttackState
         animator.SetFloat(AxisX, 0f);
         animator.SetFloat(AxisY, 0f);
 
-        animator.SetTrigger("IsAttack");
+        animator.SetTrigger(AttackAnim);
 
         float attackAnimationLength = GetAnimationClipLength("BQueen_SpawnBWorker");
 
@@ -49,7 +49,7 @@ public class BQueenAttackState : MonsterAttackState
             attackCoroutine = null;
         }
 
-        animator.ResetTrigger("IsAttack");
+        animator.ResetTrigger(AttackAnim);
     }
 
     public override bool UseFixedUpdate()

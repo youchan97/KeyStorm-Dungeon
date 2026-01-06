@@ -1,8 +1,13 @@
 using UnityEngine;
+using static ConstValue;
 
 public class NeedlehogAttackState : MonsterAttackState
 {
     private Needlehog needlehog;
+
+    #region 애니메이션
+    private const string CrouchAnim = "IsCrouch";
+    #endregion
 
     public NeedlehogAttackState(Monster character, CharacterStateManager<Monster> stateManager) : base(character, stateManager)
     {
@@ -19,7 +24,7 @@ public class NeedlehogAttackState : MonsterAttackState
             rb.velocity = Vector2.zero;
         }
 
-        animator.SetTrigger("IsCrouch");
+        animator.SetTrigger(CrouchAnim);
     }
 
     public override void UpdateState()
@@ -32,7 +37,7 @@ public class NeedlehogAttackState : MonsterAttackState
 
         if (needlehog.CurrentAttackCooldown <= 0)
         {
-            animator.SetTrigger("IsAttack");
+            animator.SetTrigger(AttackAnim);
             needlehog.ResetAttackCooldown();
         }
         
@@ -42,7 +47,7 @@ public class NeedlehogAttackState : MonsterAttackState
     {
         if (animator != null)
         {
-            animator.ResetTrigger("IsAttack");
+            animator.ResetTrigger(AttackAnim);
         }
     }
 }
