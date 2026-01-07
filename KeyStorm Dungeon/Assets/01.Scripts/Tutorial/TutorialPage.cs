@@ -9,7 +9,8 @@ public class TutorialPage
     public string title;                    
 
     [Header("예시 화면")]
-    public Sprite exampleImage;             
+    public Sprite image1;
+    public Sprite image2;
 
     [Header("설명")]
     [TextArea(5, 10)]

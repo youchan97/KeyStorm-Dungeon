@@ -11,15 +11,15 @@ public class TutorialUI : MonoBehaviour
     [Header("좌측 페이지")]
     [SerializeField] private GameObject leftPage;
     [SerializeField] private TextMeshProUGUI leftTitleText;
-    [SerializeField] private Image leftExampleImage;
-    [SerializeField] private Image leftExampleImage1;
+    [SerializeField] private Image leftImage1;
+    [SerializeField] private Image leftImage2;
     [SerializeField] private TextMeshProUGUI leftDescriptionText;
 
     [Header("우측 페이지")]
     [SerializeField] private GameObject rightPage;
     [SerializeField] private TextMeshProUGUI rightTitleText;
-    [SerializeField] private Image rightExampleImage;
-    [SerializeField] private Image rightExampleImage1;
+    [SerializeField] private Image rightImage1;
+    [SerializeField] private Image rightImage2;
     [SerializeField] private TextMeshProUGUI rightDescriptionText;
 
     [Header("버튼")]
@@ -47,51 +47,32 @@ public class TutorialUI : MonoBehaviour
     {
         tutorialPanel.SetActive(true);
 
-        // 좌측 페이지
         if (leftPageData != null)
         {
             leftPage.SetActive(true);
             leftTitleText.text = leftPageData.title;
             leftDescriptionText.text = leftPageData.description;
 
-            if (leftPageData.exampleImage != null)
-            {
-                leftExampleImage.sprite = leftPageData.exampleImage;
-                leftExampleImage.gameObject.SetActive(true);
-            }
-            else
-            {
-                leftExampleImage.gameObject.SetActive(false);
-            }
+            SetPageImages(leftImage1, leftImage2, leftPageData.image1, leftPageData.image2);
         }
         else
         {
             leftPage.SetActive(false);
         }
 
-        // 우측 페이지
         if (rightPageData != null)
         {
             rightPage.SetActive(true);
             rightTitleText.text = rightPageData.title;
             rightDescriptionText.text = rightPageData.description;
 
-            if (rightPageData.exampleImage != null)
-            {
-                rightExampleImage.sprite = rightPageData.exampleImage;
-                rightExampleImage.gameObject.SetActive(true);
-            }
-            else
-            {
-                rightExampleImage.gameObject.SetActive(false);
-            }
+            SetPageImages(rightImage1, rightImage2, rightPageData.image1, rightPageData.image2);
         }
         else
         {
             rightPage.SetActive(false);
         }
 
-        // 페이지 번호
         if (pageNumberText != null)
         {
             int currentLeft = leftPageData != null ? leftPageData.pageNumber + 1 : 0;
@@ -104,9 +85,30 @@ public class TutorialUI : MonoBehaviour
                 pageNumberText.text = $"{currentLeft} / {total}";
         }
 
-        // 버튼
         previousButton.gameObject.SetActive(hasPrevious);
         nextButton.gameObject.SetActive(hasNext);
+    }
+
+    private void SetPageImages(Image img1, Image img2, Sprite sprite1, Sprite sprite2)
+    {
+        if (sprite1 != null && sprite2 != null)
+        {
+            img1.gameObject.SetActive(true);
+            img2.gameObject.SetActive(true);
+            img1.sprite = sprite1;
+            img2.sprite = sprite2;
+        }
+        else if (sprite1 != null)
+        {
+            img1.gameObject.SetActive(true);
+            img2.gameObject.SetActive(false);
+            img1.sprite = sprite1;
+        }
+        else
+        {
+            img1.gameObject.SetActive(false);
+            img2.gameObject.SetActive(false);
+        }
     }
 
     public void HideTutorial()

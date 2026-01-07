@@ -599,13 +599,13 @@ MonoBehaviour:
   tutorialPanel: {fileID: 8798977858979669931}
   leftPage: {fileID: 1531854969082226378}
   leftTitleText: {fileID: 8723304378837502920}
-  leftExampleImage: {fileID: 6598898817055430251}
-  leftExampleImage1: {fileID: 8377839482701194041}
+  leftImage1: {fileID: 6598898817055430251}
+  leftImage2: {fileID: 8377839482701194041}
   leftDescriptionText: {fileID: 5840522896881164183}
   rightPage: {fileID: 8124909389577010902}
   rightTitleText: {fileID: 230641708222376140}
-  rightExampleImage: {fileID: 2257146047235662508}
-  rightExampleImage1: {fileID: 7588913080660877548}
+  rightImage1: {fileID: 2257146047235662508}
+  rightImage2: {fileID: 7588913080660877548}
   rightDescriptionText: {fileID: 5124919730892935817}
   closeButton: {fileID: 4072672434017067410}
   previousButton: {fileID: 2870204221035622929}
@@ -966,7 +966,7 @@ GameObject:
   - component: {fileID: 4141021912316151161}
   - component: {fileID: 6598898817055430251}
   m_Layer: 5
-  m_Name: LeftExampleImage
+  m_Name: LeftImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1283,7 +1283,7 @@ GameObject:
   - component: {fileID: 2638075757849780263}
   - component: {fileID: 7588913080660877548}
   m_Layer: 5
-  m_Name: RightExampleImage (1)
+  m_Name: RightImage1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1786,7 +1786,7 @@ GameObject:
   - component: {fileID: 7068446038754488051}
   - component: {fileID: 2257146047235662508}
   m_Layer: 5
-  m_Name: RightExampleImage
+  m_Name: RightImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1982,7 +1982,7 @@ GameObject:
   - component: {fileID: 7820051743914952603}
   - component: {fileID: 8377839482701194041}
   m_Layer: 5
-  m_Name: LeftExampleImage (1)
+  m_Name: LeftImage1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
