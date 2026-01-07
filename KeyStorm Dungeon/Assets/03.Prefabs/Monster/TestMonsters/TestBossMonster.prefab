@@ -186,7 +186,15 @@ MonoBehaviour:
   attackPoolManager: {fileID: 0}
   _monsterData: {fileID: 11400000, guid: 2067d09b396f6f341ab3e3afa2d11573, type: 2}
   monsterSpriteRenderer: {fileID: 1722703841422664362}
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  spawnCheckRadius: 0
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
   animator: {fileID: 7857977135855972479}
+  isKnockBack: 0
   jumpHeight: 50
   jumpDuration: 0.3
   diveDelay: 2

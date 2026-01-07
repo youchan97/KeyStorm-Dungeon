@@ -22,10 +22,11 @@ public class WoodMoveState : MonsterMoveState
         rb = wood.MonsterRb;
         animator = wood.Animator;
         playerTransform = wood.PlayerTransform;
-        currentMoveDelay = wood.MoveDelay;
+        currentMoveDelay = 0f;
         isMoving = false;
         currentFootStep = 0;
         targetFootStep = Random.Range(wood.MinFootStepCount, wood.MaxFootStepCount + 1);
+        wood.OnTakeOneStepAnimation += IncreaseCurrentFootStep;
     }
 
     public override void FixedUpdateState()
@@ -50,14 +51,23 @@ public class WoodMoveState : MonsterMoveState
 
     public override void ExitState()
     {
-        base.ExitState();
+        if (rb != null)
+        {
+            rb.velocity = Vector2.zero;
+        }
+
+        if (animator != null)
+        {
+            animator.ResetTrigger(MoveAnim);
+        }
+
+        wood.OnTakeOneStepAnimation -= IncreaseCurrentFootStep;
     }
 
     public override bool UseFixedUpdate()
     {
         return false;
     }
-
 
 
     public void WoodMove()
@@ -67,5 +77,10 @@ public class WoodMoveState : MonsterMoveState
         rb.velocity = direction * wood.MonsterData.characterData.moveSpeed;
 
 
+    }
+
+    private void IncreaseCurrentFootStep()
+    {
+        currentFootStep++;
     }
 }

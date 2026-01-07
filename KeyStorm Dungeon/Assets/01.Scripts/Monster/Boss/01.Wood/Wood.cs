@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -43,6 +44,8 @@ public class Wood : MeleeMonster
     [SerializeField] private float rootPatternCooldown; // 패턴 자체 쿨타임
 
     public float CurrentRootPatternCooldown { get; private set; }
+
+    public Action OnTakeOneStepAnimation;
 
     private WoodIdleState _idleState;
     private WoodMoveState _moveState;
@@ -110,6 +113,11 @@ public class Wood : MeleeMonster
                 }
             }
         }
+    }
+
+    public void OnTakeOneStep()
+    {
+        OnTakeOneStepAnimation?.Invoke();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
