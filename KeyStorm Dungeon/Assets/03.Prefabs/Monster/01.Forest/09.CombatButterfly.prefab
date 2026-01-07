@@ -186,4 +186,12 @@ MonoBehaviour:
   attackPoolManager: {fileID: 0}
   _monsterData: {fileID: 11400000, guid: 01b49ae7b91b7364f8ba9f6724e88c69, type: 2}
   monsterSpriteRenderer: {fileID: 3148757246356264059}
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  spawnCheckRadius: 0
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
   animator: {fileID: 7611685910117723003}
+  isKnockBack: 0

@@ -223,6 +223,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   spawnCheckRadius: 0
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
   animator: {fileID: 8512429093769839660}
   isKnockBack: 0
   mitosisSpawnOffsetX: 0.3
