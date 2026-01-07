@@ -226,6 +226,7 @@ public class Player : Character
 
         GameSceneUI.UpdateAmmo();
         GameSceneUI.HealthUI.SetMaxHp(MaxHp);
+        GameSceneUI.HealthUI.SetHp(Hp);
     }
 
     public void MagnetItems(Bounds bounds)
