@@ -190,6 +190,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   spawnCheckRadius: 0.8
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
   animator: {fileID: 6855363361542580760}
   isKnockBack: 0
   idleTime: 2

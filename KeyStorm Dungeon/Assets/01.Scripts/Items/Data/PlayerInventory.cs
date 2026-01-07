@@ -23,7 +23,7 @@ public class PlayerInventory : MonoBehaviour
     public event Action<ItemData> OnAddActiveItem;
     public void InitInventory(InventoryRunData data)
     {
-        if (GameManager.Instance.isCheatMode)
+        if (GameManager.Instance.IsCheatMode)
         {
             gold = 999999;
             bombCount = 100;

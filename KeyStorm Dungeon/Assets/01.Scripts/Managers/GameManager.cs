@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 using static ConstValue;
 public class GameManager : SingletonManager<GameManager>
 {
-    public bool isCheatMode;
+    bool isCheatMode;
 
     SaveLoadManager saveLoadManager;
     StageDataManager stageDataManager;
@@ -19,9 +19,14 @@ public class GameManager : SingletonManager<GameManager>
     [SerializeField] PlayerRunData playerRunData;
 
     public PlayerRunData PlayerRunData { get => playerRunData;}
+    public bool IsCheatMode { get => isCheatMode;}
+
     protected override void Awake()
     {
         base.Awake();
+#if UNITY_EDITOR
+        isCheatMode = true;
+#endif
         //스타트가 아니라 캐릭터 커스텀마이징 선택 후 게임 시작 때 불러와야함
         InitializeRunData();
     }
@@ -143,6 +148,7 @@ public class PlayerRunData
         attackSpeed += itemData.attackSpeed;
         attackSpeedMultiple += itemData.attackSpeedMultiple;
         range += itemData.range;
+        rangeMultiple += itemData.rangeMultiple;
         shootSpeed += itemData.shotSpeed;
         maxAmmo += itemData.maxAmmo;
         useAmmo += itemData.useAmmo;
@@ -182,9 +188,9 @@ public class CharacterRunData
 {
     public string charName;
     public int id;
-    public int maxHp;
-    public int currentHp;
-    public int damage;
+    public float maxHp;
+    public float currentHp;
+    public float damage;
     public float moveSpeed;
 
     public CharacterRunData(CharacterData characterData)
@@ -205,7 +211,7 @@ public class CharacterRunData
             currentHp += itemData.maxHp;
             currentHp = Mathf.Min(currentHp, maxHp);
         }
-        damage += (int)itemData.damage;
+        damage += itemData.damage;
         moveSpeed += itemData.moveSpeed;
     }
 

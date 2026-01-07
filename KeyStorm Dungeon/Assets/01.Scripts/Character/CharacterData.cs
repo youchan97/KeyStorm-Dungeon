@@ -8,7 +8,7 @@ public class CharacterData
 {
     public string charName;
     public int id;
-    public int maxHp;
-    public int damage;
+    public float maxHp;
+    public float damage;
     public float moveSpeed;
 }

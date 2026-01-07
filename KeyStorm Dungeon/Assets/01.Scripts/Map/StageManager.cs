@@ -150,7 +150,7 @@ public class StageManager : MonoBehaviour
 
         bossRoomList.Sort((a, b) => b.score.CompareTo(a.score));
 
-        List<RoomNode> boosRoomNodes = new();
+        List<RoomNode> boosRoomNodes = new List<RoomNode>();
         for (int i = 0; i < stageData.bossRoomCount && i < bossRoomList.Count; i++)
         {
             boosRoomNodes.Add(bossRoomList[i].node);

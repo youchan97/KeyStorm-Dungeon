@@ -55,7 +55,7 @@ public class PollenButterfly : MeleeMonster
         spawnPosition = transform.position;
     }
 
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
         if (MonsterStateManager.CurState != _attackState && MonsterStateManager.CurState != _dieState)

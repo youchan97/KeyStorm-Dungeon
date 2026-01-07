@@ -8,7 +8,7 @@ public class ToxinCloud : MonoBehaviour
     [SerializeField] private CircleCollider2D damageCollider;
     [SerializeField] private float damageTickInterval = 2.0f;
 
-    private int toxinDamage;
+    private float toxinDamage;
 
     private float currentDamageTimer;
     private bool canDamage;
@@ -31,7 +31,7 @@ public class ToxinCloud : MonoBehaviour
         }
     }
 
-    public void StartToxinCloudEffect(int damage)
+    public void StartToxinCloudEffect(float damage)
     {
         if (animator == null) return;
 

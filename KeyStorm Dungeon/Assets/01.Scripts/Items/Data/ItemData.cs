@@ -56,7 +56,7 @@ public class ItemData : ScriptableObject
     public AttackChangeType attackChangeType;
 
     [Header("스탯 변화량")]
-    public int maxHp;
+    public float maxHp;
     public float moveSpeed;
     public float damage;
     public float specialDamageMultiple;
@@ -64,6 +64,7 @@ public class ItemData : ScriptableObject
     public float attackSpeed;
     public float attackSpeedMultiple;
     public float range;
+    public float rangeMultiple;
     public float shotSpeed;
     public int maxAmmo;
     public int useAmmo;

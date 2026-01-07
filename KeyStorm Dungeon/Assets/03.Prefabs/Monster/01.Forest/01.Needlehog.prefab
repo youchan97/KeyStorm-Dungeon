@@ -191,6 +191,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   spawnCheckRadius: 0
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
   animator: {fileID: 6774288875342118866}
   isKnockBack: 0
   shootPoint: {fileID: 4151110777735581097}

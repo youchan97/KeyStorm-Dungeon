@@ -174,7 +174,7 @@ public class Player : Character
         GameSceneUI.GameOver();
     }
 
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(float damage)
     {
         if (isInvincible) return;
 
@@ -226,6 +226,7 @@ public class Player : Character
 
         GameSceneUI.UpdateAmmo();
         GameSceneUI.HealthUI.SetMaxHp(MaxHp);
+        GameSceneUI.HealthUI.SetHp(Hp);
     }
 
     public void MagnetItems(Bounds bounds)

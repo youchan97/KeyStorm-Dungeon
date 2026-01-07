@@ -45,7 +45,7 @@ public class Needlehog : RangerMonster
         base.Awake();
     }
 
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
         

@@ -63,11 +63,11 @@ public class Spitter : RangerMonster
             return;
         }
 
-        Vector2 porjectileDirection = (player.transform.position - shootPoint.position).normalized;
+        Vector2 projectileDirection = (player.transform.position - shootPoint.position).normalized;
 
         pooledAttackObj.transform.position = shootPoint.position;
         pooledAttackObj.transform.rotation = Quaternion.identity;
 
-        pooledAttackObj.InitData(bullet, Damage, porjectileDirection, MonsterData.shotSpeed, projectileLifeTime, attackPoolManager, false, MonsterData.projectileColliderOffset, MonsterData.projectileColliderRadius);
+        pooledAttackObj.InitData(bullet, Damage, projectileDirection, MonsterData.shotSpeed, projectileLifeTime, attackPoolManager, false, MonsterData.projectileColliderOffset, MonsterData.projectileColliderRadius);
     }
 }
