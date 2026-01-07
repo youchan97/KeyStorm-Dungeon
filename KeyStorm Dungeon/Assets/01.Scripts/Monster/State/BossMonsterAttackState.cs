@@ -65,7 +65,6 @@ public class BossMonsterAttackState : MonsterAttackState
 
         if (boss.BossShadowPrefab != null)
         {
-            // 풀링 필요
             currentShadowInstance = GameObject.Instantiate(boss.BossShadowPrefab, groundShadowPos, Quaternion.identity);
             currentShadowInstance.transform.localScale = Vector3.one * boss.MaxShadowScale;
         }
@@ -121,7 +120,6 @@ public class BossMonsterAttackState : MonsterAttackState
             yield return null;
         }
 
-        // 풀링 필요
         GameObject.Destroy(currentShadowInstance);
         boss.transform.position = endDivePos;
 

@@ -26,12 +26,12 @@ public class WoodMoveState : MonsterMoveState
         isMoving = false;
         currentFootStep = 0;
         targetFootStep = Random.Range(wood.MinFootStepCount, wood.MaxFootStepCount + 1);
-        wood.OnTakeOneStepAnimation += IncreaseCurrentFootStep;
+        wood.OnTakeOneStepAnimation += FinishedOneFootStep;
     }
 
     public override void FixedUpdateState()
     {
-        if (character.PlayerTransform == null || character.PlayerGO == null) return;
+        if (wood.PlayerTransform == null || wood.PlayerGO == null) return;
 
         if (currentFootStep >= targetFootStep)
         {
@@ -42,10 +42,14 @@ public class WoodMoveState : MonsterMoveState
 
         currentMoveDelay -= Time.fixedDeltaTime;
 
-        if (currentMoveDelay <= 0 && !isMoving)
+        if (currentMoveDelay <= 0)
         {
-            animator.SetTrigger(MoveAnim);
             WoodMove();
+            if (!isMoving)
+            {
+                animator.SetTrigger(MoveAnim);
+                isMoving = true;
+            }
         }
     }
 
@@ -61,26 +65,28 @@ public class WoodMoveState : MonsterMoveState
             animator.ResetTrigger(MoveAnim);
         }
 
-        wood.OnTakeOneStepAnimation -= IncreaseCurrentFootStep;
+        wood.OnTakeOneStepAnimation -= FinishedOneFootStep;
     }
 
     public override bool UseFixedUpdate()
     {
-        return false;
+        return true;
     }
-
 
     public void WoodMove()
     {
         Vector2 direction = (playerTransform.position - wood.transform.position).normalized;
+        animator.SetFloat(AxisX, direction.x);
+        animator.SetFloat(AxisY, direction.y);
 
         rb.velocity = direction * wood.MonsterData.characterData.moveSpeed;
-
-
     }
 
-    private void IncreaseCurrentFootStep()
+    private void FinishedOneFootStep()
     {
+        rb.velocity = Vector2.zero;
         currentFootStep++;
+        currentMoveDelay = wood.MoveDelay;
+        isMoving = false;
     }
 }
