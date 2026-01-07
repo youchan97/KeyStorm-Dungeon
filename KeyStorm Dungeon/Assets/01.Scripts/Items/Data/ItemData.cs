@@ -64,6 +64,7 @@ public class ItemData : ScriptableObject
     public float attackSpeed;
     public float attackSpeedMultiple;
     public float range;
+    public float rangeMultiple;
     public float shotSpeed;
     public int maxAmmo;
     public int useAmmo;

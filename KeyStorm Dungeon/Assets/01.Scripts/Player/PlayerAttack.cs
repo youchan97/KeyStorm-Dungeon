@@ -135,7 +135,7 @@ public class PlayerAttack : MonoBehaviour
         ShootSpeed = data.shootSpeed;
         MaxAmmo = data.maxAmmo;
         UseAmmo = data.useAmmo;
-        Ammo = data.ammo;
+        Ammo = data.maxAmmo;
 
         canShotGun = data.attackRundata.isShotGun;
         canSniper = data.attackRundata.isSniper;
@@ -389,6 +389,7 @@ public class PlayerAttack : MonoBehaviour
             AttackData attackData = isSpecial ? specialAttack : normalAttack;
             float normalDamage = Damage * DamageMultiple;
             float totalDamage = isSpecial ? (Damage * SpecialDamageMultiple) : Damage;
+            float totalRange = Range * RangeMultiple;
             Vector2 dir = keyDic[keyName].normalized;
             if(canShotGun)
             {
@@ -397,7 +398,7 @@ public class PlayerAttack : MonoBehaviour
             }
             obj.transform.position = player.transform.position + (Vector3)dir * ShootOffset;
 
-            obj.InitData(null, totalDamage, dir, ShootSpeed, Range, player.AttackPoolManager, true, projectileColliderOffset, projectileColliderRadius, attackData);
+            obj.InitData(null, totalDamage, dir, ShootSpeed, totalRange, player.AttackPoolManager, true, projectileColliderOffset, projectileColliderRadius, attackData);
         }
 
         int consumeAmmo = isSpecial ? useAmmo * SpecialBulletConsume : useAmmo;
@@ -580,16 +581,20 @@ public class PlayerAttack : MonoBehaviour
     #region StatUpdate
     public void SyncPlayerAttackStat(PlayerRunData data)
     {
-        Damage = (int)data.character.damage;
+        Damage = data.character.damage;
         SpecialDamageMultiple = data.specialDamageMultiple;
         DamageMultiple = data.damageMultiple;
         AttackSpeedMultiple = data.attackSpeedMultiple;
         AttackSpeed = 1/data.attackSpeed*AttackSpeedMultiple;
         Range = data.range;
+        RangeMultiple = data.rangeMultiple;
         ShootSpeed = data.shootSpeed;
         MaxAmmo = data.maxAmmo;
         UseAmmo = data.useAmmo;
-
+        if (MaxAmmo < Ammo)
+            Ammo = MaxAmmo;
+        else
+            Ammo = data.ammo;
         if(data.attackRundata.isShotGun)
             canShotGun = data.attackRundata.isShotGun;
 

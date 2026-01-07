@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6dc7bbbfb59c2364cbe2072bd57550eb, type: 3}
-  m_Name: "A1_\uD734\uB300\uC6A9\uD3ED\uD0C4"
+  m_Name: "P37_\uAC00\uC2A4\uC870\uC808\uAE30(gas regulator)"
   m_EditorClassIdentifier: 
-  itemId: A1
-  itemName: "\uD734\uB300\uC6A9\uD3ED\uD0C4"
-  itemEnglishName: Bomb
+  itemId: P37_()
+  itemName: "\uAC00\uC2A4\uC870\uC808\uAE30"
+  itemEnglishName: Gas Regulator
   description: 
-  worldSprite: {fileID: -1120327230, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
-  iconSprite: {fileID: -1120327230, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
+  worldSprite: {fileID: -623812692, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
+  iconSprite: {fileID: -623812692, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
   attackChange: 0
-  isActiveItem: 1
-  tier: 0
-  dropRoom: 1
+  isActiveItem: 0
+  tier: 1
+  dropRoom: 5
   attackChangeType: 0
   maxHp: 0
   moveSpeed: 0
   damage: 0
   specialDamageMultiple: 0
   damageMultiple: 0
-  attackSpeed: 0
+  attackSpeed: 0.2
   attackSpeedMultiple: 0
   range: 0
   rangeMultiple: 0
@@ -36,6 +36,6 @@ MonoBehaviour:
   maxAmmo: 0
   useAmmo: 0
   scale: 0
-  cooldownType: 2
-  cooldownMax: 2
+  cooldownType: 0
+  cooldownMax: 0
   skillType: 0

@@ -866,7 +866,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 131073
+    m_Bits: 143489
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 15d9998e6ec63b14dba107554c06a094, type: 2}
   m_TargetDisplay: 0
@@ -1288,6 +1288,8 @@ MonoBehaviour:
   tutorialUI: {fileID: 320099508}
   showOnStart: 1
   skipIfSeen: 0
+  tutorialScenes:
+  - MainScene
   onTutorialStart:
     m_PersistentCalls:
       m_Calls: []
@@ -1629,7 +1631,7 @@ GameObject:
   - component: {fileID: 1715320887}
   - component: {fileID: 1715320888}
   - component: {fileID: 1715320890}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
