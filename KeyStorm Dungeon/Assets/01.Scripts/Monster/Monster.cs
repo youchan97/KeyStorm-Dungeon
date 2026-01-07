@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using static ConstValue;
 
 public abstract class Monster : Character
 {
@@ -21,8 +22,8 @@ public abstract class Monster : Character
     [SerializeField] private Animator animator;
     public Animator Animator => animator;
 
-    public GameObject PlayerGO {  get; private set; }
-    public Transform PlayerTransform { get; private set; }
+    public GameObject PlayerGO {  get; protected set; }
+    public Transform PlayerTransform { get; protected set; }
     public Player player { get; protected set; }
 
     
@@ -130,7 +131,7 @@ public abstract class Monster : Character
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
-        animator.SetTrigger("IsHit");
+        animator.SetTrigger(HurtAnim);
     }
 
     public override void Die()
@@ -148,11 +149,6 @@ public abstract class Monster : Character
                 MyRoom.StageClear(transform.position);
             }
         }
-    }
-
-    public void SetAttackTarget(Player player)
-    {
-        this.player = player;
     }
 
     // 몬스터가 플레이어 위치에 따라 스프라이트 반전에서 현재 이동방향에 따라 반전하도록 하는 것이 올바름
@@ -201,7 +197,7 @@ public abstract class Monster : Character
         MonsterStateManager.ChangeState(CreateIdleState());
     }
 
-    void OnStopChase() => PlayerGO = null;
+    protected void OnStopChase() => PlayerGO = null;
 
     public void ApplyKnockBack(Vector2 dir, float force, float duration)
     {

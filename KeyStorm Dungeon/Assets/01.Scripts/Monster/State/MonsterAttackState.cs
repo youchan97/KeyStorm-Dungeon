@@ -18,7 +18,6 @@ public class MonsterAttackState : CharacterAttackState<Monster>
         if(character.PlayerGO != null)
         {
             player = character.PlayerGO.GetComponent<Player>();
-            character.SetAttackTarget(player);
             if (player == null)
             {
                 Debug.LogError("MonsterAttackState: Player GameObject에 Player컴포넌트가 없음");
@@ -73,6 +72,5 @@ public class MonsterAttackState : CharacterAttackState<Monster>
         {
             animator.ResetTrigger(AttackAnim);
         }
-        character.SetAttackTarget(null);
     }
 }

@@ -13,7 +13,7 @@ public class Wood : MeleeMonster
     [SerializeField] private int minFootStepCount; // 최소 몇 발자국 마다 Attack상태로 넘어갈 것인지
     [SerializeField] private int maxFootStepCount; // 최대 발자국
     [SerializeField] private LayerMask damageLayers; // 패턴에 영향을 받는 레이어 (플레이어, 뿌리)
-    [SerializeField] private LayerMask rootLayer;
+    [SerializeField] private LayerMask rootLayer;   // 뿌리 레이어
 
     public float IdleTime => idleTime;
     public float MoveDelay => moveDelay;
@@ -26,14 +26,15 @@ public class Wood : MeleeMonster
     private float rushMoveSpeed;
 
     [Header("도약 패턴 수치")]
-    [SerializeField] private float jumpHeight;
-    [SerializeField] private float jumpDuration;
-    [SerializeField] private float diveDelay;
-    [SerializeField] private float diveDuration;
+    [SerializeField] private float jumpHeight;  // 점프 높이
+    [SerializeField] private float jumpDuration;// 최대 높이까지 걸리는 시간
+    [SerializeField] private float diveDelay;   // 체공 시간
+    [SerializeField] private float diveDuration;// 착지까지 걸리는 시간
     [SerializeField] private GameObject bossShadowPrefab;
-    [SerializeField] private float shadowScaleTime;
+    [SerializeField] private float shadowScaleTime; // 그림자 크기 변경 시간
     [SerializeField] private float minShadowScale = 0.1f;
     [SerializeField] private float maxShadowScale = 1.0f;
+    [SerializeField] private float landedDelay; // 착지 이후 후딜레이
 
     [Header("뿌리 패턴 수치")]
     [SerializeField] private int spawnRootQuantity;     // 뿌리 소환 개수
@@ -105,7 +106,7 @@ public class Wood : MeleeMonster
                 WoodsRoot hitRoot = hitCollider.GetComponent<WoodsRoot>();
                 if (hitRoot != null)
                 {
-                    //hitRoot.MonsterStateManager.ChangeState(ChangeDieState());
+                    hitRoot.Die();
                 }
             }
         }
