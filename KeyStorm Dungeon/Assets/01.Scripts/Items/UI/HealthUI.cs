@@ -15,10 +15,10 @@ public class HealthUI : MonoBehaviour
 
     private List<Image> hearts = new List<Image>();
 
-    private int maxHp;
-    private int hp;
+    private float maxHp;
+    private float hp;
 
-    public void SetMaxHp(int newMaxHp)
+    public void SetMaxHp(float newMaxHp)
     {
         maxHp = Mathf.Max(0, newMaxHp);
 
@@ -28,13 +28,13 @@ public class HealthUI : MonoBehaviour
         Refresh();
     }
 
-    public void SetHp(int newHp)
+    public void SetHp(float newHp)
     {
         hp = Mathf.Clamp(newHp, 0, maxHp);
         Refresh();
     }
 
-    private void RebuildHearts(int count)
+    private void RebuildHearts(float count)
     {
         for (int i = hearts.Count - 1; i >= count; i--)
         {

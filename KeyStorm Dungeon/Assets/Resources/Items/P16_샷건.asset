@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dc7bbbfb59c2364cbe2072bd57550eb, type: 3}
   m_Name: "P16_\uC0F7\uAC74"
   m_EditorClassIdentifier: 
-  itemId: P14
+  itemId: P16
   itemName: "\uC0F7\uAC74"
   itemEnglishName: ShotGun
   description: 

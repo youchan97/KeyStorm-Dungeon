@@ -128,7 +128,7 @@ public abstract class Monster : Character
         }
     }
 
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
         animator.SetTrigger(HurtAnim);

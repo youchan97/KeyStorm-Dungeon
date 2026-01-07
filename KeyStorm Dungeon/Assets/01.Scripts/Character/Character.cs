@@ -9,9 +9,9 @@ public class Character : MonoBehaviour
     #region Property
     public string CharName {  get; protected set; }
     public int Id { get; protected set; }
-    public int MaxHp { get; protected set; }
-    public int Hp { get; protected set; }
-    public int Damage { get; protected set; }
+    public float MaxHp { get; protected set; }
+    public float Hp { get; protected set; }
+    public float Damage { get; protected set; }
     public float MoveSpeed { get; protected set; }
     public AttackPoolManager AttackPoolManager { get => attackPoolManager; }
     #endregion
@@ -72,7 +72,7 @@ public class Character : MonoBehaviour
     /// 피격
     /// </summary>
     /// <param name="damage"></param>
-    public virtual void TakeDamage(int damage)
+    public virtual void TakeDamage(float damage)
     {
         Hp -= damage;
         if(Hp <= 0)

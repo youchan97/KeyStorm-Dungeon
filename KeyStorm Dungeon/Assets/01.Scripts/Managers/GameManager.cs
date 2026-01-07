@@ -182,9 +182,9 @@ public class CharacterRunData
 {
     public string charName;
     public int id;
-    public int maxHp;
-    public int currentHp;
-    public int damage;
+    public float maxHp;
+    public float currentHp;
+    public float damage;
     public float moveSpeed;
 
     public CharacterRunData(CharacterData characterData)

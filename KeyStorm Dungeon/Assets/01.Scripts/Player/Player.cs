@@ -174,7 +174,7 @@ public class Player : Character
         GameSceneUI.GameOver();
     }
 
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(float damage)
     {
         if (isInvincible) return;
 

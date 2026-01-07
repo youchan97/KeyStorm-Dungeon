@@ -58,7 +58,7 @@ public class BQueen : MeleeMonster
         SpawnInitialBWorker();
     }
 
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
         isDamaged = true;

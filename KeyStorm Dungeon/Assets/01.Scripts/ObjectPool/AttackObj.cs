@@ -14,14 +14,14 @@ public class AttackObj : MonoBehaviour
     EffectData effectData;
     AttackPoolManager poolManager;
     EffectPoolManager effectPoolManager;
-    int damage;
+    float damage;
     Vector2 dir;
     float shootSpeed;
     float coolTime;
 
     Coroutine coroutine;
 
-    public void InitData(Sprite sprite, int value, Vector2 vec, float speed, float cool, AttackPoolManager manager, bool isPlayerAttack, Vector2 colliderOffset, float colliderRadius, AttackData attackData = null)
+    public void InitData(Sprite sprite, float value, Vector2 vec, float speed, float cool, AttackPoolManager manager, bool isPlayerAttack, Vector2 colliderOffset, float colliderRadius, AttackData attackData = null)
     {
         if(attackData == null)
             spriteRenderer.sprite = sprite;
