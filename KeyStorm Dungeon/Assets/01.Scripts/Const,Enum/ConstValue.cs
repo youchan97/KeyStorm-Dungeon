@@ -18,6 +18,7 @@ public static class ConstValue
     #region 공격관련
     public const float ShootOffset = 1.5f;
     public const int DefaultBulletCount = 1;
+    public const int SpecialBulletConsume = 2;
     #endregion
 
     #region 방생성 관련(지금은 사용안함)

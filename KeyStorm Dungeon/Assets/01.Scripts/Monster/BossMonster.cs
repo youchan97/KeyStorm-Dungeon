@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections;
 
+// 테스트용 보스 몬스터. 실사용 안할 예정
 public class BossMonster : Monster
 {
     [Header("보스 패턴 수치 설정")]
@@ -30,7 +31,7 @@ public class BossMonster : Monster
     public float CurrentPatternCooldown { get; private set; }
 
 
-    private MonsterIdleState _idleState;
+    private BossIdleState _idleState;
     private BossMonsterMoveState _moveState;
     private BossMonsterAttackState _attackState;
     private MonsterDieState _dieState;
@@ -49,7 +50,7 @@ public class BossMonster : Monster
 
     public override CharacterState<Monster> CreateIdleState()
     {
-        if (_idleState == null) _idleState = new MonsterIdleState(this, MonsterStateManager);
+        if (_idleState == null) _idleState = new BossIdleState(this, MonsterStateManager);
         return _idleState;
     }
 
@@ -96,22 +97,24 @@ public class BossMonster : Monster
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        GameObject currentGameObject = collision.gameObject;
+        ContactPlayer(collision);
+    }
 
+    protected void ContactPlayer(Collision2D collision)
+    {
         if (CurrentAttackCooldown <= 0f)
         {
-            if (currentGameObject.CompareTag("Player"))
+            if (((1 << collision.gameObject.layer) & playerLayer.value) > 0)
             {
-                Player player = currentGameObject.GetComponent<Player>();
+                Player player = collision.gameObject.GetComponent<Player>();
 
                 if (player != null)
                 {
                     Attack(player);
-                    Debug.Log("공격!");
+                    Debug.Log($"{MonsterData.name}이 공격!");
                     ResetAttackCooldown();
                 }
             }
-
         }
     }
 

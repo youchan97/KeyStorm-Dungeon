@@ -35,7 +35,7 @@ public class PotionPickup : MonoBehaviour
         }
 
         col.isTrigger = true;
-        col.radius = 0.5f;
+        //col.radius = 0.5f;
     }
 
     private void Reset()
@@ -61,13 +61,14 @@ public class PotionPickup : MonoBehaviour
 
     private void TryPickup(Collider2D other)
     {
-        if (isPickedUp) return;
         if (!other.CompareTag("Player")) return;
 
-        isPickedUp = true;
 
         Player player = other.GetComponent<Player>();
         if (player == null) return;
+
+        if (isPickedUp) return;
+        isPickedUp = true;
 
         if (player.Hp >= player.MaxHp) return;
 

@@ -16,7 +16,7 @@ TagManager:
   - AttackObject
   - Wall
   - 
-  - 
+  - WoodsRoot
   - GroundMonster
   - AirMonster
   - GroundObstacle

@@ -59,7 +59,7 @@ public class SporeFlower : RangerMonster
         }
     }
 
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
         CheckHp();

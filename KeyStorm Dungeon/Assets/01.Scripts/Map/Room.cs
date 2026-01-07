@@ -52,6 +52,8 @@ public class Room : MonoBehaviour
     public bool IsPlayerIn { get => isPlayerIn; }
     public bool CanOpenDoor { get => canOpenDoor; }
 
+    public Player Player => player;
+
     public Transform GetDoor(Vector2Int dir)
     {
         if (dir == Vector2Int.up) return doorUp;

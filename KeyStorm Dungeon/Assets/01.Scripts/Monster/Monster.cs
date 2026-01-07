@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using static ConstValue;
 
 public abstract class Monster : Character
 {
@@ -12,14 +13,17 @@ public abstract class Monster : Character
     [SerializeField] protected LayerMask obstacleLayer;
     [SerializeField] protected float spawnCheckRadius;
 
+    [Header("플레이어 레이어")]
+    [SerializeField] protected LayerMask playerLayer;
+
     public MonsterData MonsterData => _monsterData;
     private Rigidbody2D monsterRb;
     public Rigidbody2D MonsterRb => monsterRb;
     [SerializeField] private Animator animator;
     public Animator Animator => animator;
 
-    public GameObject PlayerGO {  get; private set; }
-    public Transform PlayerTransform { get; private set; }
+    public GameObject PlayerGO {  get; protected set; }
+    public Transform PlayerTransform { get; protected set; }
     public Player player { get; protected set; }
 
     
@@ -69,8 +73,8 @@ public abstract class Monster : Character
 
     protected virtual void Start()
     {
-        PlayerGO = GameObject.FindGameObjectWithTag("Player");
-        //PlayerGO = PlayerSpawner.playerObj;
+        //PlayerGO = GameObject.FindGameObjectWithTag("Player");
+        PlayerGO = player.gameObject;
         
         if (PlayerGO == null)
         {
@@ -78,7 +82,7 @@ public abstract class Monster : Character
         }
         else
         {
-            player = PlayerGO.GetComponent<Player>();
+            //player = PlayerGO.GetComponent<Player>();
             PlayerTransform = PlayerGO.transform;
             player.OnDie += OnStopChase;
             MonsterStateManager.ChangeState(CreateIdleState());
@@ -124,10 +128,10 @@ public abstract class Monster : Character
         }
     }
 
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
-        animator.SetTrigger("IsHit");
+        animator.SetTrigger(HurtAnim);
     }
 
     public override void Die()
@@ -145,11 +149,6 @@ public abstract class Monster : Character
                 MyRoom.StageClear(transform.position);
             }
         }
-    }
-
-    public void SetAttackTarget(Player player)
-    {
-        this.player = player;
     }
 
     // 몬스터가 플레이어 위치에 따라 스프라이트 반전에서 현재 이동방향에 따라 반전하도록 하는 것이 올바름
@@ -190,6 +189,7 @@ public abstract class Monster : Character
     public void SetMyRoom(Room room)
     {
         MyRoom = room;
+        player = room.Player;
     }
 
     public void ChangeStateToPlayerDied()
@@ -197,7 +197,7 @@ public abstract class Monster : Character
         MonsterStateManager.ChangeState(CreateIdleState());
     }
 
-    void OnStopChase() => PlayerGO = null;
+    protected void OnStopChase() => PlayerGO = null;
 
     public void ApplyKnockBack(Vector2 dir, float force, float duration)
     {

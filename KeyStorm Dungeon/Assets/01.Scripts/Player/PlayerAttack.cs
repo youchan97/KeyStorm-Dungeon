@@ -96,7 +96,7 @@ public class PlayerAttack : MonoBehaviour
     #endregion
 
     #region Property
-    public int Damage { get; private set; }
+    public float Damage { get; private set; }
     public float DamageMultiple { get; private set; }
     public float SpecialDamageMultiple { get; private set; }
     public float AttackSpeed { get; private set; }
@@ -385,9 +385,10 @@ public class PlayerAttack : MonoBehaviour
         for (int i = 0; i < useAmmo; i++)
         {
             AttackObj obj = player.AttackPoolManager.GetObj();
-            Sprite sprite = isSpecial ? player.SBullet : player.Bullet;
+            //Sprite sprite = isSpecial ? player.SBullet : player.Bullet;
             AttackData attackData = isSpecial ? specialAttack : normalAttack;
-            int damage = isSpecial ? (int)(Damage * SpecialDamageMultiple) : Damage;
+            float normalDamage = Damage * DamageMultiple;
+            float totalDamage = isSpecial ? (Damage * SpecialDamageMultiple) : Damage;
             Vector2 dir = keyDic[keyName].normalized;
             if(canShotGun)
             {
@@ -396,10 +397,10 @@ public class PlayerAttack : MonoBehaviour
             }
             obj.transform.position = player.transform.position + (Vector3)dir * ShootOffset;
 
-            obj.InitData(sprite, damage, dir, ShootSpeed, Range, player.AttackPoolManager, true, projectileColliderOffset, projectileColliderRadius, attackData);
+            obj.InitData(null, totalDamage, dir, ShootSpeed, Range, player.AttackPoolManager, true, projectileColliderOffset, projectileColliderRadius, attackData);
         }
 
-        int consumeAmmo = isSpecial ? useAmmo * 2 : useAmmo;
+        int consumeAmmo = isSpecial ? useAmmo * SpecialBulletConsume : useAmmo;
         Ammo -= Mathf.Min(consumeAmmo, Ammo);
 
         if(isSpecial)
