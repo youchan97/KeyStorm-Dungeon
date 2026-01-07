@@ -36,7 +36,7 @@ public class BossMonster : Monster
     private BossMonsterAttackState _attackState;
     private MonsterDieState _dieState;
 
-    public Action OnJumpAnimationFinished;
+    public event Action OnJumpAnimationFinished;
 
     protected override void Start()
     {
