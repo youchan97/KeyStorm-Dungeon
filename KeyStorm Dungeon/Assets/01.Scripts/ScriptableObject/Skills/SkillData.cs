@@ -7,7 +7,7 @@ public enum SkillType
     Bomb,
     KnockBack,
     Dynamite,
-    Thrown
+    Dash
 }
 
 public abstract class SkillData : ScriptableObject

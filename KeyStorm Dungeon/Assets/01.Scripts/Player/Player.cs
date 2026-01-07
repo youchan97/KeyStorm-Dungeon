@@ -27,6 +27,7 @@ public class Player : Character
 
     bool isMove;
     bool isInvincible;
+    bool isDashing;
 
     public event Action OnDie;
 
@@ -48,6 +49,7 @@ public class Player : Character
     public GameSceneUI GameSceneUI { get; set; }
 
     public EffectPoolManager EffectPoolManager { get; set; }
+    public bool IsDashing { get => isDashing; set => isDashing = value; }
     #endregion
 
     protected override void Awake()

@@ -18,7 +18,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 675a8567df6926349b3fdb416445c3ef, type: 2}
   - {fileID: 11400000, guid: 58618185d0e1bb14dae3239c28c432dd, type: 2}
   - {fileID: 11400000, guid: ce828b6d972be76429c1eae93ebbc7e6, type: 2}
-  - {fileID: 11400000, guid: 3d51d9c39ed597f46b0e7f8e86aea48d, type: 2}
   startRoom: {fileID: 837052703989722770, guid: 1c1427bd3cd408243addc83e8869a40b, type: 3}
   normalRooms:
   - {fileID: -5701023608660036602, guid: f71c04d388c367f4c9f5eb4f81628535, type: 3}

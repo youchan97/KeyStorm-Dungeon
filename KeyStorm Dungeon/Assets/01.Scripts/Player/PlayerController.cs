@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     #region Property
     public PlayerInput PlayerInput { get ; private set ; }
     public Vector2 MoveVec { get => moveVec; private set => moveVec = value; }
+    public Vector2 LastVec { get; private set; } = Vector2.zero;
     public string KeyName { get => keyName; private set => keyName = value; }
     #endregion
 
@@ -121,6 +122,7 @@ public class PlayerController : MonoBehaviour
 
     void MoveCanceled(InputAction.CallbackContext context)
     {
+        LastVec = moveVec;
         moveVec = Vector2.zero;
         OnMove?.Invoke();
     }

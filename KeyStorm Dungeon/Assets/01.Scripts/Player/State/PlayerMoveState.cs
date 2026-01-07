@@ -28,6 +28,8 @@ public class PlayerMoveState : CharacterMoveState<Player>
             stateManager.ChangeState(character.IdleState);
             return;
         }
+        if (character.IsDashing)
+            return;
         vec = character.PlayerController.MoveVec;
         anim.SetFloat(AxisX, vec.x);
         anim.SetFloat(AxisY, vec.y);
