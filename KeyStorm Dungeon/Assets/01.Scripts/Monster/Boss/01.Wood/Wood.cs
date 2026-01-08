@@ -31,6 +31,7 @@ public class Wood : MeleeMonster
     [SerializeField] private float maxShadowScale;
     [SerializeField] private float shadowOffsetYDown;
     [SerializeField] private float diveAttackRange;
+    [SerializeField] private float diveYOffset;
 
     [Header("뿌리 패턴 수치")]
     [SerializeField] private int spawnRootQuantity;     // 뿌리 소환 개수
@@ -62,6 +63,7 @@ public class Wood : MeleeMonster
     public float MaxShadowScale => maxShadowScale;
     public float ShadowOffset => shadowOffsetYDown;
     public float DiveAttackRange => diveAttackRange;
+    public float DiveYOffset => diveYOffset;
     public int SpawnRootQuantity => spawnRootQuantity;
     public float SpawnRootDuration => spawnRootDuration;
     public GameObject WoodsRoot => woodsRoot;

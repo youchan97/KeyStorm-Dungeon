@@ -200,7 +200,7 @@ MonoBehaviour:
   moveDelay: 1
   moveNumber: 4
   shootPoint: {fileID: 715882086872492290}
-  projectile: {fileID: 21300000, guid: c829c875842a80c479b579c7b8b2f44d, type: 3}
+  projectile: {fileID: 21300000, guid: 65200d9aa690e444b9c961f7029724e1, type: 3}
   slamDelay: 1
   slamAngle: 90
   projectileCount: 5

@@ -69,7 +69,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0048685074, y: -0.6526662}
+  m_Offset: {x: 0, y: 0.2}
   serializedVersion: 2
   m_Radius: 1.05
 --- !u!58 &7330438918750988321
@@ -104,7 +104,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0015580654, y: -0.647074}
+  m_Offset: {x: 0, y: 0.2}
   serializedVersion: 2
   m_Radius: 1.1
 --- !u!50 &8602123536245836114
@@ -253,10 +253,11 @@ MonoBehaviour:
   diveDelay: 2
   diveDuration: 0.5
   bossShadowPrefab: {fileID: 445605593270070937, guid: a6c9513a35861c948acb6ba29dadd095, type: 3}
-  shadowScaleTime: 2
   minShadowScale: 0.1
   maxShadowScale: 2
-  shadowOffset: 1
+  shadowOffsetYDown: 0.3
+  diveAttackRange: 1.5
+  diveYOffset: 0.3
   spawnRootQuantity: 4
   spawnRootDuration: 0.5
   woodsRoot: {fileID: 7485932821656259783, guid: b8c6de942a04eaf4aaf117ad010f0e51, type: 3}

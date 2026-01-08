@@ -204,20 +204,18 @@ public class WoodAttackState : MonsterAttackState
 
         yield return new WaitForSeconds(wood.DiveDelay);
 
-        Vector3 yOffset = new Vector3(0f, 1f, 0f);
         Vector3 diveTargetPosition = wood.PlayerTransform.position;
-        Vector3 diveTargetPositionYOffset = wood.PlayerTransform.position + yOffset;
 
         wood.transform.position = diveTargetPosition + Vector3.up * (wood.JumpHeight);
 
-        animator.SetBool(DiveAnim, true);
+        
 
         Vector3 startDivePosition = wood.transform.position;
-        Vector3 endDivePosition = diveTargetPositionYOffset;
+        Vector3 endDivePosition = diveTargetPosition + Vector3.up * (wood.DiveYOffset);
 
         timer = 0f;
 
-        currentShadowInstance.transform.position = diveTargetPositionYOffset + Vector3.down * wood.ShadowOffset;
+        currentShadowInstance.transform.position = diveTargetPosition + Vector3.down * wood.ShadowOffset;
         currentShadowInstance.transform.localScale = Vector3.one * wood.MinShadowScale;
 
         currentShadowInstance.SetActive(true);
@@ -234,6 +232,7 @@ public class WoodAttackState : MonsterAttackState
             yield return null;
         }
 
+        animator.SetTrigger(DiveAnim);
         GameObject.Destroy(currentShadowInstance);
         wood.transform.position = endDivePosition;
 
@@ -244,8 +243,6 @@ public class WoodAttackState : MonsterAttackState
         wood.GetComponent<Collider2D>().enabled = true;
 
         yield return new WaitForSeconds(wood.AttackDelay);
-
-        animator.SetBool(DiveAnim, false);
     }
 
     private IEnumerator RootPattern()
