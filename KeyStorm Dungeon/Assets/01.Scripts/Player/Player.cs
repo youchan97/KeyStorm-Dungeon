@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.WSA;
 using static ConstValue;
 
 public class Player : Character
@@ -24,6 +25,13 @@ public class Player : Character
     [SerializeField] LayerMask itemLayer;
     [SerializeField] float magnetSpeed;
     [SerializeField] float magnetRangeMargin;
+    [SerializeField] EffectData stepEffect;
+    Vector3 prevPos;
+    float moveDistance;
+    [SerializeField] float stepDistance;
+    [SerializeField] float stepSize;
+    [SerializeField] Transform foot;
+
 
     bool isMove;
     bool isInvincible;
@@ -63,6 +71,14 @@ public class Player : Character
     protected override void Update()
     {
         playerStateManager.Update();
+        if (playerStateManager.CurState == MoveState)
+        {
+            HandleMoveEffect();
+        }
+        else
+        {
+            ResetMoveEffect();
+        }
     }
 
     protected override void FixedUpdate()
@@ -242,5 +258,33 @@ public class Player : Character
             if (gold != null)
                 gold.EnableMagnet(transform, magnetSpeed);
         }
+    }
+
+    void HandleMoveEffect()
+    {
+        Vector3 curPos = foot.position;
+        float distance = Vector3.Distance(prevPos, curPos);
+
+        moveDistance += distance;
+        prevPos = curPos;
+
+        if (moveDistance >= stepDistance)
+        {
+            SpawnEffect(curPos);
+            moveDistance -= stepDistance;
+        }
+    }
+
+    void ResetMoveEffect()
+    {
+        prevPos = transform.position;
+        moveDistance = 0f;
+    }
+
+    void SpawnEffect(Vector3 curPos)
+    {
+        Effect effect = EffectPoolManager.GetObj();
+        effect.transform.position = (curPos);
+        effect.InitData(EffectPoolManager, stepEffect, Vector2.zero, stepSize);
     }
 }
