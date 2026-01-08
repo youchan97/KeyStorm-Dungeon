@@ -40,7 +40,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: ff06ad91e60843643b82c123b8899ce0, type: 3}
   - audioKey: Hit
     audioClip:
-    - {fileID: 8300000, guid: 35e01f07cb8b0654c9e87b16ea2f497b, type: 3}
+    - {fileID: 8300000, guid: 7d002b60824dfec44a6a331bf36aa636, type: 3}
   - audioKey: Dash
     audioClip:
     - {fileID: 8300000, guid: f7d4fdde17822864481872f23f5fd925, type: 3}
