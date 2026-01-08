@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Dynamite
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
-  animatorController: {fileID: 9100000, guid: 614f53bb436710d4db17e8b07f3fc6ba, type: 2}
+  animatorController: {fileID: 9100000, guid: 7d38d41d725b15c42ab95be884483766, type: 2}
