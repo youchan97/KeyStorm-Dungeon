@@ -29,7 +29,6 @@ public class WoodAttackState : MonsterAttackState
     private const string TakeRootAnim = "TakeRoot";
     #endregion
 
-    private bool isDash;
     public WoodAttackState(Monster character, CharacterStateManager<Monster> stateManager) : base(character, stateManager)
     {
         wood = character as Wood;
@@ -38,8 +37,8 @@ public class WoodAttackState : MonsterAttackState
     public override void EnterState()
     {
         base.EnterState();
+        wood.StopDash();
 
-        isDash = false;
         isGetReadyAnimationFinished = false;
         isJumpAnimationFinished = false;
         isTakeRootAnimationFinished = false;
@@ -58,11 +57,10 @@ public class WoodAttackState : MonsterAttackState
 
     public override void FixedUpdateState()
     {
-        if (isDash)
+        if (wood.IsDash)
         {
             Vector2 raycastStartPosition = wood.WoodCollider.bounds.center;
 
-            Debug.DrawRay(raycastStartPosition, currentDashDirection * wood.DetectStopDistance, Color.red, 0f);
             RaycastHit2D hit = Physics2D.Raycast(
                 raycastStartPosition,
                 currentDashDirection,
@@ -72,7 +70,7 @@ public class WoodAttackState : MonsterAttackState
 
             if (hit.collider != null)
             {
-                StopDash();
+                wood.StopDash();
                 return;
             }
 
@@ -93,9 +91,9 @@ public class WoodAttackState : MonsterAttackState
         wood.OnJumpAnimation -= HandleJumpAnimationFinished;
         wood.OnTakeRootAnimation -= HandleTakeRootAnimationFinished;
 
-        if (isDash)
+        if (wood.IsDash)
         {
-            StopDash();
+            wood.StopDash();
         }
     }
 
@@ -153,25 +151,14 @@ public class WoodAttackState : MonsterAttackState
 
         animator.SetBool(DashAnim, true);
 
-        StartDash();
+        wood.StartDash();
 
         yield return null;
 
-        yield return new WaitUntil(() => !isDash);
+        yield return new WaitUntil(() => !wood.IsDash);
 
         isGetReadyAnimationFinished = false;
         animator.SetBool(DashAnim, false);
-    }
-
-    private void StartDash()
-    {
-        isDash = true;
-    }
-
-    private void StopDash()
-    {
-        isDash = false;
-        rb.velocity = Vector2.zero;
     }
 
     private IEnumerator DivePattern()
@@ -269,7 +256,8 @@ public class WoodAttackState : MonsterAttackState
 
         for (int i = 0; i < wood.SpawnRootQuantity; i++)
         {
-            
+            // 뿌리 소환 메서드를 wood에서 구현 이후 호출
+            yield return new WaitForSeconds(wood.SpawnRootDuration);
         }
     }
 

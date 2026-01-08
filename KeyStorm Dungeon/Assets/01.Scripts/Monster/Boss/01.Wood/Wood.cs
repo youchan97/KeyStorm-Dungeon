@@ -62,10 +62,9 @@ public class Wood : MeleeMonster
     public int SpawnRootQuantity => spawnRootQuantity;
     public float SpawnRootDuration => spawnRootDuration;
     public GameObject WoodsRoot => woodsRoot;
-    #endregion
-
+    public bool IsDash { get; private set; }
     public float CurrentRootPatternCooldown { get; private set; }
-    
+    #endregion
 
     public event Action OnTakeOneStepAnimation;
     public event Action OnReadyToDashAnimation;
@@ -111,7 +110,7 @@ public class Wood : MeleeMonster
     {
         base.Update();
 
-        if(CurrentRootPatternCooldown > 0f)
+        if (CurrentRootPatternCooldown > 0f)
         {
             CurrentRootPatternCooldown -= Time.deltaTime;
         }
@@ -151,7 +150,7 @@ public class Wood : MeleeMonster
                     hitPlayer.TakeDamage(Damage);
                 }
             }
-            else if(((1 << hitCollider.gameObject.layer) & rootLayer.value) > 0)
+            else if (((1 << hitCollider.gameObject.layer) & rootLayer.value) > 0)
             {
                 WoodsRoot hitRoot = hitCollider.GetComponent<WoodsRoot>();
                 if (hitRoot != null)
@@ -190,7 +189,7 @@ public class Wood : MeleeMonster
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -198,17 +197,35 @@ public class Wood : MeleeMonster
         ContactPlayer(collision);
     }
 
-    /*public void StartDash(Vector2 direction)
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (IsDash)
+        {
+            if (((1 << collision.gameObject.layer) & hitToDashStopLayer.value) > 0)
+            {
+                if (((1 << collision.gameObject.layer) & rootLayer.value) > 0)
+                {
+                    WoodsRoot hitRoot = collision.GetComponent<WoodsRoot>();
+                    if (hitRoot != null)
+                    {
+                        hitRoot.Die();
+                        StopDash();
+                    }
+                }
+            }
+        }
+    }
+
+    public void StartDash()
     {
         IsDash = true;
-        currentDashDirection = direction;
     }
 
     public void StopDash()
     {
         IsDash = false;
         MonsterRb.velocity = Vector2.zero;
-    }*/
+    }
 
     public void ResetRootPatternCooldown()
     {
