@@ -1900,6 +1900,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameSceneUi
       objectReference: {fileID: 0}
+    - target: {fileID: 6666980126985427679, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7179116935103748028, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1

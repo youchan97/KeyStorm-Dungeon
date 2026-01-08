@@ -18,8 +18,14 @@ public class GameManager : SingletonManager<GameManager>
     [SerializeField] PlayerData playerData;
     [SerializeField] PlayerRunData playerRunData;
 
-    public PlayerRunData PlayerRunData { get => playerRunData;}
-    public bool IsCheatMode { get => isCheatMode;}
+    public PlayerRunData PlayerRunData { get => playerRunData; }
+    public bool IsCheatMode { get => isCheatMode; }
+
+    private int currentStage = 1;
+    public int CurrentStage => currentStage;
+
+    private bool isGameCleared = false;
+    public bool IsGameCleared => isGameCleared; // ⭐ 추가
 
     protected override void Awake()
     {
@@ -27,7 +33,6 @@ public class GameManager : SingletonManager<GameManager>
 #if UNITY_EDITOR
         isCheatMode = true;
 #endif
-        //스타트가 아니라 캐릭터 커스텀마이징 선택 후 게임 시작 때 불러와야함
         InitializeRunData();
     }
 
@@ -49,22 +54,29 @@ public class GameManager : SingletonManager<GameManager>
         isStart = true;
         isPaused = false;
         Time.timeScale = 1f;
-
     }
+
     public void Pause()
     {
         isStart = false;
         isPaused = true;
         Time.timeScale = 0f;
     }
+
     public void Resume()
     {
         isPaused = false;
         Time.timeScale = 1f;
     }
+
     public void GameOver()
     {
         InitializeRunData();
+    }
+
+    public void GameClear()
+    {
+        isGameCleared = true;
     }
 
     public void ExitGame()
@@ -82,22 +94,36 @@ public class GameManager : SingletonManager<GameManager>
         if (Time.timeScale < 1f)
             Time.timeScale = 1f;
         isPaused = false;
+        isGameCleared = false; 
+        currentStage = 1;
         InitializeRunData();
-        LoadingManager.LoadScene(StartScene);
+        SceneManager.LoadScene(StartScene);
     }
 
     public void RetryGame()
     {
         InitializeRunData();
         isPaused = false;
+        isGameCleared = false;
+        currentStage = 1; 
+
+
         stageDataManager.SelectDifficulty(stageDataManager.CurrentDifficulty);
-        LoadingManager.LoadScene(GameScene);
+        SceneManager.LoadScene(GameScene);
     }
 
     public void StageClear()
     {
+        // ⭐ 이미 게임 클리어되었으면 무시
+        if (isGameCleared)
+        {
+            return;
+        }
+
+
+        currentStage++;
         stageDataManager.NextStage();
-        LoadingManager.LoadScene(GameScene);
+        SceneManager.LoadScene(GameScene);
     }
 }
 

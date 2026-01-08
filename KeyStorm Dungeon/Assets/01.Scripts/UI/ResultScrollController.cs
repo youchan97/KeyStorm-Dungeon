@@ -14,7 +14,7 @@ public class ResultScrollController : MonoBehaviour, IPointerEnterHandler, IPoin
         scrollRect = GetComponent<ScrollRect>();
         if (scrollRect == null)
         {
-            Debug.LogError("[ResultScrollController] ScrollRect를 찾을 수 없습니다!");
+
         }
     }
 
@@ -31,6 +31,8 @@ public class ResultScrollController : MonoBehaviour, IPointerEnterHandler, IPoin
             }
         }
     }
+
+
 
     public void OnPointerEnter(PointerEventData eventData)
     {

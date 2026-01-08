@@ -31,6 +31,34 @@ public class GameSceneUI : MonoBehaviour
         InitManager();
     }
 
+    void Start()
+    {
+        CheckGameClearedState();
+    }
+
+    private void CheckGameClearedState()
+    {
+        if (GameManager.Instance != null && GameManager.Instance.IsGameCleared)
+        {
+            StartCoroutine(ShowVictoryAfterInit());
+        }
+    }
+
+    private IEnumerator ShowVictoryAfterInit()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+
+        if (ResultManager.Instance != null)
+        {
+            ResultManager.Instance.ShowResult(true);
+        }
+        else
+        {
+
+        }
+    }
+
     private void OnEnable()
     {
         Room.OnGameCleared += GameClear;
@@ -59,12 +87,18 @@ public class GameSceneUI : MonoBehaviour
         InitPlayerEvent(this.player);
         InitGameUi();
 
-        // 게임 시작 시 타이머 시작
-        if (GameTimeManager.Instance != null)
+        if (GameTimeManager.Instance != null && !GameManager.Instance.IsGameCleared)
         {
-            GameTimeManager.Instance.ResetTimer();
+            if (GameManager.Instance.CurrentStage == 1)
+            {
+                GameTimeManager.Instance.ResetTimer();
+            }
+            else
+            {
+
+            }
+
             GameTimeManager.Instance.StartTimer();
-            Debug.Log("[GameSceneUI] 게임 타이머 시작됨");
         }
     }
 
@@ -87,8 +121,6 @@ public class GameSceneUI : MonoBehaviour
     public void UpdateGold()
     {
         coinTxt.text = player.Inventory.gold.ToString();
-
-        // ⭐ 골드 업데이트는 PlayerInventory에서 처리하므로 여기서는 하지 않음
     }
 
     public void UpdateBomb()
@@ -142,8 +174,6 @@ public class GameSceneUI : MonoBehaviour
         }
 
         itemImage.sprite = data.iconSprite;
-
-        // ⭐ 아이템 추가는 PlayerInventory.SetActiveItem()에서 처리하므로 여기서는 하지 않음
     }
 
     public void OpenOption()
@@ -202,7 +232,6 @@ public class GameSceneUI : MonoBehaviour
 
     public void GameOver()
     {
-        Debug.Log("[GameSceneUI] GameOver 호출됨");
         audioManager.PlayBgm(GameOverBgm);
 
         if (ResultManager.Instance != null)
@@ -211,13 +240,12 @@ public class GameSceneUI : MonoBehaviour
         }
         else
         {
-            Debug.LogError("[GameSceneUI] ResultManager를 찾을 수 없습니다!");
+
         }
     }
 
     public void GameClear()
     {
-        Debug.Log("[GameSceneUI] GameClear 호출됨");
         audioManager.PlayBgm(GameOverBgm);
 
         if (ResultManager.Instance != null)
@@ -226,7 +254,7 @@ public class GameSceneUI : MonoBehaviour
         }
         else
         {
-            Debug.LogError("[GameSceneUI] ResultManager를 찾을 수 없습니다!");
+
         }
     }
 
