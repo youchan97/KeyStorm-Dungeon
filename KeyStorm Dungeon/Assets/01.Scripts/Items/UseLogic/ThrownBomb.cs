@@ -114,7 +114,7 @@ public class ThrownBomb : MonoBehaviour
             int damage = hit.CompareTag("Player") ? damageToPlayer : damageToEnemy;
             damageable.TakeDamage(damage);
         }
-
+        AudioManager.Instance.PlayEffect(BombSfx);
         OnExplode?.Invoke();
         Destroy(gameObject);
     }

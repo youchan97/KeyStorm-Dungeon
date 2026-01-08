@@ -77,7 +77,9 @@ public class AttackObj : MonoBehaviour
         if(isWall || collision.CompareTag("Collision"))
         {
             if(isPlayer)
-                ShowEffect(vec);
+            {
+                PlayerEffect(vec);
+            }
 
             poolManager.ReturnPool(this);
             return;
@@ -93,7 +95,7 @@ public class AttackObj : MonoBehaviour
 
         if(isPlayer)
         {
-            ShowEffect(vec);
+            PlayerEffect(vec);
         }
 
         character.TakeDamage(damage);
@@ -105,6 +107,12 @@ public class AttackObj : MonoBehaviour
     {
         rb.velocity = Vector2.zero;
         anim.runtimeAnimatorController = defalutController;
+    }
+
+    void PlayerEffect(Vector3 vec)
+    {
+        ShowEffect(vec);
+        AudioManager.Instance.PlayEffect(HitSfx);
     }
 
     public void ShowEffect(Vector3 vec)

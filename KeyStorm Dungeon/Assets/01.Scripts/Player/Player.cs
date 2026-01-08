@@ -205,6 +205,7 @@ public class Player : Character
 
         if (Hp > 0)
         {
+            audioManager.PlayEffect(PlayerHurtSfx);
             anim.SetTrigger(HurtAnim);
         }
         else

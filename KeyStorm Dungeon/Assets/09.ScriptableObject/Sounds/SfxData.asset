@@ -29,3 +29,18 @@ MonoBehaviour:
   - audioKey: Button
     audioClip:
     - {fileID: 8300000, guid: 96004ca84a2bf614dbb1abda519ecdc9, type: 3}
+  - audioKey: PlayerMove
+    audioClip:
+    - {fileID: 8300000, guid: 63463e7f4e1296244a58c5be85133f87, type: 3}
+  - audioKey: PlayerHurt
+    audioClip:
+    - {fileID: 8300000, guid: 18678234493d10946b1cb99f9afdc348, type: 3}
+  - audioKey: Bomb
+    audioClip:
+    - {fileID: 8300000, guid: ff06ad91e60843643b82c123b8899ce0, type: 3}
+  - audioKey: Hit
+    audioClip:
+    - {fileID: 8300000, guid: 35e01f07cb8b0654c9e87b16ea2f497b, type: 3}
+  - audioKey: Dash
+    audioClip:
+    - {fileID: 8300000, guid: f7d4fdde17822864481872f23f5fd925, type: 3}

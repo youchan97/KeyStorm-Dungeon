@@ -8,6 +8,7 @@ public class SfxPoolManager : SingletonManager<SfxPoolManager>
     [SerializeField] private int poolSize = 10;
 
     HashSet<AudioClip> playingClips = new HashSet<AudioClip>();
+    Dictionary<string, SfxPool> playerLoopClips = new Dictionary<string, SfxPool>();
 
     private IObjectPool<SfxPool> pool;
     public IObjectPool<SfxPool> SfxPool
@@ -63,5 +64,25 @@ public class SfxPoolManager : SingletonManager<SfxPoolManager>
     public void Unregister(AudioClip clip)
     {
         playingClips.Remove(clip);
+    }
+
+    public void PlayLoop(string audioName, AudioClip clip, float volume)
+    {
+        if (playerLoopClips.ContainsKey(audioName))
+            return;
+
+        var sfx = GetObject();
+        playerLoopClips.Add(audioName, sfx);
+
+        sfx.PlayLoopSfx(clip, volume);
+    }
+
+    public void StopLoopByClipName(string audioName)
+    {
+        if (!playerLoopClips.TryGetValue(audioName, out var sfx))
+            return;
+
+        sfx.StopLoopSfx();
+        playerLoopClips.Remove(audioName);
     }
 }

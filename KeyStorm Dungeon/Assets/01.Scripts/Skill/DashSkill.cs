@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ConstValue;
 
 public class DashSkill : ISkill
 {
@@ -30,6 +31,7 @@ public class DashSkill : ISkill
         {
             dir = (controller.LastVec == Vector2.zero) ? Vector2.down : controller.LastVec.normalized;
         }
+        Player.AudioManager.PlayEffect(DashSfx);
         Player.IsDashing = true;
     }
     public void Update()
