@@ -18,8 +18,6 @@ public class GameSceneUI : MonoBehaviour
     [SerializeField] GameObject optionPanel;
     [SerializeField] HealthUI healthUI;
 
-    [SerializeField] GameObject gameResultPanel;
-
     [SerializeField] Image itemImage;
     [SerializeField] Image coolTimeImage;
     Coroutine activeItemCo;
@@ -30,7 +28,7 @@ public class GameSceneUI : MonoBehaviour
 
     private void Awake()
     {
-        InitManager();     
+        InitManager();
     }
 
     private void OnEnable()
@@ -38,12 +36,14 @@ public class GameSceneUI : MonoBehaviour
         Room.OnGameCleared += GameClear;
     }
 
-
     private void OnDisable()
     {
         Room.OnGameCleared -= GameClear;
-        player.PlayerSkill.StartSkill -= OnActiveItemCoolDown;
-        player.Inventory.OnAddActiveItem -= UpdateActiveItemSlot;
+        if (player != null)
+        {
+            player.PlayerSkill.StartSkill -= OnActiveItemCoolDown;
+            player.Inventory.OnAddActiveItem -= UpdateActiveItemSlot;
+        }
     }
 
     void InitManager()
@@ -58,6 +58,14 @@ public class GameSceneUI : MonoBehaviour
         this.player = player;
         InitPlayerEvent(this.player);
         InitGameUi();
+
+        // 게임 시작 시 타이머 시작
+        if (GameTimeManager.Instance != null)
+        {
+            GameTimeManager.Instance.ResetTimer();
+            GameTimeManager.Instance.StartTimer();
+            Debug.Log("[GameSceneUI] 게임 타이머 시작됨");
+        }
     }
 
     void InitPlayerEvent(Player player)
@@ -65,6 +73,7 @@ public class GameSceneUI : MonoBehaviour
         player.PlayerSkill.StartSkill += OnActiveItemCoolDown;
         player.Inventory.OnAddActiveItem += UpdateActiveItemSlot;
     }
+
     public void InitGameUi()
     {
         UpdateGold();
@@ -74,14 +83,19 @@ public class GameSceneUI : MonoBehaviour
         healthUI.SetMaxHp(player.MaxHp);
         healthUI.SetHp(player.Hp);
     }
+
     public void UpdateGold()
     {
         coinTxt.text = player.Inventory.gold.ToString();
+
+        // ⭐ 골드 업데이트는 PlayerInventory에서 처리하므로 여기서는 하지 않음
     }
+
     public void UpdateBomb()
     {
         bombTxt.text = player.Inventory.bombCount.ToString();
     }
+
     public void UpdateAmmo()
     {
         ammoTxt.text = string.Format("{0} / {1}", player.PlayerAttack.Ammo, player.PlayerAttack.MaxAmmo);
@@ -89,7 +103,7 @@ public class GameSceneUI : MonoBehaviour
 
     public void OnActiveItemCoolDown(float time)
     {
-        if(activeItemCo != null)
+        if (activeItemCo != null)
         {
             StopCoroutine(activeItemCo);
             activeItemCo = null;
@@ -102,7 +116,7 @@ public class GameSceneUI : MonoBehaviour
     {
         coolTimeImage.fillAmount = 1f;
         float time = coolTime;
-        while(time > 0f)
+        while (time > 0f)
         {
             time -= Time.deltaTime;
             coolTimeImage.fillAmount = time / coolTime;
@@ -116,7 +130,9 @@ public class GameSceneUI : MonoBehaviour
     public void UpdateActiveItemSlot(ItemData data)
     {
         if (data == null)
+        {
             return;
+        }
 
         if (activeItemCo != null)
         {
@@ -126,10 +142,17 @@ public class GameSceneUI : MonoBehaviour
         }
 
         itemImage.sprite = data.iconSprite;
+
+        // ⭐ 아이템 추가는 PlayerInventory.SetActiveItem()에서 처리하므로 여기서는 하지 않음
     }
 
     public void OpenOption()
     {
+        if (GameTimeManager.Instance != null)
+        {
+            GameTimeManager.Instance.PauseTimer();
+        }
+
         uiManager.OpenPopup(optionPanel);
     }
 
@@ -140,11 +163,21 @@ public class GameSceneUI : MonoBehaviour
 
     public void ClosePopup()
     {
+        if (GameTimeManager.Instance != null)
+        {
+            GameTimeManager.Instance.StartTimer();
+        }
+
         uiManager.ClosePopup();
     }
 
     public void CloseAllPopup()
     {
+        if (GameTimeManager.Instance != null)
+        {
+            GameTimeManager.Instance.StartTimer();
+        }
+
         uiManager.CloseAllPopup();
     }
 
@@ -169,13 +202,32 @@ public class GameSceneUI : MonoBehaviour
 
     public void GameOver()
     {
+        Debug.Log("[GameSceneUI] GameOver 호출됨");
         audioManager.PlayBgm(GameOverBgm);
-        gameResultPanel.SetActive(true);
+
+        if (ResultManager.Instance != null)
+        {
+            ResultManager.Instance.ShowResult(false);
+        }
+        else
+        {
+            Debug.LogError("[GameSceneUI] ResultManager를 찾을 수 없습니다!");
+        }
     }
+
     public void GameClear()
     {
+        Debug.Log("[GameSceneUI] GameClear 호출됨");
         audioManager.PlayBgm(GameOverBgm);
-        gameResultPanel.SetActive(true);
+
+        if (ResultManager.Instance != null)
+        {
+            ResultManager.Instance.ShowResult(true);
+        }
+        else
+        {
+            Debug.LogError("[GameSceneUI] ResultManager를 찾을 수 없습니다!");
+        }
     }
 
     /*IEnumerator StartResult(string message, GameObject menu)
