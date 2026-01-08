@@ -47,6 +47,11 @@ public static class ConstValue
     public const string ShootSfx = "Shoot";
     public const string GoldSfx = "Gold";
     public const string ButtonSfx = "Button";
+    public const string HitSfx = "Hit";
+    public const string BombSfx = "Bomb";
+    public const string PlayerMoveSfx = "PlayerMove";
+    public const string PlayerHurtSfx = "PlayerHurt";
+    public const string DashSfx = "Dash";
     #endregion
 
     #region 게임 종료 관련

@@ -18,6 +18,7 @@ public class PlayerMoveState : CharacterMoveState<Player>
     {
         rb = character.PlayerRb;
         anim = character.Anim;
+        character.AudioManager.PlayEffectLoop(PlayerMoveSfx);
         anim.SetBool(MoveAnim, true);
     }
 
@@ -39,6 +40,7 @@ public class PlayerMoveState : CharacterMoveState<Player>
     public override void ExitState()
     {
         rb.velocity = Vector2.zero;
+        character.AudioManager.StopEffectLoop(PlayerMoveSfx);
         anim.SetBool(MoveAnim, false);
     }
 }

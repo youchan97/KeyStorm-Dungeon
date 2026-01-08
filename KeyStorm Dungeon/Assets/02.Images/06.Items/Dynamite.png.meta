@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 256
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -121,7 +121,196 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Dynamite_0
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 650
+        width: 280
+        height: 312
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59fdc23cf5b7f3d40a21e6d1d30ae3bd
+      internalID: 1184714851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dynamite_1
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 650
+        width: 280
+        height: 312
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32dcf2d82195059418a92e95d462f6ea
+      internalID: 653208925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dynamite_2
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 650
+        width: 280
+        height: 312
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f357cfa04b1cef64a97ef49cb69f7935
+      internalID: -211391578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dynamite_3
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 338
+        width: 280
+        height: 312
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3f3d1b49e7752d4f8bf8974be39866e
+      internalID: 597671229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dynamite_4
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 338
+        width: 280
+        height: 312
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 218ac810d401c5441a8ffa2983580ca9
+      internalID: -1967161942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dynamite_5
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 338
+        width: 280
+        height: 312
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01a7e3ce67c3e6e40bc6f1aba617c676
+      internalID: -541835732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dynamite_6
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 50
+        width: 280
+        height: 288
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1a02c3c93b2512458b606d8ef516e49
+      internalID: -1901662721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dynamite_7
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 50
+        width: 280
+        height: 288
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 719bc844c8ff3ef4dad54eb41a74560b
+      internalID: 843438719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dynamite_8
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 50
+        width: 280
+        height: 288
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bdd79813b5a0f04f999ea38dfff83bf
+      internalID: -1473332568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -132,7 +321,16 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Dynamite_0: 1184714851
+      Dynamite_1: 653208925
+      Dynamite_2: -211391578
+      Dynamite_3: 597671229
+      Dynamite_4: -1967161942
+      Dynamite_5: -541835732
+      Dynamite_6: -1901662721
+      Dynamite_7: 843438719
+      Dynamite_8: -1473332568
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

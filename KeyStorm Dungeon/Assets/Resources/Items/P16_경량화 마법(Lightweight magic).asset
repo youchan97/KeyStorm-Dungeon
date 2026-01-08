@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6dc7bbbfb59c2364cbe2072bd57550eb, type: 3}
-  m_Name: "P17_\uC790\uD3ED \uD504\uB85C\uD1A0\uCF5C(Self-Destruct Protocol)"
+  m_Name: "P16_\uACBD\uB7C9\uD654 \uB9C8\uBC95(Lightweight magic)"
   m_EditorClassIdentifier: 
-  itemId: P17
-  itemName: "\uC790\uD3ED \uD504\uB85C\uD1A0\uCF5C"
-  itemEnglishName: Self Destruct Protocol
+  itemId: P16
+  itemName: "\uACBD\uB7C9\uD654 \uB9C8\uBC95"
+  itemEnglishName: Lightweight magic
   description: 
-  worldSprite: {fileID: -623812692, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
-  iconSprite: {fileID: -623812692, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
+  worldSprite: {fileID: 21300000, guid: 7f77c0292d52f3144b05712a2b5ad7fd, type: 3}
+  iconSprite: {fileID: 21300000, guid: 7f77c0292d52f3144b05712a2b5ad7fd, type: 3}
   attackChange: 0
   isActiveItem: 0
-  tier: 3
+  tier: 2
   dropRoom: 5
   attackChangeType: 0
   maxHp: 0
-  moveSpeed: 0
+  moveSpeed: 3
   damage: 0
-  specialDamageMultiple: 2
+  specialDamageMultiple: 0
   damageMultiple: 0
   attackSpeed: 0
   attackSpeedMultiple: 0

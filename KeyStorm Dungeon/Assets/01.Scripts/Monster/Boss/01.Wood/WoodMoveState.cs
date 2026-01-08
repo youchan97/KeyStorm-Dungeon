@@ -33,6 +33,8 @@ public class WoodMoveState : MonsterMoveState
     {
         if (wood.PlayerTransform == null || wood.PlayerGO == null) return;
 
+        if (character.isKnockBack) return;
+
         if (currentFootStep >= targetFootStep)
         {
             rb.velocity = Vector2.zero;

@@ -10,29 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6dc7bbbfb59c2364cbe2072bd57550eb, type: 3}
-  m_Name: "P16_\uD0C4\uD658 \uACBD\uB7C9\uD654 \uC7A5\uCE58(Projectile Optimizer)"
+  m_Name: "P13_\uBD84\uB178\uC758 \uC7A5\uAC11 (Gloves of Rage) 1"
   m_EditorClassIdentifier: 
-  itemId: P16
-  itemName: "\uD0C4\uD658 \uACBD\uB7C9\uD654 \uC7A5\uCE58"
-  itemEnglishName: Champion Plate Armor
+  itemId: P13
+  itemName: "\uBD84\uB178\uC758 \uC7A5\uAC11"
+  itemEnglishName: Gloves of Rage
   description: 
-  worldSprite: {fileID: -623812692, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
-  iconSprite: {fileID: -623812692, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
+  worldSprite: {fileID: 21300000, guid: efd45306a1748134596d092f6f6efcff, type: 3}
+  iconSprite: {fileID: 21300000, guid: efd45306a1748134596d092f6f6efcff, type: 3}
   attackChange: 0
   isActiveItem: 0
   tier: 2
-  dropRoom: 5
+  dropRoom: -1
   attackChangeType: 0
   maxHp: 0
-  moveSpeed: 3
-  damage: 0
+  moveSpeed: 0
+  damage: 1.5
   specialDamageMultiple: 0
   damageMultiple: 0
-  attackSpeed: 0
+  attackSpeed: 0.2
   attackSpeedMultiple: 0
   range: 0
   rangeMultiple: 0
-  shotSpeed: 1
+  shotSpeed: 0
   maxAmmo: 0
   useAmmo: 0
   scale: 0

@@ -234,9 +234,9 @@ public class CharacterRunData
         maxHp += itemData.maxHp;
         if (itemData.maxHp > 0)
         {
-            currentHp += itemData.maxHp;
-            currentHp = Mathf.Min(currentHp, maxHp);
+            currentHp += itemData.maxHp;   
         }
+        currentHp = Mathf.Clamp(currentHp, 0, maxHp);
         damage += itemData.damage;
         moveSpeed += itemData.moveSpeed;
     }

@@ -16,12 +16,13 @@ MonoBehaviour:
   itemName: "\uB2E4\uC774\uB108\uB9C8\uC774\uD2B8"
   itemEnglishName: Dynamite
   description: 
-  worldSprite: {fileID: -1284043481, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
-  iconSprite: {fileID: -1284043481, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
+  worldSprite: {fileID: -1752678008, guid: 06937ff3975646d4a8e7a5d1cd7b096d, type: 3}
+  iconSprite: {fileID: -1752678008, guid: 06937ff3975646d4a8e7a5d1cd7b096d, type: 3}
   attackChange: 0
   isActiveItem: 1
   tier: 3
   dropRoom: 1
+  attackChangeType: 0
   maxHp: 0
   moveSpeed: 0
   damage: 0
@@ -30,6 +31,7 @@ MonoBehaviour:
   attackSpeed: 0
   attackSpeedMultiple: 0
   range: 0
+  rangeMultiple: 0
   shotSpeed: 0
   maxAmmo: 0
   useAmmo: 0

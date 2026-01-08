@@ -16,8 +16,8 @@ MonoBehaviour:
   itemName: "\uD2B9\uC774\uC810 \uB4DC\uB77C\uC774\uBE0C"
   itemEnglishName: Singularity Drive
   description: 
-  worldSprite: {fileID: -623812692, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
-  iconSprite: {fileID: -623812692, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
+  worldSprite: {fileID: 21300000, guid: d60f29338e9a7a742963e907d56e9c4b, type: 3}
+  iconSprite: {fileID: 21300000, guid: d60f29338e9a7a742963e907d56e9c4b, type: 3}
   attackChange: 0
   isActiveItem: 0
   tier: 0
