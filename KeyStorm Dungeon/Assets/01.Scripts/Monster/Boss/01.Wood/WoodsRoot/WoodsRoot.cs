@@ -2,8 +2,12 @@ using UnityEngine;
 
 public class WoodsRoot : MeleeMonster
 {
+    [SerializeField] private float attackRadius;
+
     [SerializeField] private float slashAttackCooldown;
     private float currentSlashAttackCooldown;
+
+    private Wood wood;
 
     public float CurrentSlashAttackCooldown => currentSlashAttackCooldown;
 
@@ -77,7 +81,7 @@ public class WoodsRoot : MeleeMonster
     // 어택 애니메이션에서 호출
     public void OnAttack()
     {
-        SlashAttack(transform.position, 1.5f);
+        SlashAttack(transform.position, attackRadius);
     }
 
     public void OnAttackFinish()
