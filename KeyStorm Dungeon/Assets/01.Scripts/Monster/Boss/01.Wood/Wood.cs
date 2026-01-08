@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Wood : MeleeMonster
@@ -27,8 +28,8 @@ public class Wood : MeleeMonster
     [SerializeField] private float diveDuration;// 착지까지 걸리는 시간
     [SerializeField] private GameObject bossShadowPrefab;
     [SerializeField] private float shadowScaleTime; // 그림자 크기 변경 시간
-    [SerializeField] private float minShadowScale = 0.1f;
-    [SerializeField] private float maxShadowScale = 1.0f;
+    [SerializeField] private float minShadowScale;
+    [SerializeField] private float maxShadowScale;
     [SerializeField] private float shadowOffset;
 
     [Header("뿌리 패턴 수치")]
@@ -36,7 +37,9 @@ public class Wood : MeleeMonster
     [SerializeField] private float spawnRootDuration;   // 뿌리 소환간의 간격
     [SerializeField] private GameObject woodsRoot;    // 뿌리 자체의 게임 오브젝트
     [SerializeField] private float rootPatternCooldown; // 패턴 자체 쿨타임
+    [SerializeField] private float playerSearchTime;
 
+    private List<WoodsRoot> woodsroots = new List<WoodsRoot>();
 
     private Vector2 currentDashDirection;
 
@@ -62,6 +65,7 @@ public class Wood : MeleeMonster
     public int SpawnRootQuantity => spawnRootQuantity;
     public float SpawnRootDuration => spawnRootDuration;
     public GameObject WoodsRoot => woodsRoot;
+    public float PlayerSearchTime => playerSearchTime;
     public bool IsDash { get; private set; }
     public float CurrentRootPatternCooldown { get; private set; }
     #endregion
@@ -119,22 +123,20 @@ public class Wood : MeleeMonster
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
+    }
 
-        /*if (IsDash)
+    public override void Die()
+    {
+        base.Die();
+
+        foreach (WoodsRoot root in woodsroots)
         {
-            RaycastHit2D hit = Physics2D.Raycast(
-                transform.position,
-                currentDashDirection,
-                detectStopDistance,
-                hitToDashStopLayer
-            );
-
-            if (hit.collider != null)
+            if (root != null)
             {
-                StopDash();
-                OnDashStop?.Invoke();
+                root.Die();
             }
-        }*/
+        }
+        woodsroots.Clear();
     }
 
     public void ApplyLandingDamage(Vector3 center, float radius)
@@ -187,11 +189,6 @@ public class Wood : MeleeMonster
     }
     #endregion
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-
-    }
-
     private void OnCollisionStay2D(Collision2D collision)
     {
         ContactPlayer(collision);
@@ -230,5 +227,24 @@ public class Wood : MeleeMonster
     public void ResetRootPatternCooldown()
     {
         CurrentRootPatternCooldown = rootPatternCooldown;
+    }
+
+    public WoodsRoot SpawnWoodsRoot(Vector3 position)
+    {
+        if (woodsRoot == null) return null;
+
+        GameObject rootGO = Instantiate(woodsRoot, position, Quaternion.identity);
+
+        WoodsRoot newWoodsRoot = rootGO.GetComponent<WoodsRoot>();
+
+        if (MyRoom != null)
+        {
+            newWoodsRoot.SetMyRoom(MyRoom);
+            MyRoom.AddMonster(newWoodsRoot);
+        }
+
+        woodsroots.Add(newWoodsRoot);
+
+        return newWoodsRoot;
     }
 }

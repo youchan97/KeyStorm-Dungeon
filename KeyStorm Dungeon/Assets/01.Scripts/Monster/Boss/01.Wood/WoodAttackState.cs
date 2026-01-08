@@ -27,6 +27,7 @@ public class WoodAttackState : MonsterAttackState
     private const string JumpAnim = "Jump";
     private const string DiveAnim = "Dive";
     private const string TakeRootAnim = "TakeRoot";
+    private const string UpRootAnim = "UpRoot";
     #endregion
 
     public WoodAttackState(Monster character, CharacterStateManager<Monster> stateManager) : base(character, stateManager)
@@ -114,10 +115,9 @@ public class WoodAttackState : MonsterAttackState
             case WoodPattern.Dive:
                 yield return DivePattern();
                 break;
-            /*case WoodPattern.Root:
+            case WoodPattern.Root:
                 yield return RootPattern();
-                wood.ResetRootPatternCooldown();
-                break;*/
+                break;
         }
 
         yield return new WaitForSeconds(wood.AttackDelay);
@@ -132,10 +132,10 @@ public class WoodAttackState : MonsterAttackState
         patterns.Add(WoodPattern.Dash);
         patterns.Add(WoodPattern.Dive);
 
-        /*if(wood.CurrentRootPatternCooldown <= 0f)
+        if(wood.CurrentRootPatternCooldown <= 0f)
         {
             patterns.Add(WoodPattern.Root);
-        }*/
+        }
 
         int randomIndex = Random.Range(0, patterns.Count);
         return patterns[randomIndex];
@@ -157,7 +157,6 @@ public class WoodAttackState : MonsterAttackState
 
         yield return new WaitUntil(() => !wood.IsDash);
 
-        isGetReadyAnimationFinished = false;
         animator.SetBool(DashAnim, false);
     }
 
@@ -256,9 +255,17 @@ public class WoodAttackState : MonsterAttackState
 
         for (int i = 0; i < wood.SpawnRootQuantity; i++)
         {
-            // 뿌리 소환 메서드를 wood에서 구현 이후 호출
+            Vector3 playerPosition = wood.PlayerTransform.position;
+
+            yield return new WaitForSeconds(wood.PlayerSearchTime);
+
+            WoodsRoot woodsRoot = wood.SpawnWoodsRoot(playerPosition);
+
             yield return new WaitForSeconds(wood.SpawnRootDuration);
         }
+
+        animator.SetTrigger(UpRootAnim);
+        wood.ResetRootPatternCooldown();
     }
 
     private void HandleGetReadyAnimationFinished()

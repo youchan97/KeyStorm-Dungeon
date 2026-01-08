@@ -167,4 +167,5 @@ MonoBehaviour:
     m_Bits: 8
   animator: {fileID: 7473942387531315809}
   isKnockBack: 0
-  slashAttackCooldown: 0
+  attackRadius: 1.5
+  slashAttackCooldown: 3

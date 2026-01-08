@@ -261,3 +261,4 @@ MonoBehaviour:
   spawnRootDuration: 0.5
   woodsRoot: {fileID: 7485932821656259783, guid: b8c6de942a04eaf4aaf117ad010f0e51, type: 3}
   rootPatternCooldown: 15
+  playerSearchTime: 0.3
