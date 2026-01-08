@@ -16,12 +16,13 @@ MonoBehaviour:
   itemName: "\uAC00\uBCBC\uC6B4 \uD0C4\uB450"
   itemEnglishName: Lightweight Bullet Core
   description: 
-  worldSprite: {fileID: -409194311, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
-  iconSprite: {fileID: -409194311, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
+  worldSprite: {fileID: -1820471725, guid: 551bc46db93497c4d84566bc680339f0, type: 3}
+  iconSprite: {fileID: -1820471725, guid: 551bc46db93497c4d84566bc680339f0, type: 3}
   attackChange: 0
   isActiveItem: 0
   tier: 1
   dropRoom: 3
+  attackChangeType: 0
   maxHp: 0
   moveSpeed: 0
   damage: 0
@@ -30,6 +31,7 @@ MonoBehaviour:
   attackSpeed: 0
   attackSpeedMultiple: 0
   range: 0
+  rangeMultiple: 0
   shotSpeed: 1
   maxAmmo: 0
   useAmmo: 0
