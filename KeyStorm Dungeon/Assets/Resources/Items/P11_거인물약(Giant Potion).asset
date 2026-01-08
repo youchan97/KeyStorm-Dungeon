@@ -17,7 +17,7 @@ MonoBehaviour:
   itemEnglishName: Giant Potion
   description: 
   worldSprite: {fileID: 21300000, guid: 9ff593145237680459dfceebe3f3404d, type: 3}
-  iconSprite: {fileID: 110764233, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
+  iconSprite: {fileID: 21300000, guid: 9ff593145237680459dfceebe3f3404d, type: 3}
   attackChange: 0
   isActiveItem: 0
   tier: 0
