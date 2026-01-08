@@ -53,7 +53,7 @@ public class AudioManager : SingletonManager<AudioManager>
 
         if (bgmClips[audioName].Count == 0) return;
 
-        int clipIndex = bgmClips[audioName].Count > 1 ? Random.Range(0, bgmClips[audioName].Count) : 0;
+        int clipIndex = Random.Range(0, bgmClips[audioName].Count);
 
         AudioClip bgmClip = bgmClips[audioName][clipIndex];
         bgmAudio.clip = bgmClip;
@@ -67,7 +67,7 @@ public class AudioManager : SingletonManager<AudioManager>
 
         if (sfxClips[audioName].Count == 0) return;
 
-        int clipIndex = sfxClips[audioName].Count > 1 ? Random.Range(0, sfxClips[audioName].Count) : 0;
+        int clipIndex = Random.Range(0, sfxClips[audioName].Count);
 
         AudioClip sfxClip = sfxClips[audioName][clipIndex];
         var sfx = sfxPoolManager.GetObject();
@@ -75,6 +75,20 @@ public class AudioManager : SingletonManager<AudioManager>
         {
             sfxPoolManager.ReturnObject(sfx);
         }
+    }
+
+    public void PlayEffectLoop(string audioName)
+    {
+        if (!sfxClips.TryGetValue(audioName, out var sfxList) || sfxList.Count == 0)
+            return;
+
+        AudioClip clip = sfxList[Random.Range(0, sfxList.Count)];
+        sfxPoolManager.PlayLoop(audioName, clip, sfxVolume);
+    }
+
+    public void StopEffectLoop(string audioName)
+    {
+        sfxPoolManager.StopLoopByClipName(audioName);
     }
 
     public void PlayButton() => PlayEffect(ButtonSfx, true);

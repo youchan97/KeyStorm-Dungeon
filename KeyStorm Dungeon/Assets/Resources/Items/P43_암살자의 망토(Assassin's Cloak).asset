@@ -16,8 +16,8 @@ MonoBehaviour:
   itemName: "\uC554\uC0B4\uC790\uC758 \uB9DD\uD1A0"
   itemEnglishName: Assassin's Cloak
   description: 
-  worldSprite: {fileID: -623812692, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
-  iconSprite: {fileID: -623812692, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
+  worldSprite: {fileID: 21300000, guid: 08ddcd3f07b446f4d93aa1d088c555fd, type: 3}
+  iconSprite: {fileID: 21300000, guid: 08ddcd3f07b446f4d93aa1d088c555fd, type: 3}
   attackChange: 0
   isActiveItem: 0
   tier: 2

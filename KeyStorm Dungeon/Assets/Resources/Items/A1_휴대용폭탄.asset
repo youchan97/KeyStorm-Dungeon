@@ -16,8 +16,8 @@ MonoBehaviour:
   itemName: "\uD734\uB300\uC6A9\uD3ED\uD0C4"
   itemEnglishName: Bomb
   description: 
-  worldSprite: {fileID: -1120327230, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
-  iconSprite: {fileID: -1120327230, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
+  worldSprite: {fileID: 1988552280, guid: 06937ff3975646d4a8e7a5d1cd7b096d, type: 3}
+  iconSprite: {fileID: 1988552280, guid: 06937ff3975646d4a8e7a5d1cd7b096d, type: 3}
   attackChange: 0
   isActiveItem: 1
   tier: 0

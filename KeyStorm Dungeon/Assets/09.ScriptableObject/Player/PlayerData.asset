@@ -23,7 +23,7 @@ MonoBehaviour:
   attackSpeed: 0.5
   attackSpeedMultiple: 1
   range: 3
-  rangeMultiple: 3
+  rangeMultiple: 1
   shootSpeed: 10
   maxAmmo: 10
   useAmmo: 0

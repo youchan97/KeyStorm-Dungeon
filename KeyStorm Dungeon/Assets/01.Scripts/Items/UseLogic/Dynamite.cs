@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ConstValue;
 
 public class Dynamite : MonoBehaviour
 {
@@ -54,7 +55,7 @@ public class Dynamite : MonoBehaviour
         Effect effect = effectPoolManager.GetObj();
         effect.transform.position = transform.position;
         effect.InitData(effectPoolManager, effectData, Vector2.zero, radius);
-
+        AudioManager.Instance.PlayEffect(BombSfx);
         Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, radius, layerMask);
         foreach (Collider2D col in cols)
         {

@@ -21,6 +21,7 @@ public class PlayerInventory : MonoBehaviour
     public GameObject defaultActivePickupPrefab;
 
     public event Action<ItemData> OnAddActiveItem;
+
     public void InitInventory(InventoryRunData data)
     {
         if (GameManager.Instance.IsCheatMode)
@@ -37,6 +38,30 @@ public class PlayerInventory : MonoBehaviour
             passiveItems = data.passiveItems;
             activeItem = data.activeItem;
         }
+
+        RegisterInitialData();
+    }
+
+    private void RegisterInitialData()
+    {
+        if (GameDataManager.Instance == null) return;
+
+        GameDataManager.Instance.SetTotalGold(gold);
+
+        if (activeItem != null && activeItem.iconSprite != null)
+        {
+            AcquiredItemData itemData = new AcquiredItemData(activeItem.itemName, activeItem.iconSprite);
+            GameDataManager.Instance.AddItem(itemData);
+        }
+
+        foreach (var item in passiveItems)
+        {
+            if (item != null && item.iconSprite != null)
+            {
+                AcquiredItemData itemData = new AcquiredItemData(item.itemName, item.iconSprite);
+                GameDataManager.Instance.AddItem(itemData);
+            }
+        }
     }
 
     public void AddGold(int amount)
@@ -45,6 +70,11 @@ public class PlayerInventory : MonoBehaviour
         if (gold < 0) gold = 0;
         runData.UpdateGold(gold);
         player.GameSceneUI.UpdateGold();
+
+        if (GameDataManager.Instance != null)
+        {
+            GameDataManager.Instance.SetTotalGold(gold);
+        }
     }
 
     public void AddPotion(int amount)
@@ -67,13 +97,25 @@ public class PlayerInventory : MonoBehaviour
         if (gold < amount) return false;
         gold -= amount;
         player.GameSceneUI.UpdateGold();
+
+        if (GameDataManager.Instance != null)
+        {
+            GameDataManager.Instance.SetTotalGold(gold);
+        }
+
         return true;
     }
+
     public void AddPassiveItem(ItemData data)
     {
         if (data == null) return;
-
         passiveItems.Add(data);
+
+        if (GameDataManager.Instance != null && data.iconSprite != null)
+        {
+            AcquiredItemData itemData = new AcquiredItemData(data.itemName, data.iconSprite);
+            GameDataManager.Instance.AddItem(itemData);
+        }
     }
 
     public void SetActiveItem(ItemData newItem)
@@ -88,6 +130,12 @@ public class PlayerInventory : MonoBehaviour
         activeItem = newItem;
         OnAddActiveItem?.Invoke(activeItem);
         runData.ApplyInventory(activeItem);
+
+        if (GameDataManager.Instance != null && newItem.iconSprite != null)
+        {
+            AcquiredItemData itemData = new AcquiredItemData(newItem.itemName, newItem.iconSprite);
+            GameDataManager.Instance.AddItem(itemData);
+        }
     }
 
     private void DropActiveItem(ItemData oldItem)
@@ -103,13 +151,12 @@ public class PlayerInventory : MonoBehaviour
 
         if (prefab == null)
         {
-            Debug.LogError("[PlayerInventory] defaultActivePickupPrefab가 비어있습니다. PlayerInventory 인스펙터에 ActiveItemPickup 프리팹을 넣어주세요.");
+            Debug.LogError("[PlayerInventory] defaultActivePickupPrefab가 비어있습니다.");
             return;
         }
 
         Vector2 offset = UnityEngine.Random.insideUnitCircle.normalized * 0.6f;
         Vector3 dropPos = transform.position + (Vector3)offset;
-
         GameObject drop = Instantiate(prefab, dropPos, Quaternion.identity);
 
         if (drop.TryGetComponent<ActiveItemPickup>(out var pickup))

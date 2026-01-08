@@ -16,8 +16,8 @@ MonoBehaviour:
   itemName: "\uC791\uC740 \uAD34\uB825\uC758 \uBFD4"
   itemEnglishName: Tiny Might Horn
   description: 
-  worldSprite: {fileID: -623812692, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
-  iconSprite: {fileID: -623812692, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
+  worldSprite: {fileID: 21300000, guid: 84f6f0ea0f093c94eaa1e53d6384939f, type: 3}
+  iconSprite: {fileID: 21300000, guid: 84f6f0ea0f093c94eaa1e53d6384939f, type: 3}
   attackChange: 0
   isActiveItem: 0
   tier: 3
