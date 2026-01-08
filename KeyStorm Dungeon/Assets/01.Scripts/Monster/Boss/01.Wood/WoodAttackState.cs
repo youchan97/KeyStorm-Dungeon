@@ -21,6 +21,7 @@ public class WoodAttackState : MonsterAttackState
     private bool isTakeRootAnimationFinished;
 
     private Vector2 currentDashDirection;
+
     #region 애니메이션
     private const string GetReadyAnim = "GetReady";
     private const string DashAnim = "Dash";
@@ -236,7 +237,7 @@ public class WoodAttackState : MonsterAttackState
         GameObject.Destroy(currentShadowInstance);
         wood.transform.position = endDivePosition;
 
-        wood.ApplyLandingDamage(diveTargetPosition, 2);
+        wood.ApplyLandingDamage(diveTargetPosition, wood.DiveAttackRange);
 
         yield return null;
 
@@ -245,7 +246,6 @@ public class WoodAttackState : MonsterAttackState
         yield return new WaitForSeconds(wood.AttackDelay);
 
         animator.SetBool(DiveAnim, false);
-        stateManager.ChangeState(wood.CreateIdleState());
     }
 
     private IEnumerator RootPattern()
