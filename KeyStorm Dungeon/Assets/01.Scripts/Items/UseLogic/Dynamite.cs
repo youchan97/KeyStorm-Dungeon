@@ -53,7 +53,7 @@ public class Dynamite : MonoBehaviour
     {
         Effect effect = effectPoolManager.GetObj();
         effect.transform.position = transform.position;
-        effect.InitData(effectPoolManager, effectData, Vector2.zero);
+        effect.InitData(effectPoolManager, effectData, Vector2.zero, radius);
 
         Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, radius, layerMask);
         foreach (Collider2D col in cols)

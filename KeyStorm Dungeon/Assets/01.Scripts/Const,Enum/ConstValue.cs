@@ -53,4 +53,8 @@ public static class ConstValue
     public const string GameOverText = "Game Over...";
     public const string GameClearText = "Game Clear!!!";
     #endregion
+
+    #region Effect 관련
+    public const float DefaultEffectSize = 1f;
+    #endregion
 }

@@ -581,6 +581,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &1539373438635553203
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5060720974584978356}
+  m_Layer: 3
+  m_Name: Foot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5060720974584978356
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1539373438635553203}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4756003735825350821}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2024518546876096452
 GameObject:
   m_ObjectHideFlags: 0
@@ -1699,6 +1730,7 @@ Transform:
   m_Children:
   - {fileID: 6269941654510707365}
   - {fileID: 5484349077433183017}
+  - {fileID: 5060720974584978356}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8462432792764299665
@@ -1780,6 +1812,10 @@ MonoBehaviour:
     m_Bits: 65536
   magnetSpeed: 10
   magnetRangeMargin: 7
+  stepEffect: {fileID: 11400000, guid: 3846a9b4647d02941891949718d31be7, type: 2}
+  stepDistance: 3
+  stepSize: 0.5
+  foot: {fileID: 5060720974584978356}
 --- !u!114 &4047890859375845602
 MonoBehaviour:
   m_ObjectHideFlags: 0

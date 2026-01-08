@@ -27,9 +27,9 @@ public class WoodAttackState : MonsterAttackState
     private const string JumpAnim = "Jump";
     private const string DiveAnim = "Dive";
     private const string TakeRootAnim = "TakeRoot";
+    private const string UpRootAnim = "UpRoot";
     #endregion
 
-    private bool isDash;
     public WoodAttackState(Monster character, CharacterStateManager<Monster> stateManager) : base(character, stateManager)
     {
         wood = character as Wood;
@@ -38,8 +38,8 @@ public class WoodAttackState : MonsterAttackState
     public override void EnterState()
     {
         base.EnterState();
+        wood.StopDash();
 
-        isDash = false;
         isGetReadyAnimationFinished = false;
         isJumpAnimationFinished = false;
         isTakeRootAnimationFinished = false;
@@ -58,11 +58,10 @@ public class WoodAttackState : MonsterAttackState
 
     public override void FixedUpdateState()
     {
-        if (isDash)
+        if (wood.IsDash)
         {
             Vector2 raycastStartPosition = wood.WoodCollider.bounds.center;
 
-            Debug.DrawRay(raycastStartPosition, currentDashDirection * wood.DetectStopDistance, Color.red, 0f);
             RaycastHit2D hit = Physics2D.Raycast(
                 raycastStartPosition,
                 currentDashDirection,
@@ -72,7 +71,7 @@ public class WoodAttackState : MonsterAttackState
 
             if (hit.collider != null)
             {
-                StopDash();
+                wood.StopDash();
                 return;
             }
 
@@ -93,9 +92,9 @@ public class WoodAttackState : MonsterAttackState
         wood.OnJumpAnimation -= HandleJumpAnimationFinished;
         wood.OnTakeRootAnimation -= HandleTakeRootAnimationFinished;
 
-        if (isDash)
+        if (wood.IsDash)
         {
-            StopDash();
+            wood.StopDash();
         }
     }
 
@@ -116,10 +115,9 @@ public class WoodAttackState : MonsterAttackState
             case WoodPattern.Dive:
                 yield return DivePattern();
                 break;
-            /*case WoodPattern.Root:
+            case WoodPattern.Root:
                 yield return RootPattern();
-                wood.ResetRootPatternCooldown();
-                break;*/
+                break;
         }
 
         yield return new WaitForSeconds(wood.AttackDelay);
@@ -134,10 +132,10 @@ public class WoodAttackState : MonsterAttackState
         patterns.Add(WoodPattern.Dash);
         patterns.Add(WoodPattern.Dive);
 
-        /*if(wood.CurrentRootPatternCooldown <= 0f)
+        if(wood.CurrentRootPatternCooldown <= 0f)
         {
             patterns.Add(WoodPattern.Root);
-        }*/
+        }
 
         int randomIndex = Random.Range(0, patterns.Count);
         return patterns[randomIndex];
@@ -153,25 +151,13 @@ public class WoodAttackState : MonsterAttackState
 
         animator.SetBool(DashAnim, true);
 
-        StartDash();
+        wood.StartDash();
 
         yield return null;
 
-        yield return new WaitUntil(() => !isDash);
+        yield return new WaitUntil(() => !wood.IsDash);
 
-        isGetReadyAnimationFinished = false;
         animator.SetBool(DashAnim, false);
-    }
-
-    private void StartDash()
-    {
-        isDash = true;
-    }
-
-    private void StopDash()
-    {
-        isDash = false;
-        rb.velocity = Vector2.zero;
     }
 
     private IEnumerator DivePattern()
@@ -269,8 +255,17 @@ public class WoodAttackState : MonsterAttackState
 
         for (int i = 0; i < wood.SpawnRootQuantity; i++)
         {
-            
+            Vector3 playerPosition = wood.PlayerTransform.position;
+
+            yield return new WaitForSeconds(wood.PlayerSearchTime);
+
+            WoodsRoot woodsRoot = wood.SpawnWoodsRoot(playerPosition);
+
+            yield return new WaitForSeconds(wood.SpawnRootDuration);
         }
+
+        animator.SetTrigger(UpRootAnim);
+        wood.ResetRootPatternCooldown();
     }
 
     private void HandleGetReadyAnimationFinished()
