@@ -20,6 +20,12 @@ public class GameSceneUI : MonoBehaviour
 
     [SerializeField] Image itemImage;
     [SerializeField] Image coolTimeImage;
+    [SerializeField] private GameObject bossHpBarUI;
+    [SerializeField] private Transform bossHpBarLayout;
+    
+    private List<BossHpBar> bossHpBars = new List<BossHpBar>();
+    private Room currentRoom;
+
     Coroutine activeItemCo;
 
     public Player player;
@@ -62,11 +68,25 @@ public class GameSceneUI : MonoBehaviour
     private void OnEnable()
     {
         Room.OnGameCleared += GameClear;
+        GameManager.Instance.OnRoomChanged += CurrentRoomChange;
     }
 
     private void OnDisable()
     {
         Room.OnGameCleared -= GameClear;
+        GameManager.Instance.OnRoomChanged -= CurrentRoomChange;
+        currentRoom.OnBossSpawn -= CreateBossHpBar;
+
+        foreach (BossHpBar bossHpBar in bossHpBars)
+        {
+            if (bossHpBar != null)
+            {
+                bossHpBar.OnRemoveUI -= RemoveBossHpBar;
+                Destroy(bossHpBar);
+            }
+        }
+        bossHpBars.Clear();
+
         if (player != null)
         {
             player.PlayerSkill.StartSkill -= OnActiveItemCoolDown;
@@ -272,4 +292,45 @@ public class GameSceneUI : MonoBehaviour
         yield return null;
     }*/
 
+    private void CurrentRoomChange(Room room)
+    {
+        foreach (BossHpBar bossHpBar in bossHpBars)
+        {
+            Destroy(bossHpBar);
+        }
+        bossHpBars.Clear();
+
+        if (currentRoom != null)
+        {
+            currentRoom.OnBossSpawn -= CreateBossHpBar;
+        }
+
+        currentRoom = room;
+        currentRoom.OnBossSpawn += CreateBossHpBar;
+    }
+
+    private void CreateBossHpBar(Monster boss)
+    {
+        if (boss != null)
+        {
+            GameObject bossHpBarGO = Instantiate(bossHpBarUI, bossHpBarLayout);
+            BossHpBar bossHpBar = bossHpBarGO.GetComponent<BossHpBar>();
+
+            if (bossHpBar != null)
+            {
+                bossHpBar.InitBossInfo(boss);
+                bossHpBar.OnRemoveUI += RemoveBossHpBar;
+                bossHpBars.Add(bossHpBar);
+            }
+        }
+    }
+
+    private void RemoveBossHpBar(BossHpBar bossHpBar)
+    {
+        if (bossHpBar == null) return;
+
+        bossHpBar.OnRemoveUI -= RemoveBossHpBar;
+        bossHpBars.Remove(bossHpBar);
+        Destroy(bossHpBar.gameObject);
+    }
 }
