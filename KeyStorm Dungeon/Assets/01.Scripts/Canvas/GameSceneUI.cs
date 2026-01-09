@@ -74,8 +74,14 @@ public class GameSceneUI : MonoBehaviour
     private void OnDisable()
     {
         Room.OnGameCleared -= GameClear;
-        GameManager.Instance.OnRoomChanged -= CurrentRoomChange;
-        currentRoom.OnBossSpawn -= CreateBossHpBar;
+        if (currentRoom != null)
+        {
+            currentRoom.OnBossSpawn -= CreateBossHpBar;
+        }
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnRoomChanged -= CurrentRoomChange;
+        }
 
         foreach (BossHpBar bossHpBar in bossHpBars)
         {

@@ -9,7 +9,8 @@ public class ItemDropManager : SingletonManager<ItemDropManager>
     [SerializeField] private GameObject bombPrefab;
 
     [Header("드랍 세팅")]
-    [SerializeField] private float dropForce;
+    [SerializeField] private float MinDropForce;
+    [SerializeField] private float MaxDropForce;
     [SerializeField] private float dropSpread;
 
     private const string GOLD_POOL_NAME = "GoldItem";
@@ -61,6 +62,7 @@ public class ItemDropManager : SingletonManager<ItemDropManager>
         {
             Vector2 randomDirection = Random.insideUnitCircle.normalized;
             Vector2 scatterOffset = Random.insideUnitCircle * dropSpread;
+            float dropForce = Random.Range(MinDropForce, MaxDropForce + 1);
             rb.AddForce((randomDirection + scatterOffset).normalized * dropForce, ForceMode2D.Impulse);
         }
     }
@@ -89,6 +91,7 @@ public class ItemDropManager : SingletonManager<ItemDropManager>
         if (rb != null)
         {
             Vector2 randomDirection = (Random.insideUnitCircle + Random.insideUnitCircle * dropSpread).normalized;
+            float dropForce = Random.Range(MinDropForce, MaxDropForce + 1);
             rb.AddForce(randomDirection * dropForce, ForceMode2D.Impulse);
         }
     }
