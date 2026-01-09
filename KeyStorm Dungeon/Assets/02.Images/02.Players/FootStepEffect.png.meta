@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 17ea4e6d841523f4084403393b9a01a2
+guid: 040d37a519498a847ae23f897d3c71d9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -137,8 +137,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0043b62f54587454dad908dbe1a36458
-      internalID: -1651379806
+      spriteID: 6e033b2bc3d885a48923c72c0c00fc76
+      internalID: -1190868854
       vertices: []
       indices: 
       edges: []
@@ -158,8 +158,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f49950eea4e61f74384dfaa0db74c29e
-      internalID: -1539468285
+      spriteID: 86954413641acc44b8c31676aa818942
+      internalID: 2041946675
       vertices: []
       indices: 
       edges: []
@@ -168,8 +168,8 @@ TextureImporter:
       name: FootStepEffect_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 16
+        x: 32
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -179,8 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 254af6415efe0ae4abc61d4c2f5fde0b
-      internalID: 592166423
+      spriteID: a2208021f753b134493123c90d7dd147
+      internalID: 2117462681
       vertices: []
       indices: 
       edges: []
@@ -189,6 +189,27 @@ TextureImporter:
       name: FootStepEffect_3
       rect:
         serializedVersion: 2
+        x: 0
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c436f1808f86bd4f8d9c0f9bbfbc9b2
+      internalID: -1363343711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FootStepEffect_4
+      rect:
+        serializedVersion: 2
         x: 16
         y: 16
         width: 16
@@ -200,14 +221,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa4c61aea4b505243bee6043719bdf00
-      internalID: 582298280
+      spriteID: d88949dcb623f9f468108436efc342ae
+      internalID: 1931463506
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FootStepEffect_4
+      name: FootStepEffect_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6782aded500574e46838ce28d42171d6
+      internalID: -269204312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FootStepEffect_6
       rect:
         serializedVersion: 2
         x: 0
@@ -221,14 +263,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de8907e52d3e5b640ba372f0a63a84c8
-      internalID: -1283543799
+      spriteID: 3a59a917585274b4985c0b162cb1611f
+      internalID: 110325237
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FootStepEffect_5
+      name: FootStepEffect_7
       rect:
         serializedVersion: 2
         x: 16
@@ -242,8 +284,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 35406cf9b482afe43b9f4d4c29c24a27
-      internalID: 792035169
+      spriteID: 38af60478f9b5874fb5f31facf3e637a
+      internalID: 89529472
       vertices: []
       indices: 
       edges: []
@@ -259,12 +301,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      FootStepEffect_0: -1651379806
-      FootStepEffect_1: -1539468285
-      FootStepEffect_2: 592166423
-      FootStepEffect_3: 582298280
-      FootStepEffect_4: -1283543799
-      FootStepEffect_5: 792035169
+      FootStepEffect_0: -1190868854
+      FootStepEffect_1: 2041946675
+      FootStepEffect_2: 2117462681
+      FootStepEffect_3: -1363343711
+      FootStepEffect_4: 1931463506
+      FootStepEffect_5: -269204312
+      FootStepEffect_6: 110325237
+      FootStepEffect_7: 89529472
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
