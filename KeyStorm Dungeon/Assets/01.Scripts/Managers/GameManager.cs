@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -26,6 +27,10 @@ public class GameManager : SingletonManager<GameManager>
 
     private bool isGameCleared = false;
     public bool IsGameCleared => isGameCleared; // ⭐ 추가
+
+    private Room currentRoom;
+    public Room CurrentRoom => currentRoom;
+    public event Action<Room> OnRoomChanged;
 
     protected override void Awake()
     {
@@ -124,6 +129,15 @@ public class GameManager : SingletonManager<GameManager>
         currentStage++;
         stageDataManager.NextStage();
         SceneManager.LoadScene(GameScene);
+    }
+
+    public void InitCurrentRoom(Room room)
+    {
+        if (currentRoom != room)
+        {
+            currentRoom = room;
+            OnRoomChanged?.Invoke(currentRoom);
+        }
     }
 }
 
