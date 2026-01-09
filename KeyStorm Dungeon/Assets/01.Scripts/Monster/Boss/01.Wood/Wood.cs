@@ -27,10 +27,11 @@ public class Wood : MeleeMonster
     [SerializeField] private float diveDelay;   // 체공 시간
     [SerializeField] private float diveDuration;// 착지까지 걸리는 시간
     [SerializeField] private GameObject bossShadowPrefab;
-    [SerializeField] private float shadowScaleTime; // 그림자 크기 변경 시간
     [SerializeField] private float minShadowScale;
     [SerializeField] private float maxShadowScale;
-    [SerializeField] private float shadowOffset;
+    [SerializeField] private float shadowOffsetYDown;
+    [SerializeField] private float diveAttackRange;
+    [SerializeField] private float diveYOffset;
 
     [Header("뿌리 패턴 수치")]
     [SerializeField] private int spawnRootQuantity;     // 뿌리 소환 개수
@@ -58,10 +59,11 @@ public class Wood : MeleeMonster
     public float DiveDelay => diveDelay;
     public float DiveDuration => diveDuration;
     public GameObject BossShadowPrefab => bossShadowPrefab;
-    public float ShadowScaleTime => shadowScaleTime;
     public float MinShadowScale => minShadowScale;
     public float MaxShadowScale => maxShadowScale;
-    public float ShadowOffset => shadowOffset;
+    public float ShadowOffset => shadowOffsetYDown;
+    public float DiveAttackRange => diveAttackRange;
+    public float DiveYOffset => diveYOffset;
     public int SpawnRootQuantity => spawnRootQuantity;
     public float SpawnRootDuration => spawnRootDuration;
     public GameObject WoodsRoot => woodsRoot;

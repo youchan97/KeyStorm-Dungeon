@@ -15,11 +15,9 @@ public class GameTimeManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            Debug.Log("[GameTimeManager] 생성됨");
         }
         else if (Instance != this)
         {
-            Debug.Log("[GameTimeManager] 중복 제거");
             Destroy(gameObject);
         }
     }
@@ -35,20 +33,17 @@ public class GameTimeManager : MonoBehaviour
     public void StartTimer()
     {
         isTimerRunning = true;
-        Debug.Log("[GameTimeManager] 타이머 시작");
     }
 
     public void PauseTimer()
     {
         isTimerRunning = false;
-        Debug.Log("[GameTimeManager] 타이머 정지");
     }
 
     public void ResetTimer()
     {
         playTime = 0f;
         isTimerRunning = false;
-        Debug.Log("[GameTimeManager] 타이머 리셋");
     }
 
     public string GetFormattedTime()

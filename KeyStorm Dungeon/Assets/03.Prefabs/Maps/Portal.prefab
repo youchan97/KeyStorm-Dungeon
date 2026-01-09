@@ -133,3 +133,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187aab537464a0f4fa97e1cb97a7e753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLastStagePortal: 1

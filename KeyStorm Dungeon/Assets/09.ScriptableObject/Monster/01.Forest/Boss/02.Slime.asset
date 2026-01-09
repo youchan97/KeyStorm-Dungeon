@@ -10,30 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 022c38624de0acc44ac949e934164ffb, type: 3}
-  m_Name: WoodsRoot
+  m_Name: 02.Slime
   m_EditorClassIdentifier: 
   characterData:
-    charName: WoodsRoot
-    id: 11
-    maxHp: 10
+    charName: Slime
+    id: 12
+    maxHp: 450
     damage: 1
-    moveSpeed: 0
+    moveSpeed: 8
   type: 0
-  detectRange: 2
-  targetDistance: 2
-  tier: 0
-  shotSpeed: 0
+  detectRange: 0
+  targetDistance: 0
+  tier: 3
+  shotSpeed: 5
   attackSpeed: 2
   projectileColliderOffset: {x: 0, y: 0}
-  projectileColliderRadius: 0
+  projectileColliderRadius: 0.1
   separationRaduis: 0
   separationStrength: 0
   pathfindingWeight: 0
   separationWeight: 0
   maxSteeringForce: 0
   mass: 0
-  minDropGold: 0
-  maxDropGold: 0
+  minDropGold: 50
+  maxDropGold: 60
   minStage: 0
   maxStage: 0
   xScale: 1

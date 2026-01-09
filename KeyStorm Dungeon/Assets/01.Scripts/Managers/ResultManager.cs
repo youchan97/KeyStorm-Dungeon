@@ -59,7 +59,7 @@ public class ResultManager : MonoBehaviour
 
     public void ShowResult(bool isVictory)
     {
-        Debug.Log($"=== ShowResult 호출됨: {(isVictory ? "Victory" : "Loss")} ===");
+        Debug.Log($"[ResultManager] ========== ShowResult 시작 ========== isVictory: {isVictory}");
 
         if (GameTimeManager.Instance != null)
         {
@@ -68,6 +68,7 @@ public class ResultManager : MonoBehaviour
 
         if (resultPanel != null)
         {
+            resultPanel.transform.SetAsLastSibling();
             resultPanel.SetActive(true);
         }
 
@@ -82,19 +83,60 @@ public class ResultManager : MonoBehaviour
             resultImage.enabled = true;
         }
 
-        if (playTimeText != null && GameTimeManager.Instance != null)
-        {
-            string timeStr = GameTimeManager.Instance.GetFormattedTime();
-            playTimeText.text = $"플레이 타임 {timeStr}";
-        }
+        // ⭐ 플레이 타임 표시
+        UpdatePlayTime();
 
-        if (totalGoldText != null && GameDataManager.Instance != null)
-        {
-            int gold = GameDataManager.Instance.GetTotalGold();
-            totalGoldText.text = $"획득한 총골드 량 : {gold}G";
-        }
+        // ⭐ 골드 표시
+        UpdateGold();
 
+        // 아이템 표시
         DisplayAcquiredItems();
+
+        Debug.Log($"[ResultManager] ========== ShowResult 끝 ==========");
+    }
+
+    // ⭐ 플레이 타임 업데이트
+    private void UpdatePlayTime()
+    {
+        if (playTimeText == null)
+        {
+            Debug.LogWarning("[ResultManager] playTimeText가 null입니다!");
+            return;
+        }
+
+        if (GameTimeManager.Instance == null)
+        {
+            Debug.LogWarning("[ResultManager] GameTimeManager.Instance가 null입니다!");
+            playTimeText.text = "플레이 타임: 0:00:00";
+            return;
+        }
+
+        string timeStr = GameTimeManager.Instance.GetFormattedTime();
+        playTimeText.text = $"플레이 타임: {timeStr}";
+
+        Debug.Log($"[ResultManager] ✓ 플레이 타임 설정: {timeStr}");
+    }
+
+    // ⭐ 골드 업데이트
+    private void UpdateGold()
+    {
+        if (totalGoldText == null)
+        {
+            Debug.LogWarning("[ResultManager] totalGoldText가 null입니다!");
+            return;
+        }
+
+        if (GameDataManager.Instance == null)
+        {
+            Debug.LogWarning("[ResultManager] GameDataManager.Instance가 null입니다!");
+            totalGoldText.text = "획득한 총골드 량: 0G";
+            return;
+        }
+
+        int gold = GameDataManager.Instance.GetTotalGold();
+        totalGoldText.text = $"획득한 총골드 량: {gold}G";
+
+        Debug.Log($"[ResultManager] ✓ 총 골드 설정: {gold}G");
     }
 
     private void DisplayAcquiredItems()
@@ -105,6 +147,7 @@ public class ResultManager : MonoBehaviour
             return;
         }
 
+        // 기존 아이템 삭제
         foreach (Transform child in itemScrollContent)
         {
             Destroy(child.gameObject);
