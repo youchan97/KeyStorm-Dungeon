@@ -1811,7 +1811,7 @@ MonoBehaviour:
   itemLayer:
     serializedVersion: 2
     m_Bits: 65536
-  magnetSpeed: 10
+  magnetSpeed: 30
   magnetRangeMargin: 7
   stepEffect: {fileID: 11400000, guid: 3846a9b4647d02941891949718d31be7, type: 2}
   stepDistance: 3
