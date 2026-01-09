@@ -16,8 +16,8 @@ MonoBehaviour:
   itemName: "\uBC30\uAD00\uACF5\uC758 \uC7A5\uAC11"
   itemEnglishName: "Plumber\u2019s Worn Gloves"
   description: 
-  worldSprite: {fileID: -623812692, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
-  iconSprite: {fileID: -623812692, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
+  worldSprite: {fileID: -1723337599, guid: bb5eaa6dfbb17fa4eac4bd261b60b138, type: 3}
+  iconSprite: {fileID: -1723337599, guid: bb5eaa6dfbb17fa4eac4bd261b60b138, type: 3}
   attackChange: 0
   isActiveItem: 0
   tier: 3

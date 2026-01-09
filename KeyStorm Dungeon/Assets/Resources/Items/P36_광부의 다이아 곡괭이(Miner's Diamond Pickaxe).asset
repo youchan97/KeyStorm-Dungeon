@@ -17,8 +17,8 @@ MonoBehaviour:
   itemName: "\uAD11\uBD80\uC758 \uB2E4\uC774\uC544 \uACE1\uAD2D\uC774"
   itemEnglishName: Miner's Diamond Pickaxe
   description: 
-  worldSprite: {fileID: -623812692, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
-  iconSprite: {fileID: -623812692, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
+  worldSprite: {fileID: 960142353, guid: c53cc76c54808e44db4c2ac5039f58a2, type: 3}
+  iconSprite: {fileID: 960142353, guid: c53cc76c54808e44db4c2ac5039f58a2, type: 3}
   attackChange: 0
   isActiveItem: 0
   tier: 3

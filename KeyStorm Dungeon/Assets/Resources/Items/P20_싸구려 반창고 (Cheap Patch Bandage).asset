@@ -16,8 +16,8 @@ MonoBehaviour:
   itemName: "\uC2F8\uAD6C\uB824 \uBC18\uCC3D\uACE0"
   itemEnglishName: Cheap Patch Bandage
   description: 
-  worldSprite: {fileID: -623812692, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
-  iconSprite: {fileID: -623812692, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
+  worldSprite: {fileID: 230277203, guid: c53cc76c54808e44db4c2ac5039f58a2, type: 3}
+  iconSprite: {fileID: 230277203, guid: c53cc76c54808e44db4c2ac5039f58a2, type: 3}
   attackChange: 0
   isActiveItem: 0
   tier: 0

@@ -16,8 +16,8 @@ MonoBehaviour:
   itemName: "\uC870\uC900\uACBD"
   itemEnglishName: Scope
   description: 
-  worldSprite: {fileID: -623812692, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
-  iconSprite: {fileID: -623812692, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
+  worldSprite: {fileID: 139926927, guid: c53cc76c54808e44db4c2ac5039f58a2, type: 3}
+  iconSprite: {fileID: 139926927, guid: c53cc76c54808e44db4c2ac5039f58a2, type: 3}
   attackChange: 1
   isActiveItem: 0
   tier: 4

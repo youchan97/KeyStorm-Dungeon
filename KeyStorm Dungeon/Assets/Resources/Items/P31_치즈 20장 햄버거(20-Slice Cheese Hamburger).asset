@@ -16,8 +16,8 @@ MonoBehaviour:
   itemName: "\uCE58\uC988 20\uC7A5 \uD584\uBC84\uAC70"
   itemEnglishName: 20 Slice Cheese Hamburger
   description: 
-  worldSprite: {fileID: -623812692, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
-  iconSprite: {fileID: -623812692, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
+  worldSprite: {fileID: 21300000, guid: 47ea4e3765f6618498e6e4fadeb7fb36, type: 3}
+  iconSprite: {fileID: 21300000, guid: 47ea4e3765f6618498e6e4fadeb7fb36, type: 3}
   attackChange: 0
   isActiveItem: 0
   tier: 0

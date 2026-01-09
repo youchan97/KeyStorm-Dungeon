@@ -16,8 +16,8 @@ MonoBehaviour:
   itemName: "\uC644\uBCBD\uD55C \uC721\uAC01\uD615"
   itemEnglishName: Perfect Hexagon
   description: 
-  worldSprite: {fileID: -623812692, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
-  iconSprite: {fileID: -623812692, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
+  worldSprite: {fileID: -1592486009, guid: c53cc76c54808e44db4c2ac5039f58a2, type: 3}
+  iconSprite: {fileID: -1592486009, guid: c53cc76c54808e44db4c2ac5039f58a2, type: 3}
   attackChange: 0
   isActiveItem: 0
   tier: 4

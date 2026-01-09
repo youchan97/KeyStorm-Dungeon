@@ -16,8 +16,8 @@ MonoBehaviour:
   itemName: "\uD1A0\uB07C\uB700"
   itemEnglishName: Bunnyhop
   description: 
-  worldSprite: {fileID: -623812692, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
-  iconSprite: {fileID: -623812692, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
+  worldSprite: {fileID: 1516247147, guid: bb5eaa6dfbb17fa4eac4bd261b60b138, type: 3}
+  iconSprite: {fileID: 1516247147, guid: bb5eaa6dfbb17fa4eac4bd261b60b138, type: 3}
   attackChange: 0
   isActiveItem: 0
   tier: 2
