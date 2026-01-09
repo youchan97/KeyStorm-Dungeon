@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 5150652526908895158}
   - component: {fileID: 1187214400967519532}
   m_Layer: 0
-  m_Name: Forest_Boss_0
+  m_Name: Forest_Boss_Wood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
