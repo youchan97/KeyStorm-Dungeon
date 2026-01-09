@@ -16,8 +16,8 @@ MonoBehaviour:
   itemName: "\uC5F0\uC7A5\uCD1D\uC5F4"
   itemEnglishName: Long Barrel
   description: 
-  worldSprite: {fileID: -623812692, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
-  iconSprite: {fileID: -623812692, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
+  worldSprite: {fileID: 981534555, guid: c53cc76c54808e44db4c2ac5039f58a2, type: 3}
+  iconSprite: {fileID: 981534555, guid: c53cc76c54808e44db4c2ac5039f58a2, type: 3}
   attackChange: 0
   isActiveItem: 0
   tier: 1

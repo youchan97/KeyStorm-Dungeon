@@ -180,9 +180,9 @@ public class PlayerRunData
         yScale = playerData.yScale;
     }
 
-    public void ApplyItemStat(ItemData itemData)
+    public void ApplyItemStat(ItemData itemData, PlayerLimitData limitData)
     {
-        character.ApplyItemStat(itemData);
+        character.ApplyItemStat(itemData, limitData);
         damageMultiple += itemData.damageMultiple;
         specialDamageMultiple += itemData.specialDamageMultiple;
         attackSpeed += itemData.attackSpeed;
@@ -243,9 +243,9 @@ public class CharacterRunData
         moveSpeed = characterData.moveSpeed;
     }
 
-    public void ApplyItemStat(ItemData itemData)
+    public void ApplyItemStat(ItemData itemData, PlayerLimitData limitData)
     {
-        maxHp += itemData.maxHp;
+        maxHp = Mathf.Clamp(maxHp + itemData.maxHp,0, limitData.maxHp);
         if (itemData.maxHp > 0)
         {
             currentHp += itemData.maxHp;   
@@ -283,6 +283,29 @@ public class InventoryRunData
             activeItem = itemData;
         else
             passiveItems.Add(itemData);
+    } 
+}
+
+[System.Serializable]
+public class PlayerEffectStat
+{
+    PlayerRunData runData;
+    PlayerLimitData limitData;
+    public PlayerEffectStat(PlayerRunData runData, PlayerLimitData limitData)
+    {
+        this.runData = runData;
+        this.limitData = limitData;
     }
+
+    public float GetMoveSpeed => Mathf.Clamp(runData.character.moveSpeed, limitData.minMoveSpeed, limitData.maxMoveSpeed);
+
+    public float GetDamage(float total) => Mathf.Max(total, limitData.minDamage);
+
+    public float GetAttackSpeed(float total) => Mathf.Max(total, limitData.minAttackSpeed);
+    public float GetRange(float total) => Mathf.Max(total, limitData.minRange);
+    public float GetShotSpeed => Mathf.Max(runData.shootSpeed, limitData.minShotSpeed);
+    public float GetScaleX => Mathf.Max(runData.xScale, limitData.minScale);
+    public float GetScaleY => Mathf.Max(runData.yScale, limitData.minScale);
+
 }
 

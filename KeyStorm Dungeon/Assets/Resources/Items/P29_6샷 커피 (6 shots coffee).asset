@@ -16,8 +16,8 @@ MonoBehaviour:
   itemName: "6\uC0F7 \uCEE4\uD53C"
   itemEnglishName: 6 shots coffee
   description: 
-  worldSprite: {fileID: -623812692, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
-  iconSprite: {fileID: -623812692, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
+  worldSprite: {fileID: 1603821858, guid: c53cc76c54808e44db4c2ac5039f58a2, type: 3}
+  iconSprite: {fileID: 1603821858, guid: c53cc76c54808e44db4c2ac5039f58a2, type: 3}
   attackChange: 0
   isActiveItem: 0
   tier: 4
