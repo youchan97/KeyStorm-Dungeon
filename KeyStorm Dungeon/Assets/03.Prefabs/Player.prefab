@@ -1802,6 +1802,7 @@ MonoBehaviour:
   playerAttack: {fileID: 9001353019542540319}
   inventory: {fileID: 4757102522029164033}
   data: {fileID: 11400000, guid: 5637dfef1c82d60449873fbb922104ae, type: 2}
+  limitData: {fileID: 11400000, guid: dc5c7f7178531bb4fba8715d9db34b14, type: 2}
   playerSkill: {fileID: 4047890859375845602}
   playerRb: {fileID: 2508212066495251963}
   anim: {fileID: 382889259470501132}

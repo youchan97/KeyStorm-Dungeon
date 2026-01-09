@@ -16,6 +16,7 @@ public class Player : Character
     [SerializeField] PlayerAttack playerAttack;
     [SerializeField] PlayerInventory inventory;
     [SerializeField] PlayerData data;
+    [SerializeField] PlayerLimitData limitData;
     [SerializeField] PlayerSkill playerSkill;
     PlayerRunData playerRunData;
     [SerializeField] Rigidbody2D playerRb;
@@ -45,8 +46,8 @@ public class Player : Character
     public PlayerIdleState IdleState { get; private set; }
     public PlayerMoveState MoveState { get; private set; }
     public PlayerDieState DieState { get; private set; }
-    public PlayerData Data { get => data; }
     public PlayerController PlayerController { get => playerController; private set => playerController = value; }
+    public PlayerEffectStat PlayerEffectStat { get; private set; }
     public Rigidbody2D PlayerRb { get => playerRb; private set => playerRb = value; }
     public Animator Anim { get => anim; private set => anim = value; }
     public Sprite Bullet { get => bullet;}
@@ -118,6 +119,7 @@ public class Player : Character
         InitCharRunData(playerRunData.character);
         transform.localScale = new Vector3(playerRunData.xScale, playerRunData.yScale, transform.localScale.z);
         PlayerAttack.InitPlayerAttack(playerRunData);
+        PlayerEffectStat = new PlayerEffectStat(playerRunData, limitData);
         Inventory.InitInventory(playerRunData.inventory);
         Inventory.runData = playerRunData.inventory;
     }
@@ -228,7 +230,7 @@ public class Player : Character
     {
         if (!data.isActiveItem)
         {
-            playerRunData.ApplyItemStat(data);
+            playerRunData.ApplyItemStat(data, limitData);
             SyncPlayerStat(playerRunData);
         }
     }
@@ -237,15 +239,19 @@ public class Player : Character
     {
         CharacterRunData characterRunData = runData.character;
 
-        Hp = characterRunData.currentHp;
         MaxHp = characterRunData.maxHp;
-        MoveSpeed = characterRunData.moveSpeed;
-
+        Hp = Mathf.Clamp(characterRunData.currentHp, 0f, MaxHp);
+        MoveSpeed = PlayerEffectStat.GetMoveSpeed;
+        transform.localScale = new Vector3(PlayerEffectStat.GetScaleX, PlayerEffectStat.GetScaleY, transform.localScale.z);
         PlayerAttack.SyncPlayerAttackStat(runData);
 
         GameSceneUI.UpdateAmmo();
         GameSceneUI.HealthUI.SetMaxHp(MaxHp);
         GameSceneUI.HealthUI.SetHp(Hp);
+        if(Hp <= 0)
+        {
+            Die();
+        }
     }
 
     public void MagnetItems(Bounds bounds)
