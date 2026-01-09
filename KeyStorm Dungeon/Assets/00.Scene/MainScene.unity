@@ -725,7 +725,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 81151
+    m_Bits: 81663
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1788,9 +1788,45 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1320209388956021136, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320209388956021136, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320209388956021136, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320209388956021136, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3617212696622671668, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6666980126985427679, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
       propertyPath: m_Name
       value: GameSceneUi
+      objectReference: {fileID: 0}
+    - target: {fileID: 9150251824016508006, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9150251824016508006, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9150251824016508006, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9150251824016508006, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9173897955583598746, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
       propertyPath: m_Pivot.x
