@@ -49,6 +49,8 @@ public class Room : MonoBehaviour
 
     private List<Monster> activeMonsters = new List<Monster>();
 
+    public event Action<Monster> OnBossSpawn;
+
     public bool IsPlayerIn { get => isPlayerIn; }
     public bool CanOpenDoor { get => canOpenDoor; }
 
@@ -72,6 +74,8 @@ public class Room : MonoBehaviour
         isPlayerIn = true;
 
         this.player = player;
+
+        GameManager.Instance.InitCurrentRoom(this);
 
         if (monsterSpawner != null)
         {
@@ -151,6 +155,10 @@ public class Room : MonoBehaviour
         if (!activeMonsters.Contains(monster))
         {
             activeMonsters.Add(monster);
+            if (monster.MonsterData.tier == MonsterTier.Boss)
+            {
+                OnBossSpawn?.Invoke(monster);
+            }
         }
     }
 

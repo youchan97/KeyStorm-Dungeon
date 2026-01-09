@@ -35,6 +35,7 @@ public abstract class Monster : Character
     public abstract CharacterState<Monster> CreateDieState();
 
     public event Action OnMonsterDied;
+    public event Action OnTakeDamage;
     
     public Room MyRoom { get; set; }
 
@@ -132,6 +133,10 @@ public abstract class Monster : Character
     {
         base.TakeDamage(damage);
         animator.SetTrigger(HurtAnim);
+        if (MonsterData.tier == MonsterTier.Boss)
+        {
+            OnTakeDamage?.Invoke();
+        }
     }
 
     public override void Die()
