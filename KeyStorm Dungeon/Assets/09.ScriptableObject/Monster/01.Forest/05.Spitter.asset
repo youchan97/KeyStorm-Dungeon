@@ -22,7 +22,7 @@ MonoBehaviour:
   detectRange: 14
   targetDistance: 7
   tier: 0
-  shotSpeed: 3.5
+  shotSpeed: 5
   attackSpeed: 3
   projectileColliderOffset: {x: 0, y: 0}
   projectileColliderRadius: 0.25
