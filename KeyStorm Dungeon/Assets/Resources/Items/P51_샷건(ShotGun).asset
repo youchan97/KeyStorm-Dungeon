@@ -15,7 +15,7 @@ MonoBehaviour:
   itemId: P51
   itemName: "\uC0F7\uAC74"
   itemEnglishName: ShotGun
-  description: 
+  description: "\uACF5\uACA9\uBC1C\uC218 x5 \\n \uACF5\uACA9\uC18D\uB3C4 x0.2"
   worldSprite: {fileID: 1193731234, guid: bb5eaa6dfbb17fa4eac4bd261b60b138, type: 3}
   iconSprite: {fileID: 1193731234, guid: bb5eaa6dfbb17fa4eac4bd261b60b138, type: 3}
   attackChange: 1
