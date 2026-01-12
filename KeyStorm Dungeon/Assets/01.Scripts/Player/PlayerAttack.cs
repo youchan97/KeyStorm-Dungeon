@@ -129,7 +129,7 @@ public class PlayerAttack : MonoBehaviour
         DamageMultiple = data.damageMultiple;
         SpecialDamageMultiple = data.specialDamageMultiple;
         AttackSpeedMultiple = data.attackSpeedMultiple;
-        AttackSpeed = 1/data.attackSpeed*AttackSpeedMultiple;
+        AttackSpeed = 1/(data.attackSpeed*AttackSpeedMultiple);
         Range = data.range;
         RangeMultiple = data.rangeMultiple;
         ShootSpeed = data.shootSpeed;
@@ -585,7 +585,7 @@ public class PlayerAttack : MonoBehaviour
         SpecialDamageMultiple = data.specialDamageMultiple;
         DamageMultiple = data.damageMultiple;
         AttackSpeedMultiple = data.attackSpeedMultiple;
-        AttackSpeed = player.PlayerEffectStat.GetAttackSpeed(1 / data.attackSpeed*AttackSpeedMultiple);
+        AttackSpeed = player.PlayerEffectStat.GetAttackSpeed(1 / (data.attackSpeed*AttackSpeedMultiple));
         RangeMultiple = data.rangeMultiple;
         Range = player.PlayerEffectStat.GetRange(data.range * RangeMultiple);
         ShootSpeed = player.PlayerEffectStat.GetShotSpeed;
