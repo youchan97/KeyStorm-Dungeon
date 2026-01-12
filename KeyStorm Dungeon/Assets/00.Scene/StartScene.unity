@@ -328,6 +328,10 @@ PrefabInstance:
       propertyPath: isCheatMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 81379983088076664, guid: cd80d71101dc86540aa4e44f1fee74d1, type: 3}
+      propertyPath: roomChangeEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 963ba103a3e1e4b4ba98678febb031d3, type: 2}
     - target: {fileID: 1476054276389039121, guid: cd80d71101dc86540aa4e44f1fee74d1, type: 3}
       propertyPath: m_Name
       value: GameManger

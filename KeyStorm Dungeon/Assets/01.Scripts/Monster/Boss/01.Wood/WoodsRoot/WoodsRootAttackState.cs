@@ -34,6 +34,7 @@ public class WoodsRootAttackState : MonsterAttackState
     public override void ExitState()
     {
         base.ExitState();
+        animator.ResetTrigger(AttackAnim);
     }
 
     public override bool UseFixedUpdate()

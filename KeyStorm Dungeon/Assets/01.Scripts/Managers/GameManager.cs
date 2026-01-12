@@ -30,7 +30,8 @@ public class GameManager : SingletonManager<GameManager>
 
     private Room currentRoom;
     public Room CurrentRoom => currentRoom;
-    public event Action<Room> OnRoomChanged;
+
+    [SerializeField] private RoomChangeEvent roomChangeEvent;
 
     protected override void Awake()
     {
@@ -136,7 +137,7 @@ public class GameManager : SingletonManager<GameManager>
         if (currentRoom != room)
         {
             currentRoom = room;
-            OnRoomChanged?.Invoke(currentRoom);
+            roomChangeEvent?.RoomChange(currentRoom);
         }
     }
 }

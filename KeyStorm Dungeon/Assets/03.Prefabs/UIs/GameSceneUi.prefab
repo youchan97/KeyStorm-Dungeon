@@ -3471,6 +3471,7 @@ MonoBehaviour:
   bossHpBarUI: {fileID: 4693454531127502876, guid: 0b71f91a49c5ebd4da1449722febf22d, type: 3}
   bossHpBarLayout: {fileID: 3463246886144797168}
   player: {fileID: 0}
+  roomChangeEvent: {fileID: 11400000, guid: 963ba103a3e1e4b4ba98678febb031d3, type: 2}
 --- !u!1 &7073253783467694729
 GameObject:
   m_ObjectHideFlags: 0
