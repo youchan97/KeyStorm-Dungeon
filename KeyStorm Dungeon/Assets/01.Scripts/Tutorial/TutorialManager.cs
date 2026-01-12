@@ -101,6 +101,7 @@ public class TutorialManager : MonoBehaviour
 
     public void NextPage()
     {
+        AudioManager.Instance.PlayButton();
         if (currentPageIndex < tutorialData.pages.Count - 2)
         {
             currentPageIndex += 2;
@@ -110,6 +111,7 @@ public class TutorialManager : MonoBehaviour
 
     public void PreviousPage()
     {
+        AudioManager.Instance.PlayButton();
         if (currentPageIndex >= 2)
         {
             currentPageIndex -= 2;
@@ -122,7 +124,7 @@ public class TutorialManager : MonoBehaviour
         isTutorialActive = false;
         tutorialUI.HideTutorial();
         Time.timeScale = 1f;
-
+        AudioManager.Instance.PlayButton();
         if (playerController != null)
         {
             playerController.AllEnable();

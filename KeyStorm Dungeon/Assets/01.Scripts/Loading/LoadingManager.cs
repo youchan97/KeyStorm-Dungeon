@@ -63,6 +63,7 @@ public class LoadingManager : MonoBehaviour
     public static void LoadScene(string sceneName)
     {
         nextSceneName = sceneName;
+        AudioManager.Instance.StopBgm();
         SceneManager.LoadScene(LoadingScene);
     }
 }

@@ -2,12 +2,17 @@ using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static ConstValue;
 public class GameManager : SingletonManager<GameManager>
 {
+#if UNITY_WEBGL && !UNITY_EDITOR
+    [DllImport("__Internal")]
+    private static extern void ExitGameWeb();
+#endif
     bool isCheatMode;
 
     SaveLoadManager saveLoadManager;
@@ -66,7 +71,7 @@ public class GameManager : SingletonManager<GameManager>
 
     public void Pause()
     {
-        audioManager.AllStopAudio();
+        audioManager.AllStopSfxLoop();
         isStart = false;
         isPaused = true;
         Time.timeScale = 0f;
@@ -93,6 +98,8 @@ public class GameManager : SingletonManager<GameManager>
         saveLoadManager.SaveDatas();
 #if UNITY_EDITOR
         EditorApplication.isPlaying = false;
+#elif UNITY_WEBGL
+        ExitGameWeb();
 #else
         Application.Quit();
 #endif
@@ -106,7 +113,7 @@ public class GameManager : SingletonManager<GameManager>
         isGameCleared = false; 
         currentStage = 1;
         InitializeRunData();
-        audioManager.AllStopAudio();
+        audioManager.AllStopSfxLoop();
         LoadingManager.LoadScene(StartScene);
     }
 
@@ -119,7 +126,7 @@ public class GameManager : SingletonManager<GameManager>
 
 
         stageDataManager.SelectDifficulty(stageDataManager.CurrentDifficulty);
-        audioManager.AllStopAudio();
+        audioManager.AllStopSfxLoop();
         LoadingManager.LoadScene(GameScene);
     }
 
@@ -134,7 +141,7 @@ public class GameManager : SingletonManager<GameManager>
 
         currentStage++;
         stageDataManager.NextStage();
-        audioManager.AllStopAudio();
+        audioManager.AllStopSfxLoop();
         LoadingManager.LoadScene(GameScene);
     }
 

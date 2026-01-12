@@ -111,9 +111,13 @@ public class AudioManager : SingletonManager<AudioManager>
         saveLoadManager.datas.soundData.sfxVolume = value;
     }
 
-    public void AllStopAudio()
+    public void StopBgm()
     {
         bgmAudio.Stop();
+    }
+
+    public void AllStopSfxLoop()
+    {
         sfxPoolManager.AllStopLoop();
     }
 }

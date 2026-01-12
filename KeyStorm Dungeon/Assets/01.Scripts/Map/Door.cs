@@ -87,6 +87,7 @@ public class Door : MonoBehaviour
 
     public void ClearDoor()
     {
-        anim.SetBool(DoorAnim, true);
+        if(wallSprite.enabled)
+            anim.SetBool(DoorAnim, true);
     }
 }
