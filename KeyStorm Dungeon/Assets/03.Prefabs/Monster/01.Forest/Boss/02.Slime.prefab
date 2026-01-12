@@ -196,12 +196,12 @@ MonoBehaviour:
     m_Bits: 8
   animator: {fileID: 4571498730892714347}
   isKnockBack: 0
-  idleTime: 2
-  moveDelay: 1
+  idleTime: 1
+  moveDelay: 0.5
   moveNumber: 4
   shootPoint: {fileID: 715882086872492290}
   projectile: {fileID: 21300000, guid: 65200d9aa690e444b9c961f7029724e1, type: 3}
-  slamDelay: 1
+  slamDelay: 0.7
   slamAngle: 90
   projectileCount: 5
   projectileLifeTime: 10
@@ -216,7 +216,7 @@ MonoBehaviour:
   shadowOffset: 0
   maxShadowDuration: 0.5
   diveAttackRange: 1.5
-  diveAttackDelay: 2
+  diveAttackDelay: 1
 --- !u!1 &5281970352055342687
 GameObject:
   m_ObjectHideFlags: 0

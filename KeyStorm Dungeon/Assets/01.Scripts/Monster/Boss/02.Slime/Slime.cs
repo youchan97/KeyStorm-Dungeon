@@ -4,9 +4,9 @@ using UnityEngine;
 public class Slime : MeleeMonster
 {
     [SerializeField] private float idleTime; // Idle상태에 머무르는 시간
-    [SerializeField] private float moveDelay;
 
     [Header("이동 패턴 수치")]
+    [SerializeField] private float moveDelay;
     [SerializeField] private int moveNumber;    // 움직일 횟수
 
     [Header("내려찍기 패턴 수치")]
