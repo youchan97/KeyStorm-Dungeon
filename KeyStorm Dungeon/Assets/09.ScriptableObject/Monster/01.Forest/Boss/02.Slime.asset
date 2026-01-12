@@ -32,8 +32,8 @@ MonoBehaviour:
   separationWeight: 0
   maxSteeringForce: 0
   mass: 0
-  minDropGold: 50
-  maxDropGold: 60
+  minDropGold: 140
+  maxDropGold: 160
   minStage: 0
   maxStage: 0
   xScale: 1
