@@ -47,7 +47,7 @@ MonoBehaviour:
   pools:
   - poolName: GoldItem
     prefab: {fileID: 34392368850934829, guid: 0b6b3d71403fe504eb8470c1d12572d9, type: 3}
-    initialSize: 100
+    initialSize: 300
   - poolName: BombItem
     prefab: {fileID: 3682559147175356916, guid: 59c008bda9fa9e34d831e7b5272c155b, type: 3}
     initialSize: 20
