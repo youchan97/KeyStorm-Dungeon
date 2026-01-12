@@ -14,13 +14,14 @@ public class SfxPool : MonoBehaviour
         poolManager = SfxPoolManager.Instance;
     }
 
-    public bool PlaySfx(AudioClip clip, float volume, bool isButton = false)
+    public bool PlaySfx(AudioClip clip, float volume, bool isButton = false, bool isLoop = false)
     {
         if (clip == null) return false;
 
         if(isButton == false)
         {
-            if (!poolManager.TryRegister(clip)) return false;
+            if (!poolManager.TryRegister(clip, isLoop))
+                return false;
         }
 
         sfxAudio.ignoreListenerPause = isButton;
@@ -32,6 +33,7 @@ public class SfxPool : MonoBehaviour
         sfxAudio.Play();
 
         StartCoroutine(WaitReturnPool(isButton));
+
         return true;
     }
     IEnumerator WaitReturnPool(bool isButton = false)
@@ -40,12 +42,18 @@ public class SfxPool : MonoBehaviour
             yield return new WaitForSecondsRealtime(sfxAudio.clip.length);
         else
             yield return new WaitForSeconds(sfxAudio.clip.length);
+        ResetSfx();
+    }
+
+    void ResetSfx()
+    {
         poolManager.Unregister(currentClip);
         currentClip = null;
         sfxAudio.loop = false;
         sfxAudio.ignoreListenerPause = false;
         poolManager.ReturnObject(this);
     }
+
 
     public void PlayLoopSfx(AudioClip clip, float volume)
     {

@@ -173,7 +173,7 @@ public class ResultManager : MonoBehaviour
     public void OnRetryClicked()
     {
         Debug.Log("[ResultManager] Retry 버튼 클릭됨");
-
+        AudioManager.Instance.PlayButton();
         if (GameDataManager.Instance != null)
         {
             GameDataManager.Instance.ResetAllData();
@@ -191,6 +191,7 @@ public class ResultManager : MonoBehaviour
 
     public void OnExitClicked()
     {
+        AudioManager.Instance.PlayButton();
         Debug.Log("[ResultManager] Exit 버튼 클릭됨");
 
         if (GameDataManager.Instance != null)

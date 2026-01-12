@@ -39,7 +39,7 @@ public class GoldPickup : MonoBehaviour
         if (inv == null) return;
 
         inv.AddGold(amount);
-        AudioManager.Instance.PlayEffect(GoldSfx);
+        AudioManager.Instance.PlayEffect(GoldSfx,false ,true);
         ResetGoldSetting();
         ItemDropManager.Instance.ReturnGoldPickup(this);
     }

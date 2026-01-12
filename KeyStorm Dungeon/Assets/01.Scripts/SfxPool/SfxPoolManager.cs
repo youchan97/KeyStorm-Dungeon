@@ -52,9 +52,9 @@ public class SfxPoolManager : SingletonManager<SfxPoolManager>
         sfx.gameObject.SetActive(false);
     }
 
-    public bool TryRegister(AudioClip clip)
+    public bool TryRegister(AudioClip clip, bool isLoop)
     {
-        if (playingClips.Contains(clip))
+        if (playingClips.Contains(clip) && isLoop)
             return false;
 
         playingClips.Add(clip);
@@ -84,5 +84,17 @@ public class SfxPoolManager : SingletonManager<SfxPoolManager>
 
         sfx.StopLoopSfx();
         playerLoopClips.Remove(audioName);
+    }
+
+    public void AllStopLoop()
+    {
+        if (playerLoopClips.Count == 0)
+            return;
+
+        foreach(SfxPool sfx in playerLoopClips.Values)
+        {
+            sfx.StopLoopSfx();
+        }
+        playerLoopClips.Clear();
     }
 }

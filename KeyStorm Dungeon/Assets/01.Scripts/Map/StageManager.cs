@@ -66,10 +66,12 @@ public class StageManager : MonoBehaviour
 
     private void Update()
     {
+#if UNITY_EDITOR
         if(Input.GetKeyDown(KeyCode.V))
         {
             GameManager.Instance.StageClear();
         }
+#endif
     }
 
     #region 스테이지 생성
