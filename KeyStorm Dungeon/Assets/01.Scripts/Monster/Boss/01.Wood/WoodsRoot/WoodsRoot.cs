@@ -5,11 +5,8 @@ public class WoodsRoot : MeleeMonster
     [SerializeField] private float attackRadius;
 
     [SerializeField] private float slashAttackCooldown;
-    private float currentSlashAttackCooldown;
 
-    private Wood wood;
-
-    public float CurrentSlashAttackCooldown => currentSlashAttackCooldown;
+    public float SlashAttackCooldown => slashAttackCooldown;
 
     private WoodsRootIdleState _idleState;
     private WoodsRootMoveState _moveState;
@@ -53,18 +50,11 @@ public class WoodsRoot : MeleeMonster
             PlayerTransform = PlayerGO.transform;
             player.OnDie += OnStopChase;
         }
-
-        currentSlashAttackCooldown = slashAttackCooldown;
     }
 
     protected override void Update()
     {
         base.Update();
-
-        if(currentSlashAttackCooldown > 0f)
-        {
-            currentSlashAttackCooldown -= Time.deltaTime;
-        }
     }
 
     void OnCollisionStay2D(Collision2D collision)

@@ -32,6 +32,8 @@ public class GameSceneUI : MonoBehaviour
 
     public HealthUI HealthUI { get => healthUI; }
 
+    [SerializeField] private RoomChangeEvent roomChangeEvent;
+
     private void Awake()
     {
         InitManager();
@@ -68,19 +70,21 @@ public class GameSceneUI : MonoBehaviour
     private void OnEnable()
     {
         Room.OnGameCleared += GameClear;
-        GameManager.Instance.OnRoomChanged += CurrentRoomChange;
+        roomChangeEvent.OnRoomChange += CurrentRoomChange;
     }
 
     private void OnDisable()
     {
         Room.OnGameCleared -= GameClear;
+
+        if (roomChangeEvent != null)
+        {
+            roomChangeEvent.OnRoomChange -= CurrentRoomChange;
+        }
+
         if (currentRoom != null)
         {
             currentRoom.OnBossSpawn -= CreateBossHpBar;
-        }
-        if (GameManager.Instance != null)
-        {
-            GameManager.Instance.OnRoomChanged -= CurrentRoomChange;
         }
 
         foreach (BossHpBar bossHpBar in bossHpBars)

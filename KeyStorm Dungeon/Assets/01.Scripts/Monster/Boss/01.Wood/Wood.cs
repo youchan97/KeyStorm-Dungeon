@@ -42,8 +42,6 @@ public class Wood : MeleeMonster
 
     private List<WoodsRoot> woodsroots = new List<WoodsRoot>();
 
-    private Vector2 currentDashDirection;
-
     #region 속성
     public float IdleTime => idleTime;
     public float MoveDelay => moveDelay;
@@ -66,7 +64,6 @@ public class Wood : MeleeMonster
     public float DiveYOffset => diveYOffset;
     public int SpawnRootQuantity => spawnRootQuantity;
     public float SpawnRootDuration => spawnRootDuration;
-    public GameObject WoodsRoot => woodsRoot;
     public float PlayerSearchTime => playerSearchTime;
     public bool IsDash { get; private set; }
     public float CurrentRootPatternCooldown { get; private set; }
@@ -74,7 +71,6 @@ public class Wood : MeleeMonster
 
     public event Action OnTakeOneStepAnimation;
     public event Action OnReadyToDashAnimation;
-    public event Action OnDashStop;
     public event Action OnJumpAnimation;
     public event Action OnTakeRootAnimation;
 

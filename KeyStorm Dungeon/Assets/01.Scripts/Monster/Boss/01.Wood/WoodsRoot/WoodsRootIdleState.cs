@@ -6,6 +6,7 @@ public class WoodsRootIdleState : MonsterIdleState
 
     private const string IdleAnim = "IsIdle";
 
+    private float currentSlashAttackCooldown;
     public WoodsRootIdleState(Monster character, CharacterStateManager<Monster> stateManager) : base(character, stateManager)
     {
         woodsRoot = character as WoodsRoot;
@@ -19,11 +20,14 @@ public class WoodsRootIdleState : MonsterIdleState
         }
 
         woodsRoot.Animator.SetBool(IdleAnim, true);
+        currentSlashAttackCooldown = woodsRoot.SlashAttackCooldown;
     }
 
     public override void UpdateState()
     {
-        if ( woodsRoot.CurrentSlashAttackCooldown <= 0)
+        currentSlashAttackCooldown -= Time.deltaTime;
+
+        if (currentSlashAttackCooldown <= 0f)
         {
             float distanceToPlayer = Vector2.Distance(woodsRoot.transform.position, woodsRoot.PlayerTransform.position);
 
