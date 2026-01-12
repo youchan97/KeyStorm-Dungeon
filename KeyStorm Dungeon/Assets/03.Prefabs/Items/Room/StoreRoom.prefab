@@ -702,10 +702,10 @@ MonoBehaviour:
   entries:
   - slot: {fileID: 5447432246701007619}
     type: 0
-    price: 2000
+    price: 1000
   - slot: {fileID: 4208702533150177149}
     type: 0
-    price: 2000
+    price: 1000
   - slot: {fileID: 646853690626193588}
     type: 1
     price: 100
