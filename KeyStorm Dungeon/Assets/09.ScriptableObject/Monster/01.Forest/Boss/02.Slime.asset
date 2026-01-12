@@ -17,7 +17,7 @@ MonoBehaviour:
     id: 12
     maxHp: 900
     damage: 1
-    moveSpeed: 8
+    moveSpeed: 10
   type: 0
   detectRange: 0
   targetDistance: 0

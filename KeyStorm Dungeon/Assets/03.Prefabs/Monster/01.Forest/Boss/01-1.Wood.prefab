@@ -233,7 +233,7 @@ MonoBehaviour:
   isKnockBack: 0
   idleTime: 1
   moveDelay: 1
-  attackDelay: 1.5
+  attackDelay: 1.3
   minFootStepCount: 1
   maxFootStepCount: 3
   damageLayers:
@@ -246,7 +246,6 @@ MonoBehaviour:
   hitToDashStopLayer:
     serializedVersion: 2
     m_Bits: 12928
-  detectStopDistance: 1.5
   woodCollider: {fileID: 7020390593097401809}
   jumpHeight: 50
   jumpDuration: 0.3
