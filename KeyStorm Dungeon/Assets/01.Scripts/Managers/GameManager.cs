@@ -107,7 +107,7 @@ public class GameManager : SingletonManager<GameManager>
         currentStage = 1;
         InitializeRunData();
         audioManager.AllStopAudio();
-        SceneManager.LoadScene(StartScene);
+        LoadingManager.LoadScene(StartScene);
     }
 
     public void RetryGame()
@@ -120,7 +120,7 @@ public class GameManager : SingletonManager<GameManager>
 
         stageDataManager.SelectDifficulty(stageDataManager.CurrentDifficulty);
         audioManager.AllStopAudio();
-        SceneManager.LoadScene(GameScene);
+        LoadingManager.LoadScene(GameScene);
     }
 
     public void StageClear()
@@ -135,7 +135,7 @@ public class GameManager : SingletonManager<GameManager>
         currentStage++;
         stageDataManager.NextStage();
         audioManager.AllStopAudio();
-        SceneManager.LoadScene(GameScene);
+        LoadingManager.LoadScene(GameScene);
     }
 
     public void InitCurrentRoom(Room room)

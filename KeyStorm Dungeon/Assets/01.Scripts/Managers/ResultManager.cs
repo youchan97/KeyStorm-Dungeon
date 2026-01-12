@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+using static ConstValue;
 public class ResultManager : MonoBehaviour
 {
     public static ResultManager Instance;
@@ -185,7 +185,7 @@ public class ResultManager : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            LoadingManager.LoadScene(GameScene);
         }
     }
 
@@ -205,7 +205,7 @@ public class ResultManager : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("StartScene");
+            LoadingManager.LoadScene(StartScene);
         }
     }
 
