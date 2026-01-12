@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UIElements;
-using UnityEngine.WSA;
 using static ConstValue;
 
 public class Player : Character
