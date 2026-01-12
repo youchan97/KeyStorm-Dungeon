@@ -18,7 +18,6 @@ public class Wood : MeleeMonster
     [Header("돌진 패턴 수치")]
     [SerializeField] private float dashMoveSpeed;
     [SerializeField] private LayerMask hitToDashStopLayer;
-    [SerializeField] private float detectStopDistance;
     [SerializeField] private Collider2D woodCollider;
 
     [Header("도약 패턴 수치")]
@@ -50,7 +49,6 @@ public class Wood : MeleeMonster
     public int MaxFootStepCount => maxFootStepCount;
     public float DashMoveSpeed => dashMoveSpeed;
     public LayerMask HitToDashStopLayer => hitToDashStopLayer;
-    public float DetectStopDistance => detectStopDistance;
     public Collider2D WoodCollider => woodCollider;
     public float JumpHeight => jumpHeight;
     public float JumpDuration => jumpDuration;
@@ -206,6 +204,10 @@ public class Wood : MeleeMonster
                         hitRoot.Die();
                         StopDash();
                     }
+                }
+                else
+                {
+                    StopDash();
                 }
             }
         }
