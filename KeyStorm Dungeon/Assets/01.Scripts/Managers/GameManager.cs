@@ -12,6 +12,7 @@ public class GameManager : SingletonManager<GameManager>
 
     SaveLoadManager saveLoadManager;
     StageDataManager stageDataManager;
+    AudioManager audioManager;
 
     private bool isStart;
     public bool isPaused;
@@ -53,6 +54,7 @@ public class GameManager : SingletonManager<GameManager>
     {
         saveLoadManager = SaveLoadManager.Instance;
         stageDataManager = StageDataManager.Instance;
+        audioManager = AudioManager.Instance;
     }
 
     public void GameStart()
@@ -64,6 +66,7 @@ public class GameManager : SingletonManager<GameManager>
 
     public void Pause()
     {
+        audioManager.AllStopAudio();
         isStart = false;
         isPaused = true;
         Time.timeScale = 0f;
@@ -103,7 +106,8 @@ public class GameManager : SingletonManager<GameManager>
         isGameCleared = false; 
         currentStage = 1;
         InitializeRunData();
-        SceneManager.LoadScene(StartScene);
+        audioManager.AllStopAudio();
+        LoadingManager.LoadScene(StartScene);
     }
 
     public void RetryGame()
@@ -115,7 +119,8 @@ public class GameManager : SingletonManager<GameManager>
 
 
         stageDataManager.SelectDifficulty(stageDataManager.CurrentDifficulty);
-        SceneManager.LoadScene(GameScene);
+        audioManager.AllStopAudio();
+        LoadingManager.LoadScene(GameScene);
     }
 
     public void StageClear()
@@ -129,7 +134,8 @@ public class GameManager : SingletonManager<GameManager>
 
         currentStage++;
         stageDataManager.NextStage();
-        SceneManager.LoadScene(GameScene);
+        audioManager.AllStopAudio();
+        LoadingManager.LoadScene(GameScene);
     }
 
     public void InitCurrentRoom(Room room)

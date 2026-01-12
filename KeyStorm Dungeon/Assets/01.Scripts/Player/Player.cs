@@ -205,9 +205,9 @@ public class Player : Character
         Hp = character.currentHp;
         GameSceneUI.HealthUI.SetHp(Hp);
 
+        audioManager.PlayEffect(PlayerHurtSfx);
         if (Hp > 0)
         {
-            audioManager.PlayEffect(PlayerHurtSfx);
             anim.SetTrigger(HurtAnim);
         }
         else

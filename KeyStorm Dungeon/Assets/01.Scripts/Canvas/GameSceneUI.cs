@@ -262,6 +262,7 @@ public class GameSceneUI : MonoBehaviour
 
     public void GameOver()
     {
+        audioManager.AllStopAudio();
         audioManager.PlayBgm(GameOverBgm);
 
         if (ResultManager.Instance != null)
@@ -276,7 +277,8 @@ public class GameSceneUI : MonoBehaviour
 
     public void GameClear()
     {
-        audioManager.PlayBgm(GameOverBgm);
+        audioManager.AllStopAudio();
+        audioManager.PlayBgm(ClearBgm);
 
         if (ResultManager.Instance != null)
         {

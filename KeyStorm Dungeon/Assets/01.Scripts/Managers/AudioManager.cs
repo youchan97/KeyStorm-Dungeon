@@ -61,7 +61,7 @@ public class AudioManager : SingletonManager<AudioManager>
     }
 
 
-    public void PlayEffect(string audioName, bool isButton = false)
+    public void PlayEffect(string audioName, bool isButton = false, bool isLoop = false)
     {
         if (!sfxClips.ContainsKey(audioName)) return;
 
@@ -71,7 +71,7 @@ public class AudioManager : SingletonManager<AudioManager>
 
         AudioClip sfxClip = sfxClips[audioName][clipIndex];
         var sfx = sfxPoolManager.GetObject();
-        if(!sfx.PlaySfx(sfxClip, sfxVolume, isButton))
+        if(!sfx.PlaySfx(sfxClip, sfxVolume, isButton, isLoop))
         {
             sfxPoolManager.ReturnObject(sfx);
         }
@@ -109,5 +109,11 @@ public class AudioManager : SingletonManager<AudioManager>
         if (saveLoadManager == null) return;
 
         saveLoadManager.datas.soundData.sfxVolume = value;
+    }
+
+    public void AllStopAudio()
+    {
+        bgmAudio.Stop();
+        sfxPoolManager.AllStopLoop();
     }
 }

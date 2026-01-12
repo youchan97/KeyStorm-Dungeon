@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+using static ConstValue;
 public class ResultManager : MonoBehaviour
 {
     public static ResultManager Instance;
@@ -173,7 +173,7 @@ public class ResultManager : MonoBehaviour
     public void OnRetryClicked()
     {
         Debug.Log("[ResultManager] Retry 버튼 클릭됨");
-
+        AudioManager.Instance.PlayButton();
         if (GameDataManager.Instance != null)
         {
             GameDataManager.Instance.ResetAllData();
@@ -185,12 +185,13 @@ public class ResultManager : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            LoadingManager.LoadScene(GameScene);
         }
     }
 
     public void OnExitClicked()
     {
+        AudioManager.Instance.PlayButton();
         Debug.Log("[ResultManager] Exit 버튼 클릭됨");
 
         if (GameDataManager.Instance != null)
@@ -204,7 +205,7 @@ public class ResultManager : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("StartScene");
+            LoadingManager.LoadScene(StartScene);
         }
     }
 
