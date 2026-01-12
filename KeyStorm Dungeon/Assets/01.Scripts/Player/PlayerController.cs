@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
     {
         InitInput();
         InitAction();
-        AllEnable();
+        //AllEnable();
         Room.OnGameCleared += AllDisable;
     }
 

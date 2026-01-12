@@ -27,8 +27,64 @@ public class TutorialManager : MonoBehaviour
 
     private void Start()
     {
-        playerController = FindObjectOfType<PlayerController>();
+        /*string currentScene = SceneManager.GetActiveScene().name;
+        string hasSeenKey = tutorialData.hasSeenKey;
+        int seenValue = PlayerPrefs.GetInt(hasSeenKey, 0);
+        int gameStarted = PlayerPrefs.GetInt(GAME_STARTED_KEY, 0);
 
+        Debug.Log($"현재 씬: {currentScene}");
+        Debug.Log($"게임 시작됨: {gameStarted}");
+
+        // 게임이 이미 시작됐으면 튜토리얼 스킵
+        if (gameStarted == 1)
+        {
+            Debug.Log("게임 진행 중 - 튜토리얼 건너뛰기");
+            tutorialUI.HideTutorial();
+
+            if (playerController != null)
+            {
+                playerController.AllEnable();
+            }
+
+            StartGame();
+            return;
+        }
+
+        // 이미 봤으면 스킵
+        if (seenValue == 1)
+        {
+            Debug.Log("튜토리얼 이미 봄");
+            tutorialUI.HideTutorial();
+
+            if (playerController != null)
+            {
+                playerController.AllEnable();
+            }
+
+            PlayerPrefs.SetInt(GAME_STARTED_KEY, 1);
+            PlayerPrefs.Save();
+
+            StartGame();
+            return;
+        }
+
+        // 처음이면 튜토리얼 시작
+        isFirstTimePlaying = true;
+
+        if (showOnStart)
+        {
+            ShowTutorial();
+        }
+        else
+        {
+            tutorialUI.HideTutorial();
+            StartGame();
+        }*/
+    }
+
+    public void SetTutorial(PlayerController playerController)
+    {
+        this.playerController = playerController;
         string currentScene = SceneManager.GetActiveScene().name;
         string hasSeenKey = tutorialData.hasSeenKey;
         int seenValue = PlayerPrefs.GetInt(hasSeenKey, 0);
@@ -94,8 +150,10 @@ public class TutorialManager : MonoBehaviour
         {
             playerController.AllDisable();
         }
+        else
+            Debug.Log("플레이어컨트롤러 없음");
 
-        UpdatePage();
+            UpdatePage();
         onTutorialStart?.Invoke();
     }
 
@@ -129,6 +187,8 @@ public class TutorialManager : MonoBehaviour
         {
             playerController.AllEnable();
         }
+        else
+            Debug.Log("플레이어컨트롤러 없음");
 
         PlayerPrefs.SetInt(tutorialData.hasSeenKey, 1);
         PlayerPrefs.SetInt(GAME_STARTED_KEY, 1);

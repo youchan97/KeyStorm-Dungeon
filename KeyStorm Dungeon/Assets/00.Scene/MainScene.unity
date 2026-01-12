@@ -1347,6 +1347,7 @@ MonoBehaviour:
   vCam: {fileID: 893130340}
   minimapCameraManager: {fileID: 401985101}
   gameSceneUI: {fileID: 7603790901816875767}
+  tutorialManager: {fileID: 930573623}
 --- !u!4 &1142395049
 Transform:
   m_ObjectHideFlags: 0
