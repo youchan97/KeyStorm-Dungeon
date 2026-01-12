@@ -61,21 +61,6 @@ public class WoodAttackState : MonsterAttackState
     {
         if (wood.IsDash)
         {
-            Vector2 raycastStartPosition = wood.WoodCollider.bounds.center;
-
-            RaycastHit2D hit = Physics2D.Raycast(
-                raycastStartPosition,
-                currentDashDirection,
-                wood.DetectStopDistance,
-                wood.HitToDashStopLayer
-            );
-
-            if (hit.collider != null)
-            {
-                wood.StopDash();
-                return;
-            }
-
             animator.SetFloat(AxisX, currentDashDirection.x);
             animator.SetFloat(AxisY, currentDashDirection.y);
             rb.velocity = currentDashDirection * wood.DashMoveSpeed;

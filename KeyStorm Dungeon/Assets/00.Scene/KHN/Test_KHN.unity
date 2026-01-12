@@ -2910,6 +2910,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3964013075468541387, guid: 8c5c352189084854ea6c822a04cbfd75, type: 3}
+      propertyPath: detectStopDistance
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7020390593097401809, guid: 8c5c352189084854ea6c822a04cbfd75, type: 3}
+      propertyPath: m_Radius
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 7330438918750988321, guid: 8c5c352189084854ea6c822a04cbfd75, type: 3}
+      propertyPath: m_Radius
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8835022527659985177, guid: 8c5c352189084854ea6c822a04cbfd75, type: 3}
       propertyPath: m_Name
       value: Wood
