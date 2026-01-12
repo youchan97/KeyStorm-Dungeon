@@ -10,6 +10,7 @@ public class WorldItemUIWidget : MonoBehaviour
     [Header("UI 요소")]
     [SerializeField] private Image itemIconImage;
     [SerializeField] private TMP_Text itemNameText;
+    [SerializeField] private TMP_Text tierText;
     [SerializeField] private TMP_Text statsText;
     [SerializeField] private TMP_Text descriptionText;
     [SerializeField] private Image background;
@@ -94,6 +95,13 @@ public class WorldItemUIWidget : MonoBehaviour
             }
         }
 
+
+        if(tierText != null)
+        {
+            tierText.text = string.Format("Tier : {0}", GetTierText(data.tier));
+            tierText.color = GetTierColor(data.tier);
+        }
+
         // 3. 스탯
         if (statsText != null)
         {
@@ -120,6 +128,19 @@ public class WorldItemUIWidget : MonoBehaviour
                 background.sprite = tierBg;
             }
         }
+    }
+
+    string GetTierText(ItemTier tier)
+    {
+        return tier switch
+        {
+            ItemTier.Tier0 => "Common",
+            ItemTier.Tier1 => "Uncommon",
+            ItemTier.Tier2 => "Rare",
+            ItemTier.Tier3 => "Epic",
+            ItemTier.Tier4 => "Legendary",
+            _ => "null"
+        };
     }
 
     private string BuildStatsText(ItemData data)

@@ -43,7 +43,7 @@ public class GameManager : SingletonManager<GameManager>
     {
         base.Awake();
 #if UNITY_EDITOR
-        isCheatMode = true;
+        //isCheatMode = true;
 #endif
         InitializeRunData();
     }

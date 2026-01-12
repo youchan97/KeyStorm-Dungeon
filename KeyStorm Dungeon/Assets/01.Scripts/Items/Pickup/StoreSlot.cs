@@ -262,6 +262,11 @@ public class StoreSlot : MonoBehaviour
         Clear();
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        ShowPrice();
+    }
+
     public void Clear()
     {
         if (spawnedObj != null) Destroy(spawnedObj);
