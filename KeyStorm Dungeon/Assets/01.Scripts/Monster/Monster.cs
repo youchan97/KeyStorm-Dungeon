@@ -8,9 +8,12 @@ public abstract class Monster : Character
     public CharacterStateManager<Monster> MonsterStateManager { get; protected set; }
     [SerializeField] private MonsterData _monsterData;
     [SerializeField] protected SpriteRenderer monsterSpriteRenderer;
+    [SerializeField] private Animator animator;
+
+    [Header("벽, 장애물 레이어")]
+    [SerializeField] protected LayerMask obstacleLayer;
 
     [Header("소환몹 소환 자리 유효성 검사")]
-    [SerializeField] protected LayerMask obstacleLayer;
     [SerializeField] protected float spawnCheckRadius;
 
     [Header("플레이어 레이어")]
@@ -19,7 +22,6 @@ public abstract class Monster : Character
     public MonsterData MonsterData => _monsterData;
     private Rigidbody2D monsterRb;
     public Rigidbody2D MonsterRb => monsterRb;
-    [SerializeField] private Animator animator;
     public Animator Animator => animator;
 
     public GameObject PlayerGO {  get; protected set; }

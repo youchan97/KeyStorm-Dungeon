@@ -89,7 +89,9 @@ public class Needlehog : RangerMonster
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Collision"))
+        GameObject currentGameObject = collision.gameObject;
+
+        if (((1 << currentGameObject.layer) & obstacleLayer) != 0)
         {
             OnWallOrCollisionHit?.Invoke(collision);
         }

@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 022c38624de0acc44ac949e934164ffb, type: 3}
-  m_Name: 02.SporeFlower
+  m_Name: 10.PillBug
   m_EditorClassIdentifier: 
   characterData:
-    charName: SporeFlower
-    id: 2
-    maxHp: 20
+    charName: PillBug
+    id: 10
+    maxHp: 25
     damage: 1
-    moveSpeed: 6
+    moveSpeed: 1.5
   type: 0
-  detectRange: 10
-  targetDistance: 10
-  tier: 0
-  shotSpeed: 1
-  attackSpeed: 2.5
+  detectRange: 7
+  targetDistance: 0
+  tier: 1
+  shotSpeed: 0
+  attackSpeed: 2
   projectileColliderOffset: {x: 0, y: 0}
   projectileColliderRadius: 0
   separationRaduis: 0
@@ -32,8 +32,8 @@ MonoBehaviour:
   separationWeight: 0
   maxSteeringForce: 0
   mass: 0
-  minDropGold: 30
-  maxDropGold: 40
+  minDropGold: 60
+  maxDropGold: 80
   minStage: 0
   maxStage: 0
   xScale: 1

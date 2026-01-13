@@ -76,7 +76,7 @@ public class AttackObj : MonoBehaviour
         bool isWall = ((1 << collision.gameObject.layer) & WallLayer) != 0;
         if(isWall || collision.CompareTag("Collision"))
         {
-            if(isPlayer)
+            if (isPlayer)
             {
                 PlayerEffect(vec);
             }

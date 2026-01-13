@@ -9,11 +9,6 @@ public class SpitterIdleState : MonsterIdleState
 
     public override void EnterState()
     {
-        if (character.MonsterRb != null)
-        {
-            character.MonsterRb.velocity = Vector2.zero;
-        }
-
         if (character.PlayerGO == null)
         {
             return;

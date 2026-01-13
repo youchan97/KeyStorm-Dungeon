@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using static ConstValue;
 
@@ -53,7 +52,7 @@ public class MonsterDieState : CharacterDieState<Monster>
         OnDeathDestroy();
     }
 
-    private void OnDeathDestroy()
+    protected void OnDeathDestroy()
     {
         character.InvokeOnMonsterDied();
 
