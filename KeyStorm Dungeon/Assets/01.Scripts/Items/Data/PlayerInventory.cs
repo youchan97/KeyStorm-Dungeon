@@ -46,8 +46,6 @@ public class PlayerInventory : MonoBehaviour
     {
         if (GameDataManager.Instance == null) return;
 
-        GameDataManager.Instance.SetTotalGold(gold);
-
         if (activeItem != null && activeItem.iconSprite != null)
         {
             AcquiredItemData itemData = new AcquiredItemData(activeItem.itemName, activeItem.iconSprite);
@@ -71,9 +69,9 @@ public class PlayerInventory : MonoBehaviour
         runData.UpdateGold(gold);
         player.GameSceneUI.UpdateGold();
 
-        if (GameDataManager.Instance != null)
+        if (GameDataManager.Instance != null && amount > 0) 
         {
-            GameDataManager.Instance.SetTotalGold(gold);
+            GameDataManager.Instance.AddGold(amount);
         }
     }
 
@@ -95,13 +93,9 @@ public class PlayerInventory : MonoBehaviour
     {
         if (amount <= 0) return true;
         if (gold < amount) return false;
+
         gold -= amount;
         player.GameSceneUI.UpdateGold();
-
-        if (GameDataManager.Instance != null)
-        {
-            GameDataManager.Instance.SetTotalGold(gold);
-        }
 
         return true;
     }
@@ -151,7 +145,6 @@ public class PlayerInventory : MonoBehaviour
 
         if (prefab == null)
         {
-            Debug.LogError("[PlayerInventory] defaultActivePickupPrefab가 비어있습니다.");
             return;
         }
 

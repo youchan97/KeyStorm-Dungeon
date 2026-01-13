@@ -6,9 +6,9 @@ public class GameDataManager : MonoBehaviour
 {
     public static GameDataManager Instance;
 
-    private int totalGold = 0;
+    private int totalGoldEarned = 0;
     private List<AcquiredItemData> acquiredItems = new List<AcquiredItemData>();
-    private HashSet<string> addedItemNames = new HashSet<string>(); 
+    private HashSet<string> addedItemNames = new HashSet<string>();
 
     void Awake()
     {
@@ -23,19 +23,14 @@ public class GameDataManager : MonoBehaviour
         }
     }
 
-    public void SetTotalGold(int gold)
-    {
-        totalGold = gold;
-    }
-
     public void AddGold(int amount)
     {
-        totalGold += amount;
+        totalGoldEarned += amount;
     }
 
     public int GetTotalGold()
     {
-        return totalGold;
+        return totalGoldEarned;
     }
 
     public void AddItem(AcquiredItemData item)
@@ -61,7 +56,7 @@ public class GameDataManager : MonoBehaviour
 
     public void ResetAllData()
     {
-        totalGold = 0;
+        totalGoldEarned = 0; 
         acquiredItems.Clear();
         addedItemNames.Clear();
 
