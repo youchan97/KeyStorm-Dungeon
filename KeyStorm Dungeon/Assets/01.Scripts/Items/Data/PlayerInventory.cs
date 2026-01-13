@@ -72,7 +72,6 @@ public class PlayerInventory : MonoBehaviour
         if (GameDataManager.Instance != null && amount > 0) 
         {
             GameDataManager.Instance.AddGold(amount);
-            Debug.Log($"[PlayerInventory] 골드 획득 기록: +{amount}G");
         }
     }
 
@@ -146,7 +145,6 @@ public class PlayerInventory : MonoBehaviour
 
         if (prefab == null)
         {
-            Debug.LogError("[PlayerInventory] defaultActivePickupPrefab가 비어있습니다.");
             return;
         }
 
