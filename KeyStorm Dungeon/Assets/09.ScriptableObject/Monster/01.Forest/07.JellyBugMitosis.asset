@@ -15,7 +15,7 @@ MonoBehaviour:
   characterData:
     charName: JellyBugMitosis
     id: 7
-    maxHp: 10
+    maxHp: 5
     damage: 1
     moveSpeed: 1
   type: 0

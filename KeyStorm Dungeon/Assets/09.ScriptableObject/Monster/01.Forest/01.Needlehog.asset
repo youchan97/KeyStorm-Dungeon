@@ -15,7 +15,7 @@ MonoBehaviour:
   characterData:
     charName: Needlehog
     id: 1
-    maxHp: 25
+    maxHp: 12
     damage: 1
     moveSpeed: 1
   type: 0

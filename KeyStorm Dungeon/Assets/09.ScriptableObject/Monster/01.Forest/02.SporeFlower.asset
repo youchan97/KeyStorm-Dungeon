@@ -15,7 +15,7 @@ MonoBehaviour:
   characterData:
     charName: SporeFlower
     id: 2
-    maxHp: 20
+    maxHp: 15
     damage: 1
     moveSpeed: 3
   type: 0

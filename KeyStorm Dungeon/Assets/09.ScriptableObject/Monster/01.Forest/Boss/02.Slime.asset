@@ -15,7 +15,7 @@ MonoBehaviour:
   characterData:
     charName: Slime
     id: 12
-    maxHp: 900
+    maxHp: 300
     damage: 1
     moveSpeed: 10
   type: 0

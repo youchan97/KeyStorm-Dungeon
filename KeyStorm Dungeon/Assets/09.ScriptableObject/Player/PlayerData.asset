@@ -16,13 +16,13 @@ MonoBehaviour:
     charName: "\uD50C\uB808\uC774\uC5B4"
     id: 0
     maxHp: 3
-    damage: 10
+    damage: 5
     moveSpeed: 7
   damageMultiple: 1
-  specialDamageMultiple: 3
+  specialDamageMultiple: 2
   attackSpeed: 0.5
   attackSpeedMultiple: 1
-  range: 3
+  range: 1
   rangeMultiple: 1
   shootSpeed: 10
   maxAmmo: 10
