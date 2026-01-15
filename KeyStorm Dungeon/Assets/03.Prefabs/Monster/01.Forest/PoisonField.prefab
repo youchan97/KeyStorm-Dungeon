@@ -67,8 +67,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0011479257, y: -0.0019050542}
-  m_Size: {x: 0.87, y: 0.45}
+  m_Offset: {x: 0.0011479337, y: 0.06419241}
+  m_Size: {x: 0.8700007, y: 0.42483273}
   m_Direction: 1
 --- !u!212 &7796384254379160891
 SpriteRenderer:
@@ -110,7 +110,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 249
+  m_SortingOrder: 230
   m_Sprite: {fileID: 21300000, guid: 2a7537634c5d96147b07cd4a22a320de, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -136,7 +136,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCooldown: 2
   poisonFieldDuration: 3
-  poolName: PoisonField
 --- !u!95 &8089110107643970410
 Animator:
   serializedVersion: 5

@@ -16,8 +16,8 @@ MonoBehaviour:
   itemName: "\uB300\uC6A9\uB7C9 \uD0C4\uCC3D"
   itemEnglishName: Extended Magazine
   description: 
-  worldSprite: {fileID: -1820471725, guid: 551bc46db93497c4d84566bc680339f0, type: 3}
-  iconSprite: {fileID: -1820471725, guid: 551bc46db93497c4d84566bc680339f0, type: 3}
+  worldSprite: {fileID: -1538055911, guid: 551bc46db93497c4d84566bc680339f0, type: 3}
+  iconSprite: {fileID: -1538055911, guid: 551bc46db93497c4d84566bc680339f0, type: 3}
   attackChange: 0
   isActiveItem: 0
   tier: 2

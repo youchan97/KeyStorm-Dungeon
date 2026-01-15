@@ -15,7 +15,7 @@ MonoBehaviour:
   characterData:
     charName: Needlehog
     id: 1
-    maxHp: 25
+    maxHp: 12
     damage: 1
     moveSpeed: 1
   type: 0
@@ -32,8 +32,8 @@ MonoBehaviour:
   separationWeight: 0
   maxSteeringForce: 0
   mass: 0
-  minDropGold: 40
-  maxDropGold: 50
+  minDropGold: 20
+  maxDropGold: 25
   minStage: 0
   maxStage: 0
   xScale: 1

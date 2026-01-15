@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dc7bbbfb59c2364cbe2072bd57550eb, type: 3}
   m_Name: "P37_\uAC00\uC2A4\uC870\uC808\uAE30(gas regulator)"
   m_EditorClassIdentifier: 
-  itemId: P37_()
+  itemId: P37
   itemName: "\uAC00\uC2A4\uC870\uC808\uAE30"
   itemEnglishName: Gas Regulator
   description: 
