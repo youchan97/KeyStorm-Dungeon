@@ -11,11 +11,11 @@ public class Slime : MeleeMonster
 
     [Header("내려찍기 패턴 수치")]
     [SerializeField] private Transform shootPoint;    // 탄막 생성 위치 내려찍기패턴과 도약패턴일 때의 위치가 다를듯
-    [SerializeField] private Sprite projectile;       // 탄막 이미지
+    [SerializeField] private Sprite bullet;       // 탄막 이미지
     [SerializeField] private float slamDelay;         // 패턴 수행 이후 후딜레이
     [SerializeField] private float slamAngle;         // 탄막 발사 각도
-    [SerializeField] private int projectileCount;     // 탄막 갯수
-    [SerializeField] private float projectileLifeTime;// 탄막 생존 시간
+    [SerializeField] private int bulletCount;     // 탄막 갯수
+    [SerializeField] private float bulletLifeTime;// 탄막 생존 시간
 
     [Header("도약 패턴 수치")]
     [SerializeField] private float jumpHeight;        // 점프 높이
@@ -68,8 +68,6 @@ public class Slime : MeleeMonster
     public event Action OnJumpMoveReadyAnimation;
     public event Action OnJumpMoveLandAnimation;
     public event Action OnJumpAnimation;
-
-
 
     private SlimeIdleState _idleState;
     private SlimeMoveState _moveState;
@@ -161,18 +159,17 @@ public class Slime : MeleeMonster
     public void OnSlamAttack()
     {
         Vector2 playerDirection = (PlayerTransform.position - transform.position).normalized;
-
         if (attackPoolManager == null) return;
 
         float halfAngle = slamAngle * 0.5f;
 
-        for (int i = 0; i < projectileCount; i++)
+        for (int i = 0; i < bulletCount; i++)
         {
-            float projectileAnglePart = (float)i / (projectileCount - 1);
-            float angle = Mathf.Lerp(-halfAngle, halfAngle, projectileAnglePart);
+            float bulletAnglePart = (float)i / (bulletCount - 1);
+            float angle = Mathf.Lerp(-halfAngle, halfAngle, bulletAnglePart);
 
             Vector3 rotateDirection = Quaternion.Euler(0, 0, angle) * (Vector3)playerDirection;
-            Vector2 projectileDirection = rotateDirection;
+            Vector2 bulletDirection = rotateDirection;
 
             AttackObj pooledAttackObject = attackPoolManager.GetObj();
             
@@ -182,7 +179,7 @@ public class Slime : MeleeMonster
             pooledAttackObject.transform.position = shootPoint.position;
             pooledAttackObject.transform.rotation = Quaternion.identity;
 
-            pooledAttackObject.InitData(projectile, Damage, projectileDirection, MonsterData.shotSpeed, projectileLifeTime, attackPoolManager, false, MonsterData.projectileColliderOffset, MonsterData.projectileColliderRadius);
+            pooledAttackObject.InitData(bullet, Damage, bulletDirection, MonsterData.shotSpeed, bulletLifeTime, attackPoolManager, false, MonsterData.projectileColliderOffset, MonsterData.projectileColliderRadius, null);
         }
     }
 
@@ -196,8 +193,7 @@ public class Slime : MeleeMonster
 
             pooledAttackObject.transform.position = shootPoint.position;
             pooledAttackObject.transform.rotation = Quaternion.identity;
-
-            pooledAttackObject.InitData(projectile, Damage, direction, MonsterData.shotSpeed, projectileLifeTime, attackPoolManager, false, MonsterData.projectileColliderOffset, MonsterData.projectileColliderRadius);
+            pooledAttackObject.InitData(bullet, Damage, direction, MonsterData.shotSpeed, bulletLifeTime, attackPoolManager, false, MonsterData.projectileColliderOffset, MonsterData.projectileColliderRadius, null);
         }
     }
 
