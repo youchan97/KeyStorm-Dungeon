@@ -31,15 +31,17 @@ public class Player : Character
     [SerializeField] float stepSize;
     [SerializeField] Transform foot;
 
-
     bool isMove;
     bool isInvincible;
     bool isDashing;
 
+    // ⭐ 튜토리얼용 추가
+    private bool canMove = true;
+
     public event Action OnDie;
 
     #region Property
-    public PlayerAttack PlayerAttack { get => playerAttack; private set=> playerAttack = value; }
+    public PlayerAttack PlayerAttack { get => playerAttack; private set => playerAttack = value; }
     public bool IsMove { get => isMove; private set => isMove = value; }
     public PlayerIdleState IdleState { get; private set; }
     public PlayerMoveState MoveState { get; private set; }
@@ -48,13 +50,12 @@ public class Player : Character
     public PlayerEffectStat PlayerEffectStat { get; private set; }
     public Rigidbody2D PlayerRb { get => playerRb; private set => playerRb = value; }
     public Animator Anim { get => anim; private set => anim = value; }
-    public Sprite Bullet { get => bullet;}
-    public Sprite SBullet { get => sBullet;}
-    public PlayerInventory Inventory { get => inventory;}
+    public Sprite Bullet { get => bullet; }
+    public Sprite SBullet { get => sBullet; }
+    public PlayerInventory Inventory { get => inventory; }
     public AudioManager AudioManager { get => audioManager; }
-    public PlayerSkill PlayerSkill { get => playerSkill;}
+    public PlayerSkill PlayerSkill { get => playerSkill; }
     public GameSceneUI GameSceneUI { get; set; }
-
     public EffectPoolManager EffectPoolManager { get; set; }
     public bool IsDashing { get => isDashing; set => isDashing = value; }
     #endregion
@@ -69,7 +70,13 @@ public class Player : Character
 
     protected override void Update()
     {
+        if (!canMove)
+        {
+            return;
+        }
+
         playerStateManager.Update();
+
         if (playerStateManager.CurState == MoveState)
         {
             HandleMoveEffect();
@@ -82,6 +89,15 @@ public class Player : Character
 
     protected override void FixedUpdate()
     {
+        if (!canMove)
+        {
+            if (playerRb != null)
+            {
+                playerRb.velocity = Vector2.zero;
+            }
+            return;
+        }
+
         playerStateManager.FixedUpdate();
     }
 
@@ -147,21 +163,42 @@ public class Player : Character
 
     void Shoot()
     {
+        if (!canMove) return;
+
         PlayerAttack.Shoot(playerController.KeyName);
         GameSceneUI.UpdateAmmo();
+
+        if (TutorialManager.Instance != null)
+        {
+            TutorialManager.Instance.OnAmmoUsed();
+        }
     }
 
     void Bomb()
     {
+        if (!canMove) return;
+
         PlayerAttack.HoldBomb();
         GameSceneUI.UpdateBomb();
+
+        if (TutorialManager.Instance != null)
+        {
+            TutorialManager.Instance.OnBombUsed();
+        }
     }
 
     void UseActiveItem()
     {
+        if (!canMove) return;
+
         if (inventory.activeItem == null) return;
 
         playerSkill.TrySkill(inventory.activeItem.skillType);
+
+        if (TutorialManager.Instance != null)
+        {
+            TutorialManager.Instance.OnSpecialAttackUsed();
+        }
     }
 
     void PausePlayer()
@@ -246,7 +283,7 @@ public class Player : Character
         GameSceneUI.UpdateAmmo();
         GameSceneUI.HealthUI.SetMaxHp(MaxHp);
         GameSceneUI.HealthUI.SetHp(Hp);
-        if(Hp <= 0)
+        if (Hp <= 0)
         {
             Die();
         }
@@ -257,7 +294,7 @@ public class Player : Character
         Vector2 boxSize = (Vector2)bounds.size + Vector2.one * magnetRangeMargin * 2f;
         Collider2D[] cols = Physics2D.OverlapBoxAll(bounds.center, boxSize, itemLayer);
 
-        foreach(Collider2D col in cols)
+        foreach (Collider2D col in cols)
         {
             GoldPickup gold = col.GetComponent<GoldPickup>();
             if (gold != null)
@@ -291,5 +328,22 @@ public class Player : Character
         Effect effect = EffectPoolManager.GetObj();
         effect.transform.position = (curPos);
         effect.InitData(EffectPoolManager, stepEffect, Vector2.zero, stepSize);
+    }
+
+    public void SetCanMove(bool value)
+    {
+        canMove = value;
+
+        if (!value && playerRb != null)
+        {
+            playerRb.velocity = Vector2.zero;
+        }
+
+        Debug.Log($"[Player] SetCanMove: {value}");
+    }
+
+    public bool CanMove()
+    {
+        return canMove;
     }
 }

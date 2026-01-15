@@ -13,7 +13,6 @@ public class PlayerSpawner : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera vCam;
     [SerializeField] MinimapCameraManager minimapCameraManager;
     [SerializeField] GameSceneUI gameSceneUI;
-    [SerializeField] TutorialManager tutorialManager;
 
     public void SpawnPlayer()
     {
@@ -27,7 +26,6 @@ public class PlayerSpawner : MonoBehaviour
         player.InitAttackPoolManager(attackPoolManager);
         player.EffectPoolManager = effectPoolManager;
         player.GameSceneUI = gameSceneUI;
-        tutorialManager.SetTutorial(player.PlayerController);
         CameraSetting(player);
         gameSceneUI.InitPlayerData(player);
     }
