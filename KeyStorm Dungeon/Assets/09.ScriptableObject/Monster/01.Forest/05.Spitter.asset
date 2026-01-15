@@ -15,7 +15,7 @@ MonoBehaviour:
   characterData:
     charName: Spitter
     id: 5
-    maxHp: 20
+    maxHp: 10
     damage: 1
     moveSpeed: 0
   type: 0
@@ -32,8 +32,8 @@ MonoBehaviour:
   separationWeight: 0
   maxSteeringForce: 0
   mass: 0
-  minDropGold: 30
-  maxDropGold: 40
+  minDropGold: 15
+  maxDropGold: 20
   minStage: 0
   maxStage: 0
   xScale: 1

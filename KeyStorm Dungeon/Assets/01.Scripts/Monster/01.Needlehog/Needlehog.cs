@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class Needlehog : RangerMonster
 {
-    [SerializeField] private float idleTime = 1.0f;
-    [SerializeField] private float moveTime = 3.0f;
-    [SerializeField] private float projectileLifeTime = 5f;
+    [SerializeField] private float idleTime;
+    [SerializeField] private float moveTime;
+    [SerializeField] private float projectileLifeTime;
 
     public float IdleTime => idleTime;
     public float MoveTime => moveTime;
@@ -83,13 +83,15 @@ public class Needlehog : RangerMonster
             pooledAttackObj.transform.position = shootPoint.position;
             pooledAttackObj.transform.rotation = rotation;
 
-            pooledAttackObj.InitData(bullet, Damage, dir, MonsterData.shotSpeed, projectileLifeTime, AttackPoolManager, false, MonsterData.projectileColliderOffset, MonsterData.projectileColliderRadius);
+            pooledAttackObj.InitData(bullet, Damage, dir, MonsterData.shotSpeed, projectileLifeTime, AttackPoolManager, false, MonsterData.projectileColliderOffset, MonsterData.projectileColliderRadius, null);
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Collision"))
+        GameObject currentGameObject = collision.gameObject;
+
+        if (((1 << currentGameObject.layer) & obstacleLayer) != 0)
         {
             OnWallOrCollisionHit?.Invoke(collision);
         }

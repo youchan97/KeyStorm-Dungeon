@@ -16,6 +16,7 @@ public class Player : Character
     [SerializeField] PlayerData data;
     [SerializeField] PlayerLimitData limitData;
     [SerializeField] PlayerSkill playerSkill;
+    [SerializeField] PlayerDotweenManager dotweenManager;
     PlayerRunData playerRunData;
     [SerializeField] Rigidbody2D playerRb;
     [SerializeField] Animator anim;
@@ -30,18 +31,17 @@ public class Player : Character
     [SerializeField] float stepDistance;
     [SerializeField] float stepSize;
     [SerializeField] Transform foot;
+    [SerializeField] GameObject playerSprite;
 
     bool isMove;
     bool isInvincible;
     bool isDashing;
 
-    // ⭐ 튜토리얼용 추가
-    private bool canMove = true;
-
     public event Action OnDie;
+    public event Action OnHit;
 
     #region Property
-    public PlayerAttack PlayerAttack { get => playerAttack; private set => playerAttack = value; }
+    public PlayerAttack PlayerAttack { get => playerAttack; private set=> playerAttack = value; }
     public bool IsMove { get => isMove; private set => isMove = value; }
     public PlayerIdleState IdleState { get; private set; }
     public PlayerMoveState MoveState { get; private set; }
@@ -50,14 +50,16 @@ public class Player : Character
     public PlayerEffectStat PlayerEffectStat { get; private set; }
     public Rigidbody2D PlayerRb { get => playerRb; private set => playerRb = value; }
     public Animator Anim { get => anim; private set => anim = value; }
-    public Sprite Bullet { get => bullet; }
-    public Sprite SBullet { get => sBullet; }
-    public PlayerInventory Inventory { get => inventory; }
+    public Sprite Bullet { get => bullet;}
+    public Sprite SBullet { get => sBullet;}
+    public PlayerInventory Inventory { get => inventory;}
     public AudioManager AudioManager { get => audioManager; }
-    public PlayerSkill PlayerSkill { get => playerSkill; }
+    public PlayerSkill PlayerSkill { get => playerSkill;}
     public GameSceneUI GameSceneUI { get; set; }
+
     public EffectPoolManager EffectPoolManager { get; set; }
     public bool IsDashing { get => isDashing; set => isDashing = value; }
+    public PlayerDotweenManager DotweenManager { get => dotweenManager;}
     #endregion
 
     protected override void Awake()
@@ -70,13 +72,7 @@ public class Player : Character
 
     protected override void Update()
     {
-        if (!canMove)
-        {
-            return;
-        }
-
         playerStateManager.Update();
-
         if (playerStateManager.CurState == MoveState)
         {
             HandleMoveEffect();
@@ -89,15 +85,6 @@ public class Player : Character
 
     protected override void FixedUpdate()
     {
-        if (!canMove)
-        {
-            if (playerRb != null)
-            {
-                playerRb.velocity = Vector2.zero;
-            }
-            return;
-        }
-
         playerStateManager.FixedUpdate();
     }
 
@@ -131,7 +118,7 @@ public class Player : Character
     {
         playerRunData = gameManager.PlayerRunData;
         InitCharRunData(playerRunData.character);
-        transform.localScale = new Vector3(playerRunData.xScale, playerRunData.yScale, transform.localScale.z);
+        playerSprite.transform.localScale = new Vector3(playerRunData.xScale, playerRunData.yScale, transform.localScale.z);
         PlayerAttack.InitPlayerAttack(playerRunData);
         PlayerEffectStat = new PlayerEffectStat(playerRunData, limitData);
         Inventory.InitInventory(playerRunData.inventory);
@@ -163,42 +150,21 @@ public class Player : Character
 
     void Shoot()
     {
-        if (!canMove) return;
-
         PlayerAttack.Shoot(playerController.KeyName);
         GameSceneUI.UpdateAmmo();
-
-        if (TutorialManager.Instance != null)
-        {
-            TutorialManager.Instance.OnAmmoUsed();
-        }
     }
 
     void Bomb()
     {
-        if (!canMove) return;
-
         PlayerAttack.HoldBomb();
         GameSceneUI.UpdateBomb();
-
-        if (TutorialManager.Instance != null)
-        {
-            TutorialManager.Instance.OnBombUsed();
-        }
     }
 
     void UseActiveItem()
     {
-        if (!canMove) return;
-
         if (inventory.activeItem == null) return;
 
         playerSkill.TrySkill(inventory.activeItem.skillType);
-
-        if (TutorialManager.Instance != null)
-        {
-            TutorialManager.Instance.OnSpecialAttackUsed();
-        }
     }
 
     void PausePlayer()
@@ -241,6 +207,7 @@ public class Player : Character
         GameSceneUI.HealthUI.SetHp(Hp);
 
         audioManager.PlayEffect(PlayerHurtSfx);
+        OnHit?.Invoke();
         if (Hp > 0)
         {
             anim.SetTrigger(HurtAnim);
@@ -277,13 +244,13 @@ public class Player : Character
         MaxHp = characterRunData.maxHp;
         Hp = Mathf.Clamp(characterRunData.currentHp, 0f, MaxHp);
         MoveSpeed = PlayerEffectStat.GetMoveSpeed;
-        transform.localScale = new Vector3(PlayerEffectStat.GetScaleX, PlayerEffectStat.GetScaleY, transform.localScale.z);
+        playerSprite.transform.localScale = new Vector3(PlayerEffectStat.GetScaleX, PlayerEffectStat.GetScaleY, playerSprite.transform.localScale.z);
         PlayerAttack.SyncPlayerAttackStat(runData);
 
         GameSceneUI.UpdateAmmo();
         GameSceneUI.HealthUI.SetMaxHp(MaxHp);
         GameSceneUI.HealthUI.SetHp(Hp);
-        if (Hp <= 0)
+        if(Hp <= 0)
         {
             Die();
         }
@@ -294,7 +261,7 @@ public class Player : Character
         Vector2 boxSize = (Vector2)bounds.size + Vector2.one * magnetRangeMargin * 2f;
         Collider2D[] cols = Physics2D.OverlapBoxAll(bounds.center, boxSize, itemLayer);
 
-        foreach (Collider2D col in cols)
+        foreach(Collider2D col in cols)
         {
             GoldPickup gold = col.GetComponent<GoldPickup>();
             if (gold != null)
@@ -328,22 +295,5 @@ public class Player : Character
         Effect effect = EffectPoolManager.GetObj();
         effect.transform.position = (curPos);
         effect.InitData(EffectPoolManager, stepEffect, Vector2.zero, stepSize);
-    }
-
-    public void SetCanMove(bool value)
-    {
-        canMove = value;
-
-        if (!value && playerRb != null)
-        {
-            playerRb.velocity = Vector2.zero;
-        }
-
-        Debug.Log($"[Player] SetCanMove: {value}");
-    }
-
-    public bool CanMove()
-    {
-        return canMove;
     }
 }

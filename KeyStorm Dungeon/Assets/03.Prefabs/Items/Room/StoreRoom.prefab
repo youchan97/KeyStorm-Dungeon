@@ -702,16 +702,16 @@ MonoBehaviour:
   entries:
   - slot: {fileID: 5447432246701007619}
     type: 0
-    price: 1000
+    price: 500
   - slot: {fileID: 4208702533150177149}
     type: 0
-    price: 1000
+    price: 500
   - slot: {fileID: 646853690626193588}
     type: 1
-    price: 100
+    price: 50
   - slot: {fileID: 1226610392462743941}
     type: 2
-    price: 100
+    price: 50
   passiveItemPickupPrefab: {fileID: 7977811986095973617, guid: f4f54a227936e174c95e23c270ceac0a, type: 3}
   activeItemPickupPrefab: {fileID: 6506968681589806263, guid: b1810c1278dc2274485094567ccde1d5, type: 3}
   bombDisplayPrefab: {fileID: 3682559147175356916, guid: 59c008bda9fa9e34d831e7b5272c155b, type: 3}

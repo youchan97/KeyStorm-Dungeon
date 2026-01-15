@@ -21,9 +21,13 @@ public class AttackObj : MonoBehaviour
 
     Coroutine coroutine;
 
+    public bool IsActive {  get; private set; }
+
     public void InitData(Sprite sprite, float value, Vector2 vec, float speed, float cool, AttackPoolManager manager, bool isPlayerAttack, Vector2 colliderOffset, float colliderRadius, AttackData attackData = null)
     {
-        if(attackData == null)
+        IsActive = true;
+
+        if (attackData == null)
             spriteRenderer.sprite = sprite;
         else
         {
@@ -42,7 +46,7 @@ public class AttackObj : MonoBehaviour
 
         isPlayer = isPlayerAttack;
         transform.right = dir;
-
+        
         StartDurate();
     }
 
@@ -76,7 +80,7 @@ public class AttackObj : MonoBehaviour
         bool isWall = ((1 << collision.gameObject.layer) & WallLayer) != 0;
         if(isWall || collision.CompareTag("Collision"))
         {
-            if(isPlayer)
+            if (isPlayer)
             {
                 PlayerEffect(vec);
             }
@@ -99,6 +103,7 @@ public class AttackObj : MonoBehaviour
         }
 
         character.TakeDamage(damage);
+
         poolManager.ReturnPool(this);
         
     }
@@ -107,6 +112,8 @@ public class AttackObj : MonoBehaviour
     {
         rb.velocity = Vector2.zero;
         anim.runtimeAnimatorController = defalutController;
+
+        IsActive = false;
     }
 
     void PlayerEffect(Vector3 vec)

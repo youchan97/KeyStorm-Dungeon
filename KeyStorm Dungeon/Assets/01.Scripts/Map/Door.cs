@@ -31,7 +31,10 @@ public class Door : MonoBehaviour
         if (room.CanOpenDoor) return;
 
         if(room.IsPlayerIn == false)
+        {
             anim.SetBool(DoorAnim, true);
+            AudioManager.Instance.PlayEffect(DoorSfx);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -51,6 +54,7 @@ public class Door : MonoBehaviour
         if (room.CanOpenDoor) return;
 
         anim.SetBool(DoorAnim, false);
+        AudioManager.Instance.PlayEffect(DoorSfx);
     }
 
     bool ColliderEnable()

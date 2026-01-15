@@ -44,3 +44,9 @@ MonoBehaviour:
   - audioKey: Dash
     audioClip:
     - {fileID: 8300000, guid: f7d4fdde17822864481872f23f5fd925, type: 3}
+  - audioKey: Door
+    audioClip:
+    - {fileID: 8300000, guid: 86b44dc7a8f10234dbbbec3915b21ea7, type: 3}
+  - audioKey: GetItem
+    audioClip:
+    - {fileID: 8300000, guid: fb131bb73c7e09f4b95fdc9329c7d9cc, type: 3}

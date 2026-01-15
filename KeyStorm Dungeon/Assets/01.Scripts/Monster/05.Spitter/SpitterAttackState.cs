@@ -9,7 +9,20 @@ public class SpitterAttackState : MonsterAttackState
 
     public override void EnterState()
     {
-        base.EnterState();
+        animator = character.Animator;
+
+        if (character.PlayerGO != null)
+        {
+            player = character.PlayerGO.GetComponent<Player>();
+            if (player == null)
+            {
+                Debug.LogError("MonsterAttackState: Player GameObject에 Player컴포넌트가 없음");
+            }
+        }
+        else
+        {
+            Debug.LogError("MonsterAttackState: Monster.playerGO가 할당되지 않음");
+        }
     }
 
     public override void UpdateState()

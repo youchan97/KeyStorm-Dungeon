@@ -8,7 +8,7 @@ public class PoolManager<T> : MonoBehaviour where T : MonoBehaviour
 
     [SerializeField] int poolSize;
 
-    Queue<T> queue = new Queue<T>();
+    protected Queue<T> queue = new Queue<T>();
 
     private void Start()
     {

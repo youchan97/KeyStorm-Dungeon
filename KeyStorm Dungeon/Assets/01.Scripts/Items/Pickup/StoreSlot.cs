@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using static ConstValue;
 
 [RequireComponent(typeof(Collider2D))]
 public class StoreSlot : MonoBehaviour
@@ -257,7 +258,7 @@ public class StoreSlot : MonoBehaviour
             inv.AddPassiveItem(itemData);
             player.UpdatePlayerData(itemData);
         }
-
+        AudioManager.Instance.PlayEffect(GetItemSfx);
         ItemPoolManager.Instance?.MarkAcquired(itemData);
         Clear();
     }

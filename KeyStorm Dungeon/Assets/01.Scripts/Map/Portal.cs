@@ -34,15 +34,15 @@ public class Portal : MonoBehaviour
         }
         else
         {
-            StartCoroutine(LoadNextStageWithDelay());
+            StartCoroutine(LoadNextStageWithDelay(player));
         }
     }
 
-    private IEnumerator LoadNextStageWithDelay()
+    private IEnumerator LoadNextStageWithDelay(Player player)
     {
         yield return new WaitForSeconds(0.1f);
 
-        GameManager.Instance.StageClear();
+        player.DotweenManager.PortalDotween(transform.position, player);
 
         yield return new WaitForSeconds(0.5f);
         isAnyPortalProcessing = false;

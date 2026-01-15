@@ -8,9 +8,12 @@ public abstract class Monster : Character
     public CharacterStateManager<Monster> MonsterStateManager { get; protected set; }
     [SerializeField] private MonsterData _monsterData;
     [SerializeField] protected SpriteRenderer monsterSpriteRenderer;
+    [SerializeField] private Animator animator;
+
+    [Header("벽, 장애물 레이어")]
+    [SerializeField] protected LayerMask obstacleLayer;
 
     [Header("소환몹 소환 자리 유효성 검사")]
-    [SerializeField] protected LayerMask obstacleLayer;
     [SerializeField] protected float spawnCheckRadius;
 
     [Header("플레이어 레이어")]
@@ -19,15 +22,14 @@ public abstract class Monster : Character
     public MonsterData MonsterData => _monsterData;
     private Rigidbody2D monsterRb;
     public Rigidbody2D MonsterRb => monsterRb;
-    [SerializeField] private Animator animator;
     public Animator Animator => animator;
 
     public GameObject PlayerGO {  get; protected set; }
     public Transform PlayerTransform { get; protected set; }
     public Player player { get; protected set; }
 
-    
-    [HideInInspector] public float CurrentAttackCooldown { get; protected set; }
+    protected float currentAttackCooldown;
+    public float CurrentAttackCooldown => currentAttackCooldown;
 
     public abstract CharacterState<Monster> CreateIdleState();
     public abstract CharacterState<Monster> CreateMoveState();
@@ -58,7 +60,7 @@ public abstract class Monster : Character
         if (_monsterData != null)
         {
             InitCharData(_monsterData.characterData);
-            CurrentAttackCooldown = 0f;
+            currentAttackCooldown = 0f;
             transform.localScale = new Vector3(_monsterData.xScale, _monsterData.yScale, 1f);
         }
         else
@@ -74,7 +76,6 @@ public abstract class Monster : Character
 
     protected virtual void Start()
     {
-        //PlayerGO = GameObject.FindGameObjectWithTag("Player");
         PlayerGO = player.gameObject;
         
         if (PlayerGO == null)
@@ -83,7 +84,6 @@ public abstract class Monster : Character
         }
         else
         {
-            //player = PlayerGO.GetComponent<Player>();
             PlayerTransform = PlayerGO.transform;
             player.OnDie += OnStopChase;
             MonsterStateManager.ChangeState(CreateIdleState());
@@ -100,9 +100,9 @@ public abstract class Monster : Character
     {
         MonsterStateManager.Update();
 
-        if (CurrentAttackCooldown > 0f)
+        if (currentAttackCooldown > 0f)
         {
-            CurrentAttackCooldown -= Time.deltaTime;
+            currentAttackCooldown -= Time.deltaTime;
         }
     }
 
@@ -121,7 +121,7 @@ public abstract class Monster : Character
     {
         if (_monsterData != null)
         {
-            CurrentAttackCooldown = _monsterData.attackSpeed;
+            currentAttackCooldown = _monsterData.attackSpeed;
         }
         else
         {
