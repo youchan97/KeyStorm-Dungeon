@@ -16,7 +16,7 @@ public class HurtStateBehaviour : StateMachineBehaviour
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.GetComponent<Player>().SetInvincible(false);
+        animator.GetComponentInParent<Player>().SetInvincible(false);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

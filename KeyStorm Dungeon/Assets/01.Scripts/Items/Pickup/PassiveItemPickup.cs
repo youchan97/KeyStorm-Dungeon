@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ConstValue;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -86,6 +87,7 @@ public class PassiveItemPickup : MonoBehaviour
 
         inv.AddPassiveItem(itemData);
         player.UpdatePlayerData(itemData);
+        AudioManager.Instance.PlayEffect(GetItemSfx);
         ItemPoolManager.Instance?.MarkAcquired(itemData);
 
         if (hasNotifiedUI)

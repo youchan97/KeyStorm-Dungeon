@@ -16,6 +16,7 @@ public class Player : Character
     [SerializeField] PlayerData data;
     [SerializeField] PlayerLimitData limitData;
     [SerializeField] PlayerSkill playerSkill;
+    [SerializeField] PlayerDotweenManager dotweenManager;
     PlayerRunData playerRunData;
     [SerializeField] Rigidbody2D playerRb;
     [SerializeField] Animator anim;
@@ -30,13 +31,14 @@ public class Player : Character
     [SerializeField] float stepDistance;
     [SerializeField] float stepSize;
     [SerializeField] Transform foot;
-
+    [SerializeField] GameObject playerSprite;
 
     bool isMove;
     bool isInvincible;
     bool isDashing;
 
     public event Action OnDie;
+    public event Action OnHit;
 
     #region Property
     public PlayerAttack PlayerAttack { get => playerAttack; private set=> playerAttack = value; }
@@ -57,6 +59,7 @@ public class Player : Character
 
     public EffectPoolManager EffectPoolManager { get; set; }
     public bool IsDashing { get => isDashing; set => isDashing = value; }
+    public PlayerDotweenManager DotweenManager { get => dotweenManager;}
     #endregion
 
     protected override void Awake()
@@ -115,7 +118,7 @@ public class Player : Character
     {
         playerRunData = gameManager.PlayerRunData;
         InitCharRunData(playerRunData.character);
-        transform.localScale = new Vector3(playerRunData.xScale, playerRunData.yScale, transform.localScale.z);
+        playerSprite.transform.localScale = new Vector3(playerRunData.xScale, playerRunData.yScale, transform.localScale.z);
         PlayerAttack.InitPlayerAttack(playerRunData);
         PlayerEffectStat = new PlayerEffectStat(playerRunData, limitData);
         Inventory.InitInventory(playerRunData.inventory);
@@ -204,6 +207,7 @@ public class Player : Character
         GameSceneUI.HealthUI.SetHp(Hp);
 
         audioManager.PlayEffect(PlayerHurtSfx);
+        OnHit?.Invoke();
         if (Hp > 0)
         {
             anim.SetTrigger(HurtAnim);
@@ -240,7 +244,7 @@ public class Player : Character
         MaxHp = characterRunData.maxHp;
         Hp = Mathf.Clamp(characterRunData.currentHp, 0f, MaxHp);
         MoveSpeed = PlayerEffectStat.GetMoveSpeed;
-        transform.localScale = new Vector3(PlayerEffectStat.GetScaleX, PlayerEffectStat.GetScaleY, transform.localScale.z);
+        playerSprite.transform.localScale = new Vector3(PlayerEffectStat.GetScaleX, PlayerEffectStat.GetScaleY, playerSprite.transform.localScale.z);
         PlayerAttack.SyncPlayerAttackStat(runData);
 
         GameSceneUI.UpdateAmmo();

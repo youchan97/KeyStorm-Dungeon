@@ -13,7 +13,7 @@ public class GameManager : SingletonManager<GameManager>
     [DllImport("__Internal")]
     private static extern void ExitGameWeb();
 #endif
-    bool isCheatMode;
+    [SerializeField] bool isCheatMode;
 
     SaveLoadManager saveLoadManager;
     StageDataManager stageDataManager;
@@ -42,8 +42,8 @@ public class GameManager : SingletonManager<GameManager>
     protected override void Awake()
     {
         base.Awake();
-#if UNITY_EDITOR
-        //isCheatMode = true;
+#if !UNITY_EDITOR
+        isCheatMode = false;
 #endif
         InitializeRunData();
     }

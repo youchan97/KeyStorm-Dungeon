@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using static ConstValue;
 
 public enum RoomType
 {
@@ -18,7 +19,6 @@ public class RoomNode
 {
     public Vector2Int gridPos;
     public RoomType type;
-    public GameObject roomGameObject;
 }
 
 public class Room : MonoBehaviour
@@ -74,6 +74,9 @@ public class Room : MonoBehaviour
         isPlayerIn = true;
 
         this.player = player;
+
+        if (roomType == RoomType.Boss)
+            AudioManager.Instance.PlayBgm(BossBgm);
 
         GameManager.Instance.InitCurrentRoom(this);
 
@@ -135,6 +138,8 @@ public class Room : MonoBehaviour
             OnGameCleared?.Invoke();
             return;
         }
+
+        AudioManager.Instance.PlayBgm(StageDataManager.Instance.BgmSetting());
 
         if (portal != null)
         {

@@ -1,23 +1,26 @@
+using Cinemachine;
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MinimapCameraManager : MonoBehaviour
 {
-    Transform target;
-
+    Player player;
 
     private void LateUpdate()
     {
-        if (target == null) return;
+        if (player == null) return;
 
-        Vector3 targetPos = target.position;
+        Vector3 targetPos = player.transform.position;
         targetPos.z = transform.position.z;
         transform.position = targetPos;
     }
 
-    public void SetTarget(Transform target)
+    public void SetTarget(Player player)
     {
-        this.target = target;
+        this.player = player;
     }
+
+    
 }
