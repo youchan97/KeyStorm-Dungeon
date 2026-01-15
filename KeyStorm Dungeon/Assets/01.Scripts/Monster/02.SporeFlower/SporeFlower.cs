@@ -75,6 +75,11 @@ public class SporeFlower : RangerMonster
 
     private void CheckHp()
     {
+        if (toxinCloudEffect != null && toxinCloudEffect.gameObject.activeInHierarchy)
+        {
+            toxinCloudEffect.EndToxinCloudEffect();
+        }
+
         float halfPercentHp = MaxHp * 0.5f;
 
         if (Hp <=  halfPercentHp && !_hasMoved)

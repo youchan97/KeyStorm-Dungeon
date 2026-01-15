@@ -7,7 +7,7 @@ public class BQueenMoveState : MonsterMoveState
 
     private Vector2 moveDirection;
     private float currentMoveTime;
-
+    
     public BQueenMoveState(Monster monster, CharacterStateManager<Monster> stateManager) : base(monster, stateManager)
     {
         bQueen = character as BQueen;
@@ -43,6 +43,11 @@ public class BQueenMoveState : MonsterMoveState
 
         if (currentMoveTime <= 0)
         {
+            if (bQueen.BWorkers.Count >= bQueen.MaxSpawnQuantity)
+            {
+                stateManager.ChangeState(bQueen.CreateIdleState());
+                return;
+            }
             stateManager.ChangeState(bQueen.CreateAttackState());
             return;
         }

@@ -4,23 +4,25 @@ using UnityEngine;
 
 public class BQueen : MeleeMonster
 {
-    [SerializeField] private float idleTime = 2f;
-    [SerializeField] private float moveTime = 5f;
+    [SerializeField] private float idleTime;
+    [SerializeField] private float moveTime;
 
     [Header("일벌 소환 관련 필드")]
     [SerializeField] private BWorker bWorkerPrefab;
     [SerializeField] private int initialBWorkerCount;
-    [SerializeField] private float spawnImpulseForce = 3f;
-    [SerializeField] private float spawnDuration = 0.5f;
-    [SerializeField] private float spawnRangeOffset = 0.5f;
-    [SerializeField] private int maxSpawnAttempts = 10;
-
+    [SerializeField] private float spawnImpulseForce;
+    [SerializeField] private float spawnDuration;
+    [SerializeField] private float spawnRangeOffset;
+    [SerializeField] private int maxSpawnAttempts;
+    [SerializeField] private int maxSpawnQuantity;
     public bool isDamaged = false;
 
     private List<BWorker> bWorkers = new List<BWorker>();
     public float IdleTime => idleTime;
     public float MoveTime => moveTime;
     public float SpawnRangeOffset => spawnRangeOffset;
+    public int MaxSpawnQuantity => maxSpawnQuantity;
+    public List<BWorker> BWorkers => bWorkers;
 
     private BQueenIdleState _idleState;
     private BQueenMoveState _moveState;

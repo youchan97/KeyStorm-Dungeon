@@ -8,6 +8,10 @@ public class BQueenAttackState : MonsterAttackState
 
     private Coroutine attackCoroutine;
 
+    #region 애니메이션
+    private const string spawnBWorker = "BQueen_SpawnBWorker";
+    #endregion
+
     public BQueenAttackState(Monster character, CharacterStateManager<Monster> stateManager) : base(character, stateManager)
     {
         bQueen = character as BQueen;
@@ -28,7 +32,7 @@ public class BQueenAttackState : MonsterAttackState
 
         animator.SetTrigger(AttackAnim);
 
-        float attackAnimationLength = GetAnimationClipLength("BQueen_SpawnBWorker");
+        float attackAnimationLength = GetAnimationClipLength(spawnBWorker);
 
         attackCoroutine = bQueen.StartCoroutine(WaitForAttackAnimation(attackAnimationLength));
     }

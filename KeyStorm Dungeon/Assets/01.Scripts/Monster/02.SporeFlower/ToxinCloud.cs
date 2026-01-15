@@ -49,7 +49,7 @@ public class ToxinCloud : MonoBehaviour
         canDamage = true;
     }
 
-    public void OnCloudAnimationEnd()
+    public void EndToxinCloudEffect()
     {
         canDamage = false;
 
