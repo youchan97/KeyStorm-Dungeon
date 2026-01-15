@@ -55,7 +55,6 @@ public class DialogueSystem : MonoBehaviour
         {
             Time.timeScale = 0f;
 
-            // 플레이어 입력 차단
             Player player = FindObjectOfType<Player>();
             if (player != null)
             {
