@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using static ConstValue;
 public class StageDataManager : SingletonManager<StageDataManager>
 {
     public StageSet easySet;
@@ -71,5 +71,20 @@ public class StageDataManager : SingletonManager<StageDataManager>
             StageDifficulty.Hard => hardSet,
             _ => easySet
         };
+    }
+
+    public string BgmSetting()
+    {
+        switch (CurrentDifficulty)
+        {
+            case StageDifficulty.Easy:
+                return EasyBgm;
+            case StageDifficulty.Normal:
+                return NormalBgm;
+            case StageDifficulty.Hard:
+                return HardBgm;
+            default:
+                return EasyBgm;
+        }
     }
 }

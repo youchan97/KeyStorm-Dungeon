@@ -40,6 +40,7 @@ public static class ConstValue
     public const string StartBgm = "StartBgm";
     public const string ClearBgm = "GameClear";
     public const string GameOverBgm = "GameOver";
+    public const string BossBgm = "BossBgm";
     #endregion
 
     #region SFX 관련
@@ -52,6 +53,8 @@ public static class ConstValue
     public const string PlayerMoveSfx = "PlayerMove";
     public const string PlayerHurtSfx = "PlayerHurt";
     public const string DashSfx = "Dash";
+    public const string GetItemSfx = "GetItem";
+    public const string DoorSfx = "Door";
     #endregion
 
     #region 게임 종료 관련

@@ -42,27 +42,14 @@ public class StageManager : MonoBehaviour
         stageDataManager = StageDataManager.Instance;
         stageData = stageDataManager.CurrentStageData;
 
-        AudioManager.Instance.PlayBgm(BgmSetting());
+        AudioManager.Instance.PlayBgm(stageDataManager.BgmSetting());
 
         GenerateRoomLayout();
         SpawnRooms();
         ConnectRooms();
     }
 
-    string BgmSetting()
-    {
-        switch(stageDataManager.CurrentDifficulty)
-        {
-            case StageDifficulty.Easy:
-                return EasyBgm;
-            case StageDifficulty.Normal:
-                return NormalBgm;
-            case StageDifficulty.Hard:
-                return HardBgm;
-            default:
-                return EasyBgm;
-        }
-    }
+    
 
     private void Update()
     {
