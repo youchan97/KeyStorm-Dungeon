@@ -25,3 +25,6 @@ MonoBehaviour:
   - audioKey: GameOver
     audioClip:
     - {fileID: 8300000, guid: 1f4d5accc00dcca48a35a9332975cca8, type: 3}
+  - audioKey: BossBgm
+    audioClip:
+    - {fileID: 8300000, guid: eb4a236e765ab6b4995106c1d4be9e96, type: 3}
