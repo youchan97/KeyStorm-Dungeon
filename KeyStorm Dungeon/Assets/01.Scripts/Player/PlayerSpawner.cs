@@ -14,6 +14,7 @@ public class PlayerSpawner : MonoBehaviour
     [SerializeField] MinimapCameraManager minimapCameraManager;
     [SerializeField] GameSceneUI gameSceneUI;
     [SerializeField] TutorialManager tutorialManager;
+    [SerializeField] CameraManager cameraManager;
 
     public void SpawnPlayer()
     {
@@ -36,6 +37,7 @@ public class PlayerSpawner : MonoBehaviour
     {
         vCam.LookAt = player.transform;
         vCam.Follow = player.transform;
-        minimapCameraManager.SetTarget(player.transform);
+        minimapCameraManager.SetTarget(player);
+        cameraManager.SetTarget(player);
     }
 }

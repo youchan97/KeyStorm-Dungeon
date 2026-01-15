@@ -62,4 +62,8 @@ public static class ConstValue
     #region Effect 관련
     public const float DefaultEffectSize = 1f;
     #endregion
+
+    #region DoTween 관련
+    public const int DefaultJumpCount = 1;
+    #endregion
 }
