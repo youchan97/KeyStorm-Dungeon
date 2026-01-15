@@ -238,7 +238,7 @@ public class StoreSlot : MonoBehaviour
             return;
         }
 
-        if (!isItemProduct) return;
+        //if (!isItemProduct) return;
 
         if (!inv.TrySpendGold(price))
         {
@@ -265,7 +265,14 @@ public class StoreSlot : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        ShowPrice();
+        Player player = collision.GetComponent<Player>();
+
+        if (player == null)
+            return;
+
+
+        if(priceText.color == Color.red)
+            priceText.color = Color.yellow;
     }
 
     public void Clear()
