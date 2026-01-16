@@ -1766,7 +1766,6 @@ MonoBehaviour:
   stepSize: 0.5
   foot: {fileID: 5060720974584978356}
   playerSprite: {fileID: 7391291682317436409}
-  playerUi: {fileID: 289486224862066317}
 --- !u!114 &4047890859375845602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2206,6 +2205,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpPower: 2
   duration: 1
+  playerUi: {fileID: 289486224862066317}
 --- !u!1 &7670312475082421305
 GameObject:
   m_ObjectHideFlags: 0
