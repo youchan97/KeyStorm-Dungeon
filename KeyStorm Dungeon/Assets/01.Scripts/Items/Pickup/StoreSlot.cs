@@ -205,6 +205,10 @@ public class StoreSlot : MonoBehaviour
 
         MakeDisplayNonPickup(spawnedObj);
 
+        CircleCollider2D col = spawnedObj.GetComponent<CircleCollider2D>();
+        if (col != null)
+            col.enabled = false;
+
         var potionPickup = spawnedObj.GetComponent<PotionPickup>();
         if (potionPickup != null)
         {
@@ -247,7 +251,24 @@ public class StoreSlot : MonoBehaviour
             return;
         }
 
-        if (itemData == null) { Clear(); return; }
+        switch(type)
+        {
+            case ConsumableType.Potion:
+                PotionPickup potion = spawnedObj.GetComponent<PotionPickup>();
+                if (potion != null )
+                    potion.TryPickup(player);
+                break;
+            case ConsumableType.Bomb:
+                BombPickup bomb = spawnedObj.GetComponent<BombPickup>();
+                if (bomb != null)
+                    bomb.TryPickup(player);
+                break;
+            default:
+                break;
+        }
+       
+        if (itemData == null)
+            return;
 
         if (itemData.isActiveItem)
         {
