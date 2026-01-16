@@ -10,6 +10,8 @@ public class PlayerDotweenManager : MonoBehaviour
     private readonly Vector3 oneCycleRotate = new Vector3(0f, 0f, 360f);
     #endregion
 
+    [SerializeField] Player player;
+
     [Header("Portal")]
     Sequence portalSequence;
     [SerializeField] float jumpPower;
@@ -32,6 +34,11 @@ public class PlayerDotweenManager : MonoBehaviour
             sequence.Kill();
             sequence = null;
         }
+    }
+
+    public void GameOverCanvas()
+    {
+        player.GameOverCanvas();
     }
 
     public void PortalDotween(Vector3 portalPos, Player player)
