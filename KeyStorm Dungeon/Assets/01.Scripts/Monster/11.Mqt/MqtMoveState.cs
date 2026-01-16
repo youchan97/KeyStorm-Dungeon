@@ -47,6 +47,7 @@ public class MqtMoveState : MonsterMoveState
         }
 
         rb.velocity = directionToPlayer * mqt.MoveSpeed;
+        mqt.FlipSprite(directionToPlayer.x);
 
         if (mqt.AttackedPlayer)
         {

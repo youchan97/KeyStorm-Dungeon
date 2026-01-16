@@ -22,10 +22,10 @@ MonoBehaviour:
   detectRange: 0
   targetDistance: 0
   tier: 0
-  shotSpeed: 0
+  shotSpeed: 3
   attackSpeed: 2
   projectileColliderOffset: {x: 0, y: 0}
-  projectileColliderRadius: 0
+  projectileColliderRadius: 0.2
   separationRaduis: 0
   separationStrength: 0
   pathfindingWeight: 0

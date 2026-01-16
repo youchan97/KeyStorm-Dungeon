@@ -5,6 +5,7 @@ public class MqtAttackState : MonsterAttackState
     private Mqt mqt;
     private Vector2 directionToPlayer;
     private float currentAttackMoveTime;
+
     public MqtAttackState(Monster character, CharacterStateManager<Monster> stateManager) : base(character, stateManager)
     {
         mqt = character as Mqt;
@@ -33,7 +34,7 @@ public class MqtAttackState : MonsterAttackState
             return;
         }
 
-        if (character.isKnockBack) return;
+        if (mqt.isKnockBack) return;
 
         currentAttackMoveTime -= Time.deltaTime;
 
@@ -44,6 +45,7 @@ public class MqtAttackState : MonsterAttackState
         }
 
         rb.velocity = directionToPlayer * (mqt.MoveSpeed * mqt.AttackedMoveSpeedMultiple);
+        mqt.FlipSprite(directionToPlayer.x);
     }
 
     public override void ExitState()

@@ -11,7 +11,7 @@ public class Slime : MeleeMonster
 
     [Header("내려찍기 패턴 수치")]
     [SerializeField] private Transform shootPoint;    // 탄막 생성 위치 내려찍기패턴과 도약패턴일 때의 위치가 다를듯
-    [SerializeField] private Sprite bullet;       // 탄막 이미지
+    [SerializeField] private Sprite bulletSprite;       // 탄막 이미지
     [SerializeField] private float slamDelay;         // 패턴 수행 이후 후딜레이
     [SerializeField] private float slamAngle;         // 탄막 발사 각도
     [SerializeField] private int bulletCount;     // 탄막 갯수
@@ -109,10 +109,6 @@ public class Slime : MeleeMonster
         if (attackPoolManager == null)
         {
             attackPoolManager = FindObjectOfType<AttackPoolManager>();
-            if (attackPoolManager == null)
-            {
-                Debug.LogError("Slime: AttackPoolManager를 찾을 수 없음");
-            }
         }
     }
 
@@ -179,7 +175,7 @@ public class Slime : MeleeMonster
             pooledAttackObject.transform.position = shootPoint.position;
             pooledAttackObject.transform.rotation = Quaternion.identity;
 
-            pooledAttackObject.InitData(bullet, Damage, bulletDirection, MonsterData.shotSpeed, bulletLifeTime, attackPoolManager, false, MonsterData.projectileColliderOffset, MonsterData.projectileColliderRadius, null);
+            pooledAttackObject.InitData(bulletSprite, Damage, bulletDirection, MonsterData.shotSpeed, bulletLifeTime, attackPoolManager, false, MonsterData.projectileColliderOffset, MonsterData.projectileColliderRadius, null);
         }
     }
 
@@ -193,7 +189,7 @@ public class Slime : MeleeMonster
 
             pooledAttackObject.transform.position = shootPoint.position;
             pooledAttackObject.transform.rotation = Quaternion.identity;
-            pooledAttackObject.InitData(bullet, Damage, direction, MonsterData.shotSpeed, bulletLifeTime, attackPoolManager, false, MonsterData.projectileColliderOffset, MonsterData.projectileColliderRadius, null);
+            pooledAttackObject.InitData(bulletSprite, Damage, direction, MonsterData.shotSpeed, bulletLifeTime, attackPoolManager, false, MonsterData.projectileColliderOffset, MonsterData.projectileColliderRadius, null);
         }
     }
 

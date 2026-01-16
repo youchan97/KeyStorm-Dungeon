@@ -7,19 +7,39 @@ public class Mqt : MeleeMonster
     [SerializeField] private float attackedIdleTime;
     [SerializeField] private float attackedMoveTime;
     [SerializeField] private float attackedMoveSpeedMultiple;
+    [SerializeField] private Transform shootPoint;
+    [SerializeField] private Sprite bulletSprite;
+    [SerializeField] private float bulletLifeTime;
+
     private bool attackedPlayer;
-    
+
+    #region 속성
     public float IdleTime => idleTime;
     public float MoveTime => moveTime;
     public float AttackedIdleTime => attackedIdleTime;
     public float AttackedMoveTime => attackedMoveTime;
     public float AttackedMoveSpeedMultiple => attackedMoveSpeedMultiple;
     public bool AttackedPlayer => attackedPlayer;
+    #endregion
+
+    #region 애니메이션
+    private const string AttackedMoveAnim = "AttackedMove";
+    #endregion
 
     private MqtIdleState _idleState;
     private MqtMoveState _moveState;
     private MqtAttackState _attackState;
     private MqtDieState _dieState;
+
+    private Vector2[] bulletDirection = new Vector2[]
+    {
+        Vector2.left,
+        Vector2.right,
+        new Vector2(1, 1).normalized,
+        new Vector2(1, -1).normalized,
+        new Vector2(-1, 1).normalized,
+        new Vector2(-1, -1).normalized
+    };
 
     public override CharacterState<Monster> CreateIdleState()
     {
@@ -49,6 +69,11 @@ public class Mqt : MeleeMonster
     {
         base.Awake();
         attackedPlayer = false;
+
+        if (attackPoolManager == null)
+        {
+            attackPoolManager = FindObjectOfType<AttackPoolManager>();
+        }
     }
 
     protected override void ContactPlayer(Collision2D collision)
@@ -62,10 +87,28 @@ public class Mqt : MeleeMonster
                 if (player != null)
                 {
                     Attack(player);
-                    attackedPlayer = true;
+                    if (!attackedPlayer)
+                    {
+                        attackedPlayer = true;
+                        Animator.SetBool(AttackedMoveAnim, true);
+                    }
                     ResetAttackCooldown();
                 }
             }
+        }
+    }
+
+    public void OnSplashBullet()
+    {
+        if (attackPoolManager == null) return;
+        
+        foreach (var direction in bulletDirection)
+        {
+            AttackObj pooledAttackObject = AttackPoolManager.GetObj();
+
+            pooledAttackObject.transform.position = shootPoint.position;
+            pooledAttackObject.transform.rotation = Quaternion.identity;
+            pooledAttackObject.InitData(bulletSprite, Damage, direction, MonsterData.shotSpeed, bulletLifeTime, attackPoolManager, false, MonsterData.projectileColliderOffset, MonsterData.projectileColliderRadius, null);
         }
     }
 }
