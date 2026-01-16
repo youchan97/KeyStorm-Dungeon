@@ -10,6 +10,7 @@ public class GameSceneUI : MonoBehaviour
     UiManager uiManager;
     GameManager gameManager;
     AudioManager audioManager;
+    [SerializeField] InventoryUi inventoryUi;
 
     [SerializeField] private TextMeshProUGUI coinTxt;
     [SerializeField] private TextMeshProUGUI bombTxt;
@@ -31,6 +32,7 @@ public class GameSceneUI : MonoBehaviour
     public Player player;
 
     public HealthUI HealthUI { get => healthUI; }
+    public InventoryUi InventoryUi { get => inventoryUi;}
 
     [SerializeField] private RoomChangeEvent roomChangeEvent;
 
@@ -115,6 +117,7 @@ public class GameSceneUI : MonoBehaviour
     {
         this.player = player;
         InitPlayerEvent(this.player);
+        inventoryUi.SetInventoryUi(player.Inventory);
         InitGameUi();
 
         if (GameTimeManager.Instance != null && !GameManager.Instance.IsGameCleared)
