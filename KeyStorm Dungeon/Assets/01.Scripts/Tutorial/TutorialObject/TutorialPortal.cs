@@ -15,19 +15,17 @@ public class TutorialPortal : MonoBehaviour
         {
             Debug.Log("[TutorialPortal] 포탈 진입");
 
-            // TutorialManager에 알림
-            if (TutorialManager.Instance != null)
+            TutorialManager tutorialManager = FindObjectOfType<TutorialManager>();
+            if (tutorialManager != null)
             {
-                TutorialManager.Instance.OnPortalEntered();
+                tutorialManager.OnPortalEntered();
             }
 
             if (isTutorialEnd)
             {
-                // 튜토리얼 완료 저장
                 PlayerPrefs.SetInt("TutorialCompleted", 1);
                 PlayerPrefs.Save();
 
-                // 다음 씬으로
                 SceneManager.LoadScene(nextSceneName);
             }
         }

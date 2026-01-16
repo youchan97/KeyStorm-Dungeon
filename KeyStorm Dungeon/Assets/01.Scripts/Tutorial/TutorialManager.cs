@@ -8,8 +8,6 @@ using UnityEngine.SceneManagement;
 
 public class TutorialManager : MonoBehaviour
 {
-    public static TutorialManager Instance;
-
     [Header("Tutorial Steps")]
     [SerializeField] private List<TutorialStep> tutorialSteps = new List<TutorialStep>();
 
@@ -25,6 +23,7 @@ public class TutorialManager : MonoBehaviour
     private TutorialStep currentStep;
     private bool isTutorialActive = true;
 
+    // 퀘스트 추적 변수들
     private HashSet<Vector2> movedDirections = new HashSet<Vector2>();
     private int enemiesKilled = 0;
     private int itemsPickedUp = 0;
@@ -32,18 +31,6 @@ public class TutorialManager : MonoBehaviour
     private bool specialAttackUsed = false;
     private bool bombUsed = false;
     private int ammoUsed = 0;
-
-    void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
 
     void Start()
     {
@@ -80,9 +67,10 @@ public class TutorialManager : MonoBehaviour
 
         if (!string.IsNullOrEmpty(currentStep.dialogueText))
         {
-            if (DialogueSystem.Instance != null)
+            DialogueSystem dialogueSystem = FindObjectOfType<DialogueSystem>();
+            if (dialogueSystem != null)
             {
-                DialogueSystem.Instance.ShowDialogue(
+                dialogueSystem.ShowDialogue(
                     currentStep.dialogueText,
                     "플레이어",
                     currentStep.pauseGameDuringDialogue,
@@ -164,9 +152,6 @@ public class TutorialManager : MonoBehaviour
                 CheckAttack();
                 break;
 
-            case QuestType.UseAmmo:
-                break;
-
             case QuestType.UseSpecialAttack:
                 if (specialAttackUsed && ammoUsed >= currentStep.questTargetCount)
                 {
@@ -216,7 +201,7 @@ public class TutorialManager : MonoBehaviour
         ammoUsed++;
         Debug.Log($"[TutorialManager] 탄약 사용: {ammoUsed}");
 
-        if (currentStep.questType == QuestType.UseAmmo &&
+        if (currentStep != null && currentStep.questType == QuestType.UseAmmo &&
             ammoUsed >= currentStep.questTargetCount)
         {
             CompleteCurrentStep();
@@ -228,9 +213,8 @@ public class TutorialManager : MonoBehaviour
         specialAttackUsed = true;
         Debug.Log("[TutorialManager] 특수공격 사용");
 
-        if (currentStep.questType == QuestType.UseSpecialAttack)
+        if (currentStep != null && currentStep.questType == QuestType.UseSpecialAttack)
         {
-            // UseAmmo 조건도 확인
             CheckQuestProgress();
         }
     }
@@ -240,7 +224,7 @@ public class TutorialManager : MonoBehaviour
         itemsPickedUp++;
         Debug.Log($"[TutorialManager] 아이템 획득: {itemsPickedUp}");
 
-        if (currentStep.questType == QuestType.PickupItem &&
+        if (currentStep != null && currentStep.questType == QuestType.PickupItem &&
             itemsPickedUp >= currentStep.questTargetCount)
         {
             CompleteCurrentStep();
@@ -252,7 +236,8 @@ public class TutorialManager : MonoBehaviour
         enemiesKilled++;
         Debug.Log($"[TutorialManager] 적 처치: {enemiesKilled}");
 
-        if ((currentStep.questType == QuestType.KillEnemy ||
+        if (currentStep != null &&
+            (currentStep.questType == QuestType.KillEnemy ||
              currentStep.questType == QuestType.KillAllEnemies) &&
             enemiesKilled >= currentStep.questTargetCount)
         {
@@ -265,7 +250,7 @@ public class TutorialManager : MonoBehaviour
         itemsBought++;
         Debug.Log($"[TutorialManager] 아이템 구매: {itemsBought}");
 
-        if (currentStep.questType == QuestType.BuyItem &&
+        if (currentStep != null && currentStep.questType == QuestType.BuyItem &&
             itemsBought >= currentStep.questTargetCount)
         {
             CompleteCurrentStep();
@@ -276,7 +261,7 @@ public class TutorialManager : MonoBehaviour
     {
         Debug.Log("[TutorialManager] 폭탄 구매");
 
-        if (currentStep.questType == QuestType.BuyBomb)
+        if (currentStep != null && currentStep.questType == QuestType.BuyBomb)
         {
             CompleteCurrentStep();
         }
@@ -287,7 +272,7 @@ public class TutorialManager : MonoBehaviour
         bombUsed = true;
         Debug.Log("[TutorialManager] 폭탄 사용");
 
-        if (currentStep.questType == QuestType.UseBomb)
+        if (currentStep != null && currentStep.questType == QuestType.UseBomb)
         {
             CompleteCurrentStep();
         }
@@ -297,7 +282,7 @@ public class TutorialManager : MonoBehaviour
     {
         Debug.Log("[TutorialManager] 보스 처치");
 
-        if (currentStep.questType == QuestType.KillBoss)
+        if (currentStep != null && currentStep.questType == QuestType.KillBoss)
         {
             CompleteCurrentStep();
         }
@@ -307,7 +292,7 @@ public class TutorialManager : MonoBehaviour
     {
         Debug.Log("[TutorialManager] 포탈 진입");
 
-        if (currentStep.questType == QuestType.EnterPortal)
+        if (currentStep != null && currentStep.questType == QuestType.EnterPortal)
         {
             CompleteCurrentStep();
         }
@@ -317,7 +302,7 @@ public class TutorialManager : MonoBehaviour
     {
         Debug.Log("[TutorialManager] 방 진입");
 
-        if (currentStep.questType == QuestType.EnterRoom)
+        if (currentStep != null && currentStep.questType == QuestType.EnterRoom)
         {
             CompleteCurrentStep();
         }
@@ -329,7 +314,6 @@ public class TutorialManager : MonoBehaviour
 
         HideQuestUI();
 
-        // 다음 단계로
         StartCoroutine(MoveToNextStepWithDelay());
     }
 
@@ -345,22 +329,22 @@ public class TutorialManager : MonoBehaviour
 
         isTutorialActive = false;
 
-        if (DialogueSystem.Instance != null)
+        DialogueSystem dialogueSystem = FindObjectOfType<DialogueSystem>();
+        if (dialogueSystem != null)
         {
-            DialogueSystem.Instance.ShowDialogue(
+            dialogueSystem.ShowDialogue(
                 "튜토리얼을 완료했습니다!\n이제 본 게임을 시작합니다.",
                 "시스템",
                 true,
-                () => SceneManager.LoadScene("GameScene")
+                () => SceneManager.LoadScene("StartScene")
             );
         }
     }
 
-    // 스킵 기능
     public void SkipTutorial()
     {
         Debug.Log("[TutorialManager] 튜토리얼 스킵");
         PlayerPrefs.SetInt("TutorialCompleted", 1);
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("StartScene");
     }
 }

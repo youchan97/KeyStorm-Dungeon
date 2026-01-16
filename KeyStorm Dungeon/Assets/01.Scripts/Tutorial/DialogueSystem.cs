@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class DialogueSystem : MonoBehaviour
 {
-    public static DialogueSystem Instance;
-
     [Header("UI References")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
@@ -20,18 +18,7 @@ public class DialogueSystem : MonoBehaviour
     private bool isTyping = false;
     private bool dialogueActive = false;
     private System.Action onDialogueComplete;
-
-    void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+    private string fullText = "";
 
     void Start()
     {
@@ -50,6 +37,7 @@ public class DialogueSystem : MonoBehaviour
     {
         dialogueActive = true;
         onDialogueComplete = onComplete;
+        fullText = text;
 
         if (pauseGame)
         {
@@ -104,7 +92,13 @@ public class DialogueSystem : MonoBehaviour
         if (isTyping)
         {
             StopAllCoroutines();
+            dialogueText.text = fullText;
             isTyping = false;
+
+            if (continueButton != null)
+            {
+                continueButton.gameObject.SetActive(true);
+            }
         }
         else
         {
@@ -123,7 +117,6 @@ public class DialogueSystem : MonoBehaviour
 
         Time.timeScale = 1f;
 
-        // 플레이어 입력 허용
         Player player = FindObjectOfType<Player>();
         if (player != null)
         {
