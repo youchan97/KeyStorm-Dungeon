@@ -62,6 +62,8 @@ public class Player : Character
     public EffectPoolManager EffectPoolManager { get; set; }
     public bool IsDashing { get => isDashing; set => isDashing = value; }
     public PlayerDotweenManager DotweenManager { get => dotweenManager;}
+
+    public PlayerRunData PlayerRunData { get => playerRunData; }
     #endregion
 
     protected override void Awake()
@@ -149,6 +151,7 @@ public class Player : Character
         playerController.OnBomb += Bomb;
         playerController.OnUseActiveItem += UseActiveItem;
         PlayerController.OnPause += PausePlayer;
+        playerController.OnTab += ShowInventory;
     }
 
     void RemoveActions()
@@ -158,6 +161,7 @@ public class Player : Character
         playerController.OnBomb -= Bomb;
         playerController.OnUseActiveItem -= UseActiveItem;
         playerController.OnPause -= PausePlayer;
+        playerController.OnTab -= ShowInventory;
     }
 
     void PlayerMove()
@@ -205,18 +209,36 @@ public class Player : Character
         }
     }
 
+    void ShowInventory()
+    {
+        if(gameManager.isPaused)
+        {
+            gameManager.Resume();
+            playerController.EnableInput();
+            GameSceneUI.InventoryUi.gameObject.SetActive(false);
+        }
+        else
+        {
+            gameManager.Pause();
+            playerController.DisableInput();
+            GameSceneUI.InventoryUi.gameObject.SetActive(true);
+        }
+    }
+
     void PausePlayer()
     {
         if (gameManager.isPaused)
         {
             gameManager.Resume();
             playerController.EnableInput();
+            playerController.EnableTab();
             GameSceneUI.CloseAllPopup();
         }
         else
         {
             gameManager.Pause();
             playerController.DisableInput();
+            playerController.DisableTab();
             GameSceneUI.OpenOption();
         }
     }
@@ -284,6 +306,8 @@ public class Player : Character
         MoveSpeed = PlayerEffectStat.GetMoveSpeed;
         playerSprite.transform.localScale = new Vector3(PlayerEffectStat.GetScaleX, PlayerEffectStat.GetScaleY, playerSprite.transform.localScale.z);
         PlayerAttack.SyncPlayerAttackStat(runData);
+
+        GameSceneUI.InventoryUi.SetStatus(this);
 
         GameSceneUI.UpdateAmmo();
         GameSceneUI.HealthUI.SetMaxHp(MaxHp);

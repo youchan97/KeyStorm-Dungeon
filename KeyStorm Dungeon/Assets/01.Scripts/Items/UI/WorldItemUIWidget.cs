@@ -130,7 +130,7 @@ public class WorldItemUIWidget : MonoBehaviour
         }
     }
 
-    string GetTierText(ItemTier tier)
+    public string GetTierText(ItemTier tier)
     {
         return tier switch
         {
@@ -143,7 +143,7 @@ public class WorldItemUIWidget : MonoBehaviour
         };
     }
 
-    private string BuildStatsText(ItemData data)
+    public string BuildStatsText(ItemData data)
     {
         StringBuilder sb = new StringBuilder();
 
@@ -212,7 +212,7 @@ public class WorldItemUIWidget : MonoBehaviour
     private string FormatStatPercent(string statName, float value)
     {
         string colorTag = value > 0 ? "<color=#00FF00>" : "<color=#FF0000>";
-        string sign = value > 0 ? "+" : "";
+        string sign = "";
         float percentage = value * 100f;
 
         return $"• {colorTag}{statName} {sign}{percentage:F0}%</color>";
@@ -251,7 +251,7 @@ public class WorldItemUIWidget : MonoBehaviour
         return sb.ToString();
     }
 
-    private Color GetTierColor(ItemTier tier)
+    public Color GetTierColor(ItemTier tier)
     {
         switch (tier)
         {
@@ -264,7 +264,7 @@ public class WorldItemUIWidget : MonoBehaviour
         }
     }
 
-    private Sprite GetTierBackground(ItemTier tier)
+    public Sprite GetTierBackground(ItemTier tier)
     {
         switch (tier)
         {

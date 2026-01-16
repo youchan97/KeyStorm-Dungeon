@@ -69,4 +69,13 @@ public static class ConstValue
     #region DoTween 관련
     public const int DefaultJumpCount = 1;
     #endregion
+
+    #region UI 관련
+    public const float DefaultScaleValue = 1f;
+    #endregion
+
+    #region InventoryUI 관련
+    public const float CenterValue = 0.5f;
+    public const int DefalueMoveIndex = 1;
+    #endregion
 }

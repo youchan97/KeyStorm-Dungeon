@@ -607,9 +607,4 @@ public class PlayerAttack : MonoBehaviour
 
     }
     #endregion
-
-    public void UseActiveItem(SkillType type)
-    {
-
-    }
 }

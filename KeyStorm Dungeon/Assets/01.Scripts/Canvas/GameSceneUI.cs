@@ -118,6 +118,7 @@ public class GameSceneUI : MonoBehaviour
         this.player = player;
         InitPlayerEvent(this.player);
         inventoryUi.SetInventoryUi(player.Inventory);
+        inventoryUi.SetStatus(player);
         InitGameUi();
 
         if (GameTimeManager.Instance != null && !GameManager.Instance.IsGameCleared)
@@ -240,6 +241,9 @@ public class GameSceneUI : MonoBehaviour
         {
             GameTimeManager.Instance.StartTimer();
         }
+
+        if (inventoryUi.gameObject.activeSelf)
+            inventoryUi.gameObject.SetActive(false);
 
         uiManager.CloseAllPopup();
     }
