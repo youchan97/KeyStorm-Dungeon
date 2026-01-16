@@ -42,4 +42,12 @@ public class Mqt : MeleeMonster
         if (_dieState == null) _dieState = new MqtDieState(this, MonsterStateManager);
         return _dieState;
     }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        attackedPlayer = false;
+    }
+
+    
 }

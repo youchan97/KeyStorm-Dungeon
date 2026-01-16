@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using static ConstValue;
 
@@ -5,6 +6,11 @@ public class PillBugIdleState : MonsterIdleState
 {
     private PillBug pillBug;
     private float currentIdleTime;
+    private Coroutine coroutine;
+
+    #region 애니메이션
+    private const string ReadyRollAnim = "ReadyRoll";
+    #endregion
 
     public PillBugIdleState(Monster character, CharacterStateManager<Monster> stateManager) : base(character, stateManager)
     {
@@ -42,21 +48,30 @@ public class PillBugIdleState : MonsterIdleState
 
         bool playerDetect = false;
 
+        LayerMask detectLayerMask = pillBug.PlayerLayer | pillBug.ObstacleLayer;
+
         foreach(Vector2 direction in rayDirection)
         {
-            RaycastHit2D hit = Physics2D.Raycast(pillBug.transform.position, direction, pillBug.MonsterData.detectRange, pillBug.PlayerLayer);
+            RaycastHit2D hit = Physics2D.Raycast(pillBug.transform.position, direction, pillBug.MonsterData.detectRange, detectLayerMask);
 
             if (hit.collider != null)
             {
-                playerDetect = true;
-                pillBug.CurrentMoveDirection = direction;
-                break;
+                if (((1 << hit.collider.gameObject.layer) & pillBug.PlayerLayer) != 0)
+                {
+                    playerDetect = true;
+                    pillBug.CurrentMoveDirection = direction;
+                    break;
+                }
+                else if (((1 << hit.collider.gameObject.layer) & pillBug.ObstacleLayer) != 0)
+                {
+                    continue;
+                }
             }
         }
 
         if (playerDetect)
         {
-            stateManager.ChangeState(pillBug.CreateMoveState());
+            coroutine = pillBug.StartCoroutine(ReadyRollAnimation());
             return;
         }
 
@@ -78,6 +93,12 @@ public class PillBugIdleState : MonsterIdleState
     public override void ExitState()
     {
         base.ExitState();
+        if (coroutine != null)
+        {
+            pillBug.StopCoroutine(coroutine);
+        }
+        pillBug.ChangeIsReadyRollAnimationEndToFalse();
+        pillBug.Animator.ResetTrigger(ReadyRollAnim);
     }
 
     public override bool UseFixedUpdate()
@@ -99,5 +120,15 @@ public class PillBugIdleState : MonsterIdleState
         } while (newMoveDirection == pillBug.CurrentMoveDirection && attempts < maxAttempts);
 
         pillBug.CurrentMoveDirection = newMoveDirection;
+    }
+
+    private IEnumerator ReadyRollAnimation()
+    {
+        pillBug.MonsterRb.velocity = Vector2.zero;
+
+        pillBug.Animator.SetTrigger(ReadyRollAnim);
+        yield return new WaitUntil(() => pillBug.IsReadyRollAnimtaionEnd == true);
+
+        stateManager.ChangeState(pillBug.CreateMoveState());
     }
 }

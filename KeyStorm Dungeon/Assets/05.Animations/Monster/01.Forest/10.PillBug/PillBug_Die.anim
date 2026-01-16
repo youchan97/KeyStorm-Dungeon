@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PillBug_ReadyRoll_Back
+  m_Name: PillBug_Die
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,17 +21,19 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -1412462556, guid: 9b63ddb4cdf8360409a8a0d9c0836134, type: 3}
-    - time: 0.16666667
-      value: {fileID: -1243322592, guid: 9b63ddb4cdf8360409a8a0d9c0836134, type: 3}
-    - time: 0.25
-      value: {fileID: -1323399213, guid: 9b63ddb4cdf8360409a8a0d9c0836134, type: 3}
+      value: {fileID: -1583257075, guid: 97a824a6eb23bf04b97177b867f87ccb, type: 3}
+    - time: 0.22222222
+      value: {fileID: 521938588, guid: 97a824a6eb23bf04b97177b867f87ccb, type: 3}
+    - time: 0.2777778
+      value: {fileID: -1436565213, guid: 97a824a6eb23bf04b97177b867f87ccb, type: 3}
+    - time: 0.33333334
+      value: {fileID: -2053072437, guid: 97a824a6eb23bf04b97177b867f87ccb, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
     flags: 2
-  m_SampleRate: 12
+  m_SampleRate: 18
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -48,15 +50,16 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -1412462556, guid: 9b63ddb4cdf8360409a8a0d9c0836134, type: 3}
-    - {fileID: -1243322592, guid: 9b63ddb4cdf8360409a8a0d9c0836134, type: 3}
-    - {fileID: -1323399213, guid: 9b63ddb4cdf8360409a8a0d9c0836134, type: 3}
+    - {fileID: -1583257075, guid: 97a824a6eb23bf04b97177b867f87ccb, type: 3}
+    - {fileID: 521938588, guid: 97a824a6eb23bf04b97177b867f87ccb, type: 3}
+    - {fileID: -1436565213, guid: 97a824a6eb23bf04b97177b867f87ccb, type: 3}
+    - {fileID: -2053072437, guid: 97a824a6eb23bf04b97177b867f87ccb, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.33333334
+    m_StopTime: 0.3888889
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -75,11 +78,4 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events:
-  - time: 0.33333334
-    functionName: OnReadyRollAnimationEnd
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []

@@ -24,7 +24,14 @@ public class MqtIdleState : MonsterIdleState
             return;
         }
 
-        currentIdleTime = mqt.IdleTime;
+        if (!mqt.AttackedPlayer)
+        {
+            currentIdleTime = mqt.IdleTime;
+        }
+        else
+        {
+            currentIdleTime = mqt.AttackedIdleTime;
+        }
     }
 
     public override void UpdateState()
@@ -35,8 +42,16 @@ public class MqtIdleState : MonsterIdleState
 
         if (currentIdleTime <= 0)
         {
-            stateManager.ChangeState(mqt.CreateMoveState());
-            return;
+            if (!mqt.AttackedPlayer)
+            {
+                stateManager.ChangeState(mqt.CreateMoveState());
+                return;
+            }
+            else
+            {
+                stateManager.ChangeState(mqt.CreateAttackState());
+                return;
+            }
         }
     }
 

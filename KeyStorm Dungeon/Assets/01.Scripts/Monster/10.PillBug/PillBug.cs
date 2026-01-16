@@ -12,13 +12,19 @@ public class PillBug : MeleeMonster
 
     private bool isChase;
     private bool isReaction;
+    private bool isReadyRollAnimationEnd;
     public float IdleTime => idleTime;
-    public LayerMask PlayerLayer => playerLayer;
     public float MoveSpeedMultiple => moveSpeedMultiple;
     public bool IsChase => isChase;
     public bool IsReaction => isReaction;
+    public bool IsReadyRollAnimtaionEnd => isReadyRollAnimationEnd;
 
     public Vector2 CurrentMoveDirection { get; set; } = Vector2.zero;
+
+    #region 애니메이션
+    private const string RollAnim = "Roll";
+    private const string FinishRollAnim = "FinishRoll";
+    #endregion
 
     private PillBugIdleState _idleState;
     private PillBugMoveState _moveState;
@@ -66,14 +72,20 @@ public class PillBug : MeleeMonster
             {
                 Vector2 reactionDirection = -CurrentMoveDirection.normalized;
 
-                StartCoroutine(obstacleReaction(reactionDirection));
+                StartCoroutine(ObstacleReaction(reactionDirection));
             }
         }
     }
 
-    private IEnumerator obstacleReaction(Vector2 direction)
+    public IEnumerator ObstacleReaction(Vector2 direction)
     {
         isReaction = true;
+
+        if (Animator != null)
+        {
+            Animator.SetBool(RollAnim, false);
+            Animator.SetTrigger(FinishRollAnim);
+        }
 
         if (MonsterRb != null)
         {
@@ -100,5 +112,15 @@ public class PillBug : MeleeMonster
     public void ChangeIsChase(bool chase)
     {
         isChase = chase;
+    }
+    
+    public void ChangeIsReadyRollAnimationEndToFalse()
+    {
+        isReadyRollAnimationEnd = false;
+    }
+
+    public void OnReadyRollAnimationEnd()
+    {
+        isReadyRollAnimationEnd = true;
     }
 }
