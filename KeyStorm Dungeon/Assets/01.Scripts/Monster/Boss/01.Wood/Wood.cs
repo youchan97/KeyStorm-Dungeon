@@ -63,6 +63,8 @@ public class Wood : MeleeMonster
     public int SpawnRootQuantity => spawnRootQuantity;
     public float SpawnRootDuration => spawnRootDuration;
     public float PlayerSearchTime => playerSearchTime;
+    public LayerMask RootLayer => rootLayer;
+
     public bool IsDash { get; private set; }
     public float CurrentRootPatternCooldown { get; private set; }
     #endregion
@@ -188,29 +190,6 @@ public class Wood : MeleeMonster
     private void OnCollisionStay2D(Collision2D collision)
     {
         ContactPlayer(collision);
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (IsDash)
-        {
-            if (((1 << collision.gameObject.layer) & hitToDashStopLayer.value) > 0)
-            {
-                if (((1 << collision.gameObject.layer) & rootLayer.value) > 0)
-                {
-                    WoodsRoot hitRoot = collision.GetComponent<WoodsRoot>();
-                    if (hitRoot != null)
-                    {
-                        hitRoot.Die();
-                        StopDash();
-                    }
-                }
-                else
-                {
-                    StopDash();
-                }
-            }
-        }
     }
 
     public void StartDash()
