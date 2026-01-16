@@ -14,7 +14,6 @@ public class TutorialRoom : MonoBehaviour
 
     void Start()
     {
-        // 시작 시 문 열기
         foreach (var door in doors)
         {
             if (door != null)
@@ -48,7 +47,6 @@ public class TutorialRoom : MonoBehaviour
 
     void CheckRoomCleared()
     {
-        // 모든 적이 처치되었는지 확인
         enemies.RemoveAll(enemy => enemy == null);
 
         if (enemies.Count == 0)
@@ -76,7 +74,6 @@ public class TutorialRoom : MonoBehaviour
 
         Debug.Log("[TutorialRoom] 방 클리어!");
 
-        // 문 열기
         foreach (var door in doors)
         {
             if (door != null)

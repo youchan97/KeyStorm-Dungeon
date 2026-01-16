@@ -41,21 +41,25 @@ public class TutorialEnemy : MonoBehaviour
     {
         Debug.Log($"[TutorialEnemy] 사망! Boss: {isBoss}");
 
-        if (TutorialManager.Instance != null)
+        // ⭐ FindObjectOfType으로 TutorialManager 찾기
+        TutorialManager tutorialManager = FindObjectOfType<TutorialManager>();
+        if (tutorialManager != null)
         {
             if (isBoss)
             {
-                TutorialManager.Instance.OnBossKilled();
+                tutorialManager.OnBossKilled();
 
+                // 포탈 활성화
                 GameObject portal = GameObject.Find("Portal");
                 if (portal != null)
                 {
                     portal.SetActive(true);
+                    Debug.Log("[TutorialEnemy] 포탈 활성화!");
                 }
             }
             else
             {
-                TutorialManager.Instance.OnEnemyKilled();
+                tutorialManager.OnEnemyKilled();
             }
         }
 

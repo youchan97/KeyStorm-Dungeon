@@ -35,7 +35,7 @@ public class TutorialDoor : MonoBehaviour
             doorCollider.enabled = false;
         }
 
-        Debug.Log("[TutorialDoor] 문이 열렸습니다");
+        Debug.Log("[TutorialDoor] 문 열림");
     }
 
     public void CloseDoor()
@@ -52,17 +52,17 @@ public class TutorialDoor : MonoBehaviour
             doorCollider.enabled = true;
         }
 
-        Debug.Log("[TutorialDoor] 문이 닫혔습니다");
+        Debug.Log("[TutorialDoor] 문 닫힘");
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player") && isOpen)
         {
-            // TutorialManager에 방 진입 알림
-            if (TutorialManager.Instance != null)
+            TutorialManager tutorialManager = FindObjectOfType<TutorialManager>();
+            if (tutorialManager != null)
             {
-                TutorialManager.Instance.OnRoomEntered();
+                tutorialManager.OnRoomEntered();
             }
         }
     }

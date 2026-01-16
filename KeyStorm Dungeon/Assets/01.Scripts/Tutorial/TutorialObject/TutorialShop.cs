@@ -35,6 +35,7 @@ public class TutorialShop : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             currentPlayer = other.GetComponent<Player>();
+            Debug.Log("[TutorialShop] 플레이어 진입");
         }
     }
 
@@ -43,6 +44,7 @@ public class TutorialShop : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             currentPlayer = null;
+            Debug.Log("[TutorialShop] 플레이어 이탈");
         }
     }
 
@@ -50,13 +52,11 @@ public class TutorialShop : MonoBehaviour
     {
         if (currentPlayer == null) return;
 
-        // E 키로 아이템 구매
         if (Input.GetKeyDown(KeyCode.E) && itemSlot != null && itemSlot.activeSelf)
         {
             BuyItem();
         }
 
-        // Q 키로 폭탄 구매
         if (Input.GetKeyDown(KeyCode.Q) && bombSlot != null && bombSlot.activeSelf)
         {
             BuyBomb();
@@ -69,19 +69,15 @@ public class TutorialShop : MonoBehaviour
         {
             Debug.Log("[TutorialShop] 아이템 구매 성공!");
 
-            // 아이템 지급 (실제 게임에서는 아이템 데이터 전달)
-            // currentPlayer.Inventory.AddPassiveItem(itemData);
-
-            // 슬롯 비활성화
             if (itemSlot != null)
             {
                 itemSlot.SetActive(false);
             }
 
-            // TutorialManager에 알림
-            if (TutorialManager.Instance != null)
+            TutorialManager tutorialManager = FindObjectOfType<TutorialManager>();
+            if (tutorialManager != null)
             {
-                TutorialManager.Instance.OnItemBought();
+                tutorialManager.OnItemBought();
             }
         }
         else
@@ -96,19 +92,17 @@ public class TutorialShop : MonoBehaviour
         {
             Debug.Log("[TutorialShop] 폭탄 구매 성공!");
 
-            // 폭탄 지급
             currentPlayer.Inventory.AddBomb(1);
 
-            // 슬롯 비활성화
             if (bombSlot != null)
             {
                 bombSlot.SetActive(false);
             }
 
-            // TutorialManager에 알림
-            if (TutorialManager.Instance != null)
+            TutorialManager tutorialManager = FindObjectOfType<TutorialManager>();
+            if (tutorialManager != null)
             {
-                TutorialManager.Instance.OnBombBought();
+                tutorialManager.OnBombBought();
             }
         }
         else

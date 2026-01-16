@@ -176,9 +176,10 @@ public class Player : Character
         PlayerAttack.Shoot(playerController.KeyName);
         GameSceneUI.UpdateAmmo();
 
-        if (TutorialManager.Instance != null)
+        TutorialManager tutorialManager = FindObjectOfType<TutorialManager>();
+        if (tutorialManager != null)
         {
-            TutorialManager.Instance.OnAmmoUsed();
+            tutorialManager.OnAmmoUsed();
         }
     }
 
@@ -189,9 +190,10 @@ public class Player : Character
         PlayerAttack.HoldBomb();
         GameSceneUI.UpdateBomb();
 
-        if (TutorialManager.Instance != null)
+        TutorialManager tutorialManager = FindObjectOfType<TutorialManager>();
+        if (tutorialManager != null)
         {
-            TutorialManager.Instance.OnBombUsed();
+            tutorialManager.OnBombUsed();
         }
     }
 
@@ -203,9 +205,10 @@ public class Player : Character
 
         playerSkill.TrySkill(inventory.activeItem.skillType);
 
-        if (TutorialManager.Instance != null)
+        TutorialManager tutorialManager = FindObjectOfType<TutorialManager>();
+        if (tutorialManager != null)
         {
-            TutorialManager.Instance.OnSpecialAttackUsed();
+            tutorialManager.OnSpecialAttackUsed();
         }
     }
 

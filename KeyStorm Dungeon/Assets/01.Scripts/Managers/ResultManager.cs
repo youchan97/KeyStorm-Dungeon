@@ -83,10 +83,10 @@ public class ResultManager : MonoBehaviour
             resultImage.enabled = true;
         }
 
-        // ⭐ 플레이 타임 표시
+        // 플레이 타임 표시
         UpdatePlayTime();
 
-        // ⭐ 골드 표시
+        // 골드 표시
         UpdateGold();
 
         // 아이템 표시
@@ -95,7 +95,7 @@ public class ResultManager : MonoBehaviour
         Debug.Log($"[ResultManager] ========== ShowResult 끝 ==========");
     }
 
-    // ⭐ 플레이 타임 업데이트
+    // 플레이 타임 업데이트
     private void UpdatePlayTime()
     {
         if (playTimeText == null)
@@ -117,7 +117,7 @@ public class ResultManager : MonoBehaviour
         Debug.Log($"[ResultManager] ✓ 플레이 타임 설정: {timeStr}");
     }
 
-    // ⭐ 골드 업데이트
+    // 골드 업데이트
     private void UpdateGold()
     {
         if (totalGoldText == null)

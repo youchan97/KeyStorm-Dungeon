@@ -54,7 +54,7 @@ public class WorldItemUIWidget : MonoBehaviour
         if (background != null)
         {
             Color bgColor = background.color;
-            bgColor.a = 0.85f;
+            //bgColor.a = 0.85f;
             background.color = bgColor;
         }
     }
