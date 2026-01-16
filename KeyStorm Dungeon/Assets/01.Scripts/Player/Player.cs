@@ -37,6 +37,8 @@ public class Player : Character
     bool isInvincible;
     bool isDashing;
 
+    private bool canMove = true;
+
     public event Action OnDie;
     public event Action OnHit;
 
@@ -72,6 +74,11 @@ public class Player : Character
 
     protected override void Update()
     {
+        if (!canMove)
+        {
+            return;
+        }
+
         playerStateManager.Update();
         if (playerStateManager.CurState == MoveState)
         {
@@ -85,7 +92,17 @@ public class Player : Character
 
     protected override void FixedUpdate()
     {
+        if (!canMove)
+        {
+            if (playerRb != null)
+            {
+                playerRb.velocity = Vector2.zero;
+            }
+            return;
+        }
+
         playerStateManager.FixedUpdate();
+
     }
 
     private void OnDisable()
@@ -150,21 +167,42 @@ public class Player : Character
 
     void Shoot()
     {
+        if (!canMove) return;
+
         PlayerAttack.Shoot(playerController.KeyName);
         GameSceneUI.UpdateAmmo();
+
+        if (TutorialManager.Instance != null)
+        {
+            TutorialManager.Instance.OnAmmoUsed();
+        }
     }
 
     void Bomb()
     {
+        if (!canMove) return;
+
         PlayerAttack.HoldBomb();
         GameSceneUI.UpdateBomb();
+
+        if (TutorialManager.Instance != null)
+        {
+            TutorialManager.Instance.OnBombUsed();
+        }
     }
 
     void UseActiveItem()
     {
+        if (!canMove) return;
+
         if (inventory.activeItem == null) return;
 
         playerSkill.TrySkill(inventory.activeItem.skillType);
+
+        if (TutorialManager.Instance != null)
+        {
+            TutorialManager.Instance.OnSpecialAttackUsed();
+        }
     }
 
     void PausePlayer()
@@ -295,5 +333,22 @@ public class Player : Character
         Effect effect = EffectPoolManager.GetObj();
         effect.transform.position = (curPos);
         effect.InitData(EffectPoolManager, stepEffect, Vector2.zero, stepSize);
+    }
+
+    public void SetCanMove(bool value)
+    {
+        canMove = value;
+
+        if (!value && playerRb != null)
+        {
+            playerRb.velocity = Vector2.zero;
+        }
+
+        Debug.Log($"[Player] SetCanMove: {value}");
+    }
+
+    public bool CanMove()
+    {
+        return canMove;
     }
 }
