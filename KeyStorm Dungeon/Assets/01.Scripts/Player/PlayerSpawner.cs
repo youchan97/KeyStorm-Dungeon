@@ -28,7 +28,7 @@ public class PlayerSpawner : MonoBehaviour
         player.InitAttackPoolManager(attackPoolManager);
         player.EffectPoolManager = effectPoolManager;
         player.GameSceneUI = gameSceneUI;
-        tutorialManager.SetTutorial(player.PlayerController);
+        //tutorialManager.SetTutorial(player.PlayerController);
         CameraSetting(player);
         gameSceneUI.InitPlayerData(player);
     }
