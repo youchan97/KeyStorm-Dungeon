@@ -20,6 +20,7 @@ public class PlayerInventory : MonoBehaviour
     [Header("드롭용 공용 액티브 픽업 프리팹(필수)")]
     public GameObject defaultActivePickupPrefab;
 
+    public event Action<ItemData> OnAddPassiveItem;
     public event Action<ItemData> OnAddActiveItem;
 
     public void InitInventory(InventoryRunData data)
@@ -103,6 +104,7 @@ public class PlayerInventory : MonoBehaviour
     public void AddPassiveItem(ItemData data)
     {
         if (data == null) return;
+        OnAddPassiveItem?.Invoke(data);
         passiveItems.Add(data);
 
         if (GameDataManager.Instance != null && data.iconSprite != null)
