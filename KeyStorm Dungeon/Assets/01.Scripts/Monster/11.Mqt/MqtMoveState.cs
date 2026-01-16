@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MqtMoveState : MonsterMoveState
 {
     private Mqt mqt;
+    private Vector2 directionToPlayer;
     private float currentMoveTime;
-    private bool isMove;
 
     public MqtMoveState(Monster monster, CharacterStateManager<Monster> stateManager) : base(monster, stateManager)
     {
@@ -19,8 +17,8 @@ public class MqtMoveState : MonsterMoveState
         animator = mqt.Animator;
         playerTransform = mqt.PlayerTransform;
 
+        directionToPlayer = (mqt.PlayerTransform.position - mqt.transform.position).normalized;
         currentMoveTime = mqt.MoveTime;
-        isMove = false;
     }
 
     public override void UpdateState()
@@ -44,21 +42,29 @@ public class MqtMoveState : MonsterMoveState
 
         if (currentMoveTime <= 0)
         {
-            
+            stateManager.ChangeState(mqt.CreateIdleState());
+            return;
         }
 
-        
+        rb.velocity = directionToPlayer * mqt.MoveSpeed;
+
+        if (mqt.AttackedPlayer)
+        {
+            stateManager.ChangeState(mqt.CreateAttackState());
+            return;
+        }
     }
 
     public override void ExitState()
     {
-        base.ExitState();
+        if (rb != null)
+        {
+            rb.velocity = Vector2.zero;
+        }
     }
 
     public override bool UseFixedUpdate()
     {
         return true;
     }
-
-
 }

@@ -5,13 +5,15 @@ public class Mqt : MeleeMonster
     [SerializeField] private float idleTime;
     [SerializeField] private float moveTime;
     [SerializeField] private float attackedIdleTime;
-    [SerializeField] private float attackedMoveSpeed;
+    [SerializeField] private float attackedMoveTime;
+    [SerializeField] private float attackedMoveSpeedMultiple;
     private bool attackedPlayer;
     
     public float IdleTime => idleTime;
     public float MoveTime => moveTime;
     public float AttackedIdleTime => attackedIdleTime;
-    public float AttackedMoveSpeed => attackedMoveSpeed;
+    public float AttackedMoveTime => attackedMoveTime;
+    public float AttackedMoveSpeedMultiple => attackedMoveSpeedMultiple;
     public bool AttackedPlayer => attackedPlayer;
 
     private MqtIdleState _idleState;
@@ -49,5 +51,21 @@ public class Mqt : MeleeMonster
         attackedPlayer = false;
     }
 
-    
+    protected override void ContactPlayer(Collision2D collision)
+    {
+        if (CurrentAttackCooldown <= 0f)
+        {
+            if (((1 << collision.gameObject.layer) & playerLayer.value) > 0)
+            {
+                Player player = collision.gameObject.GetComponent<Player>();
+
+                if (player != null)
+                {
+                    Attack(player);
+                    attackedPlayer = true;
+                    ResetAttackCooldown();
+                }
+            }
+        }
+    }
 }
