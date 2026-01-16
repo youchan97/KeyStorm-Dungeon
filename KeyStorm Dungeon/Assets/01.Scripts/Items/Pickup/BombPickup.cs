@@ -37,30 +37,33 @@ public class BombPickup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        TryPickup(other);
+        Player player = other.GetComponent<Player>();
+        if (player == null) return;
+        TryPickup(player);
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
         if (isPickedUp) return;
-        TryPickup(other);
+        Player player = other.GetComponent<Player>();
+        if (player == null) return;
+        TryPickup(player);
     }
 
-    private void TryPickup(Collider2D other)
+    public void TryPickup(Player player)
     {
         if (isPickedUp) return;
-        if (!other.CompareTag("Player")) return;
 
         isPickedUp = true;
 
-        var inv = other.GetComponent<PlayerInventory>();
+        var inv = player.GetComponent<PlayerInventory>();
         if (inv == null) return;
 
-        if (price > 0 && !inv.TrySpendGold(price))
+        /*if (price > 0 && !inv.TrySpendGold(price))
         {
             isPickedUp = false;
             return;
-        }
+        }*/
 
         inv.AddBomb(amount);
 

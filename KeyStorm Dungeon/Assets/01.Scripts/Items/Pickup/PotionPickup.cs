@@ -50,23 +50,21 @@ public class PotionPickup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        TryPickup(other);
+        Player player = other.GetComponent<Player>();
+        if (player == null) return;
+        TryPickup(player);
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
         if (isPickedUp) return;
-        TryPickup(other);
-    }
-
-    private void TryPickup(Collider2D other)
-    {
-        if (!other.CompareTag("Player")) return;
-
-
         Player player = other.GetComponent<Player>();
         if (player == null) return;
+        TryPickup(player);
+    }
 
+    public void TryPickup(Player player)
+    {    
         if (isPickedUp) return;
         isPickedUp = true;
 
@@ -75,11 +73,11 @@ public class PotionPickup : MonoBehaviour
         var inv = player.GetComponent<PlayerInventory>();
         if (inv == null) return;
 
-        if (price > 0 && !inv.TrySpendGold(price))
+        /*if (price > 0 && !inv.TrySpendGold(price))
         {
             isPickedUp = false;
             return;
-        }
+        }*/
 
         player.Heal(healAmount);
 
