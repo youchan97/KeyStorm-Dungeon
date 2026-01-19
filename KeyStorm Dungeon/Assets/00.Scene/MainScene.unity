@@ -831,8 +831,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 893130340}
-  shakeDuration: 1
-  shakePower: 5
+  shakeDuration: 0.5
+  shakePower: 2
 --- !u!1 &500690623
 GameObject:
   m_ObjectHideFlags: 0
