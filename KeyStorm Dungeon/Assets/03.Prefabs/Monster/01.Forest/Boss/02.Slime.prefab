@@ -69,7 +69,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0048685074, y: 0.15}
+  m_Offset: {x: 0, y: 0.15}
   serializedVersion: 2
   m_Radius: 0.8496345
 --- !u!50 &1054993629224853795
@@ -139,7 +139,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 500
+  m_SortingOrder: 250
   m_Sprite: {fileID: 21300000, guid: 3609742fc1bc46a42983ceebab35538f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -200,7 +200,7 @@ MonoBehaviour:
   moveDelay: 0.5
   moveNumber: 4
   shootPoint: {fileID: 715882086872492290}
-  bullet: {fileID: 21300000, guid: 65200d9aa690e444b9c961f7029724e1, type: 3}
+  bulletSprite: {fileID: 21300000, guid: 65200d9aa690e444b9c961f7029724e1, type: 3}
   slamDelay: 0.7
   slamAngle: 90
   bulletCount: 5

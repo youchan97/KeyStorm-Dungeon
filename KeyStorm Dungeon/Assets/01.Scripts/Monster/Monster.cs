@@ -23,6 +23,9 @@ public abstract class Monster : Character
     private Rigidbody2D monsterRb;
     public Rigidbody2D MonsterRb => monsterRb;
     public Animator Animator => animator;
+    public LayerMask ObstacleLayer => obstacleLayer;
+    public LayerMask PlayerLayer => playerLayer;
+
 
     public GameObject PlayerGO {  get; protected set; }
     public Transform PlayerTransform { get; protected set; }

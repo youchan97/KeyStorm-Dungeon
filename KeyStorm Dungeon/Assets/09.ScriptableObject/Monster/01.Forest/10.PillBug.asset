@@ -15,7 +15,7 @@ MonoBehaviour:
   characterData:
     charName: PillBug
     id: 10
-    maxHp: 25
+    maxHp: 12
     damage: 1
     moveSpeed: 1.5
   type: 0

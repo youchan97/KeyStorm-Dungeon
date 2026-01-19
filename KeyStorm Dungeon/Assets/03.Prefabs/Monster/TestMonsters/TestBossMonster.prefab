@@ -138,7 +138,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 500
+  m_SortingOrder: 250
   m_Sprite: {fileID: 270316672, guid: 2bef218ac89a92d4693278b59b6cb93b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -186,6 +186,7 @@ MonoBehaviour:
   attackPoolManager: {fileID: 0}
   _monsterData: {fileID: 11400000, guid: 2067d09b396f6f341ab3e3afa2d11573, type: 2}
   monsterSpriteRenderer: {fileID: 1722703841422664362}
+  animator: {fileID: 7857977135855972479}
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -193,7 +194,6 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  animator: {fileID: 7857977135855972479}
   isKnockBack: 0
   jumpHeight: 50
   jumpDuration: 0.3

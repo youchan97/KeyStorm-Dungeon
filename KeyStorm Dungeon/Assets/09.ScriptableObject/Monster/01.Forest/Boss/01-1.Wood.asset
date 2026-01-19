@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterData:
     charName: Wood
-    id: 10
+    id: 13
     maxHp: 300
     damage: 1
     moveSpeed: 2

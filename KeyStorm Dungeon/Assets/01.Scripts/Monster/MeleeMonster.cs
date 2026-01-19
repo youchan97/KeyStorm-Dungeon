@@ -36,7 +36,7 @@ public class MeleeMonster : Monster
         ContactPlayer(collision);
     }
 
-    protected void ContactPlayer(Collision2D collision)
+    protected virtual void ContactPlayer(Collision2D collision)
     {
         if (CurrentAttackCooldown <= 0f)
         {
@@ -47,7 +47,6 @@ public class MeleeMonster : Monster
                 if (player != null)
                 {
                     Attack(player);
-                    Debug.Log($"{MonsterData.name}이 공격!");
                     ResetAttackCooldown();
                 }
             }

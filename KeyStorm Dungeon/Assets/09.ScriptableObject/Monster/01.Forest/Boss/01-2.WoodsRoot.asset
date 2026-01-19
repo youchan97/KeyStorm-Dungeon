@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterData:
     charName: WoodsRoot
-    id: 11
+    id: 14
     maxHp: 5
     damage: 1
     moveSpeed: 0
