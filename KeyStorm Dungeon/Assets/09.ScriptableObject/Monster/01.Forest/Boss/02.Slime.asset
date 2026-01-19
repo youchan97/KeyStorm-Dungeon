@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 02.Slime
   m_EditorClassIdentifier: 
   characterData:
-    charName: Slime
-    id: 12
+    charName: BlueSlime
+    id: 15
     maxHp: 300
     damage: 1
     moveSpeed: 10
