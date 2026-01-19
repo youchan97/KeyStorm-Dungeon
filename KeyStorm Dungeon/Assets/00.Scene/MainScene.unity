@@ -1889,7 +1889,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 200908852999160799, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 205851027392005091, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2093,11 +2093,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 916163994256435334, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 916163994256435334, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -112.5
       objectReference: {fileID: 0}
     - target: {fileID: 937245834464606976, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3513,11 +3513,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3332503122219367836, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3332503122219367836, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -262.5
       objectReference: {fileID: 0}
     - target: {fileID: 3338953892001119050, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3817,11 +3817,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4042200172980291143, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4042200172980291143, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -187.5
       objectReference: {fileID: 0}
     - target: {fileID: 4183141628383416740, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3961,11 +3961,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4535978988450607706, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4535978988450607706, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -37.5
       objectReference: {fileID: 0}
     - target: {fileID: 4633964335316636690, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
       propertyPath: m_AnchorMax.y
@@ -5357,11 +5357,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7102727832256751399, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7102727832256751399, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -412.5
       objectReference: {fileID: 0}
     - target: {fileID: 7109823214962575515, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
       propertyPath: m_AnchorMax.y
@@ -5797,11 +5797,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7898242366526740464, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7898242366526740464, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -337.5
       objectReference: {fileID: 0}
     - target: {fileID: 7918354037394497634, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
       propertyPath: m_AnchorMax.y
