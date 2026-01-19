@@ -17,6 +17,6 @@ MonoBehaviour:
   maxMoveSpeed: 15
   minDamage: 2
   minAttackSpeed: 0.2
-  minRange: 2
+  minRange: 0.5
   minShotSpeed: 7
   minScale: 0.6

@@ -22,6 +22,7 @@ MonoBehaviour:
   normalRooms:
   - {fileID: -5701023608660036602, guid: f71c04d388c367f4c9f5eb4f81628535, type: 3}
   - {fileID: -5701023608660036602, guid: 7390a753b2adc33409a1441fef8448ff, type: 3}
+  - {fileID: -5701023608660036602, guid: d46757075b2fac3418858d359c215a64, type: 3}
   - {fileID: -6716904118478084081, guid: f7a91cc40712baa4e984dd973e5dfd4a, type: 3}
   - {fileID: -2860972199739670408, guid: 1e2cc042801a4cb49aa66206257fa12c, type: 3}
   - {fileID: -5701023608660036602, guid: d1dd4967bfb3a2a4c830798f444186e3, type: 3}
@@ -32,6 +33,7 @@ MonoBehaviour:
   - {fileID: -5701023608660036602, guid: 7fb2befbc30c0b54ab7b2ade0d58d242, type: 3}
   - {fileID: -5701023608660036602, guid: 75551da9dcd344d4396a74e2ed4f39e0, type: 3}
   - {fileID: -5701023608660036602, guid: 2250a88486a067741bd62986bda65ff8, type: 3}
+  - {fileID: -5701023608660036602, guid: 061272cdddf30e142be35d3d5cabf286, type: 3}
   bossRooms:
   - {fileID: 5150652526908895158, guid: c91c307d6fea4bf4c810e5dd1a7aef85, type: 3}
   - {fileID: 5150652526908895158, guid: a4604354a1a7c014981e649955863284, type: 3}
