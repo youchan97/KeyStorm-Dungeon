@@ -2203,6 +2203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7255e3e37301ce1498655a10f0336487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 4851458755222282479}
   jumpPower: 2
   duration: 1
   playerUi: {fileID: 289486224862066317}

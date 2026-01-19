@@ -6,7 +6,6 @@ public class TutorialItem : MonoBehaviour
 {
     [Header("Item Settings")]
     [SerializeField] private ItemData itemData;
-    [SerializeField] private Sprite itemSprite;
     [SerializeField] private string itemName = "테스트 아이템";
 
     [Header("UI")]
@@ -27,7 +26,6 @@ public class TutorialItem : MonoBehaviour
             Player player = other.GetComponent<Player>();
             if (player != null)
             {
-                // 아이템 획득 처리
                 if (itemData != null)
                 {
                     player.Inventory.AddPassiveItem(itemData);
@@ -35,10 +33,10 @@ public class TutorialItem : MonoBehaviour
 
                 Debug.Log($"[TutorialItem] 아이템 획득: {itemName}");
 
-                // TutorialManager에 알림
-                if (TutorialManager.Instance != null)
+                TutorialManager tutorialManager = FindObjectOfType<TutorialManager>();
+                if (tutorialManager != null)
                 {
-                    TutorialManager.Instance.OnItemPickedUp();
+                    tutorialManager.OnItemPickedUp();
                 }
 
                 Destroy(gameObject);
@@ -46,7 +44,6 @@ public class TutorialItem : MonoBehaviour
         }
     }
 
-    // 가까이 갔을 때 정보 표시
     void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Player") && infoPanel != null)
