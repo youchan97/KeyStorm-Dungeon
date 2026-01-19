@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     InputAction bombAction;
     InputAction useActiveItemAction;
     InputAction pauseAction;
+    InputAction tabAction;
     #endregion
 
     #region events
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public Action OnBomb;
     public Action OnUseActiveItem;
     public Action OnPause;
+    public Action OnTab;
     #endregion
 
     #region Move관련
@@ -60,6 +62,7 @@ public class PlayerController : MonoBehaviour
         bombAction = PlayerInput.Player.Bomb;
         useActiveItemAction = PlayerInput.Player.UseActiveItem;
         pauseAction = PlayerInput.Player.Pause;
+        tabAction = PlayerInput.Player.Tab;
     }
 
     void InitAction()
@@ -70,6 +73,7 @@ public class PlayerController : MonoBehaviour
         bombAction.performed += BombPerformed;
         useActiveItemAction.performed += UseActiveItemPerformed;
         pauseAction.performed += PausePerformed;
+        tabAction.performed += TabPerformed;
     }
 
     void RemoveAction()
@@ -80,6 +84,7 @@ public class PlayerController : MonoBehaviour
         bombAction.performed -= BombPerformed;
         useActiveItemAction.performed -= UseActiveItemPerformed;
         pauseAction.performed -= PausePerformed;
+        tabAction.performed -= TabPerformed;
     }
 
     public void EnableInput()
@@ -98,6 +103,10 @@ public class PlayerController : MonoBehaviour
         useActiveItemAction.Disable();
     }
 
+    public void EnableTab() => tabAction.Enable();
+    public void DisableTab() => tabAction.Disable();
+
+
     public void EnablePause() => pauseAction.Enable();
 
     public void DisablePause() => pauseAction.Disable();
@@ -105,12 +114,14 @@ public class PlayerController : MonoBehaviour
     public void AllEnable()
     {
         EnableInput();
+        EnableTab();
         EnablePause();
     }
 
     public void AllDisable()
     {
         DisableInput();
+        DisableTab();
         DisablePause();
     }
 
@@ -146,5 +157,10 @@ public class PlayerController : MonoBehaviour
     void PausePerformed(InputAction.CallbackContext context)
     {
         OnPause?.Invoke();
+    }
+
+    void TabPerformed(InputAction.CallbackContext context)
+    {
+        OnTab?.Invoke();
     }
 }
