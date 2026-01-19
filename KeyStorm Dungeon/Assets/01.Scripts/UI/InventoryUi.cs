@@ -33,21 +33,26 @@ public class InventoryUi : MonoBehaviour
     [SerializeField] TextMeshProUGUI rangeText;
     [SerializeField] TextMeshProUGUI shotSpeedText;
 
-
-    List<ItemData> passiveItems = new List<ItemData>();
-    ItemData activeItem;
-
     List<InventoryItemSlot> inventoryItemSlots = new List<InventoryItemSlot>();
+
+    List<ItemData> passiveItemDatas;
+    ItemData activeItemData;
+    bool isFirst;
 
     int currentIndex;
 
     private void OnEnable()
     {
         SelectItem();
-        InitEvent();
+        controller.OnSelect += InputIndex;
     }
 
     private void OnDisable()
+    {
+        controller.OnSelect -= InputIndex;
+    }
+
+    private void OnDestroy()
     {
         RemoveEvent();
     }
@@ -55,6 +60,7 @@ public class InventoryUi : MonoBehaviour
     public void SetInventoryUi(PlayerInventory inventory)
     {
         this.inventory = inventory;
+        InitializeInventory();
         InitEvent();
     }
 
@@ -62,24 +68,40 @@ public class InventoryUi : MonoBehaviour
     {
         inventory.OnAddPassiveItem += AddPassiveItem;
         inventory.OnAddActiveItem += AddActiveItem;
-
-        controller.OnSelect += InputIndex;
     }
 
     void RemoveEvent()
     {
         inventory.OnAddPassiveItem -= AddPassiveItem;
         inventory.OnAddActiveItem -= AddActiveItem;
-
-        controller.OnSelect -= InputIndex;
     }
+
+    void InitializeInventory()
+    {
+        passiveItemDatas = inventory.passiveItems;
+        activeItemData = inventory.activeItem;
+        isFirst = true;
+        if (passiveItemDatas.Count > 0)
+        {
+            for(int i = 0; i < passiveItemDatas.Count; i++)
+            {
+                ItemData itemData = passiveItemDatas[i];
+                AddPassiveItem(itemData);
+            }
+        }
+
+        if (activeItemData != null)
+            AddActiveItem(activeItemData);
+
+        isFirst = false;
+    }
+
 
     void AddPassiveItem(ItemData data)
     {
-        if (passiveItems.Contains(data))
+        if (passiveItemDatas.Contains(data) && !isFirst)
             return;
 
-        passiveItems.Add(data);
         InventoryItemSlot slot = Instantiate(itemSlot, itemSlots);
         slot.InitData(data);
 
@@ -88,10 +110,9 @@ public class InventoryUi : MonoBehaviour
 
     void AddActiveItem(ItemData data)
     {
-        if (activeItem == data)
+        if (activeItemData == data && !isFirst)
             return;
 
-        activeItem = data;
         InventoryItemSlot slot = Instantiate(itemSlot, itemSlots);
         slot.InitData(data);
         slot.transform.SetAsFirstSibling();
@@ -100,13 +121,16 @@ public class InventoryUi : MonoBehaviour
 
     void SelectItem(int index = 0)
     {
-        if (passiveItems.Count == 0 && activeItem == null)
+        /*if (passiveItemDatas.Count == 0 && activeItemData == null)
             return;
-        else if (passiveItems.Count == 0)
+        else if (passiveItemDatas.Count == 0)
         {
-            ViewItemInfo(activeItem);
+            ViewItemInfo(activeItemData);
             return;
-        }
+        }*/
+
+        if (inventoryItemSlots.Count == 0)
+            return;
 
         if (!itemBackGround.gameObject.activeSelf)
             itemBackGround.gameObject.SetActive(true);
@@ -188,24 +212,24 @@ public class InventoryUi : MonoBehaviour
         PlayerRunData runData = player.PlayerRunData;
 
         moveSpeedText.color = GetStautsTextColot(runData.character.moveSpeed, player.PlayerEffectStat.GetMoveSpeed);
-        moveSpeedText.text = player.PlayerEffectStat.GetMoveSpeed.ToString();
+        moveSpeedText.text = player.PlayerEffectStat.GetMoveSpeed.ToString("0.##");
 
         float totalDamage = attack.Damage * attack.DamageMultiple;
         damageText.color = GetStautsTextColot(totalDamage, player.PlayerEffectStat.GetDamage(totalDamage));
-        damageText.text = string.Format("{0}(*{1:F2})", attack.Damage, attack.DamageMultiple);
+        damageText.text = string.Format("{0:0.##}(*{1:0.##})", attack.Damage, attack.DamageMultiple);
 
-        specialDamageMultipleText.text = attack.SpecialDamageMultiple.ToString();
+        specialDamageMultipleText.text = attack.SpecialDamageMultiple.ToString("0.##");
 
         float totalAttackSpeed = attack.AttackSpeed * attack.AttackSpeedMultiple;
         attackSpeedText.color = GetStautsTextColot(totalAttackSpeed, player.PlayerEffectStat.GetAttackSpeed(totalAttackSpeed));
-        attackSpeedText.text = string.Format("{0}(*{1:F2})", attack.AttackSpeed, attack.AttackSpeedMultiple);
+        attackSpeedText.text = string.Format("{0:0.##}(*{1:0.##})", attack.AttackSpeed, attack.AttackSpeedMultiple);
 
         float totalRange = attack.Range * attack.RangeMultiple;
         rangeText.color = GetStautsTextColot(totalRange, player.PlayerEffectStat.GetRange(totalRange));
-        rangeText.text = string.Format("{0}(*{1:F2})", attack.Range, attack.RangeMultiple);
+        rangeText.text = string.Format("{0:0.##}(*{1:0.##})", attack.Range, attack.RangeMultiple);
 
         shotSpeedText.color = GetStautsTextColot(attack.ShootSpeed, player.PlayerEffectStat.GetShotSpeed);
-        shotSpeedText.text = player.PlayerEffectStat.GetShotSpeed.ToString();
+        shotSpeedText.text = player.PlayerEffectStat.GetShotSpeed.ToString("0.##");
     }
 
 
