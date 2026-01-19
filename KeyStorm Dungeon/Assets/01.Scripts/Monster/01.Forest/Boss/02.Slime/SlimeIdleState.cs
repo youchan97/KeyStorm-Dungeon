@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SlimeIdleState : MonsterIdleState
 {
-    private Slime slime;
-    private float currentIdleTime;
+    protected Slime slime;
+    protected float currentIdleTime;
 
     public SlimeIdleState(Monster character, CharacterStateManager<Monster> stateManager) : base(character, stateManager)
     {

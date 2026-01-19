@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class DesertSlime : Slime
 {
+    [SerializeField] private float slideSpeed;
+
+    public float SlideSpeed => slideSpeed;
+    public bool IsSlide { get; private set; }
+
     private DesertSlimeIdleState _idleState;
     private DesertSlimeMoveState _moveState;
     private DesertSlimeAttackState _attackState;
@@ -31,5 +36,17 @@ public class DesertSlime : Slime
     {
         if (_dieState == null) _dieState = new DesertSlimeDieState(this, MonsterStateManager);
         return _dieState;
+    }
+
+
+    public void StartSlide()
+    {
+        IsSlide = true;
+    }
+
+    public void StopSlide()
+    {
+        IsSlide = false;
+        MonsterRb.velocity = Vector2.zero;
     }
 }

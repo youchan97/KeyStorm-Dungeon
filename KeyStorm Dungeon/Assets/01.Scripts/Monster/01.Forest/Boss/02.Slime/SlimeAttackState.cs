@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using static ConstValue;
 
@@ -8,27 +7,28 @@ public enum SlimePattern
 {
     JumpMove,
     Slam,
-    Dive
+    Dive,
+    Slide
 }
 
 public class SlimeAttackState : MonsterAttackState
 {
-    private Slime slime;
-    private Coroutine attackCoroutine;
-    private GameObject currentShadowInstance;
+    protected Slime slime;
+    protected Coroutine attackCoroutine;
+    protected GameObject currentShadowInstance;
 
-    private bool isJumpMoveReadyAnimationFinished;
-    private bool isJumpMoveLandAnimationFinished;
-    private bool isJumpAnimationFinished;
+    protected bool isJumpMoveReadyAnimationFinished;
+    protected bool isJumpMoveLandAnimationFinished;
+    protected bool isJumpAnimationFinished;
 
-    private Vector2 currentMoveDirection;
+    protected Vector2 currentMoveDirection;
 
     #region 애니메이션
-    private const string JumpMoveAnim = "JumpMove";
-    private const string SlamAnim = "Slam";
-    private const string JumpAnim = "Jump";
-    private const string DiveAnim = "Dive";
-    private const string AirTimeAnim = "AirTime";
+    protected const string JumpMoveAnim = "JumpMove";
+    protected const string SlamAnim = "Slam";
+    protected const string JumpAnim = "Jump";
+    protected const string DiveAnim = "Dive";
+    protected const string AirTimeAnim = "AirTime";
     #endregion
 
     public SlimeAttackState(Monster character, CharacterStateManager<Monster> stateManager) : base(character, stateManager)
@@ -93,7 +93,7 @@ public class SlimeAttackState : MonsterAttackState
         return true;
     }
 
-    private IEnumerator AttackCoroutine()
+    protected virtual IEnumerator AttackCoroutine()
     {
         SlimePattern selectedPattern = SelectPattern();
 
@@ -113,7 +113,7 @@ public class SlimeAttackState : MonsterAttackState
         stateManager.ChangeState(slime.CreateIdleState());
     }
 
-    private SlimePattern SelectPattern()
+    protected virtual SlimePattern SelectPattern()
     {
         List<SlimePattern> patterns = new List<SlimePattern>();
 
@@ -125,16 +125,14 @@ public class SlimeAttackState : MonsterAttackState
         return patterns[randomIndex];
     }
 
-    private IEnumerator JumpMovePattern()
+    protected IEnumerator JumpMovePattern()
     {
         for(int i = 0; i < slime.MoveNumber; i++)
         {
             animator.SetTrigger(JumpMoveAnim);
             yield return new WaitUntil(() => isJumpMoveReadyAnimationFinished == true);
 
-            Vector3 offsetMoveDirection = (slime.PlayerTransform.position - slime.transform.position);
-
-            currentMoveDirection = offsetMoveDirection.normalized;
+            currentMoveDirection = (slime.PlayerTransform.position - slime.transform.position).normalized;
 
             slime.StartMove();
 
@@ -149,7 +147,7 @@ public class SlimeAttackState : MonsterAttackState
         }
     }
 
-    private IEnumerator SlamPattern()
+    protected IEnumerator SlamPattern()
     {
         Vector2 direction = (slime.PlayerTransform.position - slime.transform.position).normalized;
 
@@ -159,7 +157,7 @@ public class SlimeAttackState : MonsterAttackState
         yield return new WaitForSeconds(slime.SlamDelay);
     }
 
-    private IEnumerator DivePattern()
+    protected IEnumerator DivePattern()
     {
         animator.SetTrigger(JumpAnim);
 
@@ -256,17 +254,17 @@ public class SlimeAttackState : MonsterAttackState
         yield return new WaitForSeconds(slime.DiveAttackDelay);
     }
 
-    private void HandleJumpMoveReadyAnimationFinished()
+    protected void HandleJumpMoveReadyAnimationFinished()
     {
         isJumpMoveReadyAnimationFinished = true;
     }
 
-    private void HandleJumpMoveLandAnimationFinished()
+    protected void HandleJumpMoveLandAnimationFinished()
     {
         isJumpMoveLandAnimationFinished = true;
     }
 
-    private void HandleJumpAnimationFinished()
+    protected void HandleJumpAnimationFinished()
     {
         isJumpAnimationFinished = true;
     }
