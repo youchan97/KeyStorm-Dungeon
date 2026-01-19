@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3796b2a55b949144adae7e817f86f83, type: 3}
+  m_Name: "Step_13_\uC0C1\uC810___\uC124\uBA85"
+  m_EditorClassIdentifier: 
+  stepIndex: 13
+  stepName: "\uC0C1\uC810 - \uC124\uBA85"
+  preDialogues:
+  - text: "\uC5EC\uAE30\uAC00 \uC0C1\uC810\uC774\uAD70."
+    typingSpeed: 0.03
+    waitForInput: 1
+    autoDelay: 1.5
+  - text: "\uACE8\uB4DC\uB97C \uC0AC\uC6A9\uD574\uC11C \uC544\uC774\uD15C\uC744 \uAD6C\uB9E4\uD560
+      \uC218 \uC788\uC5B4."
+    typingSpeed: 0.03
+    waitForInput: 1
+    autoDelay: 1.5
+  - text: "\uC544\uC774\uD15C\uC5D0 \uAC00\uAE4C\uC774 \uAC00\uC11C \uD655\uC778\uD574\uBCF4\uC790."
+    typingSpeed: 0.03
+    waitForInput: 1
+    autoDelay: 1.5
+  hasQuest: 1
+  questTitle: "\uC544\uC774\uD15C \uAD6C\uB9E4"
+  objectives:
+  - description: "\uC544\uC774\uD15C \uAD6C\uB9E4\uD558\uAE30"
+    type: 9
+    targetCount: 1
+    currentCount: 0
+  postDialogues:
+  - text: "\uC88B\uC544, \uC720\uC6A9\uD558\uAC8C \uC4F8 \uC218 \uC788\uACA0\uC5B4."
+    typingSpeed: 0.03
+    waitForInput: 1
+    autoDelay: 1.5
+  currentRoom: 3
+  blockInputDuringDialogue: 1
+  resetMoveTrackingOnStart: 0

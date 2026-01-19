@@ -1,0 +1,363 @@
+{
+  "tutorialSteps": [
+    {
+      "stepIndex": 0,
+      "stepName": "스토리 - 도입",
+      "currentRoom": "Start",
+      "preDialogues": [
+        { "text": "...여기는 어디지?", "typingSpeed": 0.04, "waitForInput": true },
+        { "text": "또 이 저주 때문에 이상한 곳에 떨어졌군...", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "언젠가 이 저주를 풀 수 있는 아이템을 찾을 수 있겠지.", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "일단 여길 벗어나야겠어.", "typingSpeed": 0.03, "waitForInput": true }
+      ],
+      "hasQuest": false,
+      "questTitle": "",
+      "objectives": [],
+      "postDialogues": [],
+      "resetMoveTrackingOnStart": false
+    },
+    {
+      "stepIndex": 1,
+      "stepName": "이동 배우기",
+      "currentRoom": "Start",
+      "preDialogues": [
+        { "text": "우선 몸 상태부터 확인해보자.", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "WASD 키로 움직일 수 있어.", "typingSpeed": 0.03, "waitForInput": true }
+      ],
+      "hasQuest": true,
+      "questTitle": "이동 연습",
+      "objectives": [
+        { "description": "위로 이동 (W)", "type": "MoveUp", "targetCount": 1 },
+        { "description": "아래로 이동 (S)", "type": "MoveDown", "targetCount": 1 },
+        { "description": "왼쪽으로 이동 (A)", "type": "MoveLeft", "targetCount": 1 },
+        { "description": "오른쪽으로 이동 (D)", "type": "MoveRight", "targetCount": 1 }
+      ],
+      "postDialogues": [
+        { "text": "좋아, 몸은 멀쩡하군.", "typingSpeed": 0.03, "waitForInput": true }
+      ],
+      "resetMoveTrackingOnStart": true
+    },
+    {
+      "stepIndex": 2,
+      "stepName": "공격 배우기 - 기본",
+      "currentRoom": "Start",
+      "preDialogues": [
+        { "text": "이제 공격을 해보자.", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "방향키로 공격할 수 있어.", "typingSpeed": 0.03, "waitForInput": true }
+      ],
+      "hasQuest": true,
+      "questTitle": "기본 공격",
+      "objectives": [
+        { "description": "공격하기", "type": "Shoot", "targetCount": 3 }
+      ],
+      "postDialogues": [
+        { "text": "...뭐야, 공격이 내가 원하는 방향으로 안 나가잖아?", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "젠장, 이 저주 때문이야.", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "과거에 걸린 저주 때문에 마법이 엉뚱한 방향으로 나가.", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "적응해야겠군...", "typingSpeed": 0.03, "waitForInput": true }
+      ],
+      "resetMoveTrackingOnStart": false
+    },
+    {
+      "stepIndex": 3,
+      "stepName": "공격 배우기 - 탄창",
+      "currentRoom": "Start",
+      "preDialogues": [
+        { "text": "마법은 일정량 사용하면 재충전이 필요해.", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "탄창을 다 쓸 때까지 공격해봐.", "typingSpeed": 0.03, "waitForInput": true }
+      ],
+      "hasQuest": true,
+      "questTitle": "탄창 비우기",
+      "objectives": [
+        { "description": "탄창 비우기", "type": "EmptyMagazine", "targetCount": 1 }
+      ],
+      "postDialogues": [
+        { "text": "마법이 재충전될 때까지 잠시 기다려야 해.", "typingSpeed": 0.03, "waitForInput": true }
+      ],
+      "resetMoveTrackingOnStart": false
+    },
+    {
+      "stepIndex": 4,
+      "stepName": "공격 배우기 - 특수공격",
+      "currentRoom": "Start",
+      "preDialogues": [
+        { "text": "스페이스바로 특수 공격을 사용할 수 있어.", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "특수 공격도 사용해보자.", "typingSpeed": 0.03, "waitForInput": true }
+      ],
+      "hasQuest": true,
+      "questTitle": "특수 공격 연습",
+      "objectives": [
+        { "description": "특수 공격 사용", "type": "SpecialShoot", "targetCount": 1 },
+        { "description": "탄창 비우기", "type": "EmptyMagazine", "targetCount": 1 }
+      ],
+      "postDialogues": [
+        { "text": "좋아, 이 정도면 싸울 수 있겠어.", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "저기 보이는 방으로 가보자.", "typingSpeed": 0.03, "waitForInput": true }
+      ],
+      "resetMoveTrackingOnStart": false
+    },
+    {
+      "stepIndex": 5,
+      "stepName": "보물방으로 이동",
+      "currentRoom": "Start",
+      "preDialogues": [],
+      "hasQuest": true,
+      "questTitle": "보물방 탐색",
+      "objectives": [
+        { "description": "보물방으로 이동", "type": "EnterTreasureRoom", "targetCount": 1 }
+      ],
+      "postDialogues": [],
+      "resetMoveTrackingOnStart": false
+    },
+    {
+      "stepIndex": 6,
+      "stepName": "아이템 - 스토리",
+      "currentRoom": "Treasure",
+      "preDialogues": [
+        { "text": "오, 뭔가 있군.", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "이건... 조상들이 사용하던 물건이야.", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "오랜 시간 마력을 머금고 있어서 특수한 능력이 부여되어 있지.", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "혹시 이 중에 저주를 풀 수 있는 것도 있을지 모르겠군.", "typingSpeed": 0.03, "waitForInput": true }
+      ],
+      "hasQuest": false,
+      "questTitle": "",
+      "objectives": [],
+      "postDialogues": [],
+      "resetMoveTrackingOnStart": false
+    },
+    {
+      "stepIndex": 7,
+      "stepName": "아이템 - 획득",
+      "currentRoom": "Treasure",
+      "preDialogues": [
+        { "text": "아이템에 가까이 가면 설명을 볼 수 있어.", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "아이템에 닿으면 획득할 수 있지.", "typingSpeed": 0.03, "waitForInput": true }
+      ],
+      "hasQuest": true,
+      "questTitle": "아이템 획득",
+      "objectives": [
+        { "description": "아이템 획득하기", "type": "PickupItem", "targetCount": 1 }
+      ],
+      "postDialogues": [
+        { "text": "좋아, 이게 도움이 될 거야.", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "다음 방으로 가보자.", "typingSpeed": 0.03, "waitForInput": true }
+      ],
+      "resetMoveTrackingOnStart": false
+    },
+    {
+      "stepIndex": 8,
+      "stepName": "일반방으로 이동",
+      "currentRoom": "Treasure",
+      "preDialogues": [],
+      "hasQuest": true,
+      "questTitle": "일반방 탐색",
+      "objectives": [
+        { "description": "일반방으로 이동", "type": "EnterNormalRoom", "targetCount": 1 }
+      ],
+      "postDialogues": [],
+      "resetMoveTrackingOnStart": false
+    },
+    {
+      "stepIndex": 9,
+      "stepName": "전투 - 문 설명",
+      "currentRoom": "Normal",
+      "preDialogues": [
+        { "text": "방에 들어가니 문이 닫히는군.", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "적들이 있어. 모두 처치해야 문이 열릴 거야.", "typingSpeed": 0.03, "waitForInput": true }
+      ],
+      "hasQuest": false,
+      "questTitle": "",
+      "objectives": [],
+      "postDialogues": [],
+      "resetMoveTrackingOnStart": false
+    },
+    {
+      "stepIndex": 10,
+      "stepName": "전투 - 몬스터 처치",
+      "currentRoom": "Normal",
+      "preDialogues": [
+        { "text": "저 녀석들을 처리해야겠어.", "typingSpeed": 0.03, "waitForInput": true }
+      ],
+      "hasQuest": true,
+      "questTitle": "몬스터 처치",
+      "objectives": [
+        { "description": "몬스터 처치", "type": "KillEnemy", "targetCount": 3 }
+      ],
+      "postDialogues": [
+        { "text": "휴, 처리했군.", "typingSpeed": 0.03, "waitForInput": true }
+      ],
+      "resetMoveTrackingOnStart": false
+    },
+    {
+      "stepIndex": 11,
+      "stepName": "골드 - 설명",
+      "currentRoom": "Normal",
+      "preDialogues": [
+        { "text": "문이 열렸어.", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "그리고 몬스터를 잡으니 골드가 떨어지네.", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "방을 클리어하면 골드가 자동으로 끌려와.", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "상점에서 골드로 아이템을 살 수 있을 거야.", "typingSpeed": 0.03, "waitForInput": true }
+      ],
+      "hasQuest": false,
+      "questTitle": "",
+      "objectives": [],
+      "postDialogues": [],
+      "resetMoveTrackingOnStart": false
+    },
+    {
+      "stepIndex": 12,
+      "stepName": "상점으로 이동",
+      "currentRoom": "Normal",
+      "preDialogues": [],
+      "hasQuest": true,
+      "questTitle": "상점 방문",
+      "objectives": [
+        { "description": "상점으로 이동", "type": "EnterShopRoom", "targetCount": 1 }
+      ],
+      "postDialogues": [],
+      "resetMoveTrackingOnStart": false
+    },
+    {
+      "stepIndex": 13,
+      "stepName": "상점 - 설명",
+      "currentRoom": "Shop",
+      "preDialogues": [
+        { "text": "여기가 상점이군.", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "골드를 사용해서 아이템을 구매할 수 있어.", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "아이템에 가까이 가서 확인해보자.", "typingSpeed": 0.03, "waitForInput": true }
+      ],
+      "hasQuest": true,
+      "questTitle": "아이템 구매",
+      "objectives": [
+        { "description": "아이템 구매하기", "type": "BuyItem", "targetCount": 1 }
+      ],
+      "postDialogues": [
+        { "text": "좋아, 유용하게 쓸 수 있겠어.", "typingSpeed": 0.03, "waitForInput": true }
+      ],
+      "resetMoveTrackingOnStart": false
+    },
+    {
+      "stepIndex": 14,
+      "stepName": "폭탄 - 설명",
+      "currentRoom": "Shop",
+      "preDialogues": [
+        { "text": "저기 폭탄도 있네.", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "폭탄은 강력한 범위 공격을 할 수 있어.", "typingSpeed": 0.03, "waitForInput": true }
+      ],
+      "hasQuest": true,
+      "questTitle": "폭탄 구매",
+      "objectives": [
+        { "description": "폭탄 구매하기", "type": "BuyItem", "targetCount": 1 }
+      ],
+      "postDialogues": [],
+      "resetMoveTrackingOnStart": false
+    },
+    {
+      "stepIndex": 15,
+      "stepName": "폭탄 - 사용법",
+      "currentRoom": "Shop",
+      "preDialogues": [
+        { "text": "E키로 폭탄을 사용할 수 있어.", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "한번 사용해보자.", "typingSpeed": 0.03, "waitForInput": true }
+      ],
+      "hasQuest": true,
+      "questTitle": "폭탄 사용",
+      "objectives": [
+        { "description": "폭탄 사용하기", "type": "UseBomb", "targetCount": 1 }
+      ],
+      "postDialogues": [
+        { "text": "주의할 점이 있어.", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "폭탄을 오래 들고 있으면 손에서 터져버려.", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "그리고 폭발 범위 안에 있으면 나도 피해를 받으니까 조심해.", "typingSpeed": 0.03, "waitForInput": true }
+      ],
+      "resetMoveTrackingOnStart": false
+    },
+    {
+      "stepIndex": 16,
+      "stepName": "보스방으로 이동",
+      "currentRoom": "Shop",
+      "preDialogues": [
+        { "text": "이제 보스방으로 가보자.", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "뭔가 강력한 기운이 느껴져...", "typingSpeed": 0.03, "waitForInput": true }
+      ],
+      "hasQuest": true,
+      "questTitle": "보스방 진입",
+      "objectives": [
+        { "description": "보스방으로 이동", "type": "EnterBossRoom", "targetCount": 1 }
+      ],
+      "postDialogues": [],
+      "resetMoveTrackingOnStart": false
+    },
+    {
+      "stepIndex": 17,
+      "stepName": "보스 - 스토리",
+      "currentRoom": "Boss",
+      "preDialogues": [
+        { "text": "저건... 보스다.", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "아이템의 마력 때문에 강해지고 폭주한 몬스터야.", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "저 녀석을 쓰러뜨리면 아이템을 얻을 수 있을 거야.", "typingSpeed": 0.03, "waitForInput": true }
+      ],
+      "hasQuest": false,
+      "questTitle": "",
+      "objectives": [],
+      "postDialogues": [],
+      "resetMoveTrackingOnStart": false
+    },
+    {
+      "stepIndex": 18,
+      "stepName": "보스 - 처치",
+      "currentRoom": "Boss",
+      "preDialogues": [],
+      "hasQuest": true,
+      "questTitle": "보스 처치",
+      "objectives": [
+        { "description": "보스 처치하기", "type": "KillBoss", "targetCount": 1 }
+      ],
+      "postDialogues": [
+        { "text": "해냈어!", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "보스가 아이템을 떨어뜨렸군.", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "그리고 포탈이 열렸어.", "typingSpeed": 0.03, "waitForInput": true }
+      ],
+      "resetMoveTrackingOnStart": false
+    },
+    {
+      "stepIndex": 19,
+      "stepName": "방 정리",
+      "currentRoom": "Boss",
+      "preDialogues": [
+        { "text": "이 구역을 모두 돌아봤군.", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "지금까지 다양한 방들을 지나왔어.", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "<color=#808080>시작방</color> - 처음 떨어진 곳", "typingSpeed": 0.02, "waitForInput": true },
+        { "text": "<color=#FFD700>보물방</color> - 아이템을 얻을 수 있는 곳", "typingSpeed": 0.02, "waitForInput": true },
+        { "text": "<color=#FFFFFF>일반방</color> - 몬스터가 나오는 곳", "typingSpeed": 0.02, "waitForInput": true },
+        { "text": "<color=#FFA500>상점</color> - 아이템을 구매할 수 있는 곳", "typingSpeed": 0.02, "waitForInput": true },
+        { "text": "<color=#FF6B6B>보스방</color> - 보스가 있는 곳", "typingSpeed": 0.02, "waitForInput": true }
+      ],
+      "hasQuest": false,
+      "questTitle": "",
+      "objectives": [],
+      "postDialogues": [],
+      "resetMoveTrackingOnStart": false
+    },
+    {
+      "stepIndex": 20,
+      "stepName": "스테이지 - 포탈 설명",
+      "currentRoom": "Boss",
+      "preDialogues": [
+        { "text": "저 포탈을 타면 다음 스테이지로 넘어갈 수 있어.", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "다음 스테이지에서는 맵 구조가 달라질 수도 있으니 주의해.", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "더 강한 적들이 기다리고 있겠지만...", "typingSpeed": 0.03, "waitForInput": true },
+        { "text": "언젠가 이 저주를 풀 수 있는 아이템을 찾을 수 있을 거야.", "typingSpeed": 0.03, "waitForInput": true }
+      ],
+      "hasQuest": true,
+      "questTitle": "다음 스테이지",
+      "objectives": [
+        { "description": "포탈 진입하기", "type": "EnterPortal", "targetCount": 1 }
+      ],
+      "postDialogues": [
+        { "text": "자, 가보자.", "typingSpeed": 0.03, "waitForInput": true }
+      ],
+      "resetMoveTrackingOnStart": false
+    }
+  ]
+}
