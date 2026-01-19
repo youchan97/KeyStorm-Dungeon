@@ -216,17 +216,17 @@ public class InventoryUi : MonoBehaviour
 
         float totalDamage = attack.Damage * attack.DamageMultiple;
         damageText.color = GetStautsTextColot(totalDamage, player.PlayerEffectStat.GetDamage(totalDamage));
-        damageText.text = string.Format("{0:0.##}(*{1:0.##})", attack.Damage, attack.DamageMultiple);
+        damageText.text = string.Format("{0:0.##}(x{1:0.##})", attack.Damage, attack.DamageMultiple);
 
         specialDamageMultipleText.text = attack.SpecialDamageMultiple.ToString("0.##");
 
         float totalAttackSpeed = attack.AttackSpeed * attack.AttackSpeedMultiple;
         attackSpeedText.color = GetStautsTextColot(totalAttackSpeed, player.PlayerEffectStat.GetAttackSpeed(totalAttackSpeed));
-        attackSpeedText.text = string.Format("{0:0.##}(*{1:0.##})", attack.AttackSpeed, attack.AttackSpeedMultiple);
+        attackSpeedText.text = string.Format("{0:0.##}(x{1:0.##})", attack.AttackSpeed, attack.AttackSpeedMultiple);
 
         float totalRange = attack.Range * attack.RangeMultiple;
         rangeText.color = GetStautsTextColot(totalRange, player.PlayerEffectStat.GetRange(totalRange));
-        rangeText.text = string.Format("{0:0.##}(*{1:0.##})", attack.Range, attack.RangeMultiple);
+        rangeText.text = string.Format("{0:0.##}(x{1:0.##})", attack.Range, attack.RangeMultiple);
 
         shotSpeedText.color = GetStautsTextColot(attack.ShootSpeed, player.PlayerEffectStat.GetShotSpeed);
         shotSpeedText.text = player.PlayerEffectStat.GetShotSpeed.ToString("0.##");
