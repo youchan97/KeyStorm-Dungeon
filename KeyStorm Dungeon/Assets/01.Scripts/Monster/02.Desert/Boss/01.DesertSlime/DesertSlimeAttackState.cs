@@ -53,6 +53,7 @@ public class DesertSlimeAttackState : SlimeAttackState
             if (distanceToPosition <= desertSlime.SlideStopDistance)
             {
                 desertSlime.StopSlide();
+                return;
             }
             else
             {
@@ -63,10 +64,14 @@ public class DesertSlimeAttackState : SlimeAttackState
                 {
                     float distanceMoved = Vector3.Distance(desertSlime.transform.position, lastPosition);
 
-                    if(distanceMoved < stoppedThreshold && rb.velocity.sqrMagnitude > stoppedThreshold * stoppedThreshold)
+                    if(distanceMoved < stoppedThreshold)
                     {
                         desertSlime.StopSlide();
+                        return;
                     }
+
+                    lastPosition = desertSlime.transform.position;
+                    timeSinceLastCheck = 0f;
                 }
             }
         }

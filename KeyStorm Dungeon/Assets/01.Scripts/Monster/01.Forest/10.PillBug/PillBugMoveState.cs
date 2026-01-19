@@ -55,7 +55,7 @@ public class PillBugMoveState : MonsterMoveState
         {
             float distanceMoved = Vector3.Distance(pillBug.transform.position, lastPosition);
 
-            if (distanceMoved < stoppedThreshold && rb.velocity.sqrMagnitude > stoppedThreshold * stoppedThreshold)
+            if (distanceMoved < stoppedThreshold && rb.velocity.sqrMagnitude < stoppedThreshold)
             {
                 Vector2 reactionDirection = -pillBug.CurrentMoveDirection.normalized;
                 coroutine = pillBug.StartCoroutine(pillBug.ObstacleReaction(reactionDirection));

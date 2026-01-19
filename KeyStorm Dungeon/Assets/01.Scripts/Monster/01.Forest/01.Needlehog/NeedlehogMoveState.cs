@@ -57,7 +57,7 @@ public class NeedlehogMoveState : MonsterMoveState
             {
                 float distanceMoved = Vector3.Distance(needlehog.transform.position, lastPosition);
 
-                if (distanceMoved < stoppedThreshold && rb.velocity.sqrMagnitude > stoppedThreshold * stoppedThreshold)
+                if (distanceMoved < stoppedThreshold && rb.velocity.sqrMagnitude < stoppedThreshold)
                 {
                     rb.velocity = Vector2.zero;
                     stateManager.ChangeState(needlehog.CreateIdleState());
