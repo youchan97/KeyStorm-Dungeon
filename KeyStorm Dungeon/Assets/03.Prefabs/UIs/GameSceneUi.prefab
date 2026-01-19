@@ -1357,7 +1357,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1990345534403942041
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4615,6 +4615,7 @@ MonoBehaviour:
   ammoTxt: {fileID: 8069608062687496086}
   optionPanel: {fileID: 8476490738379516251}
   healthUI: {fileID: 3799351101584330392}
+  activeItemSlot: {fileID: 2538107032122625064}
   itemImage: {fileID: 7927474057211144897}
   coolTimeImage: {fileID: 1653321643126400683}
   bossHpBarUI: {fileID: 4693454531127502876, guid: 0b71f91a49c5ebd4da1449722febf22d, type: 3}

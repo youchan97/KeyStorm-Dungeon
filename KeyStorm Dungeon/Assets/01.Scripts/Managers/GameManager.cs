@@ -197,12 +197,16 @@ public class PlayerRunData
     public void ApplyItemStat(ItemData itemData, PlayerLimitData limitData)
     {
         character.ApplyItemStat(itemData, limitData);
-        damageMultiple *= itemData.damageMultiple;
-        specialDamageMultiple *= itemData.specialDamageMultiple;
+        if(itemData.damageMultiple > 0)
+            damageMultiple *= itemData.damageMultiple;
+        if(itemData.specialDamageMultiple > 0)
+            specialDamageMultiple *= itemData.specialDamageMultiple;
         attackSpeed += itemData.attackSpeed;
-        attackSpeedMultiple *= itemData.attackSpeedMultiple;
+        if(itemData.attackSpeedMultiple > 0)
+            attackSpeedMultiple *= itemData.attackSpeedMultiple;
         range += itemData.range;
-        rangeMultiple *= itemData.rangeMultiple;
+        if(itemData.rangeMultiple > 0)
+            rangeMultiple *= itemData.rangeMultiple;
         shootSpeed += itemData.shotSpeed;
         maxAmmo += itemData.maxAmmo;
         useAmmo += itemData.useAmmo;

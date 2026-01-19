@@ -19,6 +19,7 @@ public class GameSceneUI : MonoBehaviour
     [SerializeField] GameObject optionPanel;
     [SerializeField] HealthUI healthUI;
 
+    [SerializeField] GameObject activeItemSlot;
     [SerializeField] Image itemImage;
     [SerializeField] Image coolTimeImage;
     [SerializeField] private GameObject bossHpBarUI;
@@ -199,6 +200,9 @@ public class GameSceneUI : MonoBehaviour
         {
             return;
         }
+
+        if (!activeItemSlot.activeSelf)
+            activeItemSlot.SetActive(true);
 
         if (activeItemCo != null)
         {
