@@ -1,14 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ConstValue;
 
 public class DesertSlimeAttackState : SlimeAttackState
 {
     private DesertSlime desertSlime;
 
-    private bool isReadySlideAnim;
+    private Vector2 slideTargetPosition;
 
+    private bool isReadySlideAnimationFinished;
+    private bool isSpinAnimationFinished;
+
+    #region 애니메이션
     private const string ReadySlideAnim = "ReadySlide";
+    private const string SlideAnim = "Slide";
+    #endregion
+
+    private float stoppedThreshold = 0.01f;
+    private float checkInterval = 0.2f;
+    private float timeSinceLastCheck;
+    private Vector3 lastPosition;
 
     public DesertSlimeAttackState(Monster character, CharacterStateManager<Monster> stateManager) : base(character, stateManager)
     {
@@ -17,7 +29,15 @@ public class DesertSlimeAttackState : SlimeAttackState
 
     public override void EnterState()
     {
-        isReadySlideAnim = false;
+        desertSlime.StopSlide();
+        isReadySlideAnimationFinished = false;
+        isSpinAnimationFinished = false;
+
+        desertSlime.OnReadySlideAnimation += HandleReadySlideAnimationFinished;
+        desertSlime.OnSpinAnimation += HandleSpinAnimationFinished;
+
+        lastPosition = desertSlime.transform.position;
+        timeSinceLastCheck = 0f;
 
         base.EnterState();
     }
@@ -28,13 +48,41 @@ public class DesertSlimeAttackState : SlimeAttackState
 
         if (desertSlime.IsSlide)
         {
-            rb.velocity = currentMoveDirection * (desertSlime.MoveSpeed * desertSlime.SlideSpeed);
+            float distanceToPosition = Vector2.Distance(desertSlime.transform.position, slideTargetPosition);
+
+            if (distanceToPosition <= desertSlime.SlideStopDistance)
+            {
+                desertSlime.StopSlide();
+            }
+            else
+            {
+                rb.velocity = currentMoveDirection * desertSlime.SlideSpeed;
+
+                timeSinceLastCheck += Time.fixedDeltaTime;
+                if (timeSinceLastCheck >= checkInterval)
+                {
+                    float distanceMoved = Vector3.Distance(desertSlime.transform.position, lastPosition);
+
+                    if(distanceMoved < stoppedThreshold && rb.velocity.sqrMagnitude > stoppedThreshold * stoppedThreshold)
+                    {
+                        desertSlime.StopSlide();
+                    }
+                }
+            }
         }
     }
 
     public override void ExitState()
     {
         base.ExitState();
+
+        desertSlime.OnReadySlideAnimation -= HandleReadySlideAnimationFinished;
+        desertSlime.OnSpinAnimation -= HandleSpinAnimationFinished;
+
+        if (desertSlime.IsSlide)
+        {
+            desertSlime.StopSlide();
+        }
     }
 
     protected override IEnumerator AttackCoroutine()
@@ -52,9 +100,9 @@ public class DesertSlimeAttackState : SlimeAttackState
             case SlimePattern.Dive:
                 yield return DivePattern();
                 break;
-            /*case SlimePattern.Slide:
+            case SlimePattern.Slide:
                 yield return SlidePattern();
-                break;*/
+                break;
         }
 
         stateManager.ChangeState(slime.CreateIdleState());
@@ -73,15 +121,34 @@ public class DesertSlimeAttackState : SlimeAttackState
         return patterns[randomIndex];
     }
 
-    /*private IEnumerator SlidePattern()
+    private IEnumerator SlidePattern()
     {
+        Vector2 direction = (desertSlime.PlayerTransform.position - desertSlime.transform.position).normalized;
+
+        animator.SetFloat(AxisX, direction.x);
         animator.SetTrigger(ReadySlideAnim);
 
-        yield return new WaitUntil(() => isReadySlideAnim == true);
+        yield return new WaitUntil(() => isReadySlideAnimationFinished == true);
 
-        currentMoveDirection = (slime.PlayerTransform.position - desertSlime.transform.position).normalized;
+        slideTargetPosition = slime.PlayerTransform.position;
+        currentMoveDirection = (slideTargetPosition - (Vector2)desertSlime.transform.position).normalized;
 
+        animator.SetBool(SlideAnim, true);
         desertSlime.StartSlide();
 
-    }*/
+        yield return new WaitUntil(() => !desertSlime.IsSlide);
+
+        animator.SetBool(SlideAnim, false);
+        yield return new WaitUntil(() => isSpinAnimationFinished == true);
+    }
+
+    private void HandleReadySlideAnimationFinished()
+    {
+        isReadySlideAnimationFinished = true;
+    }
+
+    private void HandleSpinAnimationFinished()
+    {
+        isSpinAnimationFinished = true;
+    }
 }

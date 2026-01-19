@@ -1,18 +1,25 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DesertSlime : Slime
 {
+    [Header("돌진 패턴 수치")]
     [SerializeField] private float slideSpeed;
+    [SerializeField] private float slideStopDistance;
 
     public float SlideSpeed => slideSpeed;
+    public float SlideStopDistance => slideStopDistance;
     public bool IsSlide { get; private set; }
 
     private DesertSlimeIdleState _idleState;
     private DesertSlimeMoveState _moveState;
     private DesertSlimeAttackState _attackState;
     private DesertSlimeDieState _dieState;
+
+    public event Action OnReadySlideAnimation;
+    public event Action OnSpinAnimation;
 
     public override CharacterState<Monster> CreateIdleState()
     {
@@ -48,5 +55,15 @@ public class DesertSlime : Slime
     {
         IsSlide = false;
         MonsterRb.velocity = Vector2.zero;
+    }
+
+    public void OnReadySlide()
+    {
+        OnReadySlideAnimation?.Invoke();
+    }
+
+    public void OnSpin()
+    {
+        OnSpinAnimation?.Invoke();
     }
 }

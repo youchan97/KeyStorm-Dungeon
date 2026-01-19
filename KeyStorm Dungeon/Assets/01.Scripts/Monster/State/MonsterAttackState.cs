@@ -25,8 +25,7 @@ public class MonsterAttackState : CharacterAttackState<Monster>
         }
         else
         {
-            Debug.LogError("MonsterAttackState: Monster.playerGO가 할당되지 않음");
-            
+            stateManager.ChangeState(character.CreateIdleState());
         }
 
         if (character.MonsterRb != null)
