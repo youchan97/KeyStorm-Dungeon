@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,6 +17,13 @@ public class ThrownBomb : MonoBehaviour
     public int damageToEnemy = 100;
     public int damageToPlayer = 1;
 
+    [Header("Dotween")]
+    public SpriteRenderer bombSr;
+    public float minAlphaValue;
+    public float maxAlphaValue;
+    public float minBlinkValue;
+    public float maxBlinkValue;
+
     [Header("이펙트")]
     public GameObject explosionEffectPrefab;
 
@@ -31,6 +39,9 @@ public class ThrownBomb : MonoBehaviour
 
     bool canTrigger;
 
+    Coroutine bombCo;
+    Tween bombTween;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -39,10 +50,13 @@ public class ThrownBomb : MonoBehaviour
     private void Start()
     {
         canTrigger = false;
+        StartBlink(bombSr, fuseTime);
     }
 
     private void OnDisable()
     {
+        bombTween?.Kill();
+        bombCo = null;
         OnExplode = null;
     }
 
@@ -51,7 +65,7 @@ public class ThrownBomb : MonoBehaviour
         timer += Time.deltaTime;
         if (!hasExploded && timer >= fuseTime)
         {
-            Explode();
+            //Explode();
         }
 
         if (holder != null)
@@ -60,6 +74,52 @@ public class ThrownBomb : MonoBehaviour
             transform.position = holder.position + offset;
         }
     }
+
+    public void StartBlink(SpriteRenderer sr, float totalTime)
+    {
+        if(bombCo != null)
+        {
+            StopCoroutine(bombCo);
+            bombCo = null;
+        }
+
+        bombCo = StartCoroutine(BlinkRoutine(sr, totalTime));
+        //bombSr.DOColor(Color.red, totalTime).SetEase(Ease.Linear);
+    }
+
+    IEnumerator BlinkRoutine(SpriteRenderer sr, float totalTime)
+    {
+        float remain = totalTime;
+
+        while (remain > DefaultZero)
+        {
+            float ratio = remain / totalTime; 
+
+            float blinkInterval = Mathf.Lerp(maxBlinkValue, minBlinkValue, DefaultOne - ratio);
+            float halfBlink = blinkInterval * HalfValue;
+            float minAlpha = Mathf.Lerp(maxAlphaValue, minAlphaValue, DefaultOne - ratio);
+
+            if (sr == null)
+                yield break;
+            bombTween?.Kill();
+
+            bombTween = sr.DOColor(Color.red, halfBlink).SetTarget(sr);
+            yield return new WaitForSeconds(halfBlink);
+
+            if (sr == null)
+                yield break;
+            bombTween?.Kill();
+
+            sr.DOColor(Color.white, halfBlink);
+            yield return new WaitForSeconds(halfBlink);
+
+            remain -= blinkInterval;
+        }
+        bombTween?.Kill();
+        Explode();
+    }
+
+
 
     public void Hold(Transform _holder)
     {
@@ -97,6 +157,13 @@ public class ThrownBomb : MonoBehaviour
 
     void Explode()
     {
+        if (bombCo != null)
+        {
+            StopCoroutine(bombCo);
+        }
+
+        bombTween?.Kill();
+
         if (hasExploded) return;
         hasExploded = true;
 
@@ -126,7 +193,9 @@ public class ThrownBomb : MonoBehaviour
         Monster monster = collision.GetComponent<Monster>();
         bool isWall = ((1 << collision.gameObject.layer) & WallLayer) != 0;
         if (monster != null || isWall)
+        {
             Explode();
+        }
     }
     void OnDrawGizmosSelected()
     {
