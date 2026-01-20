@@ -25,8 +25,6 @@ public class AttackObj : MonoBehaviour
 
     public void InitData(Sprite sprite, float value, Vector2 vec, float speed, float cool, AttackPoolManager manager, bool isPlayerAttack, Vector2 colliderOffset, float colliderRadius, AttackData attackData = null)
     {
-        Debug.Log($"[AttackObj.InitData] vec: {vec}, speed: {speed}");
-
         IsActive = true;
 
         if (attackData == null)
@@ -72,7 +70,6 @@ public class AttackObj : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log($"FixedUpdate(): dir = {dir}, shootSpeed = {shootSpeed}, Result = {dir * shootSpeed}");
         rb.velocity = dir * shootSpeed;
     }
 
