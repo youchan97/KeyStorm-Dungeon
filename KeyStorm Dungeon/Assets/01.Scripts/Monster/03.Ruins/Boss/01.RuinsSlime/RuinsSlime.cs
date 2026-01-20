@@ -4,6 +4,7 @@ public class RuinsSlime : Slime
 {
     [Header("1차 분열 사원 슬라임")]
     [SerializeField] private SplitRuinsSlime splitRuinsSlime;
+    [SerializeField] protected float splitSlimeSpawnOffsetX;
 
     private RuinsSlimeIdleState _idleState;
     private RuinsSlimeMoveState _moveState;
@@ -37,6 +38,25 @@ public class RuinsSlime : Slime
     public override void Die()
     {
         base.Die();
+        SpawnSplitSlimeFromDie();
+    }
 
+    protected virtual void SpawnSplitSlime(Vector3 spawnPosition)
+    {
+        SplitRuinsSlime newSlime = Instantiate(splitRuinsSlime, spawnPosition, Quaternion.identity);
+
+        if (newSlime != null)
+        {
+            newSlime.SetMyRoom(MyRoom);
+            MyRoom?.AddMonster(newSlime);
+        }
+    }
+
+    protected void SpawnSplitSlimeFromDie()
+    {
+        Vector3 spawnPosition = transform.position;
+
+        SpawnSplitSlime(spawnPosition + Vector3.left * splitSlimeSpawnOffsetX);
+        SpawnSplitSlime(spawnPosition + Vector3.right * splitSlimeSpawnOffsetX);
     }
 }

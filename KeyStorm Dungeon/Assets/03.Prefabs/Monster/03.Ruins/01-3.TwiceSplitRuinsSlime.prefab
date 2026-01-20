@@ -30,9 +30,9 @@ Transform:
   m_GameObject: {fileID: 3678544432346238099}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.4, y: 3.45, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7846295675775307896}
   m_Father: {fileID: 0}
@@ -161,7 +161,7 @@ Animator:
   m_GameObject: {fileID: 3678544432346238099}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f75be0896446f204694544cd7e770033, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7cd12088913688840ba5c0f50a5ec07a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -212,12 +212,13 @@ MonoBehaviour:
   bossShadowPrefab: {fileID: 445605593270070937, guid: a6c9513a35861c948acb6ba29dadd095, type: 3}
   shadowScaleTime: 0.5
   minShadowScale: 0.1
-  maxShadowScale: 0.5
+  maxShadowScale: 1
   shadowOffset: 0
   maxShadowDuration: 0.5
   diveAttackRange: 0.5
   diveAttackDelay: 0.8
   splitRuinsSlime: {fileID: 0}
+  splitSlimeSpawnOffsetX: 0
   twiceSplitRuinsSlime: {fileID: 0}
 --- !u!1 &8599018151511948622
 GameObject:

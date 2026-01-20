@@ -42,7 +42,7 @@ public class JellyBugMoveState : MonsterMoveState
         {
             float distanceMoved = Vector3.Distance(jellyBug.transform.position, lastPosition);
 
-            if (distanceMoved < stoppedThreshold && rb.velocity.sqrMagnitude < stoppedThreshold)
+            if (distanceMoved < stoppedThreshold)
             {
                 rb.velocity = Vector2.zero;
                 stateManager.ChangeState(jellyBug.CreateIdleState());

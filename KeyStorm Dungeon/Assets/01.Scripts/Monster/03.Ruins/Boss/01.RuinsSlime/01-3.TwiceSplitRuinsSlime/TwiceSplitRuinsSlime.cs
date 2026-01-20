@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TwiceSplitRuinsSlime : SplitRuinsSlime
@@ -35,7 +33,11 @@ public class TwiceSplitRuinsSlime : SplitRuinsSlime
 
     public override void Die()
     {
-        base.Die();
+        MonsterStateManager.ChangeState(CreateDieState());
 
+        if (MyRoom != null)
+        {
+            MyRoom.RemoveMonster(this);
+        }
     }
 }

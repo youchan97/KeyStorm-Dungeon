@@ -1,11 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SplitRuinsSlime : RuinsSlime
 {
     [Header("2차 분열 사원 슬라임")]
     [SerializeField] private TwiceSplitRuinsSlime twiceSplitRuinsSlime;
+
+    #region 도약 패턴에서 사용할 방향 백터
+    protected override Vector2[] DiveBulletDirections => new Vector2[]
+    {
+        Vector2.up,
+        Vector2.down,
+        Vector2.left,
+        Vector2.right
+    };
+    #endregion
 
     private RuinsSlimeIdleState _idleState;
     private RuinsSlimeMoveState _moveState;
@@ -36,9 +44,14 @@ public class SplitRuinsSlime : RuinsSlime
         return _dieState;
     }
 
-    public override void Die()
+    protected override void SpawnSplitSlime(Vector3 spawnPosition)
     {
-        base.Die();
+        TwiceSplitRuinsSlime newSlime = Instantiate(twiceSplitRuinsSlime, spawnPosition, Quaternion.identity);
 
+        if (newSlime != null)
+        {
+            newSlime.SetMyRoom(MyRoom);
+            MyRoom?.AddMonster(newSlime);
+        }
     }
 }
