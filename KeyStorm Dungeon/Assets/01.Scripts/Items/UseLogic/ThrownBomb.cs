@@ -55,7 +55,6 @@ public class ThrownBomb : MonoBehaviour
 
     private void OnDisable()
     {
-        bombTween?.Kill();
         bombCo = null;
         OnExplode = null;
     }
@@ -90,7 +89,7 @@ public class ThrownBomb : MonoBehaviour
     IEnumerator BlinkRoutine(SpriteRenderer sr, float totalTime)
     {
         float remain = totalTime;
-
+        Material mat = sr.material;
         while (remain > DefaultZero)
         {
             float ratio = remain / totalTime; 
@@ -99,23 +98,21 @@ public class ThrownBomb : MonoBehaviour
             float halfBlink = blinkInterval * HalfValue;
             float minAlpha = Mathf.Lerp(maxAlphaValue, minAlphaValue, DefaultOne - ratio);
 
-            if (sr == null)
-                yield break;
-            bombTween?.Kill();
+            bombTween?.Kill(sr);
 
-            bombTween = sr.DOColor(Color.red, halfBlink).SetTarget(sr);
+            bombTween = mat.DOColor(Color.red,"_Color", halfBlink).SetTarget(sr);
             yield return new WaitForSeconds(halfBlink);
 
             if (sr == null)
                 yield break;
-            bombTween?.Kill();
+            bombTween?.Kill(sr);
 
-            sr.DOColor(Color.white, halfBlink);
+            bombTween = mat.DOColor(Color.black, "_Color", halfBlink).SetTarget(sr);
             yield return new WaitForSeconds(halfBlink);
 
             remain -= blinkInterval;
         }
-        bombTween?.Kill();
+        bombTween?.Kill(sr);    
         Explode();
     }
 
@@ -159,10 +156,9 @@ public class ThrownBomb : MonoBehaviour
     {
         if (bombCo != null)
         {
+            bombTween?.Kill();
             StopCoroutine(bombCo);
         }
-
-        bombTween?.Kill();
 
         if (hasExploded) return;
         hasExploded = true;
