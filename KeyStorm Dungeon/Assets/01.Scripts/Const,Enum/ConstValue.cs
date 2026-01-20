@@ -4,6 +4,12 @@ using UnityEngine;
 
 public static class ConstValue
 {
+    #region 상수값 관련
+    public const float DefaultZero = 0f;
+    public const float DefaultOne = 1f;
+    public const float HalfValue = 0.5f;
+    #endregion
+
     #region 애니메이션
     public const string MoveAnim = "IsMove";
     public const string AxisX = "MoveX";
@@ -75,6 +81,7 @@ public static class ConstValue
     #endregion
 
     #region DoTween 관련
+    
     public const int DefaultJumpCount = 1;
     #endregion
 
