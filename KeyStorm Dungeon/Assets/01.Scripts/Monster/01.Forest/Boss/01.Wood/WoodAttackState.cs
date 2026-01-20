@@ -39,7 +39,7 @@ public class WoodAttackState : MonsterAttackState
     public override void EnterState()
     {
         base.EnterState();
-        wood.StopDash();
+        wood.ChangeIsDash(false);
 
         isGetReadyAnimationFinished = false;
         isJumpAnimationFinished = false;
@@ -80,7 +80,7 @@ public class WoodAttackState : MonsterAttackState
 
         if (wood.IsDash)
         {
-            wood.StopDash();
+            wood.ChangeIsDash(false);
         }
     }
 
@@ -151,7 +151,8 @@ public class WoodAttackState : MonsterAttackState
         animator.SetTrigger(JumpAnim);
 
         yield return new WaitUntil(() => isJumpAnimationFinished == true);
-
+        wood.AudioManager.PlayEffect(WoodJumpSfx);
+        
         Vector3 initialWoodPosition = wood.transform.position;
         Vector3 groundShadowPosition = initialWoodPosition + Vector3.down * wood.ShadowOffset;
         Vector3 peakJumpPosition = initialWoodPosition + Vector3.up * wood.JumpHeight;
@@ -217,6 +218,7 @@ public class WoodAttackState : MonsterAttackState
             yield return null;
         }
 
+        wood.AudioManager.PlayEffect(WoodDiveSfx);
         animator.SetTrigger(DiveAnim);
         GameObject.Destroy(currentShadowInstance);
         wood.transform.position = endDivePosition;

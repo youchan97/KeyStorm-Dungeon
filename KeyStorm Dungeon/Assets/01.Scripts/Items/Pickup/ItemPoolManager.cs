@@ -144,4 +144,10 @@ public class ItemPoolManager : MonoBehaviour
         if (v < tier3Weight) return ItemTier.Tier3;
         return ItemTier.Tier4;
     }
+
+    public void ResetItemPool()
+    {
+        acquiredItemIds.Clear();
+        spawnedItemIds.Clear();
+    }
 }

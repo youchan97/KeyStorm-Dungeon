@@ -233,5 +233,5 @@ MonoBehaviour:
   attackedMoveTime: 1
   attackedMoveSpeedMultiple: 0.5
   shootPoint: {fileID: 7077440459691898597}
-  bulletSprite: {fileID: 21300000, guid: a3329d1a668a84041b8e364e42483954, type: 3}
+  bulletSprite: {fileID: 21300000, guid: 5a7d17276ae620744866a61aec09c1af, type: 3}
   bulletLifeTime: 3

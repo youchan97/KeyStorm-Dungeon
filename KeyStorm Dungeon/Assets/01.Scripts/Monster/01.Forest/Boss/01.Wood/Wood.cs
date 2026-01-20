@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static ConstValue;
 
 public class Wood : MeleeMonster
 {
@@ -199,8 +200,14 @@ public class Wood : MeleeMonster
 
     public void StopDash()
     {
+        audioManager.PlayEffect(WoodDashCrashSfx);
         IsDash = false;
         MonsterRb.velocity = Vector2.zero;
+    }
+
+    public void ChangeIsDash(bool init)
+    {
+        IsDash = init;
     }
 
     public void ResetRootPatternCooldown()
@@ -212,6 +219,7 @@ public class Wood : MeleeMonster
     {
         if (woodsRoot == null) return null;
 
+        audioManager.PlayEffect(WoodSpawnRootSfx);
         GameObject rootGO = Instantiate(woodsRoot, position, Quaternion.identity);
 
         WoodsRoot newWoodsRoot = rootGO.GetComponent<WoodsRoot>();

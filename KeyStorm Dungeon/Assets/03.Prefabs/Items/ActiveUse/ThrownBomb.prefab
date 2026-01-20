@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 501
+  m_SortingOrder: 601
   m_Sprite: {fileID: 21300000, guid: 16f128be070c6b84aaf754873ce9c23c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -165,6 +165,11 @@ MonoBehaviour:
   explosionRadius: 2
   damageToEnemy: 100
   damageToPlayer: 1
+  bombSr: {fileID: -8739032419200762609}
+  minAlphaValue: 0.1
+  maxAlphaValue: 0.7
+  minBlinkValue: 0.05
+  maxBlinkValue: 0.4
   explosionEffectPrefab: {fileID: 0}
   explosionRangePrefab: {fileID: 825604576425408712, guid: ebc2eafaf11716344a8cd9842cfdedf3, type: 3}
   rangeVisibleTime: 0.4

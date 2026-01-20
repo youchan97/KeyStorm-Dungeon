@@ -37,11 +37,13 @@ public class StageManager : MonoBehaviour
         Vector2Int.right
     };
 
+    StageRoomData curRoomData;
+
     void Start()
     {
         stageDataManager = StageDataManager.Instance;
         stageData = stageDataManager.CurrentStageData;
-
+        curRoomData = stageData.roomData;
         AudioManager.Instance.PlayBgm(stageDataManager.BgmSetting());
 
         GenerateRoomLayout();
@@ -163,11 +165,11 @@ public class StageManager : MonoBehaviour
 
         List<Room> spawnPool = new List<Room>();
 
-        spawnPool.AddRange(PickRandom(stageDataManager.CurrentStageSet.treasureRooms, stageData.treasureRoomCount));
-        spawnPool.AddRange(PickRandom(stageDataManager.CurrentStageSet.shopRooms, stageData.shopRoomCount));
+        spawnPool.AddRange(PickRandom(curRoomData.treasureRooms, stageData.treasureRoomCount));
+        spawnPool.AddRange(PickRandom(curRoomData.shopRooms, stageData.shopRoomCount));
 
         int normalCount = roomMap.Count - spawnPool.Count - fixTotal;
-        spawnPool.AddRange(PickRandom(stageDataManager.CurrentStageSet.normalRooms, normalCount));
+        spawnPool.AddRange(PickRandom(curRoomData.normalRooms, normalCount));
 
         spawnPool = spawnPool.OrderBy(_ => Random.value).ToList();
 
@@ -184,12 +186,12 @@ public class StageManager : MonoBehaviour
             switch (node.type)
             {
                 case RoomType.Start:
-                    curRoom = stageDataManager.CurrentStageSet.startRoom;
+                    curRoom = curRoomData.startRoom;
                     break;
 
                 default:
                     if(bossNodes.Contains(node))
-                        curRoom = stageDataManager.CurrentStageSet.bossRooms[Random.Range(0, stageDataManager.CurrentStageSet.bossRooms.Count)];
+                        curRoom = curRoomData.bossRooms[Random.Range(0, curRoomData.bossRooms.Count)];
                     else
                         curRoom = spawnPool[i++];
                     break;
@@ -255,7 +257,7 @@ public class StageManager : MonoBehaviour
             for (int y = minY; y <= maxY; y++)
             {
                 for (int x = offsetMin; x <= offsetMax; x++)
-                    corridorTilemap.SetTile(new Vector3Int(start.x + x, y, 0), stageDataManager.CurrentStageSet.verticalCorridor);
+                    corridorTilemap.SetTile(new Vector3Int(start.x + x, y, 0), curRoomData.verticalCorridor);
             }
         }
         else
@@ -266,7 +268,7 @@ public class StageManager : MonoBehaviour
             for (int x = minX; x <= maxX; x++)
             {
                 for (int y = offsetMin; y <= offsetMax; y++)
-                    corridorTilemap.SetTile(new Vector3Int(x, start.y + y, 0), stageDataManager.CurrentStageSet.horizontalCorridor);
+                    corridorTilemap.SetTile(new Vector3Int(x, start.y + y, 0), curRoomData.horizontalCorridor);
             }
         }
     }

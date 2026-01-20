@@ -29,9 +29,9 @@ public class Portal : MonoBehaviour
 
         int currentStage = GameManager.Instance.CurrentStage;
         int nextStage = currentStage + 1;
+        int maxStage = StageDataManager.Instance.CurrentStageSet.stageDatas.Count;
 
-
-        if (nextStage > totalStages)
+        if (nextStage > maxStage)
         {
             ShowVictory(player);
         }

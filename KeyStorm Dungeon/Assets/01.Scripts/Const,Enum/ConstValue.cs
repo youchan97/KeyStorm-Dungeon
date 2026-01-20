@@ -4,6 +4,12 @@ using UnityEngine;
 
 public static class ConstValue
 {
+    #region 상수값 관련
+    public const float DefaultZero = 0f;
+    public const float DefaultOne = 1f;
+    public const float HalfValue = 0.5f;
+    #endregion
+
     #region 애니메이션
     public const string MoveAnim = "IsMove";
     public const string AxisX = "MoveX";
@@ -55,6 +61,14 @@ public static class ConstValue
     public const string DashSfx = "Dash";
     public const string GetItemSfx = "GetItem";
     public const string DoorSfx = "Door";
+    public const string WoodDiveSfx = "WoodDive";
+    public const string WoodJumpSfx = "WoodJump";
+    public const string WoodSpawnRootSfx = "WoodSpawnRoot";
+    public const string WoodDashCrashSfx = "WoodDashCrash";
+    public const string SlimeSlamSfx = "SlimeSlam";
+    public const string SlimeJumpSfx = "SlimeJump";
+    public const string SlimeDiveSfx = "SlimeDive";
+    public const string SlimeMoveSfx = "SlimeMove";
     #endregion
 
     #region 게임 종료 관련
@@ -67,6 +81,7 @@ public static class ConstValue
     #endregion
 
     #region DoTween 관련
+    
     public const int DefaultJumpCount = 1;
     #endregion
 

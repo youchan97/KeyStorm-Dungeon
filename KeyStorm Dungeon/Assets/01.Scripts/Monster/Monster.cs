@@ -19,13 +19,15 @@ public abstract class Monster : Character
     [Header("플레이어 레이어")]
     [SerializeField] protected LayerMask playerLayer;
 
+    protected AudioManager audioManager;
+
     public MonsterData MonsterData => _monsterData;
     private Rigidbody2D monsterRb;
     public Rigidbody2D MonsterRb => monsterRb;
     public Animator Animator => animator;
     public LayerMask ObstacleLayer => obstacleLayer;
     public LayerMask PlayerLayer => playerLayer;
-
+    public AudioManager AudioManager => audioManager;
 
     public GameObject PlayerGO {  get; protected set; }
     public Transform PlayerTransform { get; protected set; }
@@ -79,6 +81,8 @@ public abstract class Monster : Character
 
     protected virtual void Start()
     {
+        audioManager = AudioManager.Instance;
+
         PlayerGO = player.gameObject;
         
         if (PlayerGO == null)
@@ -152,10 +156,10 @@ public abstract class Monster : Character
         {
             MyRoom.RemoveMonster(this);
 
-            if (MonsterData != null && MonsterData.tier == MonsterTier.Boss)
+            /*if (MonsterData != null && MonsterData.tier == MonsterTier.Boss)
             {
                 MyRoom.StageClear(transform.position);
-            }
+            }*/
         }
 
         TutorialPlayerHook hook = FindObjectOfType<TutorialPlayerHook>();
