@@ -4,7 +4,7 @@ public class JellyBug : MeleeMonster
 {
     [Header("젤리벌레 설정")]
     [SerializeField] private float mitosisSpawnOffsetX;
-    [SerializeField] private GameObject jellyBugMitosisPrefab;
+    [SerializeField] private JellyBugMitosis jellyBugMitosisPrefab;
     [SerializeField] private string poisonFieldPoolName = "PoisonField";
     [SerializeField] private float poisonFieldDuration = 3f;
 
@@ -65,8 +65,7 @@ public class JellyBug : MeleeMonster
 
     public void SpawnMitosis(Vector3 spawnPosition)
     {
-        GameObject mitosisGO = Instantiate(jellyBugMitosisPrefab, spawnPosition, Quaternion.identity);
-        JellyBugMitosis newMitosis = mitosisGO.GetComponent<JellyBugMitosis>();
+        JellyBugMitosis newMitosis = Instantiate(jellyBugMitosisPrefab, spawnPosition, Quaternion.identity);
 
         if (newMitosis != null)
         {
