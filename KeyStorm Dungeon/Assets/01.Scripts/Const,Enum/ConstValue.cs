@@ -55,6 +55,14 @@ public static class ConstValue
     public const string DashSfx = "Dash";
     public const string GetItemSfx = "GetItem";
     public const string DoorSfx = "Door";
+    public const string WoodDiveSfx = "WoodDive";
+    public const string WoodJumpSfx = "WoodJump";
+    public const string WoodSpawnRootSfx = "WoodSpawnRoot";
+    public const string WoodDashCrashSfx = "WoodDashCrash";
+    public const string SlimeSlamSfx = "SlimeSlam";
+    public const string SlimeJumpSfx = "SlimeJump";
+    public const string SlimeDiveSfx = "SlimeDive";
+    public const string SlimeMoveSfx = "SlimeMove";
     #endregion
 
     #region 게임 종료 관련
