@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using static ConstValue;
 
 public class Slime : MeleeMonster
 {
@@ -154,6 +155,8 @@ public class Slime : MeleeMonster
 
     public void OnSlamAttack()
     {
+        audioManager.PlayEffect(SlimeSlamSfx);
+
         Vector2 playerDirection = (PlayerTransform.position - transform.position).normalized;
         if (attackPoolManager == null) return;
 
