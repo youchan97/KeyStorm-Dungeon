@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TreeEditor;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -32,6 +33,8 @@ public class Room : MonoBehaviour
     [SerializeField] bool isPlayerIn;
     [SerializeField] bool canOpenDoor;
     [SerializeField] GameObject portal;
+    [SerializeField] Transform portalTransform;
+    [SerializeField] RoomItemSpawner itemSpawner;
     [SerializeField] Door[] doors;
 
     private float clearDelay = 1.0f;
@@ -131,7 +134,7 @@ public class Room : MonoBehaviour
         player.MagnetItems(roomCollider.bounds);
     }
 
-    public void StageClear(Vector3 pos)
+    public void StageClear()
     {
         if (roomType != RoomType.Boss) return;
 
@@ -147,9 +150,11 @@ public class Room : MonoBehaviour
 
         if (portal != null)
         {
-            GameObject go = Instantiate(portal);
-            go.transform.position = pos;
+            GameObject go = Instantiate(portal, transform);
+            go.transform.position = portalTransform.position;
         }
+
+        itemSpawner.SpawnBossRoomItem();
 
     }
 
@@ -181,7 +186,7 @@ public class Room : MonoBehaviour
 
     private void CheckRoomClear()
     {
-        if (activeMonsters.Count == 0 && roomType != RoomType.Boss)
+        if (activeMonsters.Count == 0)
         {
             if (clearRoomCoroutine == null)
             {
@@ -204,7 +209,10 @@ public class Room : MonoBehaviour
 
         if (activeMonsters.Count == 0)
         {
-            RoomClear();
+            if (roomType == RoomType.Boss)
+                StageClear();
+            else
+                RoomClear();
         }
 
         clearRoomCoroutine = null;

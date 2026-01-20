@@ -113,6 +113,7 @@ public class GameManager : SingletonManager<GameManager>
         isGameCleared = false; 
         currentStage = 1;
         InitializeRunData();
+        ItemPoolManager.Instance.ResetItemPool();
         audioManager.AllStopSfxLoop();
         LoadingManager.LoadScene(StartScene);
     }
@@ -120,6 +121,7 @@ public class GameManager : SingletonManager<GameManager>
     public void RetryGame()
     {
         InitializeRunData();
+        ItemPoolManager.Instance.ResetItemPool();
         isPaused = false;
         isGameCleared = false;
         currentStage = 1; 

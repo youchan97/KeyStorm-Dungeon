@@ -156,10 +156,10 @@ public abstract class Monster : Character
         {
             MyRoom.RemoveMonster(this);
 
-            if (MonsterData != null && MonsterData.tier == MonsterTier.Boss)
+            /*if (MonsterData != null && MonsterData.tier == MonsterTier.Boss)
             {
                 MyRoom.StageClear(transform.position);
-            }
+            }*/
         }
     }
 
