@@ -32,6 +32,8 @@ public class StoreSlot : MonoBehaviour
     private int amount;
     private int healAmount;
 
+    AudioManager audioManager;
+
     private void Awake()
     {
         var col = GetComponent<Collider2D>();
@@ -39,6 +41,8 @@ public class StoreSlot : MonoBehaviour
 
         if (priceText == null)
             priceText = GetComponentInChildren<TMP_Text>(true);
+
+        audioManager = AudioManager.Instance;
     }
 
     private void ShowPrice(int playerGold = -1)
@@ -279,7 +283,7 @@ public class StoreSlot : MonoBehaviour
             inv.AddPassiveItem(itemData);
             player.UpdatePlayerData(itemData);
         }
-        AudioManager.Instance.PlayEffect(GetItemSfx);
+        audioManager.PlayEffect(GetItemSfx);
         ItemPoolManager.Instance?.MarkAcquired(itemData);
         Clear();
     }

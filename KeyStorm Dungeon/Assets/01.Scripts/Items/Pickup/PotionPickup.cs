@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ConstValue;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -65,10 +66,10 @@ public class PotionPickup : MonoBehaviour
 
     public void TryPickup(Player player)
     {    
+        if (player.Hp >= player.MaxHp) return;
         if (isPickedUp) return;
         isPickedUp = true;
 
-        if (player.Hp >= player.MaxHp) return;
 
         var inv = player.GetComponent<PlayerInventory>();
         if (inv == null) return;
@@ -90,7 +91,7 @@ public class PotionPickup : MonoBehaviour
         {
             parentSlot.Clear();
         }
-
+        AudioManager.Instance.PlayEffect(GetPotionSfx);
         Destroy(gameObject);
     }
 }
