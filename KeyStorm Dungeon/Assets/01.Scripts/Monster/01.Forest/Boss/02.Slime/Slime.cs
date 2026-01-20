@@ -208,4 +208,14 @@ public class Slime : MeleeMonster
             }
         }
     }
+
+    public void OnJumpPlaySfx()
+    {
+        audioManager.PlayEffect(SlimeJumpSfx);
+    }
+
+    public void OnJumpMovePlaySfx()
+    {
+        audioManager.PlayEffect(SlimeMoveSfx);
+    }
 }
