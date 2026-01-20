@@ -2928,6 +2928,8 @@ MonoBehaviour:
   isPlayerIn: 0
   canOpenDoor: 0
   portal: {fileID: 0}
+  portalTransform: {fileID: 0}
+  itemSpawnTransform: {fileID: 0}
   doors: []
   doorUp: {fileID: 3022748502829395213}
   doorDown: {fileID: 4228523132462202126}

@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class RoomItemSpawner : MonoBehaviour
 {
-    public enum AutoSpawnMode { None, TreasureOnStart }
+    public enum SpawnType { Boss, TreasureOnStart }
 
-    [Header("자동 스폰")]
-    public AutoSpawnMode autoSpawn = AutoSpawnMode.None;
+    public SpawnType spawnType;
 
     [Header("생성 위치")]
     public Transform spawnPoint;
@@ -24,7 +23,7 @@ public class RoomItemSpawner : MonoBehaviour
 
     private void Start()
     {
-        if (autoSpawn == AutoSpawnMode.TreasureOnStart)
+        if (spawnType == SpawnType.TreasureOnStart)
             SpawnTreasureRoomItem();
     }
 
