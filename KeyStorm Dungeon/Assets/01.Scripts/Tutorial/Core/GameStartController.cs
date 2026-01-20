@@ -3,24 +3,37 @@ using UnityEngine.SceneManagement;
 
 public class GameStartController : MonoBehaviour
 {
+    [Header("씬 이름")]
     [SerializeField] private string tutorialSceneName = "TutorialScene";
     [SerializeField] private string mainGameSceneName = "MainScene";
-    [SerializeField] private bool checkTutorialOnStart = true;
 
-    private void Start()
+    [Header("설정")]
+    [SerializeField] private bool alwaysShowTutorial = false;
+
+    public void StartGame()
     {
-        if (checkTutorialOnStart)
+        if (alwaysShowTutorial)
         {
-            if (TutorialManager.IsTutorialCompleted())
-                SceneManager.LoadScene(mainGameSceneName);
-            else
-                SceneManager.LoadScene(tutorialSceneName);
+            SceneManager.LoadScene(tutorialSceneName);
+            return;
+        }
+
+        bool tutorialCompleted = PlayerPrefs.GetInt("TutorialCompleted", 0) == 1;
+
+        if (tutorialCompleted)
+        {
+            SceneManager.LoadScene(mainGameSceneName);
+        }
+        else
+        {
+            SceneManager.LoadScene(tutorialSceneName);
         }
     }
 
-    [ContextMenu("Reset Tutorial Progress")]
-    public void ResetTutorialProgress()
+    public void ResetTutorial()
     {
-        TutorialManager.ResetTutorialProgress();
+        PlayerPrefs.SetInt("TutorialCompleted", 0);
+        PlayerPrefs.Save();
+        Debug.Log("[GameStart] 튜토리얼 리셋됨");
     }
 }

@@ -287,7 +287,13 @@ public class PlayerAttack : MonoBehaviour
 
         if (!keyDic.ContainsKey(keyName)) return;
 
-        if(curBomb != null)
+        if (player == null || player.AttackPoolManager == null)
+        {
+            Debug.LogWarning("[PlayerAttack] AttackPoolManager가 없습니다!");
+            return;
+        }
+
+        if (curBomb != null)
         {
             if (player.Inventory.bombCount <= 0 && curBomb == null)
                 return;
@@ -311,6 +317,8 @@ public class PlayerAttack : MonoBehaviour
         if(Ammo <= 0)
         {
             Ammo = 0;
+            TutorialPlayerHook hook = FindObjectOfType<TutorialPlayerHook>();
+            hook?.ReportMagazineEmpty();
             Reload();
         }
     }
@@ -503,7 +511,8 @@ public class PlayerAttack : MonoBehaviour
         yield return new WaitForSeconds(AttackSpeed);
         Ammo = MaxAmmo;
         isReloading = false;
-        player.GameSceneUI.UpdateAmmo();
+        if (player != null && player.GameSceneUI != null)
+            player.GameSceneUI.UpdateAmmo();
     }
 
     IEnumerator ReloadImage()

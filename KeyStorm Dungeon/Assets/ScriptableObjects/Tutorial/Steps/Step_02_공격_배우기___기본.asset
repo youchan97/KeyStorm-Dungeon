@@ -19,7 +19,8 @@ MonoBehaviour:
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
-  - text: "\uBC29\uD5A5\uD0A4\uB85C \uACF5\uACA9\uD560 \uC218 \uC788\uC5B4."
+  - text: "\uC8FC\uBCC0\uC5D0 \uB5A0\uC788\uB294 \uD0A4\uB4E4\uC744 \uC774\uC6A9\uD574\uC11C
+      \uACF5\uACA9\uC744 \uD560\uC218\uC788\uC5B4"
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5

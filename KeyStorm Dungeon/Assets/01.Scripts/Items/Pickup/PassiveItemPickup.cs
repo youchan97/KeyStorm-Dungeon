@@ -90,6 +90,9 @@ public class PassiveItemPickup : MonoBehaviour
         AudioManager.Instance.PlayEffect(GetItemSfx);
         ItemPoolManager.Instance?.MarkAcquired(itemData);
 
+        TutorialPlayerHook hook = FindObjectOfType<TutorialPlayerHook>();
+        hook?.ReportItemPickup();
+
         if (hasNotifiedUI)
         {
             WorldItemUIController.Instance?.OnItemExitPassive(this);

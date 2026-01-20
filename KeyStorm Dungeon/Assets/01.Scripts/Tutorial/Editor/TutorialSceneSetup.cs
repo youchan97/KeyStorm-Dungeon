@@ -37,7 +37,7 @@ public class TutorialSceneSetup : EditorWindow
 
     void CreateManagers()
     {
-        GameObject parent = new GameObject("--- TUTORIAL MANAGERS ---");
+        GameObject parent = new GameObject("TUTORIAL MANAGERS");
 
         GameObject tm = new GameObject("TutorialManager");
         tm.transform.SetParent(parent.transform);
@@ -46,10 +46,6 @@ public class TutorialSceneSetup : EditorWindow
         GameObject ph = new GameObject("TutorialPlayerHook");
         ph.transform.SetParent(parent.transform);
         ph.AddComponent<TutorialPlayerHook>();
-
-        GameObject mc = new GameObject("TutorialMapController");
-        mc.transform.SetParent(parent.transform);
-        mc.AddComponent<TutorialMapController>();
     }
 
     void CreateUI()
@@ -119,7 +115,7 @@ public class TutorialSceneSetup : EditorWindow
         contTmp.fontSize = 20;
         contTmp.color = new Color(1, 1, 1, 0.7f);
         contTmp.alignment = TextAlignmentOptions.Right;
-        contTmp.text = "클릭하여 계속 ▶";
+        contTmp.text = "클릭하여 계속 ";
     }
 
     void CreateQuestPanel(Transform parent)

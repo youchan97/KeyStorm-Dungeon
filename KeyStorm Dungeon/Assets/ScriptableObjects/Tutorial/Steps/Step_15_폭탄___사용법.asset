@@ -15,7 +15,8 @@ MonoBehaviour:
   stepIndex: 15
   stepName: "\uD3ED\uD0C4 - \uC0AC\uC6A9\uBC95"
   preDialogues:
-  - text: "E\uD0A4\uB85C \uD3ED\uD0C4\uC744 \uC0AC\uC6A9\uD560 \uC218 \uC788\uC5B4."
+  - text: "Shift\uD0A4\uB97C \uB204\uB974\uACE0 \uBC29\uD5A5\uC5D0 \uB9DE\uB294 \uBC84\uD2BC\uC744
+      \uB204\uB974\uBA74 \uD3ED\uD0C4\uC744 \uC0AC\uC6A9\uD560 \uC218 \uC788\uC5B4."
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
@@ -45,6 +46,6 @@ MonoBehaviour:
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
-  currentRoom: 3
+  currentRoom: 4
   blockInputDuringDialogue: 1
   resetMoveTrackingOnStart: 0

@@ -35,6 +35,6 @@ MonoBehaviour:
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
-  currentRoom: 4
+  currentRoom: 2
   blockInputDuringDialogue: 1
   resetMoveTrackingOnStart: 0

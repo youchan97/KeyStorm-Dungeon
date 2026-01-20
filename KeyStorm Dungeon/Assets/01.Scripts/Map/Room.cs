@@ -75,8 +75,8 @@ public class Room : MonoBehaviour
         this.player = player;
 
         // 튜토리얼 완성되면 주석 해제
-        // TutorialPlayerHook hook = FindObjectOfType<TutorialPlayerHook>();
-        // hook?.ReportRoomEnter(roomType);
+        TutorialPlayerHook hook = FindObjectOfType<TutorialPlayerHook>();
+        hook?.ReportRoomEnter(roomType);
 
 
         if (roomType == RoomType.Boss)

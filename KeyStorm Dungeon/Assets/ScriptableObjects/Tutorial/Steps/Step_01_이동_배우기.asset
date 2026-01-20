@@ -19,26 +19,26 @@ MonoBehaviour:
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
-  - text: "WASD \uD0A4\uB85C \uC6C0\uC9C1\uC77C \uC218 \uC788\uC5B4."
+  - text: "\uBC29\uD5A5\uD0A4\uB85C \uC6C0\uC9C1\uC77C \uC218 \uC788\uC5B4."
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
   hasQuest: 1
   questTitle: "\uC774\uB3D9 \uC5F0\uC2B5"
   objectives:
-  - description: "\uC704\uB85C \uC774\uB3D9 (W)"
+  - description: "\uC704\uB85C \uC774\uB3D9 \u2191"
     type: 1
     targetCount: 1
     currentCount: 0
-  - description: "\uC544\uB798\uB85C \uC774\uB3D9 (S)"
+  - description: "\uC544\uB798\uB85C \uC774\uB3D9 \u2193"
     type: 2
     targetCount: 1
     currentCount: 0
-  - description: "\uC67C\uCABD\uC73C\uB85C \uC774\uB3D9 (A)"
+  - description: "\uC67C\uCABD\uC73C\uB85C \uC774\uB3D9 \u2190"
     type: 3
     targetCount: 1
     currentCount: 0
-  - description: "\uC624\uB978\uCABD\uC73C\uB85C \uC774\uB3D9 (D)"
+  - description: "\uC624\uB978\uCABD\uC73C\uB85C \uC774\uB3D9 \u2192"
     type: 4
     targetCount: 1
     currentCount: 0

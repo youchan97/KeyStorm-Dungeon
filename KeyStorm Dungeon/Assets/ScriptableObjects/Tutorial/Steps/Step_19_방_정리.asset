@@ -52,6 +52,6 @@ MonoBehaviour:
   questTitle: 
   objectives: []
   postDialogues: []
-  currentRoom: 4
+  currentRoom: 2
   blockInputDuringDialogue: 1
   resetMoveTrackingOnStart: 0

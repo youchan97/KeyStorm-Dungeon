@@ -118,6 +118,14 @@ public class BossMonster : Monster
         }
     }
 
+    public override void Die()
+    {
+        TutorialPlayerHook hook = FindObjectOfType<TutorialPlayerHook>();
+        hook?.ReportBossKill();
+
+        base.Die();  
+    }
+
     public void ResetPatternCooldown()
     {
         CurrentPatternCooldown = patternCooldown;

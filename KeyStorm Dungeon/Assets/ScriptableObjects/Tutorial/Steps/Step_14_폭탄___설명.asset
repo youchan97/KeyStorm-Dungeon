@@ -32,6 +32,6 @@ MonoBehaviour:
     targetCount: 1
     currentCount: 0
   postDialogues: []
-  currentRoom: 3
+  currentRoom: 4
   blockInputDuringDialogue: 1
   resetMoveTrackingOnStart: 0
