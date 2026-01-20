@@ -16,11 +16,4 @@ public class StageSet : ScriptableObject
 {
     public StageDifficulty stageDifficulty;
     public List<StageData> stageDatas;
-    public Room startRoom;
-    public List<Room> normalRooms;
-    public List<Room> bossRooms;
-    public List<Room> treasureRooms;
-    public List<Room> shopRooms;
-    public TileBase horizontalCorridor;
-    public TileBase verticalCorridor;
 }

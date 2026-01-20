@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: deaf2a358a833744aa26d2d11ba4cad9, type: 3}
-  m_Name: Stage4
+  m_Name: Stage6
   m_EditorClassIdentifier: 
-  stageIndex: 4
-  roomData: {fileID: 11400000, guid: 6bb5d72916c180043bd68b37f4981991, type: 2}
-  totalRoomCount: 14
+  stageIndex: 5
+  roomData: {fileID: 11400000, guid: a2e7e4d42ee0eda4a8c75d1c6331692f, type: 2}
+  totalRoomCount: 16
   bossRoomCount: 1
   treasureRoomCount: 1
   shopRoomCount: 1

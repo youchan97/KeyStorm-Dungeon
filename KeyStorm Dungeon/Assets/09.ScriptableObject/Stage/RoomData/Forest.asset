@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfc38fd317a22f54b8021e22caa1b689, type: 3}
+  m_Name: Forest
+  m_EditorClassIdentifier: 
+  startRoom: {fileID: 837052703989722770, guid: 1c1427bd3cd408243addc83e8869a40b, type: 3}
+  normalRooms:
+  - {fileID: -5701023608660036602, guid: f71c04d388c367f4c9f5eb4f81628535, type: 3}
+  - {fileID: -5701023608660036602, guid: 7390a753b2adc33409a1441fef8448ff, type: 3}
+  - {fileID: -5701023608660036602, guid: d46757075b2fac3418858d359c215a64, type: 3}
+  - {fileID: -6716904118478084081, guid: f7a91cc40712baa4e984dd973e5dfd4a, type: 3}
+  - {fileID: -2860972199739670408, guid: 1e2cc042801a4cb49aa66206257fa12c, type: 3}
+  - {fileID: -5701023608660036602, guid: d1dd4967bfb3a2a4c830798f444186e3, type: 3}
+  - {fileID: -5701023608660036602, guid: cbf3c461604177d459c78221d03e5dfd, type: 3}
+  - {fileID: -5701023608660036602, guid: ee67fe9fa49d55443a66cce34829bd0b, type: 3}
+  - {fileID: -5701023608660036602, guid: fb9378f8dd537b04e8256ab2809a3750, type: 3}
+  - {fileID: -5701023608660036602, guid: 474c0ae00cdee384387d4a222929582f, type: 3}
+  - {fileID: -5701023608660036602, guid: 7fb2befbc30c0b54ab7b2ade0d58d242, type: 3}
+  - {fileID: -5701023608660036602, guid: 75551da9dcd344d4396a74e2ed4f39e0, type: 3}
+  - {fileID: -5701023608660036602, guid: 2250a88486a067741bd62986bda65ff8, type: 3}
+  - {fileID: -5701023608660036602, guid: 061272cdddf30e142be35d3d5cabf286, type: 3}
+  bossRooms:
+  - {fileID: 5150652526908895158, guid: a4604354a1a7c014981e649955863284, type: 3}
+  - {fileID: 5150652526908895158, guid: c91c307d6fea4bf4c810e5dd1a7aef85, type: 3}
+  treasureRooms:
+  - {fileID: 1378694527171304996, guid: 41e775370d76916489a4e514c1df3fd4, type: 3}
+  shopRooms:
+  - {fileID: 2699900805692073484, guid: eb6d3e2fef71c22488a333db12bcce45, type: 3}
+  horizontalCorridor: {fileID: 11400000, guid: d17d3e8c2e67b2844abfa929e037fd4e, type: 2}
+  verticalCorridor: {fileID: 11400000, guid: 50df240177c211d45addfc38330623c7, type: 2}

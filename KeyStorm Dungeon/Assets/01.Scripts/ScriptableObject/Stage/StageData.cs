@@ -7,6 +7,7 @@ using UnityEngine;
 public class StageData : ScriptableObject
 {
     public int stageIndex;
+    public StageRoomData roomData;
     public int totalRoomCount;
     public int bossRoomCount;
     public int treasureRoomCount;
