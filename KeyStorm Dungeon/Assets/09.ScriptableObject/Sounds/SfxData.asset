@@ -50,6 +50,12 @@ MonoBehaviour:
   - audioKey: GetItem
     audioClip:
     - {fileID: 8300000, guid: fb131bb73c7e09f4b95fdc9329c7d9cc, type: 3}
+    audioKey: GetPotion
+    audioClip:
+    - {fileID: 8300000, guid: 7ad2b1cd944f68f4b999c7ae5187c1fb, type: 3}
+  - audioKey: GetBomb
+    audioClip:
+    - {fileID: 8300000, guid: c7172fd53c8511e41843c2737bd8369a, type: 3}
   - audioKey: WoodDive
     audioClip:
     - {fileID: 8300000, guid: dd935978c4d350b4d91d2f4f2984eda5, type: 3}

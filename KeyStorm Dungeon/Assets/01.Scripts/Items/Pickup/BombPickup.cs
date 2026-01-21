@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ConstValue;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -64,7 +65,7 @@ public class BombPickup : MonoBehaviour
             isPickedUp = false;
             return;
         }*/
-
+        AudioManager.Instance.PlayEffect(GetBombSfx);
         inv.AddBomb(amount);
 
         if (parentSlot != null)
