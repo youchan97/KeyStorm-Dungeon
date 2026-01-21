@@ -94,4 +94,29 @@ public class Door : MonoBehaviour
         if(wallSprite.enabled)
             anim.SetBool(DoorAnim, true);
     }
+
+    public void ForceOpen()
+    {
+        Debug.Log($"[Door] ForceOpen 호출됨! col: {col != null}, wallTileMap: {wallTileMap != null}, wallSprite: {wallSprite != null}");
+
+        canUse = true;
+
+        if (col != null)
+        {
+            col.enabled = false;
+            Debug.Log("[Door] Collider 비활성화!");
+        }
+
+        if (wallTileMap != null)
+        {
+            wallTileMap.gameObject.SetActive(false);
+            Debug.Log("[Door] WallTileMap 비활성화!");
+        }
+
+        if (wallSprite != null)
+        {
+            wallSprite.enabled = false;
+            Debug.Log("[Door] WallSprite 비활성화!");
+        }
+    }
 }

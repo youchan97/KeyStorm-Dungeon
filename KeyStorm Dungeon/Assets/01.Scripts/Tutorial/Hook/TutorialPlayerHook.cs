@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class TutorialPlayerHook : MonoBehaviour
@@ -17,15 +18,42 @@ public class TutorialPlayerHook : MonoBehaviour
     private void Start()
     {
         tutorialManager = TutorialManager.Instance;
+
+        StartCoroutine(FindPlayerDelayed());
+    }
+
+    IEnumerator FindPlayerDelayed()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        if (playerController == null)
+        {
+            playerController = FindObjectOfType<PlayerController>();
+
+            if (playerController != null)
+            {
+                playerController.OnMove += HandleMove;
+                playerController.OnShoot += HandleShoot;
+                playerController.OnBomb += HandleBomb;
+                playerController.OnUseActiveItem += HandleSpecialAttack;
+                Debug.Log("[TutorialPlayerHook] PlayerController 연결 완료!");
+            }
+            else
+            {
+                Debug.LogError("[TutorialPlayerHook] PlayerController를 찾을 수 없음!");
+            }
+        }
     }
 
     private void OnEnable()
     {
-        if (playerController == null) return;
-        playerController.OnMove += HandleMove;
-        playerController.OnShoot += HandleShoot;
-        playerController.OnBomb += HandleBomb;
-        playerController.OnUseActiveItem += HandleSpecialAttack;
+        if (playerController != null)
+        {
+            playerController.OnMove += HandleMove;
+            playerController.OnShoot += HandleShoot;
+            playerController.OnBomb += HandleBomb;
+            playerController.OnUseActiveItem += HandleSpecialAttack;
+        }
     }
 
     private void OnDisable()
@@ -36,6 +64,7 @@ public class TutorialPlayerHook : MonoBehaviour
         playerController.OnBomb -= HandleBomb;
         playerController.OnUseActiveItem -= HandleSpecialAttack;
     }
+
 
     public void ReportRoomEnter(RoomType roomType)
     {
@@ -51,8 +80,8 @@ public class TutorialPlayerHook : MonoBehaviour
             _ => QuestType.EnterRoom
         };
 
+        Debug.Log($"[TutorialPlayerHook] 방 진입: {roomType} → QuestType: {questType}");
         tutorialManager.ReportQuestProgress(questType);
-        Debug.Log($"[TutorialPlayerHook] 방 진입: {roomType}");
     }
 
     void HandleMove()

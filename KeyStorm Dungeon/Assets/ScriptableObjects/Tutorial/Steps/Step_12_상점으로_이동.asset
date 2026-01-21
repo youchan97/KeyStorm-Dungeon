@@ -15,7 +15,7 @@ MonoBehaviour:
   stepIndex: 12
   stepName: "\uC0C1\uC810\uC73C\uB85C \uC774\uB3D9"
   preDialogues: []
-  hasQuest: 1
+  hasQuest: 0
   questTitle: "\uC0C1\uC810 \uBC29\uBB38"
   objectives:
   - description: "\uC0C1\uC810\uC73C\uB85C \uC774\uB3D9"

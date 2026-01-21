@@ -42,6 +42,8 @@ public class ItemDropManager : SingletonManager<ItemDropManager>
 
     public void DropItems(Vector3 dropPosition, MonsterData monsterData)
     {
+        if (this == null) return;
+
         int goldToDrop = Random.Range(monsterData.minDropGold, monsterData.maxDropGold + 1);
 
         for (int i = 0; i < goldToDrop; i++)
@@ -54,6 +56,14 @@ public class ItemDropManager : SingletonManager<ItemDropManager>
 
     private void DropGold(Vector3 position)
     {
+        if (goldPrefab == null) return;
+
+        if (ObjectPoolManager.Instance == null)
+        {
+            Debug.LogWarning("[ItemDropManager] ObjectPoolManager가 없음!");
+            return;
+        }
+
         GoldPickup goldPickup = ObjectPoolManager.Instance.GetObject<GoldPickup>(GOLD_POOL_NAME, position, Quaternion.identity);
         if (goldPickup == null) return;
 
@@ -84,6 +94,12 @@ public class ItemDropManager : SingletonManager<ItemDropManager>
 
     private void DropBomb(Vector3 position)
     {
+        if (ObjectPoolManager.Instance == null)
+        {
+            Debug.LogWarning("[ItemDropManager] ObjectPoolManager가 없음!");
+            return;
+        }
+
         BombPickup bombPickup = ObjectPoolManager.Instance.GetObject<BombPickup>(BOMB_POOL_NAME, position, Quaternion.identity);
         if (bombPrefab == null) return;
 

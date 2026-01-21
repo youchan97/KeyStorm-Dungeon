@@ -23,7 +23,7 @@ MonoBehaviour:
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
-  hasQuest: 1
+  hasQuest: 0
   questTitle: "\uBCF4\uC2A4\uBC29 \uC9C4\uC785"
   objectives:
   - description: "\uBCF4\uC2A4\uBC29\uC73C\uB85C \uC774\uB3D9"
@@ -31,6 +31,6 @@ MonoBehaviour:
     targetCount: 1
     currentCount: 0
   postDialogues: []
-  currentRoom: 1
+  currentRoom: 2
   blockInputDuringDialogue: 1
   resetMoveTrackingOnStart: 0
