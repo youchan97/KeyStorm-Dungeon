@@ -284,7 +284,7 @@ public class Player : Character
     public void MagnetItems(Bounds bounds)
     {
         Vector2 boxSize = (Vector2)bounds.size + Vector2.one * magnetRangeMargin * 2f;
-        Collider2D[] cols = Physics2D.OverlapBoxAll(bounds.center, boxSize, itemLayer);
+        Collider2D[] cols = Physics2D.OverlapBoxAll(bounds.center, boxSize, DefaultZero, itemLayer);
 
         foreach(Collider2D col in cols)
         {
