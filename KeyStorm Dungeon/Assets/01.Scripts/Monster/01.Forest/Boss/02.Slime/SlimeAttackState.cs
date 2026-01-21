@@ -242,6 +242,7 @@ public class SlimeAttackState : MonsterAttackState
         GameObject.Destroy(currentShadowInstance);
 
         slime.AudioManager.PlayEffect(SlimeDiveSfx);
+        ShakeCameraEvent.StartShakeCamera(slime.ShakePower, slime.ShakeDuration);
         animator.SetBool(DiveAnim, false);
 
         slime.transform.position = endDivePosition;

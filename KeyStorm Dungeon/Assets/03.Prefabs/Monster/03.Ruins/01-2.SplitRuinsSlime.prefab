@@ -226,6 +226,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
+  shakePower: 3
+  shakeDuration: 0.2
   isKnockBack: 0
   idleTime: 1.2
   moveDelay: 0.5

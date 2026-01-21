@@ -156,6 +156,7 @@ public class Slime : MeleeMonster
     public void OnSlamAttack()
     {
         audioManager.PlayEffect(SlimeSlamSfx);
+        ShakeCameraEvent.StartShakeCamera(shakePower, shakeDuration);
 
         Vector2 playerDirection = (PlayerTransform.position - transform.position).normalized;
         if (attackPoolManager == null) return;
