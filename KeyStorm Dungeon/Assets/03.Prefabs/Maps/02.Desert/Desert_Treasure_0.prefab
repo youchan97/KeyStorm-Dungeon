@@ -9297,7 +9297,7 @@ MonoBehaviour:
   doorLeft: {fileID: 7595855810298575995}
   doorRight: {fileID: 675164305736815390}
   roomGroundTilemap: {fileID: 5506783669761948187}
-  roomWallTilemap: {fileID: 0}
+  roomWallTilemap: {fileID: 242929815837641795}
   monsterSpawner: {fileID: 0}
 --- !u!1 &6396406708681148222
 GameObject:
@@ -15106,7 +15106,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 13
-      m_TileSpriteIndex: 20
+      m_TileSpriteIndex: 23
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -17223,14 +17223,14 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 2019797914, guid: 6cff26edb35676c40861159bb6af19d2, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 1104591449, guid: 6cff26edb35676c40861159bb6af19d2, type: 3}
   - m_RefCount: 1
@@ -19416,6 +19416,10 @@ PrefabInstance:
     - target: {fileID: 3127195226504960169, guid: 8b5ba14c5f16f6f439fb2195e9dfb836, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8151026888222254781, guid: 8b5ba14c5f16f6f439fb2195e9dfb836, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.27
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

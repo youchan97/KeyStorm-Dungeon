@@ -1781,8 +1781,8 @@ MonoBehaviour:
   doorDown: {fileID: 6154848680261422312}
   doorLeft: {fileID: 481102016232492445}
   doorRight: {fileID: 7393357504678896376}
-  roomGroundTilemap: {fileID: 0}
-  roomWallTilemap: {fileID: 0}
+  roomGroundTilemap: {fileID: 3898592607350871890}
+  roomWallTilemap: {fileID: 8332363884812440612}
   monsterSpawner: {fileID: 5265925458715723682}
 --- !u!61 &1187214400967519532
 BoxCollider2D:
