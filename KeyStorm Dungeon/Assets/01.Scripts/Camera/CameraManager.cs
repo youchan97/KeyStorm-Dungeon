@@ -18,27 +18,37 @@ public class CameraManager : MonoBehaviour
         noise = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
+    private void OnEnable()
+    {
+        ShakeCameraEvent.OnShakeCamera += ShakeCamera;
+    }
     private void OnDisable()
     {
-        player.OnHit -= ShakeCamera;
+        player.OnHit -= ShakeCameraHitPlayer;
+        ShakeCameraEvent.OnShakeCamera -= ShakeCamera;
     }
 
     public void SetTarget(Player player)
     {
         this.player = player;
-        player.OnHit += ShakeCamera;
+        player.OnHit += ShakeCameraHitPlayer;
     }
 
-    void ShakeCamera()
+    private void ShakeCameraHitPlayer()
     {
-        noise.m_AmplitudeGain = shakePower;
+        ShakeCamera(shakePower, shakeDuration);
+    }
+
+    public void ShakeCamera(float power, float duration)
+    {
+        noise.m_AmplitudeGain = power;
 
         DOTween.Kill(noise);
         DOTween.To(
             () => noise.m_AmplitudeGain,
             x => noise.m_AmplitudeGain = x,
             0f,
-            shakeDuration
+            duration
         ).SetTarget(noise);
     }
 }

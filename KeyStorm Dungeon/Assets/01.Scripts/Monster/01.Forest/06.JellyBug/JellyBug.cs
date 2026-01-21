@@ -3,8 +3,8 @@ using UnityEngine;
 public class JellyBug : MeleeMonster
 {
     [Header("젤리벌레 설정")]
-    [SerializeField] private float mitosisSpawnOffsetX;
-    [SerializeField] private GameObject jellyBugMitosisPrefab;
+    [SerializeField] private Vector3 mitosisSpawnOffset;
+    [SerializeField] private JellyBugMitosis jellyBugMitosisPrefab;
     [SerializeField] private string poisonFieldPoolName = "PoisonField";
     [SerializeField] private float poisonFieldDuration = 3f;
 
@@ -65,8 +65,7 @@ public class JellyBug : MeleeMonster
 
     public void SpawnMitosis(Vector3 spawnPosition)
     {
-        GameObject mitosisGO = Instantiate(jellyBugMitosisPrefab, spawnPosition, Quaternion.identity);
-        JellyBugMitosis newMitosis = mitosisGO.GetComponent<JellyBugMitosis>();
+        JellyBugMitosis newMitosis = Instantiate(jellyBugMitosisPrefab, spawnPosition, Quaternion.identity);
 
         if (newMitosis != null)
         {
@@ -77,10 +76,10 @@ public class JellyBug : MeleeMonster
 
     public void OnDieEffect()
     {
-        Vector3 spawnPosition = transform.position + new Vector3(0, -0.1f, 0);
+        Vector3 spawnPosition = transform.position;
 
-        SpawnMitosis(spawnPosition + Vector3.left * mitosisSpawnOffsetX);
-        SpawnMitosis(spawnPosition + Vector3.right * mitosisSpawnOffsetX);
+        SpawnMitosis(spawnPosition + Vector3.left * mitosisSpawnOffset.x + Vector3.down * mitosisSpawnOffset.y);
+        SpawnMitosis(spawnPosition + Vector3.right * mitosisSpawnOffset.x + Vector3.down * mitosisSpawnOffset.y);
 
         GameObject poisonFieldObject = ObjectPoolManager.Instance.GetObject(poisonFieldPoolName, spawnPosition, Quaternion.identity);
 

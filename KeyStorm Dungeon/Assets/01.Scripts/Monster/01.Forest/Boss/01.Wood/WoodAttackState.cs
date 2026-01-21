@@ -143,6 +143,7 @@ public class WoodAttackState : MonsterAttackState
 
         yield return new WaitUntil(() => !wood.IsDash);
 
+        ShakeCameraEvent.StartShakeCamera(wood.ShakePower, wood.ShakeDuration);
         animator.SetBool(DashAnim, false);
     }
 
@@ -219,6 +220,7 @@ public class WoodAttackState : MonsterAttackState
         }
 
         wood.AudioManager.PlayEffect(WoodDiveSfx);
+        ShakeCameraEvent.StartShakeCamera(wood.ShakePower, wood.ShakeDuration);
         animator.SetTrigger(DiveAnim);
         GameObject.Destroy(currentShadowInstance);
         wood.transform.position = endDivePosition;

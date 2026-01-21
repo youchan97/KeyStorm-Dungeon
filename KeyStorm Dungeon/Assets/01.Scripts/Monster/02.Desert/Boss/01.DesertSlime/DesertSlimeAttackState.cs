@@ -59,6 +59,12 @@ public class DesertSlimeAttackState : SlimeAttackState
             {
                 rb.velocity = currentMoveDirection * desertSlime.SlideSpeed;
 
+                if (CheckOffCourse(desertSlime.transform.position, slideTargetPosition, currentMoveDirection, stoppedThreshold))
+                {
+                    desertSlime.StopSlide();
+                    return;
+                }
+
                 timeSinceLastCheck += Time.fixedDeltaTime;
                 if (timeSinceLastCheck >= checkInterval)
                 {
@@ -155,5 +161,21 @@ public class DesertSlimeAttackState : SlimeAttackState
     private void HandleSpinAnimationFinished()
     {
         isSpinAnimationFinished = true;
+    }
+
+    private bool CheckOffCourse(Vector2 currentPosition, Vector2 targetPosition, Vector2 moveDirection, float threshold)
+    {
+        if (Mathf.Abs(moveDirection.x) > Mathf.Abs(moveDirection.y))
+        {
+            if (moveDirection.x > 0 && currentPosition.x > targetPosition.x + threshold) return true;
+            if (moveDirection.x < 0 && currentPosition.x < targetPosition.x - threshold) return true;
+        }
+        else
+        {
+            if (moveDirection.y > 0 && currentPosition.y > targetPosition.y + threshold) return true;
+            if (moveDirection.y < 0 && currentPosition.y < targetPosition.y - threshold) return true;
+        }
+
+        return false;
     }
 }

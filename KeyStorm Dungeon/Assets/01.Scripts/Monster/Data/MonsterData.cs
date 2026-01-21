@@ -23,13 +23,13 @@ public class MonsterData : ScriptableObject
     public Vector2 projectileColliderOffset;    // 투사체 중심점
     public float projectileColliderRadius;      // 투사체 크기
 
-    [Header("스티어링 비헤이비어 설정")]
+    /*[Header("스티어링 비헤이비어 설정")]
     public float separationRaduis;  // 자신 이외 다른 몬스터 감지 반경(분리)
     public float separationStrength;// 분리 힘의 강도
     public float pathfindingWeight; // A* 경로 힘의 가중치
     public float separationWeight;  // 분리 힘의 가중치
     public float maxSteeringForce;  // 몬스터 최대 스티어링 힘
-    public float mass;              // 몬스터 질량
+    public float mass;              // 몬스터 질량*/
 
     [Header("골드 드랍 설정")]
     public int minDropGold;
