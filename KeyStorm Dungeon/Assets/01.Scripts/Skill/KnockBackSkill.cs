@@ -6,8 +6,6 @@ public class KnockBackSkill : ISkill
 {
     KnockBackData data;
 
-    public SkillType SkillType => data.skillType;
-
     public bool IsFinish {  get; private set; }
 
     public Player Player { get; private set; }
@@ -20,6 +18,7 @@ public class KnockBackSkill : ISkill
 
     public void Enter()
     {
+        IsFinish = false;
         Collider2D[] cols = Physics2D.OverlapCircleAll(
             Player.transform.position,
             data.radius

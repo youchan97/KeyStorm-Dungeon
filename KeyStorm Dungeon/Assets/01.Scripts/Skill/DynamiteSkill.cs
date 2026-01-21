@@ -17,6 +17,7 @@ public class DynamiteSkill : ISkill
 
     public void Enter()
     {
+        IsFinish = false;
         GameObject go = Object.Instantiate(data.dynamite);
         go.transform.position = Player.transform.position;
         Dynamite dynamite = go.GetComponent<Dynamite>();
