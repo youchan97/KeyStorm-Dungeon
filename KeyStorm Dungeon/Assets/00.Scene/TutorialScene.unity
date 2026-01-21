@@ -33962,12 +33962,10 @@ MonoBehaviour:
   - {fileID: 2178532899555790044, guid: 10d48c4e243f0264db2760c6a1bfd8e3, type: 3}
   - {fileID: 2178532899555790044, guid: 10d48c4e243f0264db2760c6a1bfd8e3, type: 3}
   - {fileID: 2178532899555790044, guid: 10d48c4e243f0264db2760c6a1bfd8e3, type: 3}
-  - {fileID: 2178532899555790044, guid: 10d48c4e243f0264db2760c6a1bfd8e3, type: 3}
   spawnPoints:
   - {fileID: 8529588666817220069}
   - {fileID: 8948591959129231107}
   - {fileID: 1024049404689355326}
-  - {fileID: 2805855774372416714}
 --- !u!224 &7822553369280716201
 RectTransform:
   m_ObjectHideFlags: 0

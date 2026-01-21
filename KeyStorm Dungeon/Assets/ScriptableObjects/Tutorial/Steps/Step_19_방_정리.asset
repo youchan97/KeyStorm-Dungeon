@@ -48,7 +48,7 @@ MonoBehaviour:
     typingSpeed: 0.02
     waitForInput: 1
     autoDelay: 1.5
-  hasQuest: 0
+  hasQuest: 1
   questTitle: 
   objectives: []
   postDialogues: []

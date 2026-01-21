@@ -72,8 +72,9 @@ public class Room : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Player player = collision.GetComponent<Player>();
-
         if (player == null) return;
+
+        if (isPlayerIn) return;
 
         isPlayerIn = true;
         this.player = player;
@@ -96,27 +97,27 @@ public class Room : MonoBehaviour
         GameManager.Instance.InitCurrentRoom(this);
 
         if (monsterSpawner != null)
-        {
             monsterSpawner.SpawnMonsters();
-        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (hasReportedRoom) return;  
+        if (hasReportedRoom) return;
 
         Player player = collision.GetComponent<Player>();
         if (player == null) return;
 
         float distance = Vector2.Distance(player.transform.position, transform.position);
 
-        
         if (distance <= 6f)
         {
             TutorialPlayerHook hook = FindObjectOfType<TutorialPlayerHook>();
-            hook?.ReportRoomEnter(roomType);
-            hasReportedRoom = true;
-            Debug.Log($"[Room] {roomType} 퀘스트 진행! 거리: {distance}");
+            if (hook != null)
+            {
+                hook.ReportRoomEnter(roomType);
+                hasReportedRoom = true;
+                Debug.Log($"[Room] {roomType} 퀘스트 보고! 거리: {distance}");
+            }
         }
     }
 
@@ -251,5 +252,14 @@ public class Room : MonoBehaviour
         hook?.ReportRoomEnter(roomType);
 
         Debug.Log($"[Room] {roomType} 강제 진입 처리됨!");
+    }
+
+    public void ForcePlayerEnterWithoutReport(Player p)
+    {
+        isPlayerIn = true;
+        player = p;
+        hasReportedRoom = false;  
+
+        Debug.Log($"[Room] {roomType} 진입 처리 (보고 없음)");
     }
 }

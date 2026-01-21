@@ -32,7 +32,7 @@ public class TutorialStageManager : MonoBehaviour
 
     IEnumerator InitStartRoom()
     {
-        yield return new WaitForSeconds(0.3f);  
+        yield return new WaitForSeconds(0.3f);
 
         foreach (var room in spawnedRooms.Values)
         {
@@ -41,7 +41,7 @@ public class TutorialStageManager : MonoBehaviour
                 Player player = FindObjectOfType<Player>();
                 if (player != null)
                 {
-                    room.ForcePlayerEnter(player);
+                    room.ForcePlayerEnterWithoutReport(player);
                     Debug.Log("[TutorialStageManager] 시작방 플레이어 진입 처리!");
                 }
                 break;

@@ -182,6 +182,7 @@ public class TutorialManager : MonoBehaviour
         dialogueUI?.ForceHide();
         questUI?.HideQuest();
         isCompleted = true;
+        ResetPlayerData();
         PlayerPrefs.SetInt("TutorialCompleted", 1);
         PlayerPrefs.Save();
         SceneManager.LoadScene(mainGameSceneName);
@@ -191,9 +192,29 @@ public class TutorialManager : MonoBehaviour
     {
         if (isCompleted) return;
         isCompleted = true;
+        ResetPlayerData();
         PlayerPrefs.SetInt("TutorialCompleted", 1);
         PlayerPrefs.Save();
         SceneManager.LoadScene(mainGameSceneName);
+    }
+
+    void ResetPlayerData()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.PlayerRunData.inventory.passiveItems.Clear();
+            GameManager.Instance.PlayerRunData.inventory.activeItem = null;
+            GameManager.Instance.PlayerRunData.inventory.gold = 0;
+            GameManager.Instance.PlayerRunData.inventory.bombCount = 0;
+
+            Debug.Log("[TutorialManager] 플레이어 인벤토리 초기화!");
+        }
+
+        if (ItemPoolManager.Instance != null)
+        {
+            ItemPoolManager.Instance.ResetItemPool();
+            Debug.Log("[TutorialManager] ItemPool 초기화!");
+        }
     }
 
     public static bool IsTutorialCompleted() => PlayerPrefs.GetInt("TutorialCompleted", 0) == 1;
