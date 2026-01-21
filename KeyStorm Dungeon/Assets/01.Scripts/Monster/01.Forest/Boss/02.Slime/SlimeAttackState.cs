@@ -137,8 +137,7 @@ public class SlimeAttackState : MonsterAttackState
             slime.StartMove();
 
             yield return new WaitUntil(() => isJumpMoveLandAnimationFinished == true);
-
-            slime.AudioManager.PlayEffect(SlimeMoveSfx);
+            
             slime.StopMove();
 
             isJumpMoveReadyAnimationFinished = false;
@@ -161,9 +160,8 @@ public class SlimeAttackState : MonsterAttackState
     protected IEnumerator DivePattern()
     {
         animator.SetTrigger(JumpAnim);
-
+        
         yield return new WaitUntil(() => isJumpAnimationFinished == true);
-        slime.AudioManager.PlayEffect(SlimeJumpSfx);
 
         Vector3 initialSlimePosition = slime.transform.position;
         Vector3 groundShadowPosition = initialSlimePosition + Vector3.down * slime.ShadowOffset;
@@ -244,6 +242,7 @@ public class SlimeAttackState : MonsterAttackState
         GameObject.Destroy(currentShadowInstance);
 
         slime.AudioManager.PlayEffect(SlimeDiveSfx);
+        ShakeCameraEvent.StartShakeCamera(slime.ShakePower, slime.ShakeDuration);
         animator.SetBool(DiveAnim, false);
 
         slime.transform.position = endDivePosition;

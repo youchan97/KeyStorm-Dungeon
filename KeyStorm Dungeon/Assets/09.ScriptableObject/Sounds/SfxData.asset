@@ -50,9 +50,34 @@ MonoBehaviour:
   - audioKey: GetItem
     audioClip:
     - {fileID: 8300000, guid: fb131bb73c7e09f4b95fdc9329c7d9cc, type: 3}
-  - audioKey: GetPotion
+    audioKey: GetPotion
     audioClip:
     - {fileID: 8300000, guid: 7ad2b1cd944f68f4b999c7ae5187c1fb, type: 3}
   - audioKey: GetBomb
     audioClip:
     - {fileID: 8300000, guid: c7172fd53c8511e41843c2737bd8369a, type: 3}
+  - audioKey: WoodDive
+    audioClip:
+    - {fileID: 8300000, guid: dd935978c4d350b4d91d2f4f2984eda5, type: 3}
+  - audioKey: WoodJump
+    audioClip:
+    - {fileID: 8300000, guid: 010ec09b66e94a444a42fe38e43843b1, type: 3}
+  - audioKey: WoodSpawnRoot
+    audioClip:
+    - {fileID: 8300000, guid: cadeedcaa648de04cb173449f08f542f, type: 3}
+  - audioKey: WoodDashCrash
+    audioClip:
+    - {fileID: 8300000, guid: 8150c466cbf3edb43b8c35f752a2c2f0, type: 3}
+  - audioKey: SlimeSlam
+    audioClip:
+    - {fileID: 8300000, guid: a2ee0e7883c96234589e506cd0e81cde, type: 3}
+  - audioKey: SlimeJump
+    audioClip:
+    - {fileID: 8300000, guid: 1895f62f7b3f83442b4d3bc1968a0ea1, type: 3}
+  - audioKey: SlimeDive
+    audioClip:
+    - {fileID: 8300000, guid: 9ba3f25f11cc0fc4ba903baba955ec81, type: 3}
+  - audioKey: SlimeMove
+    audioClip:
+    - {fileID: 8300000, guid: 44cebd7ef0c72fc47bcc5ecb13085ff9, type: 3}
+    - {fileID: 8300000, guid: a38f513de4b8070488ca258919ab795d, type: 3}

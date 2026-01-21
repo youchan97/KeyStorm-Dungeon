@@ -19,6 +19,10 @@ public abstract class Monster : Character
     [Header("플레이어 레이어")]
     [SerializeField] protected LayerMask playerLayer;
 
+    [Header("카메라 흔들림 연출")]
+    [SerializeField] protected float shakePower;
+    [SerializeField] protected float shakeDuration;
+
     protected AudioManager audioManager;
 
     public MonsterData MonsterData => _monsterData;
@@ -28,7 +32,8 @@ public abstract class Monster : Character
     public LayerMask ObstacleLayer => obstacleLayer;
     public LayerMask PlayerLayer => playerLayer;
     public AudioManager AudioManager => audioManager;
-
+    public float ShakePower => shakePower;
+    public float ShakeDuration => shakeDuration;
     public GameObject PlayerGO {  get; protected set; }
     public Transform PlayerTransform { get; protected set; }
     public Player player { get; protected set; }

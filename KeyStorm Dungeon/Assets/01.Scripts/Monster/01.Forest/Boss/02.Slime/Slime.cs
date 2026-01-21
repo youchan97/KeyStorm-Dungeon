@@ -32,8 +32,8 @@ public class Slime : MeleeMonster
     [SerializeField] private float diveAttackRange;   // 착지 공격 범위
     [SerializeField] private float diveAttackDelay;
 
-    #region 8방향 벡터
-    private Vector2[] eightDirections = new Vector2[]
+    #region 도약 패턴에서 사용할 방향 벡터
+    protected virtual Vector2[] DiveBulletDirections => new Vector2[]
     {
         Vector2.up,
         Vector2.down,
@@ -156,6 +156,7 @@ public class Slime : MeleeMonster
     public void OnSlamAttack()
     {
         audioManager.PlayEffect(SlimeSlamSfx);
+        ShakeCameraEvent.StartShakeCamera(shakePower, shakeDuration);
 
         Vector2 playerDirection = (PlayerTransform.position - transform.position).normalized;
         if (attackPoolManager == null) return;
@@ -164,7 +165,17 @@ public class Slime : MeleeMonster
 
         for (int i = 0; i < bulletCount; i++)
         {
-            float bulletAnglePart = (float)i / (bulletCount - 1);
+            float bulletAnglePart;
+
+            if (bulletCount <= 1)
+            {
+                bulletAnglePart = 0.5f; // 정중앙
+            }
+            else
+            {
+                bulletAnglePart = (float)i / (bulletCount - 1);
+            }
+
             float angle = Mathf.Lerp(-halfAngle, halfAngle, bulletAnglePart);
 
             Vector3 rotateDirection = Quaternion.Euler(0, 0, angle) * (Vector3)playerDirection;
@@ -182,11 +193,11 @@ public class Slime : MeleeMonster
         }
     }
 
-    public void OnDiveAttack()
+    public virtual void OnDiveAttack()
     {
         if (attackPoolManager == null) return;
 
-        foreach(var direction in eightDirections)
+        foreach(var direction in DiveBulletDirections)
         {
             AttackObj pooledAttackObject = AttackPoolManager.GetObj();
 
@@ -207,5 +218,15 @@ public class Slime : MeleeMonster
                 hitPlayer.TakeDamage(Damage);
             }
         }
+    }
+
+    public void OnJumpPlaySfx()
+    {
+        audioManager.PlayEffect(SlimeJumpSfx);
+    }
+
+    public void OnJumpMovePlaySfx()
+    {
+        audioManager.PlayEffect(SlimeMoveSfx);
     }
 }
