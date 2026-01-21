@@ -14,11 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stepIndex: 16
   stepName: "\uBCF4\uC2A4\uBC29\uC73C\uB85C \uC774\uB3D9"
+  waitForRoomEnter: 1
+  targetRoomType: 2
   preDialogues:
-  - text: "\uC774\uC81C \uBCF4\uC2A4\uBC29\uC73C\uB85C \uAC00\uBCF4\uC790."
-    typingSpeed: 0.03
-    waitForInput: 1
-    autoDelay: 1.5
   - text: "\uBB54\uAC00 \uAC15\uB825\uD55C \uAE30\uC6B4\uC774 \uB290\uAEF4\uC838..."
     typingSpeed: 0.03
     waitForInput: 1

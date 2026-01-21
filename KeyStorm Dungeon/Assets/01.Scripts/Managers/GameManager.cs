@@ -155,6 +155,18 @@ public class GameManager : SingletonManager<GameManager>
             roomChangeEvent?.RoomChange(currentRoom);
         }
     }
+
+    public void ResetRunDataForTutorial()
+    {
+        DG.Tweening.DOTween.KillAll();
+
+        InitializeRunData();
+
+        if (ItemPoolManager.Instance != null)
+            ItemPoolManager.Instance.ResetItemPool();
+
+        Debug.Log("[GameManager] 튜토리얼용 완전 초기화!");
+    }
 }
 
 [System.Serializable]

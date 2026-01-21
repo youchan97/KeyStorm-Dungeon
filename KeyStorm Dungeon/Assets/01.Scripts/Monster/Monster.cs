@@ -170,6 +170,11 @@ public abstract class Monster : Character
         TutorialPlayerHook hook = FindObjectOfType<TutorialPlayerHook>();
         if (hook != null)
         {
+            if (MonsterData != null && MonsterData.tier == MonsterTier.Boss)
+            {
+                hook.ReportBossKill();
+            }
+
             hook.ReportEnemyKill();
         }
 

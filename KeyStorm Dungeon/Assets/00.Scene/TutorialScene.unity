@@ -3798,8 +3798,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -3827,7 +3827,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -102.644165, w: 263.57227}
+  m_margin: {x: 0, y: 0, z: -445.10742, w: 351.9499}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4364,7 +4364,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2431869014455586699, guid: 997e4f2d7439f4c44a3936b4585e11a3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 123.1
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 2431869014455586699, guid: 997e4f2d7439f4c44a3936b4585e11a3, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4456,7 +4456,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4646261120210907288, guid: 997e4f2d7439f4c44a3936b4585e11a3, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 290
+      value: 380
       objectReference: {fileID: 0}
     - target: {fileID: 4646261120210907288, guid: 997e4f2d7439f4c44a3936b4585e11a3, type: 3}
       propertyPath: m_SizeDelta.y
@@ -4464,7 +4464,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4646261120210907288, guid: 997e4f2d7439f4c44a3936b4585e11a3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 302.67346
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 4646261120210907288, guid: 997e4f2d7439f4c44a3936b4585e11a3, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4476,7 +4476,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7123877812817843352, guid: 997e4f2d7439f4c44a3936b4585e11a3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 123.00012
+      value: 21.900146
       objectReference: {fileID: 0}
     - target: {fileID: 7123877812817843352, guid: 997e4f2d7439f4c44a3936b4585e11a3, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -27644,7 +27644,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 301
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!224 &6762305589166430923
 RectTransform:

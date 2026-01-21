@@ -93,6 +93,13 @@ public class TutorialManager : MonoBehaviour
             hook?.ResetMoveTracking();
         }
 
+        if (step.waitForRoomEnter)
+        {
+            Debug.Log($"[TutorialManager] {step.targetRoomType} 방 진입 대기 중...");
+            yield return new WaitUntil(() => IsPlayerInRoom(step.targetRoomType));
+            Debug.Log($"[TutorialManager] {step.targetRoomType} 방 진입 완료!");
+        }
+
         if (step.preDialogues.Count > 0)
         {
             if (step.blockInputDuringDialogue)
@@ -132,6 +139,36 @@ public class TutorialManager : MonoBehaviour
 
         yield return new WaitForSeconds(stepTransitionDelay);
         NextStep();
+    }
+
+    bool IsPlayerInRoom(TutorialRoomType tutorialRoomType)
+    {
+        Room[] rooms = FindObjectsOfType<Room>();
+
+        RoomType targetType = tutorialRoomType switch
+        {
+            TutorialRoomType.Start => RoomType.Start,
+            TutorialRoomType.Normal => RoomType.Normal,
+            TutorialRoomType.Boss => RoomType.Boss,
+            TutorialRoomType.Treasure => RoomType.Treasure,
+            TutorialRoomType.Shop => RoomType.Shop,
+            _ => RoomType.Start
+        };
+
+        Player player = FindObjectOfType<Player>();
+        if (player == null) return false;
+
+        foreach (Room room in rooms)
+        {
+            if (room.roomType != targetType) continue;
+
+            if (room.IsPlayerIn) return true;
+
+            float distance = Vector2.Distance(player.transform.position, room.transform.position);
+            if (distance <= 10f) return true;
+        }
+
+        return false;
     }
 
     void NextStep()
@@ -200,20 +237,11 @@ public class TutorialManager : MonoBehaviour
 
     void ResetPlayerData()
     {
+        DG.Tweening.DOTween.KillAll();
+
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.PlayerRunData.inventory.passiveItems.Clear();
-            GameManager.Instance.PlayerRunData.inventory.activeItem = null;
-            GameManager.Instance.PlayerRunData.inventory.gold = 0;
-            GameManager.Instance.PlayerRunData.inventory.bombCount = 0;
-
-            Debug.Log("[TutorialManager] 플레이어 인벤토리 초기화!");
-        }
-
-        if (ItemPoolManager.Instance != null)
-        {
-            ItemPoolManager.Instance.ResetItemPool();
-            Debug.Log("[TutorialManager] ItemPool 초기화!");
+            GameManager.Instance.ResetRunDataForTutorial();
         }
     }
 

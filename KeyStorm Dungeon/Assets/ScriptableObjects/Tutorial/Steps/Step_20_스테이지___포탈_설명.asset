@@ -14,14 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stepIndex: 20
   stepName: "\uC2A4\uD14C\uC774\uC9C0 - \uD3EC\uD0C8 \uC124\uBA85"
+  waitForRoomEnter: 0
+  targetRoomType: 0
   preDialogues:
-  - text: "\uC800 \uD3EC\uD0C8\uC744 \uD0C0\uBA74 \uB2E4\uC74C \uC2A4\uD14C\uC774\uC9C0\uB85C
+  - text: "\uC800 \uD3EC\uD0C8\uC744 \uD0C0\uBA74 \uC774\uC81C \uBCF8 \uAC8C\uC784\uC73C\uB85C
       \uB118\uC5B4\uAC08 \uC218 \uC788\uC5B4."
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
-  - text: "\uB2E4\uC74C \uC2A4\uD14C\uC774\uC9C0\uC5D0\uC11C\uB294 \uB9F5 \uAD6C\uC870\uAC00
-      \uB2EC\uB77C\uC9C8 \uC218\uB3C4 \uC788\uC73C\uB2C8 \uC8FC\uC758\uD574."
+  - text: "\uBCF8\uAC8C\uC784\uC5D0\uC11C\uB294 \uB9F5 \uAD6C\uC870\uAC00 \uB2EC\uB77C\uC9C8
+      \uC218\uB3C4 \uC788\uC73C\uB2C8 \uC8FC\uC758\uD574."
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5

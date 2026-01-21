@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stepIndex: 5
   stepName: "\uBCF4\uBB3C\uBC29\uC73C\uB85C \uC774\uB3D9"
+  waitForRoomEnter: 1
+  targetRoomType: 3
   preDialogues: []
   hasQuest: 0
   questTitle: "\uBCF4\uBB3C\uBC29 \uD0D0\uC0C9"
