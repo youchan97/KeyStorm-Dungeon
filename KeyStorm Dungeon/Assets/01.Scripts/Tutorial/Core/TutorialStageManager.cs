@@ -42,7 +42,6 @@ public class TutorialStageManager : MonoBehaviour
                 if (player != null)
                 {
                     room.ForcePlayerEnterWithoutReport(player);
-                    Debug.Log("[TutorialStageManager] 시작방 플레이어 진입 처리!");
                 }
                 break;
             }
