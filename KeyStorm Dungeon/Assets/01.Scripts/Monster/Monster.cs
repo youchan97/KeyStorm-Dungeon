@@ -176,8 +176,6 @@ public abstract class Monster : Character
             }
 
             hook.ReportEnemyKill();
-
-            Destroy(gameObject);
         }
     }
 

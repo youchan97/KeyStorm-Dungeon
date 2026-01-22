@@ -19,11 +19,13 @@ public class AttackObj : MonoBehaviour
     float shootSpeed;
     float coolTime;
 
+    bool canThrough;
+
     Coroutine coroutine;
 
     public bool IsActive {  get; private set; }
 
-    public void InitData(Sprite sprite, float value, Vector2 vec, float speed, float cool, AttackPoolManager manager, bool isPlayerAttack, Vector2 colliderOffset, float colliderRadius, AttackData attackData = null)
+    public void InitData(Sprite sprite, float value, Vector2 vec, float speed, float cool, AttackPoolManager manager, bool isPlayerAttack, Vector2 colliderOffset, float colliderRadius, AttackData attackData = null, bool isThrough = false)
     {
         IsActive = true;
 
@@ -43,7 +45,7 @@ public class AttackObj : MonoBehaviour
         effectPoolManager = poolManager.effectPoolManager;
         circleCollider.offset = colliderOffset;
         circleCollider.radius = colliderRadius;
-
+        canThrough = isThrough;
         isPlayer = isPlayerAttack;
         transform.right = dir;
         
@@ -78,15 +80,18 @@ public class AttackObj : MonoBehaviour
     {
         Vector3 vec = collision.ClosestPoint(transform.position);
         bool isWall = ((1 << collision.gameObject.layer) & WallLayer) != 0;
-        if(isWall || collision.CompareTag("Collision"))
+        if(!canThrough)
         {
-            if (isPlayer)
+            if(isWall || collision.CompareTag("Collision"))
             {
-                PlayerEffect(vec);
-            }
+                if (isPlayer)
+                {
+                    PlayerEffect(vec);
+                }
 
-            poolManager.ReturnPool(this);
-            return;
+                poolManager.ReturnPool(this);
+                return;
+            }
         }
 
         Character character;
