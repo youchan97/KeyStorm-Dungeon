@@ -20,11 +20,6 @@ public class Dynamite : MonoBehaviour
         explodeCoroutine = null;
     }
 
-    void Update()
-    {
-        
-    }
-
     public void InitData(DynamiteData data, Player player)
     {
         damage = data.damage;
