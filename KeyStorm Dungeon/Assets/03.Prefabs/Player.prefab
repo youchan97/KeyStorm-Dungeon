@@ -1802,8 +1802,10 @@ MonoBehaviour:
   specialAttackKey: 
   canSniper: 0
   canShotGun: 0
-  shotGunBulletCount: 3
-  shotSpreadAngle: 5
+  canThrough: 0
+  canBomb: 0
+  shotGunBulletCount: 5
+  shotSpreadAngle: 15
   projectileColliderOffset: {x: 0, y: 0}
   projectileColliderRadius: 0.3
   normalAttack: {fileID: 11400000, guid: c33176e87cc874842b8322ca1ad97b60, type: 2}

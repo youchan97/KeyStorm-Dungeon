@@ -16,7 +16,9 @@ public enum AttackChangeType
 {
     None,
     ShotGun,
-    Sniper
+    Sniper,
+    ThroughBullet,
+    Bomb
 }
 
 public enum ItemTier
