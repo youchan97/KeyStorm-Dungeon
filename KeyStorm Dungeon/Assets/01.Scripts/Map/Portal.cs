@@ -20,6 +20,9 @@ public class Portal : MonoBehaviour
         Player player = collision.GetComponent<Player>();
         if (player == null) return;
 
+        TutorialPlayerHook hook = FindObjectOfType<TutorialPlayerHook>();
+        hook?.ReportPortalEnter();
+
         hasBeenUsed = true;
         isAnyPortalProcessing = true;
 

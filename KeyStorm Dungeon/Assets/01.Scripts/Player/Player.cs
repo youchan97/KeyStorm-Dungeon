@@ -155,13 +155,13 @@ public class Player : Character
     void Shoot()
     {
         PlayerAttack.Shoot(playerController.KeyName);
-        GameSceneUI.UpdateAmmo();
+        GameSceneUI?.UpdateAmmo();
     }
 
     void Bomb()
     {
         PlayerAttack.HoldBomb();
-        GameSceneUI.UpdateBomb();
+        GameSceneUI?.UpdateBomb();
     }
 
     void UseActiveItem()
@@ -296,6 +296,9 @@ public class Player : Character
 
     void HandleMoveEffect()
     {
+        if (EffectPoolManager == null) return;
+        if (foot == null) return;
+
         Vector3 curPos = foot.position;
         float distance = Vector3.Distance(prevPos, curPos);
 
@@ -317,6 +320,8 @@ public class Player : Character
 
     void SpawnEffect(Vector3 curPos)
     {
+        if (EffectPoolManager == null) return;
+
         Effect effect = EffectPoolManager.GetObj();
         effect.transform.position = (curPos);
         effect.InitData(EffectPoolManager, stepEffect, Vector2.zero, stepSize);

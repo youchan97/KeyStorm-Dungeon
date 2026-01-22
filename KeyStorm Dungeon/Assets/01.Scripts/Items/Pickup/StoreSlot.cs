@@ -285,6 +285,10 @@ public class StoreSlot : MonoBehaviour
         }
         audioManager.PlayEffect(GetItemSfx);
         ItemPoolManager.Instance?.MarkAcquired(itemData);
+
+        TutorialPlayerHook hook = FindObjectOfType<TutorialPlayerHook>();
+        hook?.ReportItemPurchase();
+
         Clear();
     }
 

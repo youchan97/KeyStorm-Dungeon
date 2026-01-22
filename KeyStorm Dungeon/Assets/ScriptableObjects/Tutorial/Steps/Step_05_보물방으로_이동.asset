@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stepIndex: 5
   stepName: "\uBCF4\uBB3C\uBC29\uC73C\uB85C \uC774\uB3D9"
+  waitForRoomEnter: 1
+  targetRoomType: 3
   preDialogues: []
-  hasQuest: 1
+  hasQuest: 0
   questTitle: "\uBCF4\uBB3C\uBC29 \uD0D0\uC0C9"
   objectives:
   - description: "\uBCF4\uBB3C\uBC29\uC73C\uB85C \uC774\uB3D9"
@@ -23,6 +25,6 @@ MonoBehaviour:
     targetCount: 1
     currentCount: 0
   postDialogues: []
-  currentRoom: 0
+  currentRoom: 3
   blockInputDuringDialogue: 1
   resetMoveTrackingOnStart: 0

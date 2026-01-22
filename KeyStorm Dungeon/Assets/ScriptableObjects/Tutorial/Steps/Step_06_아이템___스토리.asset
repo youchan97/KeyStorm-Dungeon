@@ -14,29 +14,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stepIndex: 6
   stepName: "\uC544\uC774\uD15C - \uC2A4\uD1A0\uB9AC"
+  waitForRoomEnter: 0
+  targetRoomType: 0
   preDialogues:
   - text: "\uC624, \uBB54\uAC00 \uC788\uAD70."
     typingSpeed: 0.03
     waitForInput: 1
-    autoDelay: 1.5
+    autoDelay: 0.5
   - text: "\uC774\uAC74... \uC870\uC0C1\uB4E4\uC774 \uC0AC\uC6A9\uD558\uB358 \uBB3C\uAC74\uC774\uC57C."
     typingSpeed: 0.03
     waitForInput: 1
-    autoDelay: 1.5
+    autoDelay: 0.3
   - text: "\uC624\uB79C \uC2DC\uAC04 \uB9C8\uB825\uC744 \uBA38\uAE08\uACE0 \uC788\uC5B4\uC11C
       \uD2B9\uC218\uD55C \uB2A5\uB825\uC774 \uBD80\uC5EC\uB418\uC5B4 \uC788\uC9C0."
     typingSpeed: 0.03
     waitForInput: 1
-    autoDelay: 1.5
+    autoDelay: 0.3
   - text: "\uD639\uC2DC \uC774 \uC911\uC5D0 \uC800\uC8FC\uB97C \uD480 \uC218 \uC788\uB294
       \uAC83\uB3C4 \uC788\uC744\uC9C0 \uBAA8\uB974\uACA0\uAD70."
     typingSpeed: 0.03
     waitForInput: 1
-    autoDelay: 1.5
+    autoDelay: 0.3
   hasQuest: 0
   questTitle: 
   objectives: []
   postDialogues: []
-  currentRoom: 1
+  currentRoom: 3
   blockInputDuringDialogue: 1
   resetMoveTrackingOnStart: 0

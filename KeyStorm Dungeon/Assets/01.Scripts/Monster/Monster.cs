@@ -166,6 +166,19 @@ public abstract class Monster : Character
                 MyRoom.StageClear(transform.position);
             }*/
         }
+
+        TutorialPlayerHook hook = FindObjectOfType<TutorialPlayerHook>();
+        if (hook != null)
+        {
+            if (MonsterData != null && MonsterData.tier == MonsterTier.Boss)
+            {
+                hook.ReportBossKill();
+            }
+
+            hook.ReportEnemyKill();
+        }
+
+        Destroy(gameObject);
     }
 
     // 몬스터가 플레이어 위치에 따라 스프라이트 반전에서 현재 이동방향에 따라 반전하도록 하는 것이 올바름

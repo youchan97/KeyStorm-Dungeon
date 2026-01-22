@@ -36,8 +36,25 @@ public class TutorialManager : MonoBehaviour
 
     private void Start()
     {
+#if UNITY_EDITOR
+        PlayerPrefs.SetInt("TutorialCompleted", 0);
+#endif
+
+        if (PlayerPrefs.GetInt("TutorialCompleted", 0) == 1)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
         if (skipUI != null)
             skipUI.OnSkipConfirmed += SkipTutorial;
+
+        StartCoroutine(InitAfterDelay());
+    }
+
+    IEnumerator InitAfterDelay()
+    {
+        yield return new WaitForSeconds(0.5f);
 
         if (playerController == null)
         {
@@ -46,8 +63,19 @@ public class TutorialManager : MonoBehaviour
                 playerController = player.PlayerController;
         }
 
-        currentStepIndex = 0;
-        StartCoroutine(RunStep(steps[currentStepIndex]));
+        Debug.Log($"[TutorialManager] PlayerController: {playerController != null}");
+        Debug.Log($"[TutorialManager] Steps 개수: {steps.Count}");
+        Debug.Log($"[TutorialManager] DialogueUI: {dialogueUI != null}");
+
+        if (steps.Count > 0)
+        {
+            Debug.Log("[TutorialManager] 튜토리얼 시작!");
+            StartCoroutine(RunStep(steps[0]));
+        }
+        else
+        {
+            Debug.LogError("[TutorialManager] Steps가 비어있음!");
+        }
     }
 
     private void OnDestroy()
@@ -63,6 +91,13 @@ public class TutorialManager : MonoBehaviour
         {
             TutorialPlayerHook hook = FindObjectOfType<TutorialPlayerHook>();
             hook?.ResetMoveTracking();
+        }
+
+        if (step.waitForRoomEnter)
+        {
+            Debug.Log($"[TutorialManager] {step.targetRoomType} 방 진입 대기 중...");
+            yield return new WaitUntil(() => IsPlayerInRoom(step.targetRoomType));
+            Debug.Log($"[TutorialManager] {step.targetRoomType} 방 진입 완료!");
         }
 
         if (step.preDialogues.Count > 0)
@@ -89,6 +124,8 @@ public class TutorialManager : MonoBehaviour
             questUI.HideQuest();
         }
 
+        OpenCurrentRoomDoors();
+
         if (step.postDialogues.Count > 0)
         {
             if (step.blockInputDuringDialogue)
@@ -102,6 +139,36 @@ public class TutorialManager : MonoBehaviour
 
         yield return new WaitForSeconds(stepTransitionDelay);
         NextStep();
+    }
+
+    bool IsPlayerInRoom(TutorialRoomType tutorialRoomType)
+    {
+        Room[] rooms = FindObjectsOfType<Room>();
+
+        RoomType targetType = tutorialRoomType switch
+        {
+            TutorialRoomType.Start => RoomType.Start,
+            TutorialRoomType.Normal => RoomType.Normal,
+            TutorialRoomType.Boss => RoomType.Boss,
+            TutorialRoomType.Treasure => RoomType.Treasure,
+            TutorialRoomType.Shop => RoomType.Shop,
+            _ => RoomType.Start
+        };
+
+        Player player = FindObjectOfType<Player>();
+        if (player == null) return false;
+
+        foreach (Room room in rooms)
+        {
+            if (room.roomType != targetType) continue;
+
+            if (room.IsPlayerIn) return true;
+
+            float distance = Vector2.Distance(player.transform.position, room.transform.position);
+            if (distance <= 10f) return true;
+        }
+
+        return false;
     }
 
     void NextStep()
@@ -152,6 +219,7 @@ public class TutorialManager : MonoBehaviour
         dialogueUI?.ForceHide();
         questUI?.HideQuest();
         isCompleted = true;
+        ResetPlayerData();
         PlayerPrefs.SetInt("TutorialCompleted", 1);
         PlayerPrefs.Save();
         SceneManager.LoadScene(mainGameSceneName);
@@ -161,9 +229,20 @@ public class TutorialManager : MonoBehaviour
     {
         if (isCompleted) return;
         isCompleted = true;
+        ResetPlayerData();
         PlayerPrefs.SetInt("TutorialCompleted", 1);
         PlayerPrefs.Save();
         SceneManager.LoadScene(mainGameSceneName);
+    }
+
+    void ResetPlayerData()
+    {
+        DG.Tweening.DOTween.KillAll();
+
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.ResetRunDataForTutorial();
+        }
     }
 
     public static bool IsTutorialCompleted() => PlayerPrefs.GetInt("TutorialCompleted", 0) == 1;
@@ -171,5 +250,28 @@ public class TutorialManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("TutorialCompleted", 0);
         PlayerPrefs.Save();
+    }
+
+    public void OpenCurrentRoomDoors()
+    {
+        Room[] rooms = FindObjectsOfType<Room>();
+
+        foreach (Room room in rooms)
+        {
+            if (room.IsPlayerIn)
+            {
+                Door[] doors = room.GetComponentsInChildren<Door>(true);
+
+                foreach (Door door in doors)
+                {
+                    if (door != null && door.canUse) 
+                    {
+                        door.ForceOpen();
+                        Debug.Log($"[TutorialManager] 연결된 문 열림: {door.name}");
+                    }
+                }
+                break;
+            }
+        }
     }
 }

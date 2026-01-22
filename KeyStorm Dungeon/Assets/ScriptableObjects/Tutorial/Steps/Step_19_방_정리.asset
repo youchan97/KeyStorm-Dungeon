@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stepIndex: 19
   stepName: "\uBC29 \uC815\uB9AC"
+  waitForRoomEnter: 0
+  targetRoomType: 0
   preDialogues:
   - text: "\uC774 \uAD6C\uC5ED\uC744 \uBAA8\uB450 \uB3CC\uC544\uBD24\uAD70."
     typingSpeed: 0.03
@@ -23,35 +25,32 @@ MonoBehaviour:
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
-  - text: "<color=#808080>\uC2DC\uC791\uBC29</color> - \uCC98\uC74C \uB5A8\uC5B4\uC9C4
+  - text: "\uC2DC\uC791\uBC29- \uCC98\uC74C \uB5A8\uC5B4\uC9C4 \uACF3"
+    typingSpeed: 0.02
+    waitForInput: 1
+    autoDelay: 1.5
+  - text: "\uBCF4\uBB3C\uBC29 - \uC544\uC774\uD15C\uC744 \uC5BB\uC744 \uC218 \uC788\uB294
       \uACF3"
     typingSpeed: 0.02
     waitForInput: 1
     autoDelay: 1.5
-  - text: "<color=#FFD700>\uBCF4\uBB3C\uBC29</color> - \uC544\uC774\uD15C\uC744 \uC5BB\uC744
-      \uC218 \uC788\uB294 \uACF3"
+  - text: "\uC77C\uBC18\uBC29- \uBAAC\uC2A4\uD130\uAC00 \uB098\uC624\uB294 \uACF3"
     typingSpeed: 0.02
     waitForInput: 1
     autoDelay: 1.5
-  - text: "<color=#FFFFFF>\uC77C\uBC18\uBC29</color> - \uBAAC\uC2A4\uD130\uAC00 \uB098\uC624\uB294
+  - text: "\uC0C1\uC810 - \uC544\uC774\uD15C\uC744 \uAD6C\uB9E4\uD560 \uC218 \uC788\uB294
       \uACF3"
     typingSpeed: 0.02
     waitForInput: 1
     autoDelay: 1.5
-  - text: "<color=#FFA500>\uC0C1\uC810</color> - \uC544\uC774\uD15C\uC744 \uAD6C\uB9E4\uD560
-      \uC218 \uC788\uB294 \uACF3"
+  - text: "\uBCF4\uC2A4\uBC29 - \uBCF4\uC2A4\uAC00 \uC788\uB294 \uACF3"
     typingSpeed: 0.02
     waitForInput: 1
     autoDelay: 1.5
-  - text: "<color=#FF6B6B>\uBCF4\uC2A4\uBC29</color> - \uBCF4\uC2A4\uAC00 \uC788\uB294
-      \uACF3"
-    typingSpeed: 0.02
-    waitForInput: 1
-    autoDelay: 1.5
-  hasQuest: 0
+  hasQuest: 1
   questTitle: 
   objectives: []
   postDialogues: []
-  currentRoom: 4
+  currentRoom: 2
   blockInputDuringDialogue: 1
   resetMoveTrackingOnStart: 0

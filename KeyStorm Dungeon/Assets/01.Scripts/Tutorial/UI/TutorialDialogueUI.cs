@@ -42,6 +42,8 @@ public class TutorialDialogueUI : MonoBehaviour
     {
         if (dialogues == null || dialogues.Count == 0) yield break;
 
+        Time.timeScale = 0f;
+
         dialoguePanel.SetActive(true);
 
         foreach (var line in dialogues)
@@ -57,11 +59,13 @@ public class TutorialDialogueUI : MonoBehaviour
             }
             else
             {
-                yield return new WaitForSeconds(line.autoDelay);
+                yield return new WaitForSecondsRealtime(line.autoDelay);
             }
         }
 
         dialoguePanel.SetActive(false);
+
+        Time.timeScale = 1f;
     }
 
     IEnumerator TypeText(string text, float speed)
@@ -70,22 +74,16 @@ public class TutorialDialogueUI : MonoBehaviour
         skipTyping = false;
         dialogueText.text = "";
 
-        bool inTag = false;
-        string currentText = "";
-
         foreach (char c in text)
         {
-            if (skipTyping) { dialogueText.text = text; break; }
-
-            if (c == '<') inTag = true;
-            currentText += c;
-            if (c == '>') inTag = false;
-
-            if (!inTag)
+            if (skipTyping)
             {
-                dialogueText.text = currentText;
-                yield return new WaitForSeconds(speed);
+                dialogueText.text = text;
+                break;
             }
+
+            dialogueText.text += c;
+            yield return new WaitForSecondsRealtime(speed);
         }
 
         dialogueText.text = text;
@@ -98,5 +96,7 @@ public class TutorialDialogueUI : MonoBehaviour
         isTyping = false;
         waitingForInput = false;
         dialoguePanel?.SetActive(false);
+
+        Time.timeScale = 1f;
     }
 }

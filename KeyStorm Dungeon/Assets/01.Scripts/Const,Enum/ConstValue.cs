@@ -5,6 +5,8 @@ using UnityEngine;
 public static class ConstValue
 {
     #region 상수값 관련
+    public const int DefaultIntZero = 0;
+    public const int DefaultIntOne = 1;
     public const float DefaultZero = 0f;
     public const float DefaultOne = 1f;
     public const float HalfValue = 0.5f;

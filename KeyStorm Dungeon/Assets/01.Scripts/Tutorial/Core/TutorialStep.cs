@@ -81,6 +81,10 @@ public class TutorialStep : ScriptableObject
     public int stepIndex;
     public string stepName;
 
+    [Header("방 진입 대기")]  
+    public bool waitForRoomEnter = false;
+    public TutorialRoomType targetRoomType;
+
     [Header("대화 (퀘스트 전)")]
     public List<DialogueLine> preDialogues = new List<DialogueLine>();
 

@@ -53,6 +53,7 @@ public class Room : MonoBehaviour
     private List<Monster> activeMonsters = new List<Monster>();
 
     public event Action<Monster> OnBossSpawn;
+    private bool hasReportedRoom = false;
 
     public bool IsPlayerIn { get => isPlayerIn; }
     public bool CanOpenDoor { get => canOpenDoor; }
@@ -71,16 +72,24 @@ public class Room : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Player player = collision.GetComponent<Player>();
-
         if (player == null) return;
+
+        if (isPlayerIn) return;
 
         isPlayerIn = true;
         this.player = player;
+        hasReportedRoom = false;
 
-        // 튜토리얼 완성되면 주석 해제
-        // TutorialPlayerHook hook = FindObjectOfType<TutorialPlayerHook>();
-        // hook?.ReportRoomEnter(roomType);
-
+        TutorialPlayerHook hook = FindObjectOfType<TutorialPlayerHook>();
+        if (hook != null)
+        {
+            if (roomType == RoomType.Normal || roomType == RoomType.Boss)
+            {
+                if (monsterSpawner != null)
+                    monsterSpawner.SpawnMonsters();
+            }
+            return;
+        }
 
         if (roomType == RoomType.Boss)
             AudioManager.Instance.PlayBgm(BossBgm);
@@ -88,22 +97,37 @@ public class Room : MonoBehaviour
         GameManager.Instance.InitCurrentRoom(this);
 
         if (monsterSpawner != null)
-        {
             monsterSpawner.SpawnMonsters();
-        }
-        else
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (hasReportedRoom) return;
+
+        Player player = collision.GetComponent<Player>();
+        if (player == null) return;
+
+        float distance = Vector2.Distance(player.transform.position, transform.position);
+
+        if (distance <= 6f)
         {
-            Debug.LogError("monsterSpawner가 없음");
+            TutorialPlayerHook hook = FindObjectOfType<TutorialPlayerHook>();
+            if (hook != null)
+            {
+                hook.ReportRoomEnter(roomType);
+                hasReportedRoom = true;
+                Debug.Log($"[Room] {roomType} 퀘스트 보고! 거리: {distance}");
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         Player player = collision.GetComponent<Player>();
-
         if (player == null) return;
 
         isPlayerIn = false;
+        hasReportedRoom = false;
     }
 
     public Tilemap GetRoomGroundTilemap()
@@ -131,7 +155,8 @@ public class Room : MonoBehaviour
         canOpenDoor = true;
         for (int i = 0; i < doors.Length; i++)
             doors[i].ClearDoor();
-        player.MagnetItems(roomCollider.bounds);
+        if (player != null && roomCollider != null)
+            player.MagnetItems(roomCollider.bounds);
     }
 
     public void StageClear()
@@ -216,5 +241,25 @@ public class Room : MonoBehaviour
         }
 
         clearRoomCoroutine = null;
+    }
+
+    public void ForcePlayerEnter(Player p)
+    {
+        isPlayerIn = true;
+        player = p;
+
+        TutorialPlayerHook hook = FindObjectOfType<TutorialPlayerHook>();
+        hook?.ReportRoomEnter(roomType);
+
+        Debug.Log($"[Room] {roomType} 강제 진입 처리됨!");
+    }
+
+    public void ForcePlayerEnterWithoutReport(Player p)
+    {
+        isPlayerIn = true;
+        player = p;
+        hasReportedRoom = false;  
+
+        Debug.Log($"[Room] {roomType} 진입 처리 (보고 없음)");
     }
 }
