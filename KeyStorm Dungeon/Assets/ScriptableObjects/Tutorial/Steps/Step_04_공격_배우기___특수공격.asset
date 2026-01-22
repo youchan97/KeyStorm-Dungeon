@@ -30,10 +30,11 @@ MonoBehaviour:
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
-  - text: "\uC800\uAE30 \uBCF4\uC774\uB294 \uBC29\uC73C\uB85C \uAC00\uBCF4\uC790."
+  - text: "\uC624\uB978\uCABD \uBC29\uC73C\uB85C \uAC00\uBCF4\uC790."
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
   currentRoom: 0
+  openDoorsAfterQuest: 1
   blockInputDuringDialogue: 1
   resetMoveTrackingOnStart: 0

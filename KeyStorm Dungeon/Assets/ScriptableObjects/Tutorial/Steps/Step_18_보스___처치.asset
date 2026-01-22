@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3796b2a55b949144adae7e817f86f83, type: 3}
   m_Name: "Step_18_\uBCF4\uC2A4___\uCC98\uCE58"
   m_EditorClassIdentifier: 
-  stepIndex: 18
+  stepIndex: 19
   stepName: "\uBCF4\uC2A4 - \uCC98\uCE58"
+  waitForRoomEnter: 0
+  targetRoomType: 0
   preDialogues: []
   hasQuest: 1
   questTitle: "\uBCF4\uC2A4 \uCC98\uCE58"
@@ -36,5 +38,6 @@ MonoBehaviour:
     waitForInput: 1
     autoDelay: 1.5
   currentRoom: 2
+  openDoorsAfterQuest: 0
   blockInputDuringDialogue: 1
   resetMoveTrackingOnStart: 0

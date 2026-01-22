@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3796b2a55b949144adae7e817f86f83, type: 3}
   m_Name: "Step_15_\uD3ED\uD0C4___\uC0AC\uC6A9\uBC95"
   m_EditorClassIdentifier: 
-  stepIndex: 15
+  stepIndex: 16
   stepName: "\uD3ED\uD0C4 - \uC0AC\uC6A9\uBC95"
+  waitForRoomEnter: 0
+  targetRoomType: 0
   preDialogues:
   - text: "Shift\uD0A4\uB97C \uB204\uB974\uACE0 \uBC29\uD5A5\uC5D0 \uB9DE\uB294 \uBC84\uD2BC\uC744
       \uB204\uB974\uBA74 \uD3ED\uD0C4\uC744 \uC0AC\uC6A9\uD560 \uC218 \uC788\uC5B4."
@@ -47,5 +49,6 @@ MonoBehaviour:
     waitForInput: 1
     autoDelay: 1.5
   currentRoom: 4
+  openDoorsAfterQuest: 1
   blockInputDuringDialogue: 1
   resetMoveTrackingOnStart: 0

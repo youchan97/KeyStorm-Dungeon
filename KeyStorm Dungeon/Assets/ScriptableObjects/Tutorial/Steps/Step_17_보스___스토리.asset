@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3796b2a55b949144adae7e817f86f83, type: 3}
   m_Name: "Step_17_\uBCF4\uC2A4___\uC2A4\uD1A0\uB9AC"
   m_EditorClassIdentifier: 
-  stepIndex: 17
+  stepIndex: 18
   stepName: "\uBCF4\uC2A4 - \uC2A4\uD1A0\uB9AC"
+  waitForRoomEnter: 0
+  targetRoomType: 0
   preDialogues:
   - text: "\uC800\uAC74... \uBCF4\uC2A4\uB2E4."
     typingSpeed: 0.03
@@ -34,5 +36,6 @@ MonoBehaviour:
   objectives: []
   postDialogues: []
   currentRoom: 2
+  openDoorsAfterQuest: 0
   blockInputDuringDialogue: 1
   resetMoveTrackingOnStart: 0

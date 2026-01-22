@@ -97,7 +97,8 @@ public class TutorialStep : ScriptableObject
     public List<DialogueLine> postDialogues = new List<DialogueLine>();
 
     [Header("설정")]
-    public TutorialRoomType currentRoom;        
+    public TutorialRoomType currentRoom;
+    public bool openDoorsAfterQuest = false;
     public bool blockInputDuringDialogue = true;
     public bool resetMoveTrackingOnStart = false;   
 

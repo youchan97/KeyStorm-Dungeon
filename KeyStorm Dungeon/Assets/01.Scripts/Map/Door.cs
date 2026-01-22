@@ -69,7 +69,30 @@ public class Door : MonoBehaviour
 
     public void CloseDoor()
     {
-        col.enabled = true;
+        Debug.Log($"[Door] {name} CloseDoor 호출!");
+
+        if (col != null)
+        {
+            col.enabled = true;
+            Debug.Log($"[Door] {name} Collider 활성화!");
+        }
+
+        if (wallTileMap != null)
+        {
+            wallTileMap.gameObject.SetActive(true);
+            Debug.Log($"[Door] {name} WallTileMap 활성화!");
+        }
+
+        if (wallSprite != null)
+        {
+            wallSprite.enabled = true;
+            Debug.Log($"[Door] {name} WallSprite 활성화!");
+        }
+
+        if (anim != null)
+        {
+            anim.SetBool(DoorAnim, false);
+        }
     }
 
     public void UseDoor()
@@ -97,26 +120,31 @@ public class Door : MonoBehaviour
 
     public void ForceOpen()
     {
-        Debug.Log($"[Door] ForceOpen 호출됨! col: {col != null}, wallTileMap: {wallTileMap != null}, wallSprite: {wallSprite != null}");
+        Debug.Log($"[Door] {name} ForceOpen 호출!");
 
         canUse = true;
 
         if (col != null)
         {
             col.enabled = false;
-            Debug.Log("[Door] Collider 비활성화!");
+            Debug.Log($"[Door] {name} Collider 비활성화!");
         }
 
         if (wallTileMap != null)
         {
             wallTileMap.gameObject.SetActive(false);
-            Debug.Log("[Door] WallTileMap 비활성화!");
+            Debug.Log($"[Door] {name} WallTileMap 비활성화!");
         }
 
         if (wallSprite != null)
         {
             wallSprite.enabled = false;
-            Debug.Log("[Door] WallSprite 비활성화!");
+            Debug.Log($"[Door] {name} WallSprite 비활성화!");
+        }
+
+        if (anim != null)
+        {
+            anim.SetBool(DoorAnim, true);
         }
     }
 }

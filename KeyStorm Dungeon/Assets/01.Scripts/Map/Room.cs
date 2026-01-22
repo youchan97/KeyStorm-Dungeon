@@ -85,6 +85,8 @@ public class Room : MonoBehaviour
         {
             if (roomType == RoomType.Normal || roomType == RoomType.Boss)
             {
+                CloseDoors();
+
                 if (monsterSpawner != null)
                     monsterSpawner.SpawnMonsters();
             }
@@ -128,6 +130,25 @@ public class Room : MonoBehaviour
 
         isPlayerIn = false;
         hasReportedRoom = false;
+    }
+
+    public void CloseDoors()
+    {
+        Door[] roomDoors = GetComponentsInChildren<Door>(true);
+        Debug.Log($"[Room] {roomType} 방 문 개수: {roomDoors.Length}");
+
+        foreach (Door door in roomDoors)
+        {
+            if (door != null)
+            {
+                Debug.Log($"[Room] 문: {door.name}, canUse: {door.canUse}");
+
+                if (door.canUse)
+                {
+                    door.CloseDoor();
+                }
+            }
+        }
     }
 
     public Tilemap GetRoomGroundTilemap()
