@@ -36,7 +36,7 @@ public class LightningSkill : ISkill
 
     public void Update()
     {
-        if (enemyCols.Length == 0)
+        if (enemyCols.Length == DefaultIntZero)
         {
             IsFinish = true;
             return;
@@ -63,7 +63,7 @@ public class LightningSkill : ISkill
     {
         IsFinish = false;
         timer = DefaultZero;
-        count = (int)DefaultZero;
+        count = DefaultIntZero;
     }
 
     void DetectTarget()
@@ -73,12 +73,12 @@ public class LightningSkill : ISkill
 
     Monster GetMonster()
     {
-        if (enemyCols == null || enemyCols.Length == 0)
+        if (enemyCols == null || enemyCols.Length == DefaultIntZero)
             return null;
 
         for (int i = 0; i < enemyCols.Length; i++)
         {
-            int randIndex = Random.Range(0, enemyCols.Length);
+            int randIndex = Random.Range(DefaultIntZero, enemyCols.Length);
             Collider2D col = enemyCols[randIndex];
 
             if (col == null)
