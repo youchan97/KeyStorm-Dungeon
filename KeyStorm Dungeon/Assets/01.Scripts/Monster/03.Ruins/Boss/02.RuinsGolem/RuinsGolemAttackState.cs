@@ -12,6 +12,7 @@ public class RuinsGolemAttackState : MonsterAttackState
 {
     private RuinsGolem ruinsGolem;
     private Coroutine attackCoroutine;
+    private float waitRockBreakAnimationTime = 0.5f;
 
     private bool isSlamAnimationFinished;
     private bool isRockFallAnimationFinished;
@@ -70,9 +71,9 @@ public class RuinsGolemAttackState : MonsterAttackState
 
         switch(selectedPattern)
         {
-            case RuinsGolemPattern.Slam:
+            /*case RuinsGolemPattern.Slam:
                 yield return SlamPattern();
-                break;
+                break;*/
             case RuinsGolemPattern.RockFall:
                 yield return RockFallPattern();
                 break;
@@ -87,7 +88,7 @@ public class RuinsGolemAttackState : MonsterAttackState
     {
         List<RuinsGolemPattern> patterns = new List<RuinsGolemPattern>();
 
-        patterns.Add(RuinsGolemPattern.Slam);
+        /*patterns.Add(RuinsGolemPattern.Slam);*/
         patterns.Add(RuinsGolemPattern.RockFall);
 
         int randomIndex = Random.Range(0, patterns.Count);
@@ -157,7 +158,7 @@ public class RuinsGolemAttackState : MonsterAttackState
     {
         ruinsGolem.Animator.SetTrigger(RockFallAnim);
         yield return new WaitUntil(() => isRockFallAnimationFinished == true);
-        ShakeCameraEvent.StartShakeCamera(ruinsGolem.RockFallShakeCameraPower, ruinsGolem.RockFallShakeCameraDuration);
+        ShakeCameraEvent.StartShakeCamera(ruinsGolem.ShakePower, ruinsGolem.ShakeDuration);
 
         float timer = 0f;
 
@@ -206,6 +207,7 @@ public class RuinsGolemAttackState : MonsterAttackState
             yield return null;
         }
         rockGO.transform.position = dropPosition;
+        ShakeCameraEvent.StartShakeCamera(ruinsGolem.RockFallShakeCameraPower, ruinsGolem.RockFallShakeCameraDuration);
 
         GameObject.Destroy(shadowGO);
         rockAnimator.SetTrigger(BreakAnim);
@@ -224,7 +226,7 @@ public class RuinsGolemAttackState : MonsterAttackState
             }
         }
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(waitRockBreakAnimationTime);
         GameObject.Destroy(rockGO);
     }
 

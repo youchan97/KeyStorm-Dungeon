@@ -117,22 +117,16 @@ public class RuinsGolem : MeleeMonster
 
     private void OnDrawGizmosSelected()
     {
-        // 게임 플레이 중에는 Gizmo를 그리지 않거나, 씬 뷰에 방해되지 않도록 처리
         if (Application.isPlaying)
             return;
-
-        // 필요한 데이터가 없는 경우 그리지 않음
         if (slamOuterRadius == null || slamInnerRadius == null)
             return;
         if (slamOuterRadius.Length == 0 || slamInnerRadius.Length == 0)
             return;
-
-        // 공격의 중심점 계산 (골렘 위치 + 오프셋)
         Vector3 attackCenter = transform.position;
 
-        // 도넛 공격은 여러 단계로 이루어지므로, 각 단계별로 다른 색상을 사용하여 구분하기 용이하게 합니다.
-        Color[] outerColors = { Color.red, Color.yellow, Color.green }; // 1, 2, 3번째 공격의 외부 원 색상
-        Color[] innerColors = { Color.magenta, Color.cyan, Color.blue }; // 1, 2, 3번째 공격의 내부 원 색상
+        Color[] outerColors = { Color.red, Color.yellow, Color.green };
+        Color[] innerColors = { Color.magenta, Color.cyan, Color.blue };
 
         int numSlamStages = Mathf.Min(slamOuterRadius.Length, slamInnerRadius.Length, 3); // 최대 3단계만 고려
 
@@ -141,16 +135,13 @@ public class RuinsGolem : MeleeMonster
             float outerRadius = slamOuterRadius[i];
             float innerRadius = slamInnerRadius[i];
 
-            // 외부 원 그리기
-            Gizmos.color = outerColors[i]; // 각 단계별 색상 적용
+            Gizmos.color = outerColors[i];
             Gizmos.DrawWireSphere(attackCenter, outerRadius);
 
-            // 내부 원 그리기
-            Gizmos.color = innerColors[i]; // 각 단계별 색상 적용
+            Gizmos.color = innerColors[i];
             Gizmos.DrawWireSphere(attackCenter, innerRadius);
         }
 
-        // 공격 중심점을 나타내는 작은 구 그리기
         Gizmos.color = Color.white;
         Gizmos.DrawSphere(attackCenter, 0.1f);
     }
