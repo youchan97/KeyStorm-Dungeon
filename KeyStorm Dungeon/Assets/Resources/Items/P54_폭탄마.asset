@@ -21,7 +21,7 @@ MonoBehaviour:
   iconSprite: {fileID: 139926927, guid: c53cc76c54808e44db4c2ac5039f58a2, type: 3}
   attackChange: 1
   isActiveItem: 0
-  tier: 4
+  tier: 0
   dropRoom: 5
   attackChangeType: 4
   maxHp: 0

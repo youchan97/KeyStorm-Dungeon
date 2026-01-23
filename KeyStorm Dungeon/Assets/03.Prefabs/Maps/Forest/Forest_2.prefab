@@ -100,6 +100,8 @@ MonoBehaviour:
   isPlayerIn: 0
   canOpenDoor: 0
   portal: {fileID: 0}
+  portalTransform: {fileID: 0}
+  itemSpawner: {fileID: 0}
   doors:
   - {fileID: 7164712239520124199}
   - {fileID: 8389541392804284482}
@@ -155,7 +157,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 23.64325, y: 23.698145}
+  m_Size: {x: 23.7, y: 23.698145}
   m_EdgeRadius: 0
 --- !u!1 &885636698069177947
 GameObject:
