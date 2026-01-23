@@ -195,8 +195,11 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
+  shakePower: 0
+  shakeDuration: 0
+  itemDropSwitch: 1
   isKnockBack: 0
-  idleTime: 1
+  idleTime: 0
   moveDelay: 0.3
   moveNumber: 2
   shootPoint: {fileID: 7846295675775307896}
@@ -217,6 +220,8 @@ MonoBehaviour:
   maxShadowDuration: 0.5
   diveAttackRange: 0.5
   diveAttackDelay: 0.8
+  minIdleTime: 1
+  maxIdleTime: 1.2
   splitRuinsSlime: {fileID: 0}
   splitSlimeSpawnOffsetX: 0
   twiceSplitRuinsSlime: {fileID: 0}

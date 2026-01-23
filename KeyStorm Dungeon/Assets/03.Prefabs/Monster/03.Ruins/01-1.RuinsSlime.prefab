@@ -197,8 +197,9 @@ MonoBehaviour:
     m_Bits: 8
   shakePower: 4
   shakeDuration: 0.3
+  itemDropSwitch: 1
   isKnockBack: 0
-  idleTime: 1.5
+  idleTime: 0
   moveDelay: 0.6
   moveNumber: 4
   shootPoint: {fileID: 1466523504260478019}
@@ -219,6 +220,8 @@ MonoBehaviour:
   maxShadowDuration: 0.5
   diveAttackRange: 1.5
   diveAttackDelay: 1
+  minIdleTime: 1.5
+  maxIdleTime: 1.7
   splitRuinsSlime: {fileID: 7924697110403236781, guid: 352b55cbc0d80444783d2f223533f58b, type: 3}
   splitSlimeSpawnOffsetX: 0.3
 --- !u!1 &3610925699847738047

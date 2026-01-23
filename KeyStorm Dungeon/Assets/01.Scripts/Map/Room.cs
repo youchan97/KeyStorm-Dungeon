@@ -284,4 +284,36 @@ public class Room : MonoBehaviour
 
         Debug.Log($"[Room] {roomType} 진입 처리 (보고 없음)");
     }
+
+    public Vector2 GetRandomWalkableTilemap()
+    {
+        BoundsInt bounds = roomGroundTilemap.cellBounds;
+        Vector2 randomWorldPosition = Vector2.zero;
+        bool foundPosition = false;
+        int maxAttempts = 50;
+
+        for (int i = 0; i < maxAttempts; i++)
+        {
+            int x = UnityEngine.Random.Range(bounds.xMin, bounds.xMax);
+            int y = UnityEngine.Random.Range(bounds.yMin, bounds.yMax);
+            Vector3Int cellPosition = new Vector3Int(x, y, 0);
+
+            if (roomGroundTilemap.HasTile(cellPosition))
+            {
+                if(roomWallTilemap == null || !roomWallTilemap.HasTile(cellPosition))
+                {
+                    randomWorldPosition = roomGroundTilemap.GetCellCenterWorld(cellPosition);
+                    foundPosition = true;
+                    break;
+                }
+            }
+        }
+
+        if (!foundPosition)
+        {
+            randomWorldPosition = roomCollider.bounds.center;
+        }
+
+        return randomWorldPosition;
+    }
 }

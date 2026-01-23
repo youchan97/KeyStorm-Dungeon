@@ -169,9 +169,12 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
+  shakePower: 0
+  shakeDuration: 0
+  itemDropSwitch: 1
   isKnockBack: 0
   shootPoint: {fileID: 626524286906779625}
-  bullet: {fileID: 21300000, guid: a3329d1a668a84041b8e364e42483954, type: 3}
+  bullet: {fileID: 21300000, guid: 21b45bff1cb64fe4ab7f528095c19ff2, type: 3}
   projectileLifeTime: 7
 --- !u!50 &3782266529748636265
 Rigidbody2D:

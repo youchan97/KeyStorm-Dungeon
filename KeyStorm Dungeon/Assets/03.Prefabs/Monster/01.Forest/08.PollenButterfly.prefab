@@ -186,6 +186,7 @@ MonoBehaviour:
   attackPoolManager: {fileID: 0}
   _monsterData: {fileID: 11400000, guid: 767b8a443ac76d641bcfa063d7ad1877, type: 2}
   monsterSpriteRenderer: {fileID: 9056602339038489908}
+  animator: {fileID: 0}
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -193,7 +194,9 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  animator: {fileID: 0}
+  shakePower: 0
+  shakeDuration: 0
+  itemDropSwitch: 1
   isKnockBack: 0
   idleMoveTime: 1
   idleRange: 2
