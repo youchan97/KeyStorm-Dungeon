@@ -62,6 +62,8 @@ public class Player : Character
     public PlayerDotweenManager DotweenManager { get => dotweenManager;}
 
     public PlayerRunData PlayerRunData { get => playerRunData; }
+
+    public Room CurrentRoom { get; private set; }
     #endregion
 
     protected override void Awake()
@@ -325,5 +327,15 @@ public class Player : Character
         Effect effect = EffectPoolManager.GetObj();
         effect.transform.position = (curPos);
         effect.InitData(EffectPoolManager, stepEffect, Vector2.zero, stepSize);
+    }
+
+    public void SetCurrentRoom(Room room)
+    {
+        CurrentRoom = room;
+    }
+
+    public void ResetCurrentRoom()
+    {
+        CurrentRoom = null;
     }
 }

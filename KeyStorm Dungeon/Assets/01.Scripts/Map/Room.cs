@@ -98,6 +98,9 @@ public class Room : MonoBehaviour
 
         GameManager.Instance.InitCurrentRoom(this);
 
+        if (!canOpenDoor)
+            player.SetCurrentRoom(this);
+
         if (monsterSpawner != null)
             monsterSpawner.SpawnMonsters();
     }
@@ -135,14 +138,11 @@ public class Room : MonoBehaviour
     public void CloseDoors()
     {
         Door[] roomDoors = GetComponentsInChildren<Door>(true);
-        Debug.Log($"[Room] {roomType} 방 문 개수: {roomDoors.Length}");
 
         foreach (Door door in roomDoors)
         {
             if (door != null)
             {
-                Debug.Log($"[Room] 문: {door.name}, canUse: {door.canUse}");
-
                 if (door.canUse)
                 {
                     door.CloseDoor();
@@ -174,6 +174,7 @@ public class Room : MonoBehaviour
     public void RoomClear()
     {
         canOpenDoor = true;
+        player.ResetCurrentRoom();
         for (int i = 0; i < doors.Length; i++)
             doors[i].ClearDoor();
         if (player != null && roomCollider != null)
