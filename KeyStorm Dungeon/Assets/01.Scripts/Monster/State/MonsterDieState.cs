@@ -23,9 +23,12 @@ public class MonsterDieState : CharacterDieState<Monster>
             monsterCollider.enabled = false;
         }
 
-        if (ItemDropManager.Instance != null && character.MonsterData != null)
+        if (character.ItemDropSwitch)
         {
-            ItemDropManager.Instance.DropItems(character.transform.position, character.MonsterData);
+            if (ItemDropManager.Instance != null && character.MonsterData != null)
+            {
+                ItemDropManager.Instance.DropItems(character.transform.position, character.MonsterData);
+            }
         }
 
         if (character.Animator != null)

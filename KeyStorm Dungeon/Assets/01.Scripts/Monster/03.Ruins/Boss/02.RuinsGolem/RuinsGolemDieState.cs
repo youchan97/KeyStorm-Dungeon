@@ -2,17 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RuinsGolemDieState : MonoBehaviour
+public class RuinsGolemDieState : MonsterDieState
 {
-    // Start is called before the first frame update
-    void Start()
+    public RuinsGolemDieState(Monster character, CharacterStateManager<Monster> stateManager) : base(character, stateManager)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

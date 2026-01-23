@@ -24,14 +24,8 @@ MonoBehaviour:
   tier: 1
   shotSpeed: 3
   attackSpeed: 4
-  projectileColliderOffset: {x: 0.002, y: -0.04}
+  projectileColliderOffset: {x: 0, y: 0}
   projectileColliderRadius: 0.2
-  separationRaduis: 0
-  separationStrength: 0
-  pathfindingWeight: 0
-  separationWeight: 0
-  maxSteeringForce: 0
-  mass: 0
   minDropGold: 20
   maxDropGold: 25
   minStage: 0

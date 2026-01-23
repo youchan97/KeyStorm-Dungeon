@@ -21,7 +21,7 @@ MonoBehaviour:
   type: 0
   detectRange: 0
   targetDistance: 0
-  tier: 3
+  tier: 0
   shotSpeed: 6
   attackSpeed: 2
   projectileColliderOffset: {x: 0, y: 0}

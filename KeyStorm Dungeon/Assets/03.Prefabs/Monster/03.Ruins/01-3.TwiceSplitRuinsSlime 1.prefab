@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6959214438566034380}
   - component: {fileID: 7521237343307877986}
   m_Layer: 10
-  m_Name: 01-3.TwiceSplitRuinsSlime
+  m_Name: 01-3.TwiceSplitRuinsSlime 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -195,6 +195,9 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
+  shakePower: 0
+  shakeDuration: 0
+  itemDropSwitch: 1
   isKnockBack: 0
   idleTime: 1
   moveDelay: 0.3

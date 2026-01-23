@@ -194,6 +194,9 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
+  shakePower: 0
+  shakeDuration: 0
+  itemDropSwitch: 1
   isKnockBack: 0
   idleTime: 3
   moveSpeedMultiple: 6

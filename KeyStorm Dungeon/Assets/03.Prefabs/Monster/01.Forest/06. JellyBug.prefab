@@ -227,6 +227,9 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
+  shakePower: 0
+  shakeDuration: 0
+  itemDropSwitch: 1
   isKnockBack: 0
   mitosisSpawnOffset: {x: 0.3, y: 0.1, z: 0}
   jellyBugMitosisPrefab: {fileID: 2351120593558244102, guid: 032b9c895eb424a4587e6aacc08f002d, type: 3}

@@ -72,6 +72,7 @@ public class WoodAttackState : MonsterAttackState
         if (attackCoroutine != null)
         {
             wood.StopCoroutine(attackCoroutine);
+            attackCoroutine = null;
         }
 
         wood.OnReadyToDashAnimation -= HandleGetReadyAnimationFinished;

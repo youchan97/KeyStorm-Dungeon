@@ -197,6 +197,7 @@ MonoBehaviour:
     m_Bits: 8
   shakePower: 4
   shakeDuration: 0.3
+  itemDropSwitch: 1
   isKnockBack: 0
   idleTime: 1
   moveDelay: 0.5

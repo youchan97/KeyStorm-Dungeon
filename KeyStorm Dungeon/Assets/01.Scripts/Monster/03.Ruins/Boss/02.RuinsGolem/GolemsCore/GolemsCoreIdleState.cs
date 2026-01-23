@@ -1,18 +1,45 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class GolemsCoreIdleState : MonoBehaviour
+public class GolemsCoreIdleState : MonsterIdleState
 {
-    // Start is called before the first frame update
-    void Start()
+    private GolemsCore golemsCore;
+    private float currentIdleTime;
+
+    public GolemsCoreIdleState(Monster character, CharacterStateManager<Monster> stateManager) : base(character, stateManager)
     {
-        
+        golemsCore = character as GolemsCore;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void EnterState()
     {
-        
+        if (golemsCore.MonsterRb != null)
+        {
+            golemsCore.MonsterRb.velocity = Vector2.zero;
+        }
+
+        currentIdleTime = golemsCore.IdleTime;
+    }
+
+    public override void UpdateState()
+    {
+        currentIdleTime -= Time.deltaTime;
+        if (currentIdleTime <= 0)
+        {
+            stateManager.ChangeState(golemsCore.CreateMoveState());
+            return;
+        }
+    }
+
+    public override void FixedUpdateState()
+    {
+    }
+
+    public override void ExitState()
+    {
+    }
+
+    public override bool UseFixedUpdate()
+    {
+        return false;
     }
 }
