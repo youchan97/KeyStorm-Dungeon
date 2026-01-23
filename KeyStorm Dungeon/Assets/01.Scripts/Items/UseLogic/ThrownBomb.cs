@@ -14,7 +14,7 @@ public class ThrownBomb : MonoBehaviour
     [Header("설정")]
     public float fuseTime = 3f;          // 터지기까지 시간
     public float explosionRadius = 2f;   // 폭발 범위
-    public int damageToEnemy = 100;
+    public float damageToEnemy = 100;
     public int damageToPlayer = 1;
 
     [Header("Dotween")]
@@ -38,6 +38,7 @@ public class ThrownBomb : MonoBehaviour
     public event Action OnExplode;
 
     bool canTrigger;
+    bool isThrough;
 
     Coroutine bombCo;
     Tween bombTween;
@@ -48,8 +49,7 @@ public class ThrownBomb : MonoBehaviour
     }
 
     private void Start()
-    {
-        canTrigger = false;
+    {      
         StartBlink(bombSr, fuseTime);
     }
 
@@ -116,10 +116,15 @@ public class ThrownBomb : MonoBehaviour
         Explode();
     }
 
-
+    public void InitData(float damage, bool canThrough)
+    {
+        damageToEnemy = damage;
+        isThrough = canThrough;
+    }
 
     public void Hold(Transform _holder)
     {
+        canTrigger = false;
         holder = _holder;
         timer = 0f;          
 
@@ -174,7 +179,8 @@ public class ThrownBomb : MonoBehaviour
             var damageable = hit.GetComponent<Character>();
             if (damageable == null) continue;
 
-            int damage = hit.CompareTag("Player") ? damageToPlayer : damageToEnemy;
+            float damage = hit.GetComponent<Player>() ? damageToPlayer : damageToEnemy;
+
             damageable.TakeDamage(damage);
         }
         AudioManager.Instance.PlayEffect(BombSfx);
@@ -188,7 +194,7 @@ public class ThrownBomb : MonoBehaviour
 
         Monster monster = collision.GetComponent<Monster>();
         bool isWall = ((1 << collision.gameObject.layer) & WallLayer) != 0;
-        if (monster != null || isWall)
+        if (monster != null || (!isThrough && isWall))
         {
             Explode();
         }

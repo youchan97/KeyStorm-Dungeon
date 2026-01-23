@@ -37,5 +37,5 @@ MonoBehaviour:
   useAmmo: 0
   scale: 0
   cooldownType: 2
-  cooldownMax: 30
+  cooldownMax: 2
   skillType: 5

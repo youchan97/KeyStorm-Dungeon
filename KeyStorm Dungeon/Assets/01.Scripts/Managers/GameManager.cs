@@ -237,6 +237,12 @@ public class PlayerRunData
                 case AttackChangeType.Sniper:
                     attackRundata.UpdateSniper();
                     break;
+                case AttackChangeType.ThroughBullet:
+                    attackRundata.UpdateThrough();
+                    break;
+                case AttackChangeType.Bomb:
+                    attackRundata.UpdateBomb();
+                    break;
                 default:
                     break;
             }
@@ -249,9 +255,13 @@ public class PlayerAttackRundata
 {
     public bool isShotGun;
     public bool isSniper;
+    public bool isThrough;
+    public bool isBomb;
 
     public void UpdateShotGun() => isShotGun = true;
     public void UpdateSniper() => isSniper = true;
+    public void UpdateThrough() => isThrough = true;
+    public void UpdateBomb() => isBomb = true;
 
 }
 

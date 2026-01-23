@@ -23,6 +23,10 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private string mainGameSceneName = "GameScene";
     [SerializeField] private float stepTransitionDelay = 0.5f;
 
+    [Header("보스 HP")]
+    [SerializeField] private GameObject bossHpBarPrefab; 
+    [SerializeField] private Transform bossHpBarLayout;
+
     private int currentStepIndex = 0;
     private TutorialStep currentStep;
     private bool isQuestActive = false;
@@ -60,21 +64,16 @@ public class TutorialManager : MonoBehaviour
         {
             Player player = FindObjectOfType<Player>();
             if (player != null)
+            {
                 playerController = player.PlayerController;
+            }
         }
 
-        Debug.Log($"[TutorialManager] PlayerController: {playerController != null}");
-        Debug.Log($"[TutorialManager] Steps 개수: {steps.Count}");
-        Debug.Log($"[TutorialManager] DialogueUI: {dialogueUI != null}");
+        ConnectBossHpEvent();
 
         if (steps.Count > 0)
         {
-            Debug.Log("[TutorialManager] 튜토리얼 시작!");
             StartCoroutine(RunStep(steps[0]));
-        }
-        else
-        {
-            Debug.LogError("[TutorialManager] Steps가 비어있음!");
         }
     }
 
@@ -95,20 +94,20 @@ public class TutorialManager : MonoBehaviour
 
         if (step.waitForRoomEnter)
         {
-            Debug.Log($"[TutorialManager] {step.targetRoomType} 방 진입 대기 중...");
             yield return new WaitUntil(() => IsPlayerInRoom(step.targetRoomType));
-            Debug.Log($"[TutorialManager] {step.targetRoomType} 방 진입 완료!");
         }
 
         if (step.preDialogues.Count > 0)
         {
-            if (step.blockInputDuringDialogue)
-                playerController?.DisableInput();
+            playerController?.DisableTab();
+            playerController?.DisablePause();
+            playerController?.DisableInput();
 
             yield return StartCoroutine(dialogueUI.ShowDialogues(step.preDialogues));
 
-            if (step.blockInputDuringDialogue)
-                playerController?.EnableInput();
+            playerController?.EnableInput();
+            playerController?.EnableTab();
+            playerController?.EnablePause();
         }
 
         if (step.hasQuest && step.objectives.Count > 0)
@@ -124,17 +123,22 @@ public class TutorialManager : MonoBehaviour
             questUI.HideQuest();
         }
 
-        OpenCurrentRoomDoors();
-
         if (step.postDialogues.Count > 0)
         {
-            if (step.blockInputDuringDialogue)
-                playerController?.DisableInput();
+            playerController?.DisableTab();
+            playerController?.DisablePause();
+            playerController?.DisableInput();
 
             yield return StartCoroutine(dialogueUI.ShowDialogues(step.postDialogues));
 
-            if (step.blockInputDuringDialogue)
-                playerController?.EnableInput();
+            playerController?.EnableInput();
+            playerController?.EnableTab();
+            playerController?.EnablePause();
+        }
+
+        if (step.openDoorsAfterQuest)
+        {
+            OpenCurrentRoomDoors();
         }
 
         yield return new WaitForSeconds(stepTransitionDelay);
@@ -165,7 +169,7 @@ public class TutorialManager : MonoBehaviour
             if (room.IsPlayerIn) return true;
 
             float distance = Vector2.Distance(player.transform.position, room.transform.position);
-            if (distance <= 10f) return true;
+            if (distance <= 14f) return true;
         }
 
         return false;
@@ -219,20 +223,28 @@ public class TutorialManager : MonoBehaviour
         dialogueUI?.ForceHide();
         questUI?.HideQuest();
         isCompleted = true;
+        playerController?.EnableTab();
+        playerController?.EnablePause();
         ResetPlayerData();
         PlayerPrefs.SetInt("TutorialCompleted", 1);
         PlayerPrefs.Save();
-        SceneManager.LoadScene(mainGameSceneName);
+        LoadingManager.LoadScene(mainGameSceneName);
     }
 
     void CompleteTutorial()
     {
         if (isCompleted) return;
         isCompleted = true;
+
+        playerController?.EnableTab();
+        playerController?.EnablePause();
+
         ResetPlayerData();
+
         PlayerPrefs.SetInt("TutorialCompleted", 1);
         PlayerPrefs.Save();
-        SceneManager.LoadScene(mainGameSceneName);
+
+        LoadingManager.LoadScene(mainGameSceneName);
     }
 
     void ResetPlayerData()
@@ -261,16 +273,41 @@ public class TutorialManager : MonoBehaviour
             if (room.IsPlayerIn)
             {
                 Door[] doors = room.GetComponentsInChildren<Door>(true);
-
                 foreach (Door door in doors)
                 {
-                    if (door != null && door.canUse) 
+                    if (door != null && door.canUse)
                     {
                         door.ForceOpen();
-                        Debug.Log($"[TutorialManager] 연결된 문 열림: {door.name}");
                     }
                 }
                 break;
+            }
+        }
+    }
+
+    void ConnectBossHpEvent()
+    {
+        Room[] rooms = FindObjectsOfType<Room>();
+        foreach (Room room in rooms)
+        {
+            if (room.roomType == RoomType.Boss)
+            {
+                room.OnBossSpawn += OnBossSpawned;
+                Debug.Log("[TutorialManager] 보스방 이벤트 연결!");
+            }
+        }
+    }
+
+    void OnBossSpawned(Monster boss)
+    {
+        if (bossHpBarPrefab != null && bossHpBarLayout != null)
+        {
+            GameObject bossHpBarGO = Instantiate(bossHpBarPrefab, bossHpBarLayout);
+            BossHpBar bossHpBar = bossHpBarGO.GetComponent<BossHpBar>();
+
+            if (bossHpBar != null)
+            {
+                bossHpBar.InitBossInfo(boss);
             }
         }
     }

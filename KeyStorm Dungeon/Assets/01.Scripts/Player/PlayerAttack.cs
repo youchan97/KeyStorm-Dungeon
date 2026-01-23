@@ -27,6 +27,8 @@ public class PlayerAttack : MonoBehaviour
 
     [SerializeField] bool canSniper;
     [SerializeField] bool canShotGun;
+    [SerializeField] bool canThrough;
+    [SerializeField] bool canBomb;
 
     [SerializeField] int shotGunBulletCount;
     [SerializeField] float shotSpreadAngle;
@@ -109,6 +111,8 @@ public class PlayerAttack : MonoBehaviour
     public int Ammo { get; private set; }
     public Dictionary<string, bool> KeyCoolDic { get => keyCoolDic; }
     public ThrownBomb Bomb { get => bomb; set => bomb = value; }
+
+    public bool CanBomb { get => canBomb; }
     #endregion
 
     private void Start()
@@ -139,6 +143,8 @@ public class PlayerAttack : MonoBehaviour
 
         canShotGun = data.attackRundata.isShotGun;
         canSniper = data.attackRundata.isSniper;
+        canThrough = data.attackRundata.isThrough;
+        canBomb = data.attackRundata.isBomb;
     }
 
     void InitialDic()
@@ -303,7 +309,6 @@ public class PlayerAttack : MonoBehaviour
         else
         {
             UseAmmo = canShotGun ? shotGunBulletCount : DefaultBulletCount;
-
             SetBullet(keyName);
         }
         player.AudioManager.PlayEffect(ShootSfx);
@@ -392,9 +397,6 @@ public class PlayerAttack : MonoBehaviour
 
         for (int i = 0; i < useAmmo; i++)
         {
-            AttackObj obj = player.AttackPoolManager.GetObj();
-            //Sprite sprite = isSpecial ? player.SBullet : player.Bullet;
-            AttackData attackData = isSpecial ? specialAttack : normalAttack;
             float normalDamage = Damage * DamageMultiple;
             float totalDamage = isSpecial ? (Damage * SpecialDamageMultiple) : Damage;
             totalDamage = player.PlayerEffectStat.GetDamage(totalDamage);
@@ -404,9 +406,19 @@ public class PlayerAttack : MonoBehaviour
                 float angle = Random.Range(-shotSpreadAngle,shotSpreadAngle);
                 dir = Quaternion.Euler(0,0,angle) * dir; 
             }
-            obj.transform.position = player.transform.position + (Vector3)dir * ShootOffset;
+            if(!canBomb)
+            {
+                AttackObj obj = player.AttackPoolManager.GetObj();
+                //Sprite sprite = isSpecial ? player.SBullet : player.Bullet;
+                AttackData attackData = isSpecial ? specialAttack : normalAttack;
+                obj.transform.position = player.transform.position + (Vector3)dir * ShootOffset;
 
-            obj.InitData(null, totalDamage, dir, ShootSpeed, Range, player.AttackPoolManager, true, projectileColliderOffset, projectileColliderRadius, attackData);
+                obj.InitData(null, totalDamage, dir, ShootSpeed, Range, player.AttackPoolManager, true, projectileColliderOffset, projectileColliderRadius, attackData, canThrough);
+            }
+            else
+            {
+                ShootBomb(dir, totalDamage);
+            }
         }
 
         int consumeAmmo = isSpecial ? useAmmo * SpecialBulletConsume : useAmmo;
@@ -551,19 +563,19 @@ public class PlayerAttack : MonoBehaviour
     public void ActiveItemBomb()
     {
         if (curBomb != null) return;
-        InstantiateBoom();
+        InstantiateBoob();
     }
     public void HoldBomb()
     {
         PlayerInventory inven = player.Inventory;
         if (curBomb != null || inven.bombCount <= 0) return;
 
-        InstantiateBoom();
+        InstantiateBoob();
         inven.bombCount--;
         inven.runData.UpdateBomb(inven.bombCount);
     }
 
-    void InstantiateBoom()
+    void InstantiateBoob()
     {
         ThrownBomb bomb = Instantiate(Bomb);
         bomb.Hold(transform);
@@ -585,6 +597,15 @@ public class PlayerAttack : MonoBehaviour
         curBomb.Throw(dir, ShootSpeed);
 
         curBomb = null;
+    }
+
+    void ShootBomb(Vector2 dir, float damage)
+    {
+        ThrownBomb bomb = Instantiate(Bomb);
+        bomb.OnExplode += () => { ExplodingInPlayer(bomb); };
+        bomb.transform.position = player.transform.position + (Vector3)dir * ShootOffset;
+        bomb.InitData(damage, canThrough);
+        bomb.Throw(dir, ShootSpeed);
     }
     #endregion
 
@@ -614,6 +635,12 @@ public class PlayerAttack : MonoBehaviour
             ShuffleKey();
             SetAttackUi();
         }
+
+        if(data.attackRundata.isThrough)
+            canThrough = data.attackRundata.isThrough;
+
+        if(data.attackRundata.isBomb)
+            canBomb = data.attackRundata.isBomb;
 
     }
     #endregion

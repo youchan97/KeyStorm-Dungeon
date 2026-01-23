@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3796b2a55b949144adae7e817f86f83, type: 3}
   m_Name: "Step_12_\uC0C1\uC810\uC73C\uB85C_\uC774\uB3D9"
   m_EditorClassIdentifier: 
-  stepIndex: 12
+  stepIndex: 13
   stepName: "\uC0C1\uC810\uC73C\uB85C \uC774\uB3D9"
   waitForRoomEnter: 1
   targetRoomType: 4
@@ -26,5 +26,6 @@ MonoBehaviour:
     currentCount: 0
   postDialogues: []
   currentRoom: 4
+  openDoorsAfterQuest: 0
   blockInputDuringDialogue: 1
   resetMoveTrackingOnStart: 0
