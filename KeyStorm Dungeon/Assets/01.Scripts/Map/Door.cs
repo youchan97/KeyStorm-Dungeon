@@ -13,7 +13,7 @@ public class Door : MonoBehaviour
     [SerializeField] Animator anim;
 
     public bool canUse;
-    bool isClosed;
+    bool isClosed = true;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
