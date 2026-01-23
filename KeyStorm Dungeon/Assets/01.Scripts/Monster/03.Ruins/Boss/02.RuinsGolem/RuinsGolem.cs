@@ -11,7 +11,7 @@ public class RuinsGolem : MeleeMonster
     [SerializeField] private float attackDelay;
 
     [Header("바닥치기 패턴 수치")]
-    [SerializeField] private GameObject slamEffect;
+    [SerializeField] private GameObject[] slamEffect;
     [SerializeField] private float[] slamInnerRadius;
     [SerializeField] private float[] slamOuterRadius;
     [SerializeField] private float slamDelay;   // 각 바닥치기 사이 딜레이
@@ -33,7 +33,7 @@ public class RuinsGolem : MeleeMonster
 
     public float IdleTime => idleTime;
     public float AttackDelay => attackDelay;
-    public GameObject SlamEffect => slamEffect;
+    public GameObject[] SlamEffect => slamEffect;
     public float[] SlamInnerRadius => slamInnerRadius;
     public float[] SlamOuterRadius => slamOuterRadius;
     public float SlamDelay => slamDelay;

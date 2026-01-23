@@ -69,11 +69,11 @@ public class RuinsGolemAttackState : MonsterAttackState
     {
         RuinsGolemPattern selectedPattern = SelectPattern();
 
-        switch(selectedPattern)
+        switch (selectedPattern)
         {
-            /*case RuinsGolemPattern.Slam:
+            case RuinsGolemPattern.Slam:
                 yield return SlamPattern();
-                break;*/
+                break;
             case RuinsGolemPattern.RockFall:
                 yield return RockFallPattern();
                 break;
@@ -88,7 +88,7 @@ public class RuinsGolemAttackState : MonsterAttackState
     {
         List<RuinsGolemPattern> patterns = new List<RuinsGolemPattern>();
 
-        /*patterns.Add(RuinsGolemPattern.Slam);*/
+        patterns.Add(RuinsGolemPattern.Slam);
         patterns.Add(RuinsGolemPattern.RockFall);
 
         int randomIndex = Random.Range(0, patterns.Count);
@@ -102,13 +102,12 @@ public class RuinsGolemAttackState : MonsterAttackState
         {
             ruinsGolem.Animator.SetTrigger(SlamAnim);
             yield return new WaitUntil(() => isSlamAnimationFinished == true);
-            ShakeCameraEvent.StartShakeCamera(ruinsGolem.ShakePower,ruinsGolem.ShakeDuration);
+            ShakeCameraEvent.StartShakeCamera(ruinsGolem.ShakePower, ruinsGolem.ShakeDuration);
 
             float currentOuterRadius = ruinsGolem.SlamOuterRadius[i];
             float currentInnerRadius = ruinsGolem.SlamInnerRadius[i];
 
-            GameObject slamEffectGO = GameObject.Instantiate(ruinsGolem.SlamEffect, ruinsGolem.transform.position, Quaternion.identity);
-            slamEffectGO.transform.localScale = Vector3.one * currentOuterRadius * (i);
+            GameObject slamEffectGO = GameObject.Instantiate(ruinsGolem.SlamEffect[i], ruinsGolem.transform.position, Quaternion.identity);
 
             Vector2 checkPosition = (Vector2)ruinsGolem.transform.position;
             Collider2D[] hitCollidersOuter = Physics2D.OverlapCircleAll(checkPosition, currentOuterRadius, ruinsGolem.PlayerLayer);
@@ -145,10 +144,9 @@ public class RuinsGolemAttackState : MonsterAttackState
                 player.TakeDamage(ruinsGolem.Damage);
             }
 
-            if ( i < 2)
-            {
-                yield return new WaitForSeconds(ruinsGolem.SlamDelay);
-            }
+
+            yield return new WaitForSeconds(ruinsGolem.SlamDelay);
+            GameObject.Destroy(slamEffectGO);
 
             isSlamAnimationFinished = false;
         }
@@ -184,7 +182,7 @@ public class RuinsGolemAttackState : MonsterAttackState
         float timer = 0f;
 
         shadowGO.transform.localScale = Vector3.one * ruinsGolem.MinShadowScale;
-        while(timer < shadowDuration)
+        while (timer < shadowDuration)
         {
             timer += Time.deltaTime;
 
@@ -200,7 +198,7 @@ public class RuinsGolemAttackState : MonsterAttackState
 
         timer = 0f;
         Vector3 startFallPosition = rockGO.transform.position;
-        while(timer < ruinsGolem.SingleRockFallDuration)
+        while (timer < ruinsGolem.SingleRockFallDuration)
         {
             timer += Time.deltaTime;
             rockGO.transform.position = Vector3.Lerp(startFallPosition, dropPosition, timer / ruinsGolem.SingleRockFallDuration);
