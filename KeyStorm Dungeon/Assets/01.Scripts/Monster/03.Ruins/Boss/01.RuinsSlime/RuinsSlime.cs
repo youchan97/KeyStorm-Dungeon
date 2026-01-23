@@ -2,9 +2,16 @@ using UnityEngine;
 
 public class RuinsSlime : Slime
 {
+    [Header("사원 슬라임 Idle 상태 속성")]
+    [SerializeField] private float minIdleTime;
+    [SerializeField] private float maxIdleTime;
+
     [Header("1차 분열 사원 슬라임")]
     [SerializeField] private SplitRuinsSlime splitRuinsSlime;
     [SerializeField] protected float splitSlimeSpawnOffsetX;
+
+    public float MinIdleTime => minIdleTime;
+    public float MaxIdleTime => maxIdleTime;
 
     private RuinsSlimeIdleState _idleState;
     private RuinsSlimeMoveState _moveState;

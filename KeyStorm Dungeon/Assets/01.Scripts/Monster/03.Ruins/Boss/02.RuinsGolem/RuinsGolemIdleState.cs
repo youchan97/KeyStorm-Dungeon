@@ -19,6 +19,8 @@ public class RuinsGolemIdleState : MonsterIdleState
 
     public override void UpdateState()
     {
+        if (ruinsGolem.PlayerGO == null) return;
+
         currentIdleTime -= Time.deltaTime;
         if (currentIdleTime <= 0)
         {

@@ -26,8 +26,8 @@ MonoBehaviour:
   attackSpeed: 2
   projectileColliderOffset: {x: 0, y: 0}
   projectileColliderRadius: 0
-  minDropGold: 0
-  maxDropGold: 0
+  minDropGold: 140
+  maxDropGold: 160
   minStage: 0
   maxStage: 0
   xScale: 1

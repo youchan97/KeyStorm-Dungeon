@@ -69,9 +69,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.15}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.8496345
+  m_Radius: 0.9
 --- !u!50 &3507101805964370802
 Rigidbody2D:
   serializedVersion: 4
@@ -140,7 +140,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 250
-  m_Sprite: {fileID: 21300000, guid: 4b332c61160706048bb4c3c142221006, type: 3}
+  m_Sprite: {fileID: -659725720, guid: 380f70438c2394046acf4fc41b082a52, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -197,7 +197,7 @@ MonoBehaviour:
     m_Bits: 8
   shakePower: 6
   shakeDuration: 0.3
-  itemDropSwitch: 1
+  itemDropSwitch: 0
   isKnockBack: 0
   golemsCore: {fileID: 2449134602355429923}
   idleTime: 2

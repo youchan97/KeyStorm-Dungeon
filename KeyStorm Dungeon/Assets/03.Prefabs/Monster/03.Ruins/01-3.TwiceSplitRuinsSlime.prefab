@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6959214438566034380}
   - component: {fileID: 7521237343307877986}
   m_Layer: 10
-  m_Name: 01-3.TwiceSplitRuinsSlime 1
+  m_Name: 01-3.TwiceSplitRuinsSlime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -199,7 +199,7 @@ MonoBehaviour:
   shakeDuration: 0
   itemDropSwitch: 1
   isKnockBack: 0
-  idleTime: 1
+  idleTime: 0
   moveDelay: 0.3
   moveNumber: 2
   shootPoint: {fileID: 7846295675775307896}
@@ -220,6 +220,8 @@ MonoBehaviour:
   maxShadowDuration: 0.5
   diveAttackRange: 0.5
   diveAttackDelay: 0.8
+  minIdleTime: 1
+  maxIdleTime: 1.2
   splitRuinsSlime: {fileID: 0}
   splitSlimeSpawnOffsetX: 0
   twiceSplitRuinsSlime: {fileID: 0}
