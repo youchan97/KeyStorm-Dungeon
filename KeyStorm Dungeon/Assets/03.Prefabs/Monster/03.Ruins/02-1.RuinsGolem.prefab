@@ -207,17 +207,17 @@ MonoBehaviour:
   - {fileID: 4075306053442613739, guid: 78d5513b8064d694d9b52790728bac3e, type: 3}
   - {fileID: 1981633695660883710, guid: 10836e470d0684c45b62d7e7e704bc91, type: 3}
   slamInnerRadius:
-  - 2
   - 3
-  - 4
-  slamOuterRadius:
-  - 3
-  - 4
   - 5
+  - 7
+  slamOuterRadius:
+  - 5
+  - 7
+  - 9
   slamDelay: 1
   shadowPrefab: {fileID: 445605593270070937, guid: a6c9513a35861c948acb6ba29dadd095, type: 3}
   rockPrefab: {fileID: 3678544432346238099, guid: 2e94fe42e47003a4fa6307afb22fd106, type: 3}
-  allRockFallDuration: 6
+  allRockFallDuration: 4
   singleRockFallDuration: 0.7
   shadowDuration: 0.6
   minShadowScale: 0.1
@@ -227,7 +227,7 @@ MonoBehaviour:
   maxRockSpawnTime: 0.3
   rockFallShakeCameraPower: 4
   rockFallShakeCameraDuration: 0.2
-  damageRadius: 1
+  damageRadius: 0.9
 --- !u!1 &8246433771492678049
 GameObject:
   m_ObjectHideFlags: 0
