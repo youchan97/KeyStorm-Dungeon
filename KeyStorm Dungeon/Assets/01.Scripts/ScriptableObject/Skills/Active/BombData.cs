@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "BombSKill", menuName = ("ScriptableObject/Skill/Bomb"))]
-public class BombData : SkillData
+public class BombData : ActiveSkillData
 {
-    public override ISkill CreateSkill(PlayerSkill playerSkill)
+    public override IActiveSKill CreateActiveSkill(PlayerSkill playerSkill)
     {
         return new BombSkill(playerSkill, this);
     }

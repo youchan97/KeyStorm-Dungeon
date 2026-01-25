@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KnockBackSkill : ISkill
+public class KnockBackSkill : IActiveSKill
 {
     KnockBackData data;
 

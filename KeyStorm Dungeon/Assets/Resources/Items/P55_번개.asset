@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dc7bbbfb59c2364cbe2072bd57550eb, type: 3}
+  m_Name: "P55_\uBC88\uAC1C"
+  m_EditorClassIdentifier: 
+  itemId: P55
+  itemName: "\uBC88\uAC1C"
+  itemEnglishName: Lightning
+  description: "\uACF5\uACA9\uBC84\uD2BC\uC758 \uC704\uCE58\uAC00 \uC2ED\uC790\uAC00\uBAA8\uC591\uC73C\uB85C
+    \uBCC0\uD569\uB2C8\uB2E4."
+  worldSprite: {fileID: 139926927, guid: c53cc76c54808e44db4c2ac5039f58a2, type: 3}
+  iconSprite: {fileID: 139926927, guid: c53cc76c54808e44db4c2ac5039f58a2, type: 3}
+  attackChange: 0
+  isActiveItem: 0
+  tier: 0
+  dropRoom: 5
+  attackChangeType: 4
+  maxHp: 0
+  moveSpeed: 0
+  damage: 0
+  specialDamageMultiple: 0
+  damageMultiple: 0
+  attackSpeed: 0
+  attackSpeedMultiple: 0
+  range: 0
+  rangeMultiple: 0
+  shotSpeed: 0
+  maxAmmo: 0
+  useAmmo: 0
+  scale: 0
+  cooldownType: 0
+  cooldownMax: 0
+  skillType: 0
+  passiveSkillData: {fileID: 11400000, guid: f7514697eb4f6bc41a0b8a21bce6993f, type: 2}

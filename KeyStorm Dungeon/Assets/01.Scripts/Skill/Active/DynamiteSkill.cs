@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DynamiteSkill : ISkill
+public class DynamiteSkill : IActiveSKill
 {
     DynamiteData data;
     public Player Player { get; private set; }

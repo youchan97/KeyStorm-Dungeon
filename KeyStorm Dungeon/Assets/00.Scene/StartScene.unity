@@ -373,7 +373,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 81379983088076664, guid: cd80d71101dc86540aa4e44f1fee74d1, type: 3}
       propertyPath: isCheatMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 81379983088076664, guid: cd80d71101dc86540aa4e44f1fee74d1, type: 3}
       propertyPath: roomChangeEvent

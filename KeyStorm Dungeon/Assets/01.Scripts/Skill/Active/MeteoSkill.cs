@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static ConstValue;
 
-public class MeteoSkill : ISkill
+public class MeteoSkill : IActiveSKill
 {
     MeteoData data;
     Transform target;
