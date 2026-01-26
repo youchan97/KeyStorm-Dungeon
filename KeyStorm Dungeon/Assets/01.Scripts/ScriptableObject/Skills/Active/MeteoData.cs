@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "MeteoSKill", menuName = ("ScriptableObject/Skill/Meteo"))]
-public class MeteoData : SkillData
+public class MeteoData : ActiveSkillData
 {
     public Meteo meteo;
     public float boxSize;
@@ -17,7 +17,7 @@ public class MeteoData : SkillData
     public float shakePower;
     public float shakeDuration;
 
-    public override ISkill CreateSkill(PlayerSkill playerSkill)
+    public override IActiveSKill CreateActiveSkill(PlayerSkill playerSkill)
     {
         return new MeteoSkill(playerSkill, this);
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "LightningSKill", menuName = ("ScriptableObject/Skill/Lightning"))]
-public class LightningData : SkillData
+public class LightningData : ActiveSkillData
 {
     public int count;
     public float boxSize;
@@ -12,7 +12,7 @@ public class LightningData : SkillData
     public float damageMultiple;
     public LayerMask enemyLayer;
     public EffectData lightningEffect;
-    public override ISkill CreateSkill(PlayerSkill playerSkill)
+    public override IActiveSKill CreateActiveSkill(PlayerSkill playerSkill)
     {
         return new LightningSkill(playerSkill, this);
     }
