@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BombSkill : ISkill
+public class BombSkill : IActiveSKill
 {
     BombData data;
     public Player Player { get; private set; }

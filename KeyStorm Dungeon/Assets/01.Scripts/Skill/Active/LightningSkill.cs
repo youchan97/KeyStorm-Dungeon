@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static ConstValue;
 
-public class LightningSkill : ISkill
+public class LightningSkill : IActiveSKill
 {
     LightningData data;
     Collider2D[] enemyCols;

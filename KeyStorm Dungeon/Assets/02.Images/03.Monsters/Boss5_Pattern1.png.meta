@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9f36de0a0bb31ed41856edbcc8943f83
+guid: c2d2bd97e005c2049b0f3ad54eb700ef
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 96
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -123,169 +123,169 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: '!FD_Desert_Animations02_0'
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 288
-        width: 288
-        height: 96
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: abceaea2bee5de34fa3c9f218efac4d9
-      internalID: 186429706
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: '!FD_Desert_Animations02_1'
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 288
-        width: 288
-        height: 96
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1edb65ccb1cbc16479b558ddad0065d9
-      internalID: -1327612273
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: '!FD_Desert_Animations02_2'
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 192
-        width: 288
-        height: 96
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cd6f841462484a6468c28c065991a730
-      internalID: 6946209
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: '!FD_Desert_Animations02_3'
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 192
-        width: 288
-        height: 96
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8c6cb1f88287bf94a88ba7a282256ec9
-      internalID: 1435281450
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: '!FD_Desert_Animations02_4'
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 96
-        width: 288
-        height: 96
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: acf831893dbae9f48af2133bc3c370ea
-      internalID: 370832717
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: '!FD_Desert_Animations02_5'
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 96
-        width: 288
-        height: 96
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ccdcc5eb60723344499d91d5b898e5f7
-      internalID: 1113906373
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: '!FD_Desert_Animations02_6'
+      name: Boss5_Pattern1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 288
-        height: 96
+        width: 80
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 30f369f62b388c8408b4fe73d167283d
-      internalID: 272870208
+      spriteID: b7b2f5194bed109449a4218ac320f235
+      internalID: 1269196899
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: '!FD_Desert_Animations02_7'
+      name: Boss5_Pattern1_1
       rect:
         serializedVersion: 2
-        x: 288
+        x: 80
         y: 0
-        width: 288
-        height: 96
+        width: 80
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 13a84fe1b9d458841865afeadb269cf9
-      internalID: -1876601378
+      spriteID: f9dd0056035dad04a89d20b70ce5326e
+      internalID: 302242985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss5_Pattern1_2
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 80
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5d52ac6d6624b14884edda48eb3f873
+      internalID: 38458387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss5_Pattern1_3
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 80
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d85c164a1b41444ab9bc37d8d452dd8
+      internalID: -1249327283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss5_Pattern1_4
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 80
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5895c571a9b1c1d47b077cb1461d8cc4
+      internalID: -1612735380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss5_Pattern1_5
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 0
+        width: 80
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15ce9817c8c31444588033afadd9b7fd
+      internalID: 1892112418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss5_Pattern1_6
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 80
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30627d706b4041a4da80d3d950192305
+      internalID: -716614347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss5_Pattern1_7
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 0
+        width: 80
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2fd5e62a3760724a9afacb2e75dd622
+      internalID: 1352237335
       vertices: []
       indices: 
       edges: []
@@ -301,14 +301,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      '!FD_Desert_Animations02_0': 186429706
-      '!FD_Desert_Animations02_1': -1327612273
-      '!FD_Desert_Animations02_2': 6946209
-      '!FD_Desert_Animations02_3': 1435281450
-      '!FD_Desert_Animations02_4': 370832717
-      '!FD_Desert_Animations02_5': 1113906373
-      '!FD_Desert_Animations02_6': 272870208
-      '!FD_Desert_Animations02_7': -1876601378
+      Boss5_Pattern1_0: 1269196899
+      Boss5_Pattern1_1: 302242985
+      Boss5_Pattern1_2: 38458387
+      Boss5_Pattern1_3: -1249327283
+      Boss5_Pattern1_4: -1612735380
+      Boss5_Pattern1_5: 1892112418
+      Boss5_Pattern1_6: -716614347
+      Boss5_Pattern1_7: 1352237335
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

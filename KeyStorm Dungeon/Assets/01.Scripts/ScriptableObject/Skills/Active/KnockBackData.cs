@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "KnockBackSKill", menuName =("ScriptableObject/Skill/KnockBack"))]
-public class KnockBackData : SkillData
+public class KnockBackData : ActiveSkillData
 {
     public float radius;
     public float force;
     public float duration;
 
-    public override ISkill CreateSkill(PlayerSkill playerSkill)
+    public override IActiveSKill CreateActiveSkill(PlayerSkill playerSkill)
     {
         return new KnockBackSkill(playerSkill, this);
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static ConstValue;
 
-public class DashSkill : ISkill
+public class DashSkill : IActiveSKill
 {
     DashData data;
     Vector2 dir;
