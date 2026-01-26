@@ -16,15 +16,15 @@ public class LightningPassiveSkill : PassiveSkill
     public LightningPassiveSkill(PlayerSkill playerSkill, LightningPassiveData data) : base(playerSkill, data)
     {
         this.data = data;
-        this.damage = data.damage;
         detectSize = new Vector2(data.boxSize, data.boxSize);
     }
 
     protected override void Activate()
     {
         isLightning = true;
-        hitCount = 0;
-        hitTimer = 0f;
+        hitCount = DefaultIntOne;
+        hitTimer = DefaultZero;
+        damage = Player.PlayerAttack.Damage * Player.PlayerAttack.DamageMultiple * data.damageMultiple;
     }
 
     public override void DoPassive(float time)
@@ -36,7 +36,7 @@ public class LightningPassiveSkill : PassiveSkill
         if (hitTimer < data.hitInterval)
             return;
 
-        hitTimer = 0f;
+        hitTimer = DefaultZero;
         Lightning();
 
         hitCount++;
@@ -52,7 +52,7 @@ public class LightningPassiveSkill : PassiveSkill
         Monster monster = GetMonster(enemyCols);
         if(monster != null)
         {
-            Lightning(monster.transform);
+            Lightning(monster.transform);           
             monster.TakeDamage(damage);
         }
     }

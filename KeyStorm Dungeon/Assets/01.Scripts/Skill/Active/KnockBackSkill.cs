@@ -37,7 +37,7 @@ public class KnockBackSkill : IActiveSKill
                 //monster.MonsterRb.AddForce(dir.normalized * data.force, ForceMode2D.Impulse);
             }
         }
-
+        KnockBackEffect();
         IsFinish = true;
     }
 
@@ -50,4 +50,12 @@ public class KnockBackSkill : IActiveSKill
     {
     }
 
+    void KnockBackEffect()
+    {
+        EffectPoolManager manager = Player.EffectPoolManager;
+        Effect effect = manager.GetObj();
+        Transform target = Player.transform;
+        effect.transform.position = target.position;
+        effect.InitData(manager, data.effect, Vector2.zero, data.effectSize, target);
+    }
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 public class LightningPassiveData : PassiveSkillData
 {
     public LayerMask enemyLayer;
-    public float damage;
+    public float damageMultiple;
     public float boxSize;
     public float hitInterval;
     public int hitCount;

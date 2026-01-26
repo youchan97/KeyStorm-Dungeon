@@ -38,4 +38,5 @@ MonoBehaviour:
   scale: 0
   cooldownType: 2
   cooldownMax: 30
-  skillType: 4
+  activeSkillType: 4
+  passiveSkillData: {fileID: 0}

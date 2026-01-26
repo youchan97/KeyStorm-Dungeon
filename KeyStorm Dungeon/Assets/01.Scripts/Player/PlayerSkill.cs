@@ -29,10 +29,10 @@ public class PlayerSkill : MonoBehaviour
 
     [SerializeField] List<ItemData> activeItems;
 
-    Dictionary<SkillType, RuntimeActiveSkill> activeSkillDic = new Dictionary<SkillType, RuntimeActiveSkill>();
+    Dictionary<ActiveSkillType, RuntimeActiveSkill> activeSkillDic = new Dictionary<ActiveSkillType, RuntimeActiveSkill>();
     List<RuntimeActiveSkill> activeSkills = new List<RuntimeActiveSkill>();
     RuntimeActiveSkill currentSkill;
-    Dictionary<SkillType, RuntimePassiveSkill> passiveSkillDic = new Dictionary<SkillType, RuntimePassiveSkill>();
+    Dictionary<PassiveSkillType, RuntimePassiveSkill> passiveSkillDic = new Dictionary<PassiveSkillType, RuntimePassiveSkill>();
     List<RuntimePassiveSkill> passiveSkills = new List<RuntimePassiveSkill>();
 
     public event Action<float> StartSkill;
@@ -44,6 +44,7 @@ public class PlayerSkill : MonoBehaviour
         InitSkills();
         ApplyItemData();
         player.Inventory.OnAddPassiveItem += CheckPassiveSkill;
+        InitializePassiveSkill(player.Inventory);
     }
 
     private void OnDisable()
@@ -68,9 +69,9 @@ public class PlayerSkill : MonoBehaviour
             {
                 IActiveSKill skill = activeData.CreateActiveSkill(this);
 
-                activeSkillDic.Add(skillData.skillType, new RuntimeActiveSkill
+                activeSkillDic.Add(activeData.activeSkillType, new RuntimeActiveSkill
                 {
-                    skillType = skillData.skillType,
+                    skillType = activeData.activeSkillType,
                     skill = skill,
                     coolTime = 0f
                 });
@@ -78,13 +79,26 @@ public class PlayerSkill : MonoBehaviour
         }
     }
 
+    void InitializePassiveSkill(PlayerInventory inventory)
+    {
+        for(int i = 0; i < inventory.passiveItems.Count; i++)
+        {
+            ItemData item = inventory.passiveItems[i];
+            CheckPassiveSkill(item);
+        }
+    }
+
+
     void CheckPassiveSkill(ItemData data)
     {
-        if (passiveSkillDic.ContainsKey(data.skillType))
-            return; // 이미 있음
-
         if (data.passiveSkillData == null)
             return;
+
+        PassiveSkillType type = data.passiveSkillData.passiveSkillType;
+
+        if (passiveSkillDic.ContainsKey(type))
+            return; // 이미 있음
+
 
         IPassiveSkill passive = data.passiveSkillData.CreatePassiveSkill(this);
 
@@ -93,7 +107,7 @@ public class PlayerSkill : MonoBehaviour
             skill = passive
         };
 
-        passiveSkillDic.Add(data.skillType, runtime);
+        passiveSkillDic.Add(type, runtime);
         passiveSkills.Add(runtime);
     }
 
@@ -101,7 +115,7 @@ public class PlayerSkill : MonoBehaviour
     {
         foreach (var item in activeItems)
         {
-            if (!activeSkillDic.TryGetValue(item.skillType, out var skill))
+            if (!activeSkillDic.TryGetValue(item.activeSkillType, out var skill))
                 continue;
 
             skill.baseCoolTime = item.cooldownMax;
@@ -121,7 +135,7 @@ public class PlayerSkill : MonoBehaviour
         }
     }
 
-    public bool TrySkill(SkillType type)
+    public bool TryActiveSkill(ActiveSkillType type)
     {
         if (!activeSkillDic.TryGetValue(type, out var skill)) 
             return false;
@@ -142,6 +156,8 @@ public class PlayerSkill : MonoBehaviour
             activeSkills.Add(currentSkill);
         currentSkill = null;
     }
+
+    public void FailActiveSkill() => currentSkill = null;
 
     void UpdateActiveCooldowns(float time)
     {
@@ -192,7 +208,7 @@ public class PlayerSkill : MonoBehaviour
 
 public class RuntimeActiveSkill
 {
-    public SkillType skillType;
+    public ActiveSkillType skillType;
     public IActiveSKill skill;
 
     public float baseCoolTime;

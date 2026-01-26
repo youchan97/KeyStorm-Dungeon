@@ -36,7 +36,7 @@ ScriptedImporter:
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 100
+    spritePixelsToUnits: 16
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -98,7 +98,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 0
+  platformSettingsDirtyTick: 639050420268593420
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -444,7 +444,7 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 362}
   - name: Frame_17
     originalName: 
-    pivot: {x: 0.7333333, y: -1}
+    pivot: {x: 0.5, y: 0.35}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -464,7 +464,7 @@ ScriptedImporter:
     uvTransform: {x: 311, y: 542}
   - name: Frame_18
     originalName: 
-    pivot: {x: 0.5, y: -0.3272727}
+    pivot: {x: 0.5, y: 0.35}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -484,7 +484,7 @@ ScriptedImporter:
     uvTransform: {x: 183, y: 4}
   - name: Frame_19
     originalName: 
-    pivot: {x: 0.49999997, y: -0.20895521}
+    pivot: {x: 0.5, y: 0.35}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -504,7 +504,7 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 889}
   - name: Frame_20
     originalName: 
-    pivot: {x: 0.50000006, y: -0.16216215}
+    pivot: {x: 0.5, y: 0.35}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -524,7 +524,7 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 514}
   - name: Frame_21
     originalName: 
-    pivot: {x: 0.49999997, y: -0.125}
+    pivot: {x: 0.5, y: 0.35}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -544,7 +544,7 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 186}
   - name: Frame_22
     originalName: 
-    pivot: {x: 0.5, y: -0.09638554}
+    pivot: {x: 0.5, y: 0.35}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -744,7 +744,7 @@ ScriptedImporter:
     uvTransform: {x: 245, y: 61}
   - name: Frame_23
     originalName: 
-    pivot: {x: 0.5, y: -0.084337346}
+    pivot: {x: 0.5, y: 0.35}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -764,7 +764,7 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 95}
   - name: Frame_24
     originalName: 
-    pivot: {x: 0.5, y: -0.1375}
+    pivot: {x: 0.5, y: 0.35}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -2521,6 +2521,54 @@ ScriptedImporter:
     overridden: 0
     ignorePlatformSupport: 0
     maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: DefaultTexturePlatform
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Standalone
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Android
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: WebGL
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 16384
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0

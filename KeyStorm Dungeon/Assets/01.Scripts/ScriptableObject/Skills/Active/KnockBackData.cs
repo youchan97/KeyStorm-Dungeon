@@ -8,6 +8,8 @@ public class KnockBackData : ActiveSkillData
     public float radius;
     public float force;
     public float duration;
+    public EffectData effect;
+    public float effectSize;
 
     public override IActiveSKill CreateActiveSkill(PlayerSkill playerSkill)
     {
