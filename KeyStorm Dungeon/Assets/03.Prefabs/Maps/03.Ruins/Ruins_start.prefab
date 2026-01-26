@@ -79,8 +79,8 @@ MonoBehaviour:
   doorDown: {fileID: 2150461112985993259}
   doorLeft: {fileID: 5625177366315843934}
   doorRight: {fileID: 3325883879273492027}
-  roomGroundTilemap: {fileID: 0}
-  roomWallTilemap: {fileID: 0}
+  roomGroundTilemap: {fileID: 5950103292963258195}
+  roomWallTilemap: {fileID: 5940648089970276398}
   monsterSpawner: {fileID: 0}
 --- !u!1 &1060686935823286824
 GameObject:

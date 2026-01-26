@@ -12995,9 +12995,17 @@ PrefabInstance:
       value: Doors
       objectReference: {fileID: 0}
     - target: {fileID: 200794411373061315, guid: e54d1f0ad9739ae4ca16730861ebc2f0, type: 3}
+      propertyPath: room
+      value: 
+      objectReference: {fileID: 1378694527171304996}
+    - target: {fileID: 200794411373061315, guid: e54d1f0ad9739ae4ca16730861ebc2f0, type: 3}
       propertyPath: wallSprite
       value: 
       objectReference: {fileID: 4565275048905951536}
+    - target: {fileID: 385363134729178273, guid: e54d1f0ad9739ae4ca16730861ebc2f0, type: 3}
+      propertyPath: room
+      value: 
+      objectReference: {fileID: 1378694527171304996}
     - target: {fileID: 385363134729178273, guid: e54d1f0ad9739ae4ca16730861ebc2f0, type: 3}
       propertyPath: wallSprite
       value: 
@@ -13047,9 +13055,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1570302527309799846, guid: e54d1f0ad9739ae4ca16730861ebc2f0, type: 3}
+      propertyPath: room
+      value: 
+      objectReference: {fileID: 1378694527171304996}
+    - target: {fileID: 1570302527309799846, guid: e54d1f0ad9739ae4ca16730861ebc2f0, type: 3}
       propertyPath: wallSprite
       value: 
       objectReference: {fileID: 5316718905719592714}
+    - target: {fileID: 1672636125268958255, guid: e54d1f0ad9739ae4ca16730861ebc2f0, type: 3}
+      propertyPath: room
+      value: 
+      objectReference: {fileID: 1378694527171304996}
     - target: {fileID: 1672636125268958255, guid: e54d1f0ad9739ae4ca16730861ebc2f0, type: 3}
       propertyPath: wallSprite
       value: 
