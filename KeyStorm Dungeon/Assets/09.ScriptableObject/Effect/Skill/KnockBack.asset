@@ -9,13 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50a1078497a033b429650607c282cf27, type: 3}
-  m_Name: KnockBackSKill
+  m_Script: {fileID: 11500000, guid: 8f9cc2c666d16c14f974558e049f4490, type: 3}
+  m_Name: KnockBack
   m_EditorClassIdentifier: 
-  skillType: 0
-  activeSkillType: 1
-  radius: 3
-  force: 2
-  duration: 0.5
-  effect: {fileID: 11400000, guid: 65dd7f4dc32583245919a65c3ffaef8b, type: 2}
-  effectSize: 1.5
+  sprite: {fileID: 0}
+  animatorController: {fileID: 9100000, guid: 28bdcf4585bdf2441af890af0d228ed4, type: 2}
