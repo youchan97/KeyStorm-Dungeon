@@ -68,7 +68,9 @@ public class LightningSkill : IActiveSKill
 
     void DetectTarget()
     {
-         enemyCols = Physics2D.OverlapBoxAll(Player.transform.position, detectSize, DefaultZero, data.enemyLayer);
+        enemyCols = Physics2D.OverlapBoxAll(Player.transform.position, detectSize, DefaultZero, data.enemyLayer);
+        if (enemyCols == null || enemyCols.Length == DefaultIntZero)
+            Player.PlayerSkill.FailActiveSkill();
     }
 
     Monster GetMonster()
