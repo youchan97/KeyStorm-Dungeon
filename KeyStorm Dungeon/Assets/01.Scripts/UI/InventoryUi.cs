@@ -43,13 +43,28 @@ public class InventoryUi : MonoBehaviour
 
     private void OnEnable()
     {
-        SelectItem();
-        controller.OnSelect += InputIndex;
+        if (inventoryItemSlots != null && inventoryItemSlots.Count > 0)
+        {
+            SelectItem();
+        }
+        else
+        {
+            if (itemBackGround != null)
+                itemBackGround.gameObject.SetActive(false);
+        }
+
+        if (controller != null)
+        {
+            controller.OnSelect += InputIndex;
+        }
     }
 
     private void OnDisable()
     {
-        controller.OnSelect -= InputIndex;
+        if (controller != null)
+        {
+            controller.OnSelect -= InputIndex;
+        }
     }
 
     private void OnDestroy()
@@ -129,8 +144,12 @@ public class InventoryUi : MonoBehaviour
             return;
         }*/
 
-        if (inventoryItemSlots.Count == 0)
+        if (inventoryItemSlots == null || inventoryItemSlots.Count == 0)
+        {
+            if (itemBackGround != null)
+                itemBackGround.gameObject.SetActive(false);
             return;
+        }
 
         if (!itemBackGround.gameObject.activeSelf)
             itemBackGround.gameObject.SetActive(true);
@@ -151,8 +170,15 @@ public class InventoryUi : MonoBehaviour
 
     void ViewItemInfo(ItemData data)
     {
-        if (data == null)
+        if (data == null) return;
+        if (widget == null)
+        {
+            Debug.LogWarning("[InventoryUi] widget이 null! Inspector에서 연결하세요.");
             return;
+        }
+        if (itemBackGround == null || itemImage == null) return;
+        if (itemNameKor == null || itemNameEng == null) return;
+        if (itemTier == null || itemStatus == null) return;
 
         ItemTier tier = data.tier;
 
@@ -167,6 +193,8 @@ public class InventoryUi : MonoBehaviour
 
     void TextColorSetting(ItemTier tier)
     {
+        if (widget == null) return;
+
         Color color = widget.GetTierColor(tier);
         itemNameKor.color = color;
         itemNameEng.color = color;
