@@ -13,6 +13,7 @@ public class Door : MonoBehaviour
     [SerializeField] Animator anim;
 
     public bool canUse;
+    bool isClosed = true;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -22,7 +23,7 @@ public class Door : MonoBehaviour
 
         if (player == null) return;
 
-        if(!IsMonsterRoom())
+        if(!IsMonsterRoom() || !CanOpenRoomDoor(player))
         {
             //col.enabled = !ColliderEnable();
             return;
@@ -34,6 +35,7 @@ public class Door : MonoBehaviour
         {
             anim.SetBool(DoorAnim, true);
             AudioManager.Instance.PlayEffect(DoorSfx);
+            isClosed = false;
         }
     }
 
@@ -45,7 +47,7 @@ public class Door : MonoBehaviour
 
         if (player == null) return;
 
-        if (!IsMonsterRoom())
+        if (!IsMonsterRoom()||!CanOpenRoomDoor(player))
         {
             //col.enabled = ColliderEnable();
             return;
@@ -53,8 +55,12 @@ public class Door : MonoBehaviour
 
         if (room.CanOpenDoor) return;
 
-        anim.SetBool(DoorAnim, false);
-        AudioManager.Instance.PlayEffect(DoorSfx);
+        if(!isClosed)
+        {
+            anim.SetBool(DoorAnim, false);
+            AudioManager.Instance.PlayEffect(DoorSfx);
+        }
+        isClosed = true;
     }
 
     bool ColliderEnable()
@@ -114,5 +120,10 @@ public class Door : MonoBehaviour
         {
             wallSprite.enabled = false;
         }
+    }
+
+    bool CanOpenRoomDoor(Player player)
+    {
+        return (room == player.CurrentRoom) || player.CurrentRoom == null;
     }
 }

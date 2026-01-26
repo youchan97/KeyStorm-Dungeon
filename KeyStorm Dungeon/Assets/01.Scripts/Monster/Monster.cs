@@ -23,6 +23,9 @@ public abstract class Monster : Character
     [SerializeField] protected float shakePower;
     [SerializeField] protected float shakeDuration;
 
+    [Header("픽업 아이템 드롭 허용")]
+    [SerializeField] protected bool itemDropSwitch = true;
+
     protected AudioManager audioManager;
 
     public MonsterData MonsterData => _monsterData;
@@ -37,6 +40,7 @@ public abstract class Monster : Character
     public GameObject PlayerGO {  get; protected set; }
     public Transform PlayerTransform { get; protected set; }
     public Player player { get; protected set; }
+    public bool ItemDropSwitch => itemDropSwitch;
 
     protected float currentAttackCooldown;
     public float CurrentAttackCooldown => currentAttackCooldown;
@@ -103,7 +107,7 @@ public abstract class Monster : Character
 
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         OnMonsterDied = null;
     }

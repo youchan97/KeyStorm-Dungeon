@@ -183,6 +183,7 @@ MonoBehaviour:
   attackPoolManager: {fileID: 0}
   _monsterData: {fileID: 11400000, guid: ff472dba7dc7aef4aafa62ff10e59971, type: 2}
   monsterSpriteRenderer: {fileID: 2654661095196259248}
+  animator: {fileID: 410744042963909494}
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -190,7 +191,9 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  animator: {fileID: 410744042963909494}
+  shakePower: 0
+  shakeDuration: 0
+  itemDropSwitch: 1
   isKnockBack: 0
   poisonSpawnPointOffset: {x: 0, y: -0.4, z: 0}
   poisonCooldown: 1

@@ -16,5 +16,15 @@ public abstract class SkillData : ScriptableObject
 {
     public SkillType skillType;
 
-    public abstract ISkill CreateSkill(PlayerSkill playerSkill);
+}
+
+public abstract class ActiveSkillData : SkillData
+{
+    public abstract IActiveSKill CreateActiveSkill(PlayerSkill playerSkill);
+}
+
+public abstract class PassiveSkillData : SkillData
+{
+    public float interval;
+    public abstract IPassiveSkill CreatePassiveSkill(PlayerSkill playerSkill);
 }

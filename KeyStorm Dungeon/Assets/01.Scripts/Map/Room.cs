@@ -98,6 +98,9 @@ public class Room : MonoBehaviour
 
         GameManager.Instance.InitCurrentRoom(this);
 
+        if (!canOpenDoor)
+            player.SetCurrentRoom(this);
+
         if (monsterSpawner != null)
             monsterSpawner.SpawnMonsters();
     }
@@ -135,14 +138,11 @@ public class Room : MonoBehaviour
     public void CloseDoors()
     {
         Door[] roomDoors = GetComponentsInChildren<Door>(true);
-        Debug.Log($"[Room] {roomType} 방 문 개수: {roomDoors.Length}");
 
         foreach (Door door in roomDoors)
         {
             if (door != null)
             {
-                Debug.Log($"[Room] 문: {door.name}, canUse: {door.canUse}");
-
                 if (door.canUse)
                 {
                     door.CloseDoor();
@@ -174,6 +174,7 @@ public class Room : MonoBehaviour
     public void RoomClear()
     {
         canOpenDoor = true;
+        player.ResetCurrentRoom();
         for (int i = 0; i < doors.Length; i++)
             doors[i].ClearDoor();
         if (player != null && roomCollider != null)
@@ -282,5 +283,37 @@ public class Room : MonoBehaviour
         hasReportedRoom = false;  
 
         Debug.Log($"[Room] {roomType} 진입 처리 (보고 없음)");
+    }
+
+    public Vector2 GetRandomWalkableTilemap()
+    {
+        BoundsInt bounds = roomGroundTilemap.cellBounds;
+        Vector2 randomWorldPosition = Vector2.zero;
+        bool foundPosition = false;
+        int maxAttempts = 50;
+
+        for (int i = 0; i < maxAttempts; i++)
+        {
+            int x = UnityEngine.Random.Range(bounds.xMin, bounds.xMax);
+            int y = UnityEngine.Random.Range(bounds.yMin, bounds.yMax);
+            Vector3Int cellPosition = new Vector3Int(x, y, 0);
+
+            if (roomGroundTilemap.HasTile(cellPosition))
+            {
+                if(roomWallTilemap == null || !roomWallTilemap.HasTile(cellPosition))
+                {
+                    randomWorldPosition = roomGroundTilemap.GetCellCenterWorld(cellPosition);
+                    foundPosition = true;
+                    break;
+                }
+            }
+        }
+
+        if (!foundPosition)
+        {
+            randomWorldPosition = roomCollider.bounds.center;
+        }
+
+        return randomWorldPosition;
     }
 }

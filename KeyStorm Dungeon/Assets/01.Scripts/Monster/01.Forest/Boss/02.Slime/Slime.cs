@@ -4,6 +4,7 @@ using static ConstValue;
 
 public class Slime : MeleeMonster
 {
+    [Header("Idle 상태 수치")]
     [SerializeField] private float idleTime; // Idle상태에 머무르는 시간
 
     [Header("이동 패턴 수치")]
