@@ -75,7 +75,7 @@ public class ItemData : ScriptableObject
     [Header("액티브 스킬 전용")]
     public ActiveCooldownType cooldownType;
     public float cooldownMax;
-    public SkillType skillType;
+    public ActiveSkillType activeSkillType;
 
     [Header("패시브 스킬 전용")]
     public PassiveSkillData passiveSkillData;

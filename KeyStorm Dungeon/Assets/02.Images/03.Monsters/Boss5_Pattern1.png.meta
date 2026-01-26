@@ -269,6 +269,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Boss5_Pattern1_7
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 0
+        width: 80
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2fd5e62a3760724a9afacb2e75dd622
+      internalID: 1352237335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -287,6 +308,7 @@ TextureImporter:
       Boss5_Pattern1_4: -1612735380
       Boss5_Pattern1_5: 1892112418
       Boss5_Pattern1_6: -716614347
+      Boss5_Pattern1_7: 1352237335
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

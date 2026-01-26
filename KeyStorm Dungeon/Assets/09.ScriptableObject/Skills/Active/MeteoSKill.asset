@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28b7af8b6e4382b469a6c78aff380d41, type: 3}
+  m_Name: MeteoSKill
+  m_EditorClassIdentifier: 
+  skillType: 0
+  activeSkillType: 5
+  meteo: {fileID: 9147394139987942584, guid: 92cb30d76f31c4542bcd52516ea5803d, type: 3}
+  boxSize: 50
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 3072
+  radius: 4
+  duration: 2
+  damageMultiple: 20
+  explodeEffect: {fileID: 11400000, guid: 7c80f18366157ed40a0330cb9c489aba, type: 2}
+  shakePower: 2
+  shakeDuration: 0.5
