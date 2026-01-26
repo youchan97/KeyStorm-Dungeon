@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28b7af8b6e4382b469a6c78aff380d41, type: 3}
   m_Name: MeteoSKill
   m_EditorClassIdentifier: 
-  skillType: 5
+  skillType: 0
+  activeSkillType: 5
   meteo: {fileID: 9147394139987942584, guid: 92cb30d76f31c4542bcd52516ea5803d, type: 3}
   boxSize: 50
   enemyLayer:

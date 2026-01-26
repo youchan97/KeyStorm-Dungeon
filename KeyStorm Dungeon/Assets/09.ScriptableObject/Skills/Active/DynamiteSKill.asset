@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02c50830965c37c449643e9f57c5eacf, type: 3}
   m_Name: DynamiteSKill
   m_EditorClassIdentifier: 
-  skillType: 2
+  skillType: 0
+  activeSkillType: 2
   dynamite: {fileID: 3058990441371015012, guid: 1abf71c46303e7a4d9ca81eddf6ad30a, type: 3}
   damage: 2
   radius: 3

@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using static ConstValue;
 
-public class LightningPassiveSkill : PassiveSkill
+public class ScratchPassiveSkill : PassiveSkill
 {
-    LightningPassiveData data;
+    ScratchPassiveData data;
     float damage;
     Vector2 detectSize;
 
     float hitTimer;
     int hitCount;
-    bool isLightning;
+    bool isScratching;
 
-    public LightningPassiveSkill(PlayerSkill playerSkill, LightningPassiveData data) : base(playerSkill, data)
+    Monster targetMonster;
+
+    public ScratchPassiveSkill(PlayerSkill playerSkill, ScratchPassiveData data) : base(playerSkill, data)
     {
         this.data = data;
         detectSize = new Vector2(data.boxSize, data.boxSize);
@@ -21,42 +23,37 @@ public class LightningPassiveSkill : PassiveSkill
 
     protected override void Activate()
     {
-        isLightning = true;
+        isScratching = true;
         hitCount = DefaultIntOne;
         hitTimer = DefaultZero;
         damage = Player.PlayerAttack.Damage * Player.PlayerAttack.DamageMultiple * data.damageMultiple;
+        DetectMonster();
     }
 
     public override void DoPassive(float time)
     {
-        if (!isLightning)
+        if (!isScratching)
             return;
 
         hitTimer += time;
         if (hitTimer < data.hitInterval)
             return;
 
+        Scratch(targetMonster);
         hitTimer = DefaultZero;
-        Lightning();
 
         hitCount++;
         if (hitCount >= data.hitCount)
         {
-            isLightning = false;
+            isScratching = false;
         }
     }
 
-    void Lightning()
+    void DetectMonster()
     {
         Collider2D[] enemyCols = Physics2D.OverlapBoxAll(Player.transform.position, detectSize, DefaultZero, data.enemyLayer);
-        Monster monster = GetMonster(enemyCols);
-        if(monster != null)
-        {
-            Lightning(monster.transform);           
-            monster.TakeDamage(damage);
-        }
+        targetMonster = GetMonster(enemyCols);
     }
-
 
     Monster GetMonster(Collider2D[] enemyCols)
     {
@@ -83,10 +80,20 @@ public class LightningPassiveSkill : PassiveSkill
         return null;
     }
 
-    void Lightning(Transform target)
+    void Scratch(Monster monster)
+    {
+        if (monster == null || !monster.gameObject.activeInHierarchy)
+            return;
+
+        ScratchEffect(monster.transform);
+        monster.TakeDamage(damage);
+    }
+
+    void ScratchEffect(Transform target)
     {
         if (target == null)
             return;
+
         EffectPoolManager manager = Player.EffectPoolManager;
         Effect effect = manager.GetObj();
         effect.transform.position = target.position;

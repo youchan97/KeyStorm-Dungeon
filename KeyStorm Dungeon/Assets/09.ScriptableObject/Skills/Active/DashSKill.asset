@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e84e8c2a1d7a4a042a47dd617f831d64, type: 3}
   m_Name: DashSKill
   m_EditorClassIdentifier: 
-  skillType: 3
+  skillType: 0
+  activeSkillType: 3
   dashSpeed: 30
   duration: 0.2
