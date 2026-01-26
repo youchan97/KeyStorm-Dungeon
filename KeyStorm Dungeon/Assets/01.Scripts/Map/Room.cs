@@ -193,7 +193,10 @@ public class Room : MonoBehaviour
             return;
         }
 
-        AudioManager.Instance.PlayBgm(StageDataManager.Instance.BgmSetting());
+        if (AudioManager.Instance != null && StageDataManager.Instance != null)
+        {
+            AudioManager.Instance.PlayBgm(StageDataManager.Instance.BgmSetting());
+        }
 
         if (portal != null)
         {
@@ -208,6 +211,18 @@ public class Room : MonoBehaviour
     bool IsFinalStage()
     {
         StageDataManager manager = StageDataManager.Instance;
+        if (manager == null)
+        {
+            Debug.LogWarning("[Room] StageDataManager가 없음!");
+            return false;
+        }
+
+        if (manager.CurrentStageSet == null)
+        {
+            Debug.LogWarning("[Room] CurrentStageSet이 없음!");
+            return false;
+        }
+
         return manager.CurrentStageIndex == manager.CurrentStageSet.stageDatas.Count;
     }
 
@@ -256,10 +271,18 @@ public class Room : MonoBehaviour
 
         if (activeMonsters.Count == 0)
         {
-            if (roomType == RoomType.Boss)
-                StageClear();
-            else
+            TutorialPlayerHook hook = FindObjectOfType<TutorialPlayerHook>();
+            if (hook != null)
+            {
                 RoomClear();
+            }
+            else
+            {
+                if (roomType == RoomType.Boss)
+                    StageClear();
+                else
+                    RoomClear();
+            }
         }
 
         clearRoomCoroutine = null;

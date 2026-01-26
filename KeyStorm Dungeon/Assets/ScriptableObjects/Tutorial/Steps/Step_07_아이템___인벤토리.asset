@@ -32,5 +32,6 @@ MonoBehaviour:
   postDialogues: []
   currentRoom: 3
   openDoorsAfterQuest: 1
+  wallIndexToOpen: 1
   blockInputDuringDialogue: 1
   resetMoveTrackingOnStart: 0

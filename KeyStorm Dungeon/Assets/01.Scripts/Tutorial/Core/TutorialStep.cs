@@ -99,6 +99,7 @@ public class TutorialStep : ScriptableObject
     [Header("설정")]
     public TutorialRoomType currentRoom;
     public bool openDoorsAfterQuest = false;
+    public int wallIndexToOpen = -1;
     public bool blockInputDuringDialogue = true;
     public bool resetMoveTrackingOnStart = false;   
 

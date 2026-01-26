@@ -158,7 +158,8 @@ public abstract class Monster : Character
     public override void Die()
     {
         base.Die();
-        
+        OnMonsterDied?.Invoke();
+
         MonsterStateManager.ChangeState(CreateDieState());
 
         if (MyRoom != null)
