@@ -170,7 +170,7 @@ public class Player : Character
     {
         if (inventory.activeItem == null) return;
 
-        playerSkill.TrySkill(inventory.activeItem.skillType);
+        playerSkill.TryActiveSkill(inventory.activeItem.activeSkillType);
         
     }
 
