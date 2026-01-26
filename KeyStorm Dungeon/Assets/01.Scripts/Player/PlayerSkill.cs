@@ -157,6 +157,8 @@ public class PlayerSkill : MonoBehaviour
         currentSkill = null;
     }
 
+    public void FailActiveSkill() => currentSkill = null;
+
     void UpdateActiveCooldowns(float time)
     {
         if (activeSkills.Count == 0)

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfc38fd317a22f54b8021e22caa1b689, type: 3}
   m_Name: Desert
   m_EditorClassIdentifier: 
-  startRoom: {fileID: -5701023608660036602, guid: 38b420788342bef4b94d1afe7bc20bf1, type: 3}
+  startRoom: {fileID: -5701023608660036602, guid: 52833d6d65c30f34cae405ec39e6d0e2, type: 3}
   normalRooms:
   - {fileID: -5701023608660036602, guid: 62be4a39942bed643842519cd9229a3d, type: 3}
   - {fileID: -5701023608660036602, guid: 27eae6874a5ad49479b29c311b4b038d, type: 3}

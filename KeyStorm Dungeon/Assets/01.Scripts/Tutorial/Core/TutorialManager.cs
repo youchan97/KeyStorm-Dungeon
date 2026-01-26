@@ -26,6 +26,7 @@ public class TutorialManager : MonoBehaviour
     [Header("보스 HP")]
     [SerializeField] private GameObject bossHpBarPrefab; 
     [SerializeField] private Transform bossHpBarLayout;
+    private BossHpBar currentBossHpBar;
 
     private int currentStepIndex = 0;
     private TutorialStep currentStep;
@@ -59,6 +60,11 @@ public class TutorialManager : MonoBehaviour
     IEnumerator InitAfterDelay()
     {
         yield return new WaitForSeconds(0.5f);
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayBgm(ConstValue.EasyBgm);
+        }
 
         if (playerController == null)
         {
@@ -121,6 +127,14 @@ public class TutorialManager : MonoBehaviour
             isQuestActive = false;
             yield return new WaitForSeconds(0.3f);
             questUI.HideQuest();
+        }
+
+        if (step.wallIndexToOpen >= 0)
+        {
+            if (TutorialWallManager.Instance != null)
+            {
+                TutorialWallManager.Instance.OpenWall(step.wallIndexToOpen);
+            }
         }
 
         if (step.postDialogues.Count > 0)
@@ -293,22 +307,32 @@ public class TutorialManager : MonoBehaviour
             if (room.roomType == RoomType.Boss)
             {
                 room.OnBossSpawn += OnBossSpawned;
-                Debug.Log("[TutorialManager] 보스방 이벤트 연결!");
             }
         }
     }
 
     void OnBossSpawned(Monster boss)
     {
+
         if (bossHpBarPrefab != null && bossHpBarLayout != null)
         {
             GameObject bossHpBarGO = Instantiate(bossHpBarPrefab, bossHpBarLayout);
-            BossHpBar bossHpBar = bossHpBarGO.GetComponent<BossHpBar>();
+            currentBossHpBar = bossHpBarGO.GetComponent<BossHpBar>();
 
-            if (bossHpBar != null)
+            if (currentBossHpBar != null)
             {
-                bossHpBar.InitBossInfo(boss);
+                currentBossHpBar.InitBossInfo(boss);
+                currentBossHpBar.OnRemoveUI += RemoveBossHpBar;  
             }
         }
+    }
+
+    void RemoveBossHpBar(BossHpBar bossHpBar)
+    {
+        if (bossHpBar == null) return;
+
+        bossHpBar.OnRemoveUI -= RemoveBossHpBar;
+        Destroy(bossHpBar.gameObject);
+        currentBossHpBar = null;
     }
 }

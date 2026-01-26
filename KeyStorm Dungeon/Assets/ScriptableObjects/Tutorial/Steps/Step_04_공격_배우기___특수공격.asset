@@ -36,5 +36,6 @@ MonoBehaviour:
     autoDelay: 1.5
   currentRoom: 0
   openDoorsAfterQuest: 1
+  wallIndexToOpen: 0
   blockInputDuringDialogue: 1
   resetMoveTrackingOnStart: 0

@@ -25,7 +25,7 @@ public class MeteoSkill : IActiveSKill
 
         if (target == null)
         {
-            IsFinish = true;
+            Player.PlayerSkill.FailActiveSkill();
             return;
         }
 

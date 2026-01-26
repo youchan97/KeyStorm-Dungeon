@@ -30,15 +30,25 @@ public class AudioManager : SingletonManager<AudioManager>
 
     void initAudioDic() //사운드 초기화
     {
-        for(int i = 0; i<bgmData.audioClips.Count; i++)
+        if (bgmData == null || sfxData == null) return;
+
+        for (int i = 0; i < bgmData.audioClips.Count; i++)
         {
             AudioData audioData = bgmData.audioClips[i];
-            bgmClips.Add(audioData.audioKey, audioData.audioClip);
+
+            if (!bgmClips.ContainsKey(audioData.audioKey))
+            {
+                bgmClips.Add(audioData.audioKey, audioData.audioClip);
+            }
         }
+
         for (int i = 0; i < sfxData.audioClips.Count; i++)
         {
             AudioData audioData = sfxData.audioClips[i];
-            sfxClips.Add(audioData.audioKey, audioData.audioClip);
+            if (!sfxClips.ContainsKey(audioData.audioKey))
+            {
+                sfxClips.Add(audioData.audioKey, audioData.audioClip);
+            }
         }
     }
     void LoadVolume() //볼륨값
@@ -49,15 +59,18 @@ public class AudioManager : SingletonManager<AudioManager>
 
     public void PlayBgm(string audioName)
     {
+
         if (!bgmClips.ContainsKey(audioName)) return;
 
         if (bgmClips[audioName].Count == 0) return;
 
         int clipIndex = Random.Range(0, bgmClips[audioName].Count);
-
         AudioClip bgmClip = bgmClips[audioName][clipIndex];
+
+
         bgmAudio.clip = bgmClip;
         bgmAudio.Play();
+
     }
 
 
