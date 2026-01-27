@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillType: 1
   passiveSkillType: 0
-  interval: 20
+  interval: 10
   enemyLayer:
     serializedVersion: 2
     m_Bits: 3072

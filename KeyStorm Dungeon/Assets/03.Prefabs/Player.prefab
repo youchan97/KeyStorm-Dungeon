@@ -1786,6 +1786,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 46648784e5a024d45abc82126e2ca08b, type: 2}
   - {fileID: 11400000, guid: c5d2e57b6bdb6e1438ae90e6363f1955, type: 2}
   - {fileID: 11400000, guid: 766ac6517f7198c42888120ef28de8aa, type: 2}
+  - {fileID: 11400000, guid: c24147dd238779d488a4213f811076bc, type: 2}
   player: {fileID: 4851458755222282479}
 --- !u!114 &9001353019542540319
 MonoBehaviour:

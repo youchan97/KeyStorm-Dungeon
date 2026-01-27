@@ -22,10 +22,12 @@ MonoBehaviour:
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
+    textColor: {r: 1, g: 1, b: 1, a: 1}
   - text: "\uD55C\uBC88 \uC0AC\uC6A9\uD574\uBCF4\uC790."
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
+    textColor: {r: 1, g: 1, b: 1, a: 1}
   hasQuest: 1
   questTitle: "\uD3ED\uD0C4 \uC0AC\uC6A9"
   objectives:
@@ -38,16 +40,24 @@ MonoBehaviour:
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
+    textColor: {r: 1, g: 1, b: 1, a: 1}
   - text: "\uD3ED\uD0C4\uC744 \uC624\uB798 \uB4E4\uACE0 \uC788\uC73C\uBA74 \uC190\uC5D0\uC11C
       \uD130\uC838\uBC84\uB824."
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
+    textColor: {r: 1, g: 1, b: 1, a: 1}
   - text: "\uADF8\uB9AC\uACE0 \uD3ED\uBC1C \uBC94\uC704 \uC548\uC5D0 \uC788\uC73C\uBA74
       \uB098\uB3C4 \uD53C\uD574\uB97C \uBC1B\uC73C\uB2C8\uAE4C \uC870\uC2EC\uD574."
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+  - text: "\uC774\uC81C \uC624\uB978\uCABD\uBC29\uC73C\uB85C \uC774\uB3D9\uD574\uBCF4\uC790."
+    typingSpeed: 0.03
+    waitForInput: 1
+    autoDelay: 1.5
+    textColor: {r: 1, g: 1, b: 0, a: 1}
   currentRoom: 4
   openDoorsAfterQuest: 1
   wallIndexToOpen: 3

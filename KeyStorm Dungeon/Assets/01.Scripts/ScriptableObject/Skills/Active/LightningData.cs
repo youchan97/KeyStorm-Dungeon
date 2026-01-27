@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "LightningSKill", menuName = ("ScriptableObject/Skill/Lightning"))]
+[CreateAssetMenu(fileName = "LightningSkill", menuName = ("ScriptableObject/Skill/Lightning"))]
 public class LightningData : ActiveSkillData
 {
     public int count;

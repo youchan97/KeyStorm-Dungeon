@@ -22,6 +22,7 @@ MonoBehaviour:
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
+    textColor: {r: 1, g: 1, b: 1, a: 1}
   hasQuest: 0
   questTitle: 
   objectives: []
@@ -30,10 +31,12 @@ MonoBehaviour:
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
+    textColor: {r: 1, g: 1, b: 1, a: 1}
   - text: "\uC624\uB978\uCABD \uBC29\uC73C\uB85C \uAC00\uBCF4\uC790."
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
+    textColor: {r: 1, g: 1, b: 0, a: 1}
   currentRoom: 0
   openDoorsAfterQuest: 1
   wallIndexToOpen: 0

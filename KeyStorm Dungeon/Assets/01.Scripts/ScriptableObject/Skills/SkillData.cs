@@ -15,7 +15,8 @@ public enum ActiveSkillType
     Dynamite,
     Dash,
     Lightning,
-    Meteo
+    Meteo,
+    LookMap
 }
 
 public enum PassiveSkillType

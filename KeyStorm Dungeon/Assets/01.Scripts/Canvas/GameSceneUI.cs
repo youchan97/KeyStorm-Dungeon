@@ -37,6 +37,8 @@ public class GameSceneUI : MonoBehaviour
 
     [SerializeField] private RoomChangeEvent roomChangeEvent;
 
+    [SerializeField] GameObject minimapPanel;
+
     private void Awake()
     {
         InitManager();
@@ -355,5 +357,10 @@ public class GameSceneUI : MonoBehaviour
         bossHpBar.OnRemoveUI -= RemoveBossHpBar;
         bossHpBars.Remove(bossHpBar);
         Destroy(bossHpBar.gameObject);
+    }
+
+    public void SetMinimap(bool isOpen)
+    {
+        minimapPanel.SetActive(isOpen);
     }
 }

@@ -3804,7 +3804,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5001811830021518033
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4622,6 +4622,7 @@ MonoBehaviour:
   bossHpBarLayout: {fileID: 3463246886144797168}
   player: {fileID: 0}
   roomChangeEvent: {fileID: 11400000, guid: 963ba103a3e1e4b4ba98678febb031d3, type: 2}
+  minimapPanel: {fileID: 5812549398672395182}
 --- !u!1 &7073253783467694729
 GameObject:
   m_ObjectHideFlags: 0

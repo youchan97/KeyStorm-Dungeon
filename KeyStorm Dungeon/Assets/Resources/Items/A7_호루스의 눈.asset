@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6dc7bbbfb59c2364cbe2072bd57550eb, type: 3}
-  m_Name: "A3_\uB2E4\uC774\uB108\uB9C8\uC774\uD2B8"
+  m_Name: "A7_\uD638\uB8E8\uC2A4\uC758 \uB208"
   m_EditorClassIdentifier: 
-  itemId: A3
-  itemName: "\uB2E4\uC774\uB108\uB9C8\uC774\uD2B8"
-  itemEnglishName: Dynamite
-  description: "\uB2E4\uC774\uB108\uB9C8\uC774\uD2B8\uB97C \uC124\uCE58\uD569\uB2C8\uB2E4."
-  worldSprite: {fileID: -1752678008, guid: 06937ff3975646d4a8e7a5d1cd7b096d, type: 3}
-  iconSprite: {fileID: -1752678008, guid: 06937ff3975646d4a8e7a5d1cd7b096d, type: 3}
+  itemId: A7
+  itemName: "\uD638\uB8E8\uC2A4\uC758 \uB208"
+  itemEnglishName: Eye of Horus
+  description: "3\uCD08\uAC04 \uBBF8\uB2C8\uB9F5\uC744 \uD65C\uC131\uD654 \uD569\uB2C8\uB2E4."
+  worldSprite: {fileID: -1530924530, guid: eec4a3300dbdcaa45b330c0e3ca2f2e1, type: 3}
+  iconSprite: {fileID: -1530924530, guid: eec4a3300dbdcaa45b330c0e3ca2f2e1, type: 3}
   attackChange: 0
   isActiveItem: 1
-  tier: 3
+  tier: 1
   dropRoom: 1
   attackChangeType: 0
   maxHp: 0
@@ -37,6 +37,6 @@ MonoBehaviour:
   useAmmo: 0
   scale: 0
   cooldownType: 2
-  cooldownMax: 20
-  activeSkillType: 2
+  cooldownMax: 5
+  activeSkillType: 6
   passiveSkillData: {fileID: 0}
