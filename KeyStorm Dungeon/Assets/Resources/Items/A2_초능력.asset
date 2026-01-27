@@ -15,7 +15,7 @@ MonoBehaviour:
   itemId: A2
   itemName: "\uCD08\uB2A5\uB825"
   itemEnglishName: Esp
-  description: 
+  description: "\uC801\uB4E4\uC744 \uBC00\uCCD0\uB0C5\uB2C8\uB2E4."
   worldSprite: {fileID: 110764233, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
   iconSprite: {fileID: 110764233, guid: cd496790bf046a44e9b98e15c05e67ba, type: 3}
   attackChange: 0
