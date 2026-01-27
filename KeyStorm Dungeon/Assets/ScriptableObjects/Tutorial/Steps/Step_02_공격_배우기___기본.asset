@@ -14,16 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stepIndex: 2
   stepName: "\uACF5\uACA9 \uBC30\uC6B0\uAE30 - \uAE30\uBCF8"
+  waitForRoomEnter: 0
+  targetRoomType: 0
   preDialogues:
   - text: "\uC774\uC81C \uACF5\uACA9\uC744 \uD574\uBCF4\uC790."
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
+    textColor: {r: 1, g: 1, b: 1, a: 1}
   - text: "\uC8FC\uBCC0\uC5D0 \uB5A0\uC788\uB294 \uD0A4\uB4E4\uC744 \uC774\uC6A9\uD574\uC11C
-      \uACF5\uACA9\uC744 \uD560\uC218\uC788\uC5B4"
+      \uACF5\uACA9\uC744 \uD574\uBCF4\uC790."
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
+    textColor: {r: 1, g: 1, b: 0, a: 1}
   hasQuest: 1
   questTitle: "\uAE30\uBCF8 \uACF5\uACA9"
   objectives:
@@ -32,24 +36,34 @@ MonoBehaviour:
     targetCount: 1
     currentCount: 0
   postDialogues:
-  - text: "...\uBB50\uC57C, \uACF5\uACA9\uC774 \uB0B4\uAC00 \uC6D0\uD558\uB294 \uBC29\uD5A5\uC73C\uB85C
-      \uC548 \uB098\uAC00\uC796\uC544?"
+  - text: "\uC774 \uB290\uB08C \uC544\uC9C1\uB3C4 \uC548 \uC775\uC219\uD558\uAD6C\uB9CC..."
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
-  - text: "\uC820\uC7A5, \uC774 \uC800\uC8FC \uB54C\uBB38\uC774\uC57C."
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+  - text: "(\uB098\uB294 \uD0DC\uC5B4\uB0A0 \uB54C\uBD80\uD130 \uC800\uC8FC\uC5D0
+      \uAC78\uB838\uC5C8\uB2E4. \uC0AC\uB78C\uB4E4\uC740 \uC774\uAC78 \uB9C8\uB140\uC758
+      \uC800\uC8FC\uB77C\uACE0 \uD588\uB2E4.)"
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
-  - text: "\uACFC\uAC70\uC5D0 \uAC78\uB9B0 \uC800\uC8FC \uB54C\uBB38\uC5D0 \uB9C8\uBC95\uC774
-      \uC5C9\uB6B1\uD55C \uBC29\uD5A5\uC73C\uB85C \uB098\uAC00."
+    textColor: {r: 1, g: 0.75368696, b: 0, a: 1}
+  - text: "(\uC778\uAC04\uC744 \uC9C8\uD22C\uD55C \uB9C8\uB140\uC758 \uC800\uC8FC\uB77C\uB098
+      \uBB50\uB77C\uB098...\uADF8\uB798\uC11C \uB9C8\uBC95\uC744 \uC0AC\uC6A9\uD558\uB824\uBA74
+      \uB0A8\uB4E4\uBCF4\uB2E4 \uB354 \uB9CE\uC740 \uC9D1\uC911\uC774 \uD544\uC694\uD558\uB2E4.)"
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
-  - text: "\uC801\uC751\uD574\uC57C\uACA0\uAD70..."
+    textColor: {r: 1, g: 0.7529412, b: 0, a: 1}
+  - text: "(\uADF8\uB7FC\uC5D0\uB3C4 \uB098\uB294 \uD53C\uB098\uB294 \uB178\uB825
+      \uB05D\uC5D0 \uBAA8\uD5D8\uAC00\uAC00 \uB418\uC5C8\uACE0 \uC774 \uC800\uC8FC
+      \uB610\uD55C \uC5B8\uC820\uAC04 \uD480 \uC218 \uC788\uC744 \uAC70\uB77C \uBBFF\uB294\uB2E4.)"
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
+    textColor: {r: 1, g: 1, b: 1, a: 1}
   currentRoom: 0
+  openDoorsAfterQuest: 0
+  wallIndexToOpen: -1
   blockInputDuringDialogue: 1
   resetMoveTrackingOnStart: 0

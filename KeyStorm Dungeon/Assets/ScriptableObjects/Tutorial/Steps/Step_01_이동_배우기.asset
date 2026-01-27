@@ -14,15 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stepIndex: 1
   stepName: "\uC774\uB3D9 \uBC30\uC6B0\uAE30"
+  waitForRoomEnter: 0
+  targetRoomType: 0
   preDialogues:
-  - text: "\uC6B0\uC120 \uBAB8 \uC0C1\uD0DC\uBD80\uD130 \uD655\uC778\uD574\uBCF4\uC790."
+  - text: "\uADF8\uB7FC \uAC00\uAE30 \uC804\uC5D0 \uBAB8 \uC880 \uD480\uC5B4\uBCFC\uAE4C?"
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
-  - text: "\uBC29\uD5A5\uD0A4\uB85C \uC6C0\uC9C1\uC77C \uC218 \uC788\uC5B4."
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+  - text: "\uBC29\uD5A5\uD0A4\uB85C \uC6C0\uC9C1\uC5EC \uBCF4\uC790."
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
+    textColor: {r: 1, g: 1, b: 0, a: 1}
   hasQuest: 1
   questTitle: "\uC774\uB3D9 \uC5F0\uC2B5"
   objectives:
@@ -43,10 +47,13 @@ MonoBehaviour:
     targetCount: 1
     currentCount: 0
   postDialogues:
-  - text: "\uC88B\uC544, \uBAB8\uC740 \uBA40\uCA61\uD558\uAD70."
+  - text: "\uC88B\uC544, \uCEE8\uB514\uC158 \uC88B\uC740 \uAC78?"
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
+    textColor: {r: 1, g: 1, b: 1, a: 1}
   currentRoom: 0
+  openDoorsAfterQuest: 0
+  wallIndexToOpen: -1
   blockInputDuringDialogue: 1
   resetMoveTrackingOnStart: 1

@@ -17,16 +17,18 @@ MonoBehaviour:
   waitForRoomEnter: 0
   targetRoomType: 0
   preDialogues:
-  - text: "\uC544\uC774\uD15C\uC5D0 \uAC00\uAE4C\uC774 \uAC00\uBA74 \uC124\uBA85\uC744
-      \uBCFC \uC218 \uC788\uC5B4."
+  - text: "\uC544\uC774\uD15C\uC5D0 \uAC00\uAE4C\uC774 \uAC00\uBA74 \uC544\uC774\uD15C\uC758
+      \uC124\uBA85\uC744 \uBCFC \uC218 \uC788\uC2B5\uB2C8\uB2E4."
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 0.3
-  - text: "\uC544\uC774\uD15C\uC5D0 \uB2FF\uC73C\uBA74 \uD68D\uB4DD\uD560 \uC218
-      \uC788\uC9C0."
+    textColor: {r: 1, g: 0.7137255, b: 0.7137255, a: 1}
+  - text: "\uB610\uD55C \uC544\uC774\uD15C\uC5D0 \uB2FF\uAC8C \uB418\uBA74 \uC544\uC774\uD15C\uC744
+      \uD68D\uB4DD \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 0.3
+    textColor: {r: 1, g: 0.7137255, b: 0.7137255, a: 1}
   hasQuest: 1
   questTitle: "\uC544\uC774\uD15C \uD68D\uB4DD"
   objectives:
@@ -39,7 +41,9 @@ MonoBehaviour:
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
+    textColor: {r: 1, g: 1, b: 1, a: 1}
   currentRoom: 3
   openDoorsAfterQuest: 0
+  wallIndexToOpen: -1
   blockInputDuringDialogue: 1
   resetMoveTrackingOnStart: 0
