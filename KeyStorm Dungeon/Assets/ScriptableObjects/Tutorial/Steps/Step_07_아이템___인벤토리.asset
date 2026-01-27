@@ -22,10 +22,12 @@ MonoBehaviour:
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 0.3
+    textColor: {r: 1, g: 1, b: 1, a: 1}
   - text: "\uC774\uC81C \uC624\uB978\uCABD \uBC29\uC73C\uB85C \uC774\uB3D9\uD574\uBCF4\uC790."
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 0.3
+    textColor: {r: 1, g: 1, b: 0, a: 1}
   hasQuest: 0
   questTitle: 
   objectives: []

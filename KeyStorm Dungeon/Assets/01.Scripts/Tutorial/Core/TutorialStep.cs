@@ -10,7 +10,8 @@ public class DialogueLine
     public string text;
     public float typingSpeed = 0.03f;
     public bool waitForInput = true;  
-    public float autoDelay = 1.5f;    
+    public float autoDelay = 1.5f;
+    public Color textColor = Color.white;
 }
 
 [Serializable]
