@@ -66,6 +66,8 @@ public class TutorialManager : MonoBehaviour
             AudioManager.Instance.PlayBgm(ConstValue.EasyBgm);
         }
 
+        SetTutorialStartGold();
+
         if (playerController == null)
         {
             Player player = FindObjectOfType<Player>();
@@ -80,6 +82,20 @@ public class TutorialManager : MonoBehaviour
         if (steps.Count > 0)
         {
             StartCoroutine(RunStep(steps[0]));
+        }
+    }
+
+    void SetTutorialStartGold()
+    {
+        Player player = FindObjectOfType<Player>();
+        if (player != null && player.Inventory != null)
+        {
+            player.Inventory.gold = 1100;
+
+            if (player.GameSceneUI != null)
+            {
+                player.GameSceneUI.UpdateGold();
+            }
         }
     }
 

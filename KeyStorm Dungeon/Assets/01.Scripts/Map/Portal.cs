@@ -70,8 +70,6 @@ public class Portal : MonoBehaviour
         }
 
         gameObject.SetActive(false);
-
-        Debug.Log("[Portal] ShowVictory 끝");
     }
 
     void OnDestroy()
