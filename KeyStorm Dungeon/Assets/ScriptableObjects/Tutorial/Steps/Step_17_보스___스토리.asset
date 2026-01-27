@@ -21,21 +21,30 @@ MonoBehaviour:
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
+    textColor: {r: 1, g: 1, b: 1, a: 1}
   - text: "\uC544\uC774\uD15C\uC758 \uB9C8\uB825 \uB54C\uBB38\uC5D0 \uAC15\uD574\uC9C0\uACE0
-      \uD3ED\uC8FC\uD55C \uBAAC\uC2A4\uD130\uC57C."
+      \uD3ED\uC8FC\uD55C \uBAAC\uC2A4\uD130\uB97C \uBCF4\uC2A4\uB77C\uACE0 \uD588\uC5C8\uC5B4."
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
+    textColor: {r: 1, g: 1, b: 1, a: 1}
   - text: "\uC800 \uB140\uC11D\uC744 \uC4F0\uB7EC\uB728\uB9AC\uBA74 \uC544\uC774\uD15C\uC744
       \uC5BB\uC744 \uC218 \uC788\uC744 \uAC70\uC57C."
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+  - text: "\uBCF4\uC2A4\uB97C \uCC98\uCE58\uD558\uC790."
+    typingSpeed: 0.03
+    waitForInput: 1
+    autoDelay: 1.5
+    textColor: {r: 1, g: 1, b: 0, a: 1}
   hasQuest: 0
   questTitle: 
   objectives: []
   postDialogues: []
   currentRoom: 2
   openDoorsAfterQuest: 0
+  wallIndexToOpen: -1
   blockInputDuringDialogue: 1
   resetMoveTrackingOnStart: 0
