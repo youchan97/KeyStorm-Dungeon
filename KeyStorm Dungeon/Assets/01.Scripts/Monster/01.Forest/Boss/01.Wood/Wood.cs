@@ -104,6 +104,12 @@ public class Wood : MeleeMonster
         return _dieState;
     }
 
+    protected override void Awake()
+    {
+        base.Awake();
+        CurrentRootPatternCooldown = 0f;
+    }
+
     protected override void Start()
     {
         base.Start();

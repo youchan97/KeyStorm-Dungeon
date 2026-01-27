@@ -140,20 +140,6 @@ public class Slime : MeleeMonster
         MonsterRb.velocity = Vector2.zero;
     }
 
-    public override void FlipSpriteAttack(Transform playerTransform)
-    {
-        if (playerTransform == null && monsterSpriteRenderer == null) return;
-
-        if (playerTransform.position.x < MonsterRb.position.x)
-        {
-            monsterSpriteRenderer.flipX = true;
-        }
-        else
-        {
-            monsterSpriteRenderer.flipX = false;
-        }
-    }
-
     public void OnSlamAttack()
     {
         audioManager.PlayEffect(SlimeSlamSfx);
@@ -166,18 +152,18 @@ public class Slime : MeleeMonster
 
         for (int i = 0; i < bulletCount; i++)
         {
-            float bulletAnglePart;
+            float bulletAngle;
 
             if (bulletCount <= 1)
             {
-                bulletAnglePart = 0.5f; // 정중앙
+                bulletAngle = 0.5f; // 정중앙
             }
             else
             {
-                bulletAnglePart = (float)i / (bulletCount - 1);
+                bulletAngle = (float)i / (bulletCount - 1);
             }
 
-            float angle = Mathf.Lerp(-halfAngle, halfAngle, bulletAnglePart);
+            float angle = Mathf.Lerp(-halfAngle, halfAngle, bulletAngle);
 
             Vector3 rotateDirection = Quaternion.Euler(0, 0, angle) * (Vector3)playerDirection;
             Vector2 bulletDirection = rotateDirection;

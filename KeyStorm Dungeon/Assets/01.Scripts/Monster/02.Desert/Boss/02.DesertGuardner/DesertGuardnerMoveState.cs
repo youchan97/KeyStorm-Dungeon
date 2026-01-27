@@ -1,4 +1,5 @@
 using UnityEngine;
+using static ConstValue;
 
 public class DesertGuardnerMoveState : MonsterMoveState
 {

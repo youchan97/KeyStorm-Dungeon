@@ -15,7 +15,7 @@ public class MonsterMoveState : CharacterMoveState<Monster>
     protected float pathUpdateInterval = 0.1f;
     protected float waypointReachThreshold = 0.1f;
 
-    private Pathfinding roomPathfinding;
+    protected Pathfinding roomPathfinding;
 
     public MonsterMoveState(Monster monster, CharacterStateManager<Monster> stateManager) : base(monster, stateManager)
     {
@@ -68,7 +68,6 @@ public class MonsterMoveState : CharacterMoveState<Monster>
                 return;
             }
         }
-
         
         Move();
     }
@@ -95,7 +94,7 @@ public class MonsterMoveState : CharacterMoveState<Monster>
         return true;
     }
 
-    protected void Move()
+    protected virtual void Move()
     {
         if (Time.time >= nextPathUpdateTime)
         {
@@ -152,7 +151,7 @@ public class MonsterMoveState : CharacterMoveState<Monster>
     }
     
     // 플레이어에게 접근하는 움직임 (a* 적용)
-    protected void UpdateMovement()
+    protected virtual void UpdateMovement()
     {
         if (currentPath == null || targetNodeIndex >= currentPath.Count)
         {
