@@ -15,7 +15,7 @@ MonoBehaviour:
   itemId: P53
   itemName: "\uAD00\uD1B5\uD0C4\uD658"
   itemEnglishName: Scope
-  description: "\uACF5\uACA9\uC774 \uC801\uB4E4\uC744 \uAD00\uD1B5\uD569\uB2C8\uB2E4."
+  description: "\uACF5\uACA9\uC774 \uC9C0\uD615\uC9C0\uBB3C\uC744 \uAD00\uD1B5\uD569\uB2C8\uB2E4."
   worldSprite: {fileID: -372795129, guid: 9a13245e97db7c5489bef3b10ab26a9e, type: 3}
   iconSprite: {fileID: -372795129, guid: 9a13245e97db7c5489bef3b10ab26a9e, type: 3}
   attackChange: 1
