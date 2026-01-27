@@ -226,6 +226,22 @@ public class Player : Character
 
         isInvincible = true;
         CharacterRunData character = playerRunData.character;
+
+        if (TutorialManager.Instance != null)
+        {
+            float newHp = character.currentHp - damage;
+            if (newHp < 1f)
+            {
+                character.currentHp = 1f;
+                Hp = character.currentHp;
+                GameSceneUI.HealthUI.SetHp(Hp);
+                audioManager.PlayEffect(PlayerHurtSfx);
+                OnHit?.Invoke();
+                anim.SetTrigger(HurtAnim);
+                return; 
+            }
+        }
+
         character.currentHp = Mathf.Max(0, character.currentHp - damage);
 
         Hp = character.currentHp;

@@ -5,7 +5,10 @@ using UnityEngine;
 public class TutorialWall : MonoBehaviour
 {
     [Header("설정")]
-    [SerializeField] private int wallIndex;  
+    [SerializeField] private int wallIndex;
+
+    [Header("비주얼")]
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     private BoxCollider2D col;
 
@@ -16,7 +19,12 @@ public class TutorialWall : MonoBehaviour
         {
             col = gameObject.AddComponent<BoxCollider2D>();
         }
-        col.isTrigger = false;  
+        col.isTrigger = false;
+
+        if (spriteRenderer == null)
+        {
+            spriteRenderer = GetComponent<SpriteRenderer>();
+        }
     }
 
     public int WallIndex => wallIndex;
@@ -24,10 +32,14 @@ public class TutorialWall : MonoBehaviour
     public void EnableWall()
     {
         col.enabled = true;
+        if (spriteRenderer != null)
+            spriteRenderer.enabled = true;  
     }
 
     public void DisableWall()
     {
         col.enabled = false;
+        if (spriteRenderer != null)
+            spriteRenderer.enabled = false;  
     }
 }
