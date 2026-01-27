@@ -16,8 +16,8 @@ MonoBehaviour:
   itemName: "\uAD00\uD1B5\uD0C4\uD658"
   itemEnglishName: Scope
   description: "\uACF5\uACA9\uC774 \uC801\uB4E4\uC744 \uAD00\uD1B5\uD569\uB2C8\uB2E4."
-  worldSprite: {fileID: 139926927, guid: c53cc76c54808e44db4c2ac5039f58a2, type: 3}
-  iconSprite: {fileID: 139926927, guid: c53cc76c54808e44db4c2ac5039f58a2, type: 3}
+  worldSprite: {fileID: -372795129, guid: 9a13245e97db7c5489bef3b10ab26a9e, type: 3}
+  iconSprite: {fileID: -372795129, guid: 9a13245e97db7c5489bef3b10ab26a9e, type: 3}
   attackChange: 1
   isActiveItem: 0
   tier: 3

@@ -17,8 +17,8 @@ MonoBehaviour:
   itemEnglishName: Ours Friend
   description: "10\uCD08\uB9C8\uB2E4 \uC801\uC744 \uD560\uD034\uC5B4 \uD53C\uD574\uB97C
     \uC785\uD799\uB2C8\uB2E4."
-  worldSprite: {fileID: 139926927, guid: c53cc76c54808e44db4c2ac5039f58a2, type: 3}
-  iconSprite: {fileID: 139926927, guid: c53cc76c54808e44db4c2ac5039f58a2, type: 3}
+  worldSprite: {fileID: 1791977586, guid: 9a13245e97db7c5489bef3b10ab26a9e, type: 3}
+  iconSprite: {fileID: 1791977586, guid: 9a13245e97db7c5489bef3b10ab26a9e, type: 3}
   attackChange: 0
   isActiveItem: 0
   tier: 3
