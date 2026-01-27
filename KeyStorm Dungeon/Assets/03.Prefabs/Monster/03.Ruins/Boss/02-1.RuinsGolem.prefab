@@ -431,4 +431,4 @@ MonoBehaviour:
   ruinsGolem: {fileID: 1660328828384029767}
   idleTime: 3
   minMoveDuration: 3
-  maxMoveDuration: 4
+  maxMoveDuration: 5

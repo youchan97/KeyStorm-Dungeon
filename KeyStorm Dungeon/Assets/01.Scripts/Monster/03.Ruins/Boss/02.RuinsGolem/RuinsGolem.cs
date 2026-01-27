@@ -115,6 +115,7 @@ public class RuinsGolem : MeleeMonster
         return transform.position;
     }
 
+    // 빌드 시 삭제
     private void OnDrawGizmosSelected()
     {
         if (Application.isPlaying)

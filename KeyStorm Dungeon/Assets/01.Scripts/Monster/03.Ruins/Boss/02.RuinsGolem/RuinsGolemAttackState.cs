@@ -225,7 +225,6 @@ public class RuinsGolemAttackState : MonsterAttackState
         }
 
         yield return new WaitForSeconds(waitRockBreakAnimationTime);
-        GameObject.Destroy(rockGO);
     }
 
     private void HandleSlamAnimationFinished()
