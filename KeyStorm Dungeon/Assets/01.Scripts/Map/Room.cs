@@ -272,9 +272,25 @@ public class Room : MonoBehaviour
         if (activeMonsters.Count == 0)
         {
             TutorialPlayerHook hook = FindObjectOfType<TutorialPlayerHook>();
+
             if (hook != null)
             {
                 RoomClear();
+
+                if (roomType == RoomType.Boss)
+                {
+                    if (portal != null && portalTransform != null)
+                    {
+                        GameObject go = Instantiate(portal, transform);
+                        go.transform.position = portalTransform.position;
+                    }
+
+                    if (itemSpawner != null)
+                    {
+                        itemSpawner.SpawnBossRoomItem();
+                    }
+                }
+
             }
             else
             {
