@@ -14,6 +14,7 @@ public class GameStartController : MonoBehaviour
     {
         if (alwaysShowTutorial)
         {
+            
             SceneManager.LoadScene(tutorialSceneName);
             return;
         }
@@ -22,10 +23,12 @@ public class GameStartController : MonoBehaviour
 
         if (tutorialCompleted)
         {
+            
             SceneManager.LoadScene(mainGameSceneName);
         }
         else
         {
+            
             SceneManager.LoadScene(tutorialSceneName);
         }
     }
