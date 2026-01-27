@@ -20,7 +20,7 @@ public class StartSceneCanvasManager : MonoBehaviour
     {
         StageDataManager.Instance.SelectDifficulty(StageDifficulty.Easy);
         AudioManager.Instance.PlayButton();
-        LoadingManager.LoadScene(GameScene);
+        //LoadingManager.LoadScene(GameScene);
     }
 
     public void OnClickExit()

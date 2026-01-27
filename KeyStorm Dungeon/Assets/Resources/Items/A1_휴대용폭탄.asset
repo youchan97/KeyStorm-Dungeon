@@ -15,12 +15,12 @@ MonoBehaviour:
   itemId: A1
   itemName: "\uD734\uB300\uC6A9\uD3ED\uD0C4"
   itemEnglishName: Bomb
-  description: 
+  description: "\uD3ED\uD0C4\uC744 \uB358\uC9D1\uB2C8\uB2E4."
   worldSprite: {fileID: 1988552280, guid: 06937ff3975646d4a8e7a5d1cd7b096d, type: 3}
   iconSprite: {fileID: 1988552280, guid: 06937ff3975646d4a8e7a5d1cd7b096d, type: 3}
   attackChange: 0
   isActiveItem: 1
-  tier: 0
+  tier: 1
   dropRoom: 1
   attackChangeType: 0
   maxHp: 0
@@ -38,4 +38,5 @@ MonoBehaviour:
   scale: 0
   cooldownType: 2
   cooldownMax: 20
-  skillType: 0
+  activeSkillType: 0
+  passiveSkillData: {fileID: 0}

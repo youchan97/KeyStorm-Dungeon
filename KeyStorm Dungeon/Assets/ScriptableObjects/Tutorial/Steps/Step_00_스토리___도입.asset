@@ -14,29 +14,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stepIndex: 0
   stepName: "\uC2A4\uD1A0\uB9AC - \uB3C4\uC785"
+  waitForRoomEnter: 0
+  targetRoomType: 0
   preDialogues:
-  - text: "...\uC5EC\uAE30\uB294 \uC5B4\uB514\uC9C0?"
+  - text: "\uB4DC\uB514\uC5B4 \uCCAB \uBAA8\uD5D8 \uC2DC\uC791\uC774\uC57C..! \uB108\uBB34
+      \uBB34\uC11C\uC6CC..."
     typingSpeed: 0.04
     waitForInput: 1
     autoDelay: 1.5
-  - text: "\uB610 \uC774 \uC800\uC8FC \uB54C\uBB38\uC5D0 \uC774\uC0C1\uD55C \uACF3\uC5D0
-      \uB5A8\uC5B4\uC84C\uAD70..."
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+  - text: "\uADF8\uB798\uB3C4 \uC774 \uC800\uC8FC\uB97C \uD480\uB824\uBA74 \uC5B4\uCA54
+      \uC218 \uC5C6\uACA0\uC9C0?"
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
-  - text: "\uC5B8\uC820\uAC00 \uC774 \uC800\uC8FC\uB97C \uD480 \uC218 \uC788\uB294
-      \uC544\uC774\uD15C\uC744 \uCC3E\uC744 \uC218 \uC788\uACA0\uC9C0."
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+  - text: "\uD560\uC544\uBC84\uC9C0\uAC00 \uBD84\uBA85 \uBAA8\uD5D8\uC744 \uD558\uB2E4
+      \uBCF4\uBA74 \uC800\uC8FC\uB97C \uD480 \uBC29\uBC95\uC744 \uCC3E\uC744 \uC218
+      \uC788\uC744 \uAC70\uB77C \uD558\uC168\uC5B4."
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
-  - text: "\uC77C\uB2E8 \uC5EC\uAE38 \uBC97\uC5B4\uB098\uC57C\uACA0\uC5B4."
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+  - text: "\uADF8\uB7FC \uD55C \uBC88 \uAC00\uBCFC\uAE4C!"
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
+    textColor: {r: 1, g: 1, b: 1, a: 1}
   hasQuest: 0
   questTitle: 
   objectives: []
   postDialogues: []
   currentRoom: 0
+  openDoorsAfterQuest: 0
+  wallIndexToOpen: -1
   blockInputDuringDialogue: 1
   resetMoveTrackingOnStart: 0

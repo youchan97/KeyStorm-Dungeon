@@ -17,20 +17,29 @@ MonoBehaviour:
   waitForRoomEnter: 0
   targetRoomType: 0
   preDialogues:
-  - text: "\uBC29\uC5D0 \uB4E4\uC5B4\uAC00\uB2C8 \uBB38\uC774 \uB2EB\uD788\uB294\uAD70."
+  - text: "\uC774\uAC8C \uBAAC\uC2A4\uD130\uC778\uAC00 \uC870\uAE08 \uBB34\uC11C\uC6B4\uB370..?"
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
-  - text: "\uC801\uB4E4\uC774 \uC788\uC5B4. \uBAA8\uB450 \uCC98\uCE58\uD574\uC57C
-      \uBB38\uC774 \uC5F4\uB9B4 \uAC70\uC57C."
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+  - text: "\uBAAC\uC2A4\uD130\uAC00 \uC788\uB294 \uBC29\uC5D0 \uB4E4\uC5B4\uAC00\uAC8C
+      \uB418\uBA74 \uBB38\uC774 \uB2EB\uD600 \uB098\uAC08 \uC218 \uC5C6\uAC8C \uB429\uB2C8\uB2E4."
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
+    textColor: {r: 1, g: 0.7137255, b: 0.7137255, a: 1}
+  - text: "\uBC29\uC758 \uBAA8\uB4E0 \uBAAC\uC2A4\uD130\uB97C \uCC98\uB9AC\uD558\uBA74
+      \uBB38\uC740 \uC5F4\uB9AC\uAC8C \uB429\uB2C8\uB2E4."
+    typingSpeed: 0.03
+    waitForInput: 1
+    autoDelay: 1.5
+    textColor: {r: 1, g: 0.7137255, b: 0.7137255, a: 1}
   hasQuest: 0
   questTitle: 
   objectives: []
   postDialogues: []
   currentRoom: 1
   openDoorsAfterQuest: 0
+  wallIndexToOpen: -1
   blockInputDuringDialogue: 1
   resetMoveTrackingOnStart: 0

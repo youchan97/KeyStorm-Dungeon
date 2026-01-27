@@ -17,15 +17,17 @@ MonoBehaviour:
   waitForRoomEnter: 0
   targetRoomType: 3
   preDialogues:
-  - text: "Tab\uC744 \uB204\uB974\uBA74 \uB0B4\uAC00 \uD68D\uB4DD\uD55C \uC544\uC774\uD15C\uC758
-      \uBAA9\uB85D\uC744 \uD655\uC778\uAC00\uB2A5\uD574"
+  - text: "Tab\uC744 \uB204\uB974\uBA74 \uD68D\uB4DD\uD55C \uC544\uC774\uD15C\uC758
+      \uBAA9\uB85D\uACFC \uD604\uC7AC\uC758 \uB2A5\uB825\uCE58 \uBCFC \uC218 \uC788\uC2B5\uB2C8\uB2E4."
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 0.3
+    textColor: {r: 1, g: 0.7137255, b: 0.7137255, a: 1}
   - text: "\uC774\uC81C \uC624\uB978\uCABD \uBC29\uC73C\uB85C \uC774\uB3D9\uD574\uBCF4\uC790."
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 0.3
+    textColor: {r: 1, g: 1, b: 0, a: 1}
   hasQuest: 0
   questTitle: 
   objectives: []

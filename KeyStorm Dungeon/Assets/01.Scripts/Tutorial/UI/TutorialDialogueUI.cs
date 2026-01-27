@@ -48,6 +48,8 @@ public class TutorialDialogueUI : MonoBehaviour
 
         foreach (var line in dialogues)
         {
+            dialogueText.color = line.textColor;
+
             yield return StartCoroutine(TypeText(line.text, line.typingSpeed));
 
             if (line.waitForInput)

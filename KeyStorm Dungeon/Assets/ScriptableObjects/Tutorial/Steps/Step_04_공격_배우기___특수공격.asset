@@ -16,12 +16,7 @@ MonoBehaviour:
   stepName: "\uACF5\uACA9 \uBC30\uC6B0\uAE30 - \uD2B9\uC218\uACF5\uACA9"
   waitForRoomEnter: 0
   targetRoomType: 0
-  preDialogues:
-  - text: "\uC2A4\uD398\uC774\uC2A4\uBC14\uB85C \uC561\uD2F0\uBE0C \uC544\uC774\uD15C
-      \uD6A8\uACFC\uB97C \uC0AC\uC6A9\uD560 \uC218 \uC788\uC5B4."
-    typingSpeed: 0.03
-    waitForInput: 1
-    autoDelay: 1.5
+  preDialogues: []
   hasQuest: 0
   questTitle: 
   objectives: []
@@ -30,10 +25,12 @@ MonoBehaviour:
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
+    textColor: {r: 1, g: 1, b: 1, a: 1}
   - text: "\uC624\uB978\uCABD \uBC29\uC73C\uB85C \uAC00\uBCF4\uC790."
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
+    textColor: {r: 1, g: 1, b: 0, a: 1}
   currentRoom: 0
   openDoorsAfterQuest: 1
   wallIndexToOpen: 0
