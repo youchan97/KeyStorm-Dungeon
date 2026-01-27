@@ -36,11 +36,6 @@ MonoBehaviour:
     waitForInput: 1
     autoDelay: 1.5
     textColor: {r: 1, g: 1, b: 1, a: 1}
-  - text: "\uADF8\uB7FC \uD55C \uBC88 \uAC00\uBCFC\uAE4C!"
-    typingSpeed: 0.03
-    waitForInput: 1
-    autoDelay: 1.5
-    textColor: {r: 1, g: 1, b: 1, a: 1}
   hasQuest: 0
   questTitle: 
   objectives: []
