@@ -16,8 +16,8 @@ MonoBehaviour:
   itemName: "\uB2E4\uC774\uB108\uB9C8\uC774\uD2B8"
   itemEnglishName: Dynamite
   description: "\uB2E4\uC774\uB108\uB9C8\uC774\uD2B8\uB97C \uC124\uCE58\uD569\uB2C8\uB2E4."
-  worldSprite: {fileID: -1752678008, guid: 06937ff3975646d4a8e7a5d1cd7b096d, type: 3}
-  iconSprite: {fileID: -1752678008, guid: 06937ff3975646d4a8e7a5d1cd7b096d, type: 3}
+  worldSprite: {fileID: 833235960, guid: 06937ff3975646d4a8e7a5d1cd7b096d, type: 3}
+  iconSprite: {fileID: 833235960, guid: 06937ff3975646d4a8e7a5d1cd7b096d, type: 3}
   attackChange: 0
   isActiveItem: 1
   tier: 3
