@@ -75,20 +75,6 @@ public class StageDataManager : SingletonManager<StageDataManager>
 
     public string BgmSetting()
     {
-        switch (CurrentStageData.roomData.name)
-        {
-            case "Forest":
-                return "Forest";
-
-            case "Ruins":
-                return "Ruins";
-
-            case "Desert":
-                return "Desert";
-
-            default:
-                Debug.Log("BGM이랑 맞지 않는 룸이름");
-                return "forest"; // 기본 BGM
-        }
+        return CurrentStageData.roomData.name;
     }
 }
