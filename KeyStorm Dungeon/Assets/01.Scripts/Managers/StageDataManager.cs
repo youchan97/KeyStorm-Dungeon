@@ -75,16 +75,20 @@ public class StageDataManager : SingletonManager<StageDataManager>
 
     public string BgmSetting()
     {
-        switch (CurrentDifficulty)
+        switch (CurrentStageData.roomData.name)
         {
-            case StageDifficulty.Easy:
-                return EasyBgm;
-            case StageDifficulty.Normal:
-                return NormalBgm;
-            case StageDifficulty.Hard:
-                return HardBgm;
+            case "Forest":
+                return "Forest";
+
+            case "Ruins":
+                return "Ruins";
+
+            case "Desert":
+                return "Desert";
+
             default:
-                return EasyBgm;
+                Debug.Log("BGM이랑 맞지 않는 룸이름");
+                return "forest"; // 기본 BGM
         }
     }
 }
