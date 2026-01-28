@@ -13,7 +13,7 @@ public class Door : MonoBehaviour
     [SerializeField] Animator anim;
 
     public bool canUse;
-    bool isClosed = true;
+    [SerializeField] bool isClosed = true;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -33,7 +33,7 @@ public class Door : MonoBehaviour
 
         if (room.IsFighting) return;
 
-        if (room.IsPlayerIn == false)
+        if (room.IsPlayerIn == false||room.IsFighting ==false)
         {
             anim.SetBool(DoorAnim, true);
             AudioManager.Instance.PlayEffect(DoorSfx);
@@ -57,7 +57,7 @@ public class Door : MonoBehaviour
 
         if (room.CanOpenDoor) return;
 
-        if (room.IsFighting) return;
+        
 
         if (!isClosed)
         {
@@ -80,6 +80,7 @@ public class Door : MonoBehaviour
     public void CloseDoor()
     {
         col.enabled = true;
+        anim.SetBool(DoorAnim,false);
     }
 
     public void UseDoor()
