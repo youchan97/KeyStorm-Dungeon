@@ -125,6 +125,8 @@ public class TutorialManager : MonoBehaviour
             playerController?.DisablePause();
             playerController?.DisableInput();
 
+            StopWalkSound();
+
             yield return StartCoroutine(dialogueUI.ShowDialogues(step.preDialogues));
 
             playerController?.EnableInput();
@@ -159,6 +161,8 @@ public class TutorialManager : MonoBehaviour
             playerController?.DisablePause();
             playerController?.DisableInput();
 
+            StopWalkSound();
+
             yield return StartCoroutine(dialogueUI.ShowDialogues(step.postDialogues));
 
             playerController?.EnableInput();
@@ -173,6 +177,14 @@ public class TutorialManager : MonoBehaviour
 
         yield return new WaitForSeconds(stepTransitionDelay);
         NextStep();
+    }
+
+    void StopWalkSound()
+    {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.StopEffectLoop(ConstValue.PlayerMoveSfx);
+        }
     }
 
     bool IsPlayerInRoom(TutorialRoomType tutorialRoomType)
@@ -261,7 +273,7 @@ public class TutorialManager : MonoBehaviour
         LoadingManager.LoadScene(mainGameSceneName);
     }
 
-    void CompleteTutorial()
+    public void CompleteTutorial()
     {
         if (isCompleted) return;
         isCompleted = true;

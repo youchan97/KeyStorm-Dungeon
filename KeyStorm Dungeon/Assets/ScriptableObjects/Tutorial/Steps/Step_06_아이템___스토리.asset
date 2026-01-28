@@ -17,7 +17,7 @@ MonoBehaviour:
   waitForRoomEnter: 0
   targetRoomType: 0
   preDialogues:
-  - text: "\uC624, \uBB54\uAC00 \uC788\uAD70."
+  - text: "\uC624, \uBB54\uAC00 \uC788\uC5B4."
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 0.5

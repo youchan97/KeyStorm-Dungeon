@@ -26,6 +26,11 @@ public class Portal : MonoBehaviour
         hasBeenUsed = true;
         isAnyPortalProcessing = true;
 
+        if (GameManager.Instance == null || StageDataManager.Instance == null)
+        {
+            isAnyPortalProcessing = false;
+            return;
+        }
 
         int currentStage = GameManager.Instance.CurrentStage;
         int nextStage = currentStage + 1;
@@ -38,6 +43,25 @@ public class Portal : MonoBehaviour
         else
         {
             StartCoroutine(LoadNextStageWithDelay(player));
+        }
+    }
+
+    private IEnumerator TutorialPortalEffect(Player player)
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        if (player.DotweenManager != null)
+        {
+            player.DotweenManager.PortalDotween(transform.position, player);
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        isAnyPortalProcessing = false;
+
+        if (TutorialManager.Instance != null)
+        {
+            TutorialManager.Instance.CompleteTutorial();
         }
     }
 

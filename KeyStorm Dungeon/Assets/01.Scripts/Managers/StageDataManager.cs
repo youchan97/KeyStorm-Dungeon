@@ -75,16 +75,6 @@ public class StageDataManager : SingletonManager<StageDataManager>
 
     public string BgmSetting()
     {
-        switch (CurrentDifficulty)
-        {
-            case StageDifficulty.Easy:
-                return EasyBgm;
-            case StageDifficulty.Normal:
-                return NormalBgm;
-            case StageDifficulty.Hard:
-                return HardBgm;
-            default:
-                return EasyBgm;
-        }
+        return CurrentStageData.roomData.name;
     }
 }
