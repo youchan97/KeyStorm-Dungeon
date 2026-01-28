@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static ConstValue;
 
 public class GameStartController : MonoBehaviour
 {
@@ -14,8 +15,7 @@ public class GameStartController : MonoBehaviour
     {
         if (alwaysShowTutorial)
         {
-            
-            SceneManager.LoadScene(tutorialSceneName);
+            LoadingManager.LoadScene(tutorialSceneName);
             return;
         }
 
@@ -23,13 +23,13 @@ public class GameStartController : MonoBehaviour
 
         if (tutorialCompleted)
         {
-            
-            SceneManager.LoadScene(mainGameSceneName);
+
+            LoadingManager.LoadScene(mainGameSceneName);
         }
         else
         {
-            
-            SceneManager.LoadScene(tutorialSceneName);
+
+            LoadingManager.LoadScene(tutorialSceneName);
         }
     }
 

@@ -121,7 +121,6 @@ public class Room : MonoBehaviour
             {
                 hook.ReportRoomEnter(roomType);
                 hasReportedRoom = true;
-                Debug.Log($"[Room] {roomType} 퀘스트 보고! 거리: {distance}");
             }
         }
     }
@@ -155,7 +154,6 @@ public class Room : MonoBehaviour
     {
         if (roomGroundTilemap == null)
         {
-            Debug.LogError("Room: roomGroundTilemap이 할당되지 않음");
             return null;
         }
         return roomGroundTilemap;
@@ -165,7 +163,6 @@ public class Room : MonoBehaviour
     {
         if (roomWallTilemap == null)
         {
-            Debug.LogError("Room: roomWallTilemap이 할당되지 않음");
             return null;
         }
         return roomWallTilemap;
@@ -213,13 +210,11 @@ public class Room : MonoBehaviour
         StageDataManager manager = StageDataManager.Instance;
         if (manager == null)
         {
-            Debug.LogWarning("[Room] StageDataManager가 없음!");
             return false;
         }
 
         if (manager.CurrentStageSet == null)
         {
-            Debug.LogWarning("[Room] CurrentStageSet이 없음!");
             return false;
         }
 
@@ -312,7 +307,6 @@ public class Room : MonoBehaviour
         TutorialPlayerHook hook = FindObjectOfType<TutorialPlayerHook>();
         hook?.ReportRoomEnter(roomType);
 
-        Debug.Log($"[Room] {roomType} 강제 진입 처리됨!");
     }
 
     public void ForcePlayerEnterWithoutReport(Player p)
@@ -321,7 +315,6 @@ public class Room : MonoBehaviour
         player = p;
         hasReportedRoom = false;  
 
-        Debug.Log($"[Room] {roomType} 진입 처리 (보고 없음)");
     }
 
     public Vector2 GetRandomWalkableTilemap()
