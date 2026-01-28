@@ -44,6 +44,7 @@ public class StageManager : MonoBehaviour
         stageDataManager = StageDataManager.Instance;
         stageData = stageDataManager.CurrentStageData;
         curRoomData = stageData.roomData;
+        Camera.main.backgroundColor = curRoomData.backGroundColor;
         AudioManager.Instance.PlayBgm(stageDataManager.BgmSetting());
 
         GenerateRoomLayout();

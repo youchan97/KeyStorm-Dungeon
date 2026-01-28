@@ -13,4 +13,5 @@ public class StageRoomData : ScriptableObject
     public List<Room> shopRooms;
     public TileBase horizontalCorridor;
     public TileBase verticalCorridor;
+    public Color backGroundColor;
 }

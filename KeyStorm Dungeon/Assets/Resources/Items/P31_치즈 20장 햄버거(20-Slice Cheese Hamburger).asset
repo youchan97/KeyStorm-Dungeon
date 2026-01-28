@@ -20,7 +20,7 @@ MonoBehaviour:
   iconSprite: {fileID: 21300000, guid: 47ea4e3765f6618498e6e4fadeb7fb36, type: 3}
   attackChange: 0
   isActiveItem: 0
-  tier: 0
+  tier: 2
   dropRoom: 5
   attackChangeType: 0
   maxHp: 3
@@ -38,4 +38,5 @@ MonoBehaviour:
   scale: 0.2
   cooldownType: 0
   cooldownMax: 0
-  skillType: 0
+  activeSkillType: 0
+  passiveSkillData: {fileID: 0}
