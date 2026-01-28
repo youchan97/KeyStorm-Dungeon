@@ -36,6 +36,7 @@ public class Room : MonoBehaviour
     [SerializeField] Transform portalTransform;
     [SerializeField] RoomItemSpawner itemSpawner;
     [SerializeField] Door[] doors;
+    [SerializeField] bool isFighting;
 
     private float clearDelay = 1.0f;
     private Coroutine clearRoomCoroutine;
@@ -57,6 +58,7 @@ public class Room : MonoBehaviour
 
     public bool IsPlayerIn { get => isPlayerIn; }
     public bool CanOpenDoor { get => canOpenDoor; }
+    public bool IsFighting { get => isFighting; }
 
     public Player Player => player;
 
@@ -174,6 +176,7 @@ public class Room : MonoBehaviour
     public void RoomClear()
     {
         canOpenDoor = true;
+        ChangeIsFighting(false);
         player.ResetCurrentRoom();
         for (int i = 0; i < doors.Length; i++)
             doors[i].ClearDoor();
@@ -354,5 +357,10 @@ public class Room : MonoBehaviour
         }
 
         return randomWorldPosition;
+    }
+
+    public void ChangeIsFighting(bool changeBool)
+    {
+        isFighting = changeBool;
     }
 }

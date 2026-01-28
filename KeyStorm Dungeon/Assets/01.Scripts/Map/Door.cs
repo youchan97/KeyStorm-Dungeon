@@ -31,7 +31,9 @@ public class Door : MonoBehaviour
 
         if (room.CanOpenDoor) return;
 
-        if(room.IsPlayerIn == false)
+        if (room.IsFighting) return;
+
+        if (room.IsPlayerIn == false)
         {
             anim.SetBool(DoorAnim, true);
             AudioManager.Instance.PlayEffect(DoorSfx);
@@ -55,7 +57,9 @@ public class Door : MonoBehaviour
 
         if (room.CanOpenDoor) return;
 
-        if(!isClosed)
+        if (room.IsFighting) return;
+
+        if (!isClosed)
         {
             anim.SetBool(DoorAnim, false);
             AudioManager.Instance.PlayEffect(DoorSfx);

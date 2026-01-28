@@ -29,6 +29,8 @@ public class MonsterSpawner : MonoBehaviour
             return;
         }
 
+        parentRoom.ChangeIsFighting(true);
+
         if (monsterPrefabsToSpawn == null || monsterPrefabsToSpawn.Count == 0)
         {
             Debug.LogWarning($"[{gameObject.name}] 스폰할 몬스터 프리팹 리스트가 비어 있음");
