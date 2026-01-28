@@ -269,6 +269,7 @@ public class StoreSlot : MonoBehaviour
                         bomb.TryPickup(player);
                     break;
                 default:
+                    inv.TrySpendGold(price);
                     break;
             }
         }
