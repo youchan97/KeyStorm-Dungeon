@@ -7563,14 +7563,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterPrefabsToSpawn:
-  - {fileID: 7514282249993146950, guid: 59cf889cf75df9b48a775f9030b4c6b6, type: 3}
-  - {fileID: 7514282249993146950, guid: 59cf889cf75df9b48a775f9030b4c6b6, type: 3}
-  - {fileID: 3561767626383606100, guid: 207c8b2ba49b8f843bf72989a5e2f60f, type: 3}
-  - {fileID: 3877854567330950090, guid: 1e59c7151d6879548a1fcb8931bda6aa, type: 3}
-  - {fileID: 3877854567330950090, guid: 1e59c7151d6879548a1fcb8931bda6aa, type: 3}
-  - {fileID: 3877854567330950090, guid: 1e59c7151d6879548a1fcb8931bda6aa, type: 3}
-  - {fileID: 3877854567330950090, guid: 1e59c7151d6879548a1fcb8931bda6aa, type: 3}
-  - {fileID: 3561767626383606100, guid: 207c8b2ba49b8f843bf72989a5e2f60f, type: 3}
+  - {fileID: 7514282249993146950, guid: 11305102ac7d2af4dbbfe6c8bc3d5eff, type: 3}
+  - {fileID: 7514282249993146950, guid: 11305102ac7d2af4dbbfe6c8bc3d5eff, type: 3}
+  - {fileID: 3561767626383606100, guid: 7cdf472542d1c1149bf532fb169885bf, type: 3}
+  - {fileID: 3877854567330950090, guid: 61d22bcee7c457149a08756d037930bb, type: 3}
+  - {fileID: 3877854567330950090, guid: 61d22bcee7c457149a08756d037930bb, type: 3}
+  - {fileID: 3877854567330950090, guid: 61d22bcee7c457149a08756d037930bb, type: 3}
+  - {fileID: 3877854567330950090, guid: 61d22bcee7c457149a08756d037930bb, type: 3}
+  - {fileID: 3561767626383606100, guid: 7cdf472542d1c1149bf532fb169885bf, type: 3}
   spawnPoints:
   - {fileID: 833229008867957891}
   - {fileID: 135352169324224101}
