@@ -73,6 +73,13 @@ public static class ConstValue
     public const string SlimeJumpSfx = "SlimeJump";
     public const string SlimeDiveSfx = "SlimeDive";
     public const string SlimeMoveSfx = "SlimeMove";
+    public const string DesertGuardnerReflectionSfx = "DesertGuardnerReflection";
+    public const string DesertGuardnerSwingSfx = "DesertGuardnerSwing";
+    public const string DesertGuardnerSpinSfx = "DesertGuardnerSpin";
+    public const string DesertGuardnerShieldSfx = "DesertGuardnerShield";
+    public const string GolemSlamSfx = "GolemSlam";
+    public const string GolemRockFallSlamSfx = "GolemRockFall";
+    public const string RockDropSfx = "RockDrop";
     #endregion
 
     #region 게임 종료 관련

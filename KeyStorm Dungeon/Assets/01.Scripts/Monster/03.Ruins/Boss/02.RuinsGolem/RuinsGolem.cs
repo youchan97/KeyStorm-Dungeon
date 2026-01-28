@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using static ConstValue;
 
 public class RuinsGolem : MeleeMonster
 {
@@ -150,11 +151,13 @@ public class RuinsGolem : MeleeMonster
     #region 애니메이션이 끝남을 알리는 메서드
     public void OnSlam()
     {
+        audioManager.PlayEffect(GolemSlamSfx);
         OnSlamAnimation?.Invoke();
     }
 
     public void OnRockFall()
     {
+        audioManager.PlayEffect(GolemRockFallSlamSfx);
         OnRockFallAnimation?.Invoke();
     }
     #endregion

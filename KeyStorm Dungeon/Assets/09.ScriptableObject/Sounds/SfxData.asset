@@ -50,9 +50,6 @@ MonoBehaviour:
   - audioKey: GetItem
     audioClip:
     - {fileID: 8300000, guid: fb131bb73c7e09f4b95fdc9329c7d9cc, type: 3}
-    audioKey: GetPotion
-    audioClip:
-    - {fileID: 8300000, guid: 7ad2b1cd944f68f4b999c7ae5187c1fb, type: 3}
   - audioKey: GetBomb
     audioClip:
     - {fileID: 8300000, guid: c7172fd53c8511e41843c2737bd8369a, type: 3}
@@ -81,3 +78,29 @@ MonoBehaviour:
     audioClip:
     - {fileID: 8300000, guid: 44cebd7ef0c72fc47bcc5ecb13085ff9, type: 3}
     - {fileID: 8300000, guid: a38f513de4b8070488ca258919ab795d, type: 3}
+  - audioKey: DesertGuardnerReflection
+    audioClip:
+    - {fileID: 8300000, guid: bfe5dfa105678e84896b92b004fb1c15, type: 3}
+  - audioKey: DesertGuardnerSwing
+    audioClip:
+    - {fileID: 8300000, guid: bdd1390a339118f44bfb58adc2d10226, type: 3}
+    - {fileID: 8300000, guid: e3c93ebbfd847e844a85fa32629612aa, type: 3}
+  - audioKey: DesertGuardnerSpin
+    audioClip:
+    - {fileID: 8300000, guid: a8504cd59bf8a354293bb18899a987fd, type: 3}
+  - audioKey: DesertGuardnerShield
+    audioClip:
+    - {fileID: 8300000, guid: 9cc5b539688688d419f199f1c1fd5f46, type: 3}
+  - audioKey: GolemSlam
+    audioClip:
+    - {fileID: 8300000, guid: f1dd39a158aa13d4fac4224c763f0a59, type: 3}
+  - audioKey: GolemRockFall
+    audioClip:
+    - {fileID: 8300000, guid: 650b036593b35be4482451ad9be56bf7, type: 3}
+  - audioKey: RockDrop
+    audioClip:
+    - {fileID: 8300000, guid: 615dd7d9fdfa14a42a62b96e7b9bbf6e, type: 3}
+    - {fileID: 8300000, guid: 929b139d72c282642ba7e4f57fd2d590, type: 3}
+    - {fileID: 8300000, guid: 32929de85c32e64489f9138c0531ce24, type: 3}
+    - {fileID: 8300000, guid: 1509cb97a2593d647b8a8bd695bfb002, type: 3}
+    - {fileID: 8300000, guid: 477c78731de726143984f62c6ab03fee, type: 3}

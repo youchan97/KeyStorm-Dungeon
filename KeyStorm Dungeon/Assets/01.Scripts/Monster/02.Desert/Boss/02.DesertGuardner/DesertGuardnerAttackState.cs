@@ -137,6 +137,7 @@ public class DesertGuardnerAttackState : MonsterAttackState
     {
         animator.SetBool(SpinAttackAnim, true);
 
+        desertGuardner.AudioManager.PlayEffectLoop(DesertGuardnerSpinSfx);
         desertGuardner.StartSpin();
 
         float currentTime = 0f;
@@ -171,6 +172,7 @@ public class DesertGuardnerAttackState : MonsterAttackState
             yield return null;
         }
 
+        desertGuardner.AudioManager.StopEffectLoop(DesertGuardnerSpinSfx);
         desertGuardner.StopSpin();
         animator.SetBool(SpinAttackAnim, false);
     }
@@ -190,6 +192,7 @@ public class DesertGuardnerAttackState : MonsterAttackState
         Vector2 direction = (desertGuardner.PlayerTransform.position - desertGuardner.transform.position).normalized;
         desertGuardner.FlipSprite(direction.x);
 
+        desertGuardner.AudioManager.PlayEffect(DesertGuardnerShieldSfx);
         animator.SetTrigger(TakeShieldAnim);
 
         yield return new WaitUntil(() => isTakeShieldAnimationFinished == true);
