@@ -248,19 +248,13 @@ public class StoreSlot : MonoBehaviour
 
         //if (!isItemProduct) return;
 
-        if (!inv.TrySpendGold(price))
-        {
-            Debug.Log($"돈부족 need={price}, have={inv.gold}", this);
-            ShowPrice(inv.gold);
-            return;
-        }
-
         switch(type)
         {
             case ConsumableType.Potion:
                 PotionPickup potion = spawnedObj.GetComponent<PotionPickup>();
-                if (potion != null )
-                    potion.TryPickup(player);
+                if (player.Hp >= player.MaxHp || potion == null)
+                    return;
+                potion.TryPickup(player);
                 break;
             case ConsumableType.Bomb:
                 BombPickup bomb = spawnedObj.GetComponent<BombPickup>();
@@ -270,7 +264,14 @@ public class StoreSlot : MonoBehaviour
             default:
                 break;
         }
-       
+
+        if (!inv.TrySpendGold(price))
+        {
+            Debug.Log($"돈부족 need={price}, have={inv.gold}", this);
+            ShowPrice(inv.gold);
+            return;
+        }
+
         if (itemData == null)
             return;
 

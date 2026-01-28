@@ -26,7 +26,7 @@ MonoBehaviour:
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
-    textColor: {r: 1, g: 0.7137255, b: 0.7137255, a: 1}
+    textColor: {r: 1, g: 1, b: 0, a: 1}
   hasQuest: 1
   questTitle: "\uBAAC\uC2A4\uD130 \uCC98\uCE58"
   objectives:
