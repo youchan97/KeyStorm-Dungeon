@@ -28,9 +28,24 @@ MonoBehaviour:
     waitForInput: 1
     autoDelay: 1.5
     textColor: {r: 1, g: 1, b: 1, a: 1}
-  hasQuest: 0
+  - text: "Shift\uD0A4\uB97C \uD65C\uC6A9\uD574 \uD3ED\uD0C4\uC744 \uC0AC\uC6A9\uD560
+      \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+    typingSpeed: 0.03
+    waitForInput: 1
+    autoDelay: 1.5
+    textColor: {r: 1, g: 0.7137255, b: 0.7137255, a: 1}
+  - text: "\uD3ED\uD0C4\uC744 \uAD6C\uB9E4\uD6C4 \uC0AC\uC6A9\uD574\uBCF4\uC790."
+    typingSpeed: 0.03
+    waitForInput: 1
+    autoDelay: 1.5
+    textColor: {r: 1, g: 1, b: 0, a: 1}
+  hasQuest: 1
   questTitle: 
-  objectives: []
+  objectives:
+  - description: "\uD3ED\uD0C4\uC0AC\uC6A9"
+    type: 17
+    targetCount: 1
+    currentCount: 0
   postDialogues: []
   currentRoom: 4
   openDoorsAfterQuest: 0
