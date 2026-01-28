@@ -47,8 +47,13 @@ MonoBehaviour:
     autoDelay: 1.5
     textColor: {r: 1, g: 0.7122642, b: 0.7122642, a: 1}
   - text: "\uB610\uD55C \uD50C\uB808\uC774\uC5B4 \uC8FC\uC704\uC758 \uB178\uB780\uC0C9\uD0A4\uB294
-      \uD2B9\uC218\uACF5\uACA9 \uC785\uB2C8\uB2E4. \uD2B9\uC218\uACF5\uACA9\uC740
-      \uC77C\uBC18\uACF5\uACA9\uC5D0 \uBE44\uD574 \uD070 \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4."
+      \uD2B9\uC218\uACF5\uACA9 \uC785\uB2C8\uB2E4."
+    typingSpeed: 0.03
+    waitForInput: 1
+    autoDelay: 1.5
+    textColor: {r: 1, g: 0.7122642, b: 0.7122642, a: 1}
+  - text: "\uD2B9\uC218\uACF5\uACA9\uC740 \uC77C\uBC18\uACF5\uACA9\uC5D0 \uBE44\uD574
+      \uD070 \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4."
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
