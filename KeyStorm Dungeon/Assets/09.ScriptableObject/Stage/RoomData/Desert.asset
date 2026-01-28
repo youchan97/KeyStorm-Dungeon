@@ -32,3 +32,4 @@ MonoBehaviour:
   - {fileID: 2699900805692073484, guid: 65b7ea8e929ef7447be0f8eb1eb9432d, type: 3}
   horizontalCorridor: {fileID: 11400000, guid: f9cfb68b1ad67bd4bb7ad6a910a58541, type: 2}
   verticalCorridor: {fileID: 11400000, guid: 7b59ea6cb0751a844ac210fd5fc4d2ad, type: 2}
+  backGroundColor: {r: 0.8941177, g: 0.5411765, b: 0.2627451, a: 0}

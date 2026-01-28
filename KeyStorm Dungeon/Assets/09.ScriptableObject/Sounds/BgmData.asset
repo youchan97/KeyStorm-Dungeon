@@ -28,3 +28,9 @@ MonoBehaviour:
   - audioKey: BossBgm
     audioClip:
     - {fileID: 8300000, guid: eb4a236e765ab6b4995106c1d4be9e96, type: 3}
+  - audioKey: Desert
+    audioClip:
+    - {fileID: 8300000, guid: f4f99ea2b10c4714483102a32961b272, type: 3}
+  - audioKey: Ruins
+    audioClip:
+    - {fileID: 8300000, guid: 7ada93385dd042142adace080d79ac21, type: 3}
