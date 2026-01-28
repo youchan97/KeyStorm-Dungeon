@@ -4759,11 +4759,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43a1f36a72cf78d4786c526d49eae1d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tier0Weight: 3
-  tier1Weight: 3
-  tier2Weight: 3
+  tier0Weight: 0
+  tier1Weight: 0
+  tier2Weight: 2
   tier3Weight: 2
-  tier4Weight: 1
+  tier4Weight: 2
 --- !u!4 &2078733432
 Transform:
   m_ObjectHideFlags: 0
@@ -21933,6 +21933,7 @@ MonoBehaviour:
   portalTransform: {fileID: 0}
   itemSpawner: {fileID: 0}
   doors: []
+  isFighting: 0
   doorUp: {fileID: 6982306639597126876}
   doorDown: {fileID: 6982306639597126875}
   doorLeft: {fileID: 6982306639597126878}
@@ -22716,6 +22717,7 @@ MonoBehaviour:
   - {fileID: 6302171540794105242}
   - {fileID: 6302171540794105241}
   - {fileID: 6302171540794105240}
+  isFighting: 0
   doorUp: {fileID: 6302171540794105244}
   doorDown: {fileID: 6302171540794105239}
   doorLeft: {fileID: 6302171540794105246}
@@ -27605,6 +27607,7 @@ MonoBehaviour:
   - {fileID: 1642304498026205646}
   - {fileID: 1642304498026205645}
   - {fileID: 1642304498026205644}
+  isFighting: 0
   doorUp: {fileID: 1642304498026205648}
   doorDown: {fileID: 1642304498026205643}
   doorLeft: {fileID: 1642304498026205650}
@@ -28283,6 +28286,7 @@ MonoBehaviour:
   portalTransform: {fileID: 0}
   itemSpawner: {fileID: 0}
   doors: []
+  isFighting: 0
   doorUp: {fileID: 3688511020239286193}
   doorDown: {fileID: 3688511020239286192}
   doorLeft: {fileID: 3688511020239286195}
@@ -30531,6 +30535,7 @@ MonoBehaviour:
   portalTransform: {fileID: 0}
   itemSpawner: {fileID: 0}
   doors: []
+  isFighting: 0
   doorUp: {fileID: 7526845105935630803}
   doorDown: {fileID: 7526845105935630802}
   doorLeft: {fileID: 7526845105935630805}
