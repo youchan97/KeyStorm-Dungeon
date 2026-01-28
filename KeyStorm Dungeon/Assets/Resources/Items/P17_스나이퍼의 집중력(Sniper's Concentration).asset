@@ -30,7 +30,7 @@ MonoBehaviour:
   damageMultiple: 0
   attackSpeed: 0
   attackSpeedMultiple: 0
-  range: 0
+  range: 2
   rangeMultiple: 0
   shotSpeed: 1
   maxAmmo: 0
@@ -38,4 +38,5 @@ MonoBehaviour:
   scale: 0
   cooldownType: 0
   cooldownMax: 0
-  skillType: 0
+  activeSkillType: 0
+  passiveSkillData: {fileID: 0}
