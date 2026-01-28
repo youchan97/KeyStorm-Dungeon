@@ -1,7 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using static ConstValue;
 
 public class DesertGuardner : MeleeMonster
 {
@@ -117,6 +116,7 @@ public class DesertGuardner : MeleeMonster
     {
         if (isReflect)
         {
+            audioManager.PlayEffect(DesertGuardnerReflectionSfx);
             Animator.SetTrigger(ReflectAnim);
             ReflectBullet();
             return;
@@ -164,6 +164,8 @@ public class DesertGuardner : MeleeMonster
     private void FireBulletFromSwingAttack(int bulletCount)
     {
         if (attackPoolManager == null) return;
+
+        audioManager.PlayEffect(DesertGuardnerSwingSfx);
 
         Vector2 playerDirection = (PlayerTransform.position - transform.position).normalized;
         float halfAngle = swingAngle * 0.5f;
