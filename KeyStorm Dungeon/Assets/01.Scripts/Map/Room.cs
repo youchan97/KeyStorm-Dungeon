@@ -85,7 +85,7 @@ public class Room : MonoBehaviour
         TutorialPlayerHook hook = FindObjectOfType<TutorialPlayerHook>();
         if (hook != null)
         {
-            if (roomType == RoomType.Normal || roomType == RoomType.Boss)
+            if (roomType == RoomType.Normal || roomType == RoomType.Boss || canOpenDoor == false)
             {
                 CloseDoors();
 
