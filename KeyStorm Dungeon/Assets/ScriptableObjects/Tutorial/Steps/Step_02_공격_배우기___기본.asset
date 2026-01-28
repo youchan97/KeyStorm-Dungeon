@@ -61,7 +61,7 @@ MonoBehaviour:
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
-    textColor: {r: 1, g: 1, b: 1, a: 1}
+    textColor: {r: 1, g: 0.7529412, b: 0, a: 1}
   currentRoom: 0
   openDoorsAfterQuest: 0
   wallIndexToOpen: -1
