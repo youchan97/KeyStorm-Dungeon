@@ -141,7 +141,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 250
   m_Sprite: {fileID: 420498261, guid: 14567adecb23e3f4babb2529fed4bada, type: 3}
-  m_Color: {r: 0.654902, g: 0.70980394, b: 0.627451, a: 1}
+  m_Color: {r: 0.77095944, g: 0.9339623, b: 0.8407279, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -200,7 +200,7 @@ MonoBehaviour:
   itemDropSwitch: 1
   isKnockBack: 0
   shootPoint: {fileID: 4151110777735581097}
-  bullet: {fileID: 21300000, guid: e78f66a847cd59749b9e94a46c5bba2c, type: 3}
+  bullet: {fileID: 21300000, guid: f8491efa9c4129f4caf88601ba8a7fee, type: 3}
   idleTime: 1
   moveTime: 3
   projectileLifeTime: 5
