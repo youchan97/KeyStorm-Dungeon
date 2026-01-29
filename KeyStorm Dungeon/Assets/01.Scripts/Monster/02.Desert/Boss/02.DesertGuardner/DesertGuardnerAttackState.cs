@@ -75,6 +75,7 @@ public class DesertGuardnerAttackState : MonsterAttackState
     {
         if (attackCoroutine != null)
         {
+            desertGuardner.AudioManager.StopEffectLoop(DesertGuardnerSpinSfx);
             desertGuardner.StopCoroutine(attackCoroutine);
             attackCoroutine = null;
         }

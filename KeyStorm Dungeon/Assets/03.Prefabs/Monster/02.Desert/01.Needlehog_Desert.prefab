@@ -200,7 +200,7 @@ MonoBehaviour:
   itemDropSwitch: 1
   isKnockBack: 0
   shootPoint: {fileID: 4151110777735581097}
-  bullet: {fileID: 21300000, guid: e78f66a847cd59749b9e94a46c5bba2c, type: 3}
+  bullet: {fileID: 21300000, guid: d5ce2e26580571646b90a9bada702637, type: 3}
   idleTime: 1
   moveTime: 3
   projectileLifeTime: 5
