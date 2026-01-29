@@ -15,7 +15,8 @@ MonoBehaviour:
   itemId: P51
   itemName: "\uC0F7\uAC74"
   itemEnglishName: ShotGun
-  description: "\uACF5\uACA9\uBC1C\uC218 x5 \\n \uACF5\uACA9\uC18D\uB3C4 x0.2"
+  description: "\uD0C4\uC54C\uC774 \uD55C\uBC88\uC5D0 5\uBC1C\uC774 \uB098\uAC00\uAC8C
+    \uB429\uB2C8\uB2E4."
   worldSprite: {fileID: 1193731234, guid: bb5eaa6dfbb17fa4eac4bd261b60b138, type: 3}
   iconSprite: {fileID: 1193731234, guid: bb5eaa6dfbb17fa4eac4bd261b60b138, type: 3}
   attackChange: 1
@@ -38,4 +39,5 @@ MonoBehaviour:
   scale: 0
   cooldownType: 0
   cooldownMax: 0
-  skillType: 0
+  activeSkillType: 0
+  passiveSkillData: {fileID: 0}
