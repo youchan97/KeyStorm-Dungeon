@@ -94,6 +94,7 @@ public class Room : MonoBehaviour
             }
             return;
         }
+        
 
         if (roomType == RoomType.Boss)
             AudioManager.Instance.PlayBgm(BossBgm);
@@ -355,5 +356,6 @@ public class Room : MonoBehaviour
     public void ChangeIsFighting(bool changeBool)
     {
         isFighting = changeBool;
+        if (isFighting== true) CloseDoors();
     }
 }
