@@ -727,6 +727,18 @@ PrefabInstance:
       propertyPath: MinDropForce
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 7277503531260607673, guid: 7091464b26b3ea140b16c0b4038a2c57, type: 3}
+      propertyPath: bombDropSettings.Array.data[0].dropChance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7277503531260607673, guid: 7091464b26b3ea140b16c0b4038a2c57, type: 3}
+      propertyPath: bombDropSettings.Array.data[1].dropChance
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7277503531260607673, guid: 7091464b26b3ea140b16c0b4038a2c57, type: 3}
+      propertyPath: bombDropSettings.Array.data[2].dropChance
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 7358736442692643481, guid: 7091464b26b3ea140b16c0b4038a2c57, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -163,7 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fuseTime: 3
   explosionRadius: 2
-  damageToEnemy: 100
+  damageToEnemy: 50
   damageToPlayer: 1
   bombSr: {fileID: -8739032419200762609}
   minAlphaValue: 0.1
