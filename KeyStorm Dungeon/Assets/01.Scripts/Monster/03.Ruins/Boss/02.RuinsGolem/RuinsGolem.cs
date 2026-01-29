@@ -116,8 +116,7 @@ public class RuinsGolem : MeleeMonster
         return transform.position;
     }
 
-    // 빌드 시 삭제
-    private void OnDrawGizmosSelected()
+    /*private void OnDrawGizmosSelected()
     {
         if (Application.isPlaying)
             return;
@@ -146,7 +145,7 @@ public class RuinsGolem : MeleeMonster
 
         Gizmos.color = Color.white;
         Gizmos.DrawSphere(attackCenter, 0.1f);
-    }
+    }*/
 
     #region 애니메이션이 끝남을 알리는 메서드
     public void OnSlam()

@@ -15,7 +15,7 @@ MonoBehaviour:
   characterData:
     charName: DesertSlime
     id: 16
-    maxHp: 300
+    maxHp: 500
     damage: 1
     moveSpeed: 11
   type: 0
@@ -26,12 +26,6 @@ MonoBehaviour:
   attackSpeed: 2
   projectileColliderOffset: {x: 0, y: 0}
   projectileColliderRadius: 0.1
-  separationRaduis: 0
-  separationStrength: 0
-  pathfindingWeight: 0
-  separationWeight: 0
-  maxSteeringForce: 0
-  mass: 0
   minDropGold: 140
   maxDropGold: 160
   minStage: 0

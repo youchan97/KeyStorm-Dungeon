@@ -192,7 +192,7 @@ public class StageManager : MonoBehaviour
 
                 default:
                     if(bossNodes.Contains(node))
-                        curRoom = curRoomData.bossRooms[Random.Range(0, curRoomData.bossRooms.Count)];
+                        curRoom = stageData.bossRoom;
                     else
                         curRoom = spawnPool[i++];
                     break;

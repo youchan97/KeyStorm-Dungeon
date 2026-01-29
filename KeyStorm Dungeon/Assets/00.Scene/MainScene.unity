@@ -1370,9 +1370,57 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1042737190824003098, guid: c274f8e2cc998584683a018bfbf1d6b9, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1042737190824003098, guid: c274f8e2cc998584683a018bfbf1d6b9, type: 3}
+      propertyPath: m_margin.w
+      value: -92.75064
+      objectReference: {fileID: 0}
+    - target: {fileID: 1042737190824003098, guid: c274f8e2cc998584683a018bfbf1d6b9, type: 3}
+      propertyPath: m_margin.z
+      value: -213.9801
+      objectReference: {fileID: 0}
+    - target: {fileID: 1042737190824003098, guid: c274f8e2cc998584683a018bfbf1d6b9, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1042737190824003098, guid: c274f8e2cc998584683a018bfbf1d6b9, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1042737190824003098, guid: c274f8e2cc998584683a018bfbf1d6b9, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570069196465463542, guid: c274f8e2cc998584683a018bfbf1d6b9, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570069196465463542, guid: c274f8e2cc998584683a018bfbf1d6b9, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570069196465463542, guid: c274f8e2cc998584683a018bfbf1d6b9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570069196465463542, guid: c274f8e2cc998584683a018bfbf1d6b9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -66
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561478421382401229, guid: c274f8e2cc998584683a018bfbf1d6b9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7160646875019582740, guid: c274f8e2cc998584683a018bfbf1d6b9, type: 3}
       propertyPath: m_Name
       value: WorldItemUIWidget
+      objectReference: {fileID: 0}
+    - target: {fileID: 7160646875019582740, guid: c274f8e2cc998584683a018bfbf1d6b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3894,6 +3942,10 @@ PrefabInstance:
     - target: {fileID: 4418257168986828744, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4425620969549281653, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4449957609766367436, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
       propertyPath: m_AnchorMax.y
