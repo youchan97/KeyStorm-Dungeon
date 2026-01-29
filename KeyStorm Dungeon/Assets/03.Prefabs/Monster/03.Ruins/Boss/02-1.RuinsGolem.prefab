@@ -291,13 +291,13 @@ MonoBehaviour:
   - {fileID: 4075306053442613739, guid: 78d5513b8064d694d9b52790728bac3e, type: 3}
   - {fileID: 1981633695660883710, guid: 10836e470d0684c45b62d7e7e704bc91, type: 3}
   slamInnerRadius:
-  - 3
-  - 5
-  - 7
+  - 4
+  - 6
+  - 8
   slamOuterRadius:
-  - 5
-  - 7
-  - 9
+  - 6
+  - 8
+  - 10
   slamDelay: 1
   shadowPrefab: {fileID: 445605593270070937, guid: a6c9513a35861c948acb6ba29dadd095, type: 3}
   rockPrefab: {fileID: 3678544432346238099, guid: 2e94fe42e47003a4fa6307afb22fd106, type: 3}
@@ -342,7 +342,7 @@ Transform:
   m_GameObject: {fileID: 8246433771492678049}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 4, z: 0}
+  m_LocalPosition: {x: 0, y: 6.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -515,5 +515,5 @@ MonoBehaviour:
   bullet: {fileID: 0}
   ruinsGolem: {fileID: 1660328828384029767}
   idleTime: 3
-  minMoveDuration: 3
-  maxMoveDuration: 5
+  minMoveDuration: 4
+  maxMoveDuration: 6

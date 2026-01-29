@@ -23,5 +23,5 @@ MonoBehaviour:
   duration: 2
   damageMultiple: 20
   explodeEffect: {fileID: 11400000, guid: 7c80f18366157ed40a0330cb9c489aba, type: 2}
-  shakePower: 2
-  shakeDuration: 0.5
+  shakePower: 10
+  shakeDuration: 0.7
