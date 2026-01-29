@@ -624,8 +624,6 @@ public class PlayerAttack : MonoBehaviour
         UseAmmo = data.useAmmo;
         if (MaxAmmo < Ammo)
             Ammo = MaxAmmo;
-        else
-            Ammo = data.ammo;
         if(data.attackRundata.isShotGun)
             canShotGun = data.attackRundata.isShotGun;
 
