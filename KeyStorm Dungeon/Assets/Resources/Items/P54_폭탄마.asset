@@ -29,7 +29,7 @@ MonoBehaviour:
   specialDamageMultiple: 0
   damageMultiple: 5
   attackSpeed: 0
-  attackSpeedMultiple: 0.1
+  attackSpeedMultiple: 0.5
   range: 0
   rangeMultiple: 0
   shotSpeed: 0
