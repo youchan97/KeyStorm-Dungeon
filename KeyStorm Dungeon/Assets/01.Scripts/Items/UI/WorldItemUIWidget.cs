@@ -222,10 +222,10 @@ public class WorldItemUIWidget : MonoBehaviour
     {
         StringBuilder sb = new StringBuilder();
 
-        if (data.attackChange)
-        {
-            sb.AppendLine("<color=#FFD700> 공격 방식 변화</color>");
-        }
+        //if (data.attackChange)
+        //{
+        //    sb.AppendLine("<color=#FFD700> 공격 방식 변화</color>");
+        //}
 
         if (data.isActiveItem)
         {

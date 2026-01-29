@@ -41,16 +41,12 @@ public class TutorialManager : MonoBehaviour
 
     private void Start()
     {
-#if UNITY_EDITOR
         PlayerPrefs.SetInt("TutorialCompleted", 0);
-#endif
-
         if (PlayerPrefs.GetInt("TutorialCompleted", 0) == 1)
         {
             gameObject.SetActive(false);
             return;
         }
-
         if (skipUI != null)
             skipUI.OnSkipConfirmed += SkipTutorial;
 
