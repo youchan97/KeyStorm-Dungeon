@@ -211,7 +211,7 @@ public class WorldItemUIWidget : MonoBehaviour
 
     private string FormatStatPercent(string statName, float value)
     {
-        string colorTag = value > 0 ? "<color=#00FF00>" : "<color=#FF0000>";
+        string colorTag = value >= 1 ? "<color=#00FF00>" : "<color=#FF0000>";
         string sign = "";
         float percentage = value * 100f;
 
