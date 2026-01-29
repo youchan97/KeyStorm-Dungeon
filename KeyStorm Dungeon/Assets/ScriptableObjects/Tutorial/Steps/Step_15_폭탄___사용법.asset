@@ -30,9 +30,9 @@ MonoBehaviour:
     autoDelay: 1.5
     textColor: {r: 1, g: 1, b: 0, a: 1}
   hasQuest: 1
-  questTitle: "\uD3ED\uD0C4 \uB358\uC9C0"
+  questTitle: "\uACF5\uACA9\uD0A4 \uB204\uB974\uAE30"
   objectives:
-  - description: "\uD3ED\uD0C4 \uB358\uC9C0\uAE30"
+  - description: "\uACF5\uACA9\uD0A4 \uB204\uB974"
     type: 5
     targetCount: 1
     currentCount: 0
