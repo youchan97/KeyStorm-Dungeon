@@ -240,17 +240,14 @@ public class StoreSlot : MonoBehaviour
 
         if (spawnedObj == null) return;
 
-        if (price <= 0)
-        {
-            Debug.LogWarning("[StoreSlot] price가 0 이하라 구매를 막음", this);
-            return;
-        }
+      
 
         //if (!isItemProduct) return;
-        if (price <= 0 && inv.gold < price)
+        if (price <= 0 || inv.gold < price)
         {
             Debug.Log($"돈부족 need={price}, have={inv.gold}", this);
             ShowPrice(inv.gold);
+            return;
         }else{
             switch (type)
             {
