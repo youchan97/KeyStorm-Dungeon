@@ -398,7 +398,7 @@ public class PlayerAttack : MonoBehaviour
         for (int i = 0; i < useAmmo; i++)
         {
             float normalDamage = Damage * DamageMultiple;
-            float totalDamage = isSpecial ? (Damage * SpecialDamageMultiple) : Damage;
+            float totalDamage = isSpecial ? (normalDamage * SpecialDamageMultiple) : normalDamage;
             totalDamage = player.PlayerEffectStat.GetDamage(totalDamage);
             Vector2 dir = keyDic[keyName].normalized;
             if(canShotGun)
@@ -624,8 +624,6 @@ public class PlayerAttack : MonoBehaviour
         UseAmmo = data.useAmmo;
         if (MaxAmmo < Ammo)
             Ammo = MaxAmmo;
-        else
-            Ammo = data.ammo;
         if(data.attackRundata.isShotGun)
             canShotGun = data.attackRundata.isShotGun;
 

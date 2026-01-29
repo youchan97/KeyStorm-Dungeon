@@ -15,7 +15,7 @@ MonoBehaviour:
   characterData:
     charName: RuinsSlime
     id: 17
-    maxHp: 250
+    maxHp: 400
     damage: 1
     moveSpeed: 8
   type: 0
