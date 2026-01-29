@@ -16,5 +16,6 @@ MonoBehaviour:
   roomData: {fileID: 11400000, guid: 278fc495af613a349a98d04591bd4ee2, type: 2}
   totalRoomCount: 11
   bossRoomCount: 1
+  bossRoom: {fileID: 5150652526908895158, guid: c91c307d6fea4bf4c810e5dd1a7aef85, type: 3}
   treasureRoomCount: 1
   shopRoomCount: 1
