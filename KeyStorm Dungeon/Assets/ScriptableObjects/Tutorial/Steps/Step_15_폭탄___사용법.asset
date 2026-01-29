@@ -32,7 +32,7 @@ MonoBehaviour:
   hasQuest: 1
   questTitle: "\uACF5\uACA9\uD0A4 \uB204\uB974\uAE30"
   objectives:
-  - description: "\uACF5\uACA9\uD0A4 \uB204\uB974"
+  - description: "\uACF5\uACA9\uD0A4 \uB204\uB974\uAE30"
     type: 5
     targetCount: 1
     currentCount: 0
