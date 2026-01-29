@@ -283,6 +283,16 @@ public class TutorialManager : MonoBehaviour
 
         ResetPlayerData();
 
+        if (GameDataManager.Instance != null)
+        {
+            GameDataManager.Instance.ResetAllData();
+        }
+
+        if (GameTimeManager.Instance != null)
+        {
+            GameTimeManager.Instance.ResetTimer();
+        }
+
         PlayerPrefs.SetInt("TutorialCompleted", 1);
         PlayerPrefs.Save();
 
