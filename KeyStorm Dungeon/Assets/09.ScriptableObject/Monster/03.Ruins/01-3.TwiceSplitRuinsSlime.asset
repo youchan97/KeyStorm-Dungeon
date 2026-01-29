@@ -15,7 +15,7 @@ MonoBehaviour:
   characterData:
     charName: TwiceSplitRuinsSlime
     id: 19
-    maxHp: 50
+    maxHp: 100
     damage: 1
     moveSpeed: 12
   type: 0

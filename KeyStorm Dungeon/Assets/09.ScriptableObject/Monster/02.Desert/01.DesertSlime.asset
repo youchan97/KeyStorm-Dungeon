@@ -15,7 +15,7 @@ MonoBehaviour:
   characterData:
     charName: DesertSlime
     id: 16
-    maxHp: 500
+    maxHp: 600
     damage: 1
     moveSpeed: 11
   type: 0
