@@ -24,6 +24,7 @@ public class InventoryUi : MonoBehaviour
     [SerializeField] TextMeshProUGUI itemNameEng;
     [SerializeField] TextMeshProUGUI itemTier;
     [SerializeField] TextMeshProUGUI itemStatus;
+    [SerializeField] TextMeshProUGUI itemDes;
 
     [Header("Status 관련")]
     [SerializeField] TextMeshProUGUI moveSpeedText;
@@ -189,6 +190,8 @@ public class InventoryUi : MonoBehaviour
         itemNameEng.text = data.itemEnglishName;
         itemTier.text = string.Format("Tier : {0}", widget.GetTierText(tier));
         itemStatus.text = widget.BuildStatsText(data);
+        if (data.description != null || data.description != "")
+            itemDes.text = data.description;
     }
 
     void TextColorSetting(ItemTier tier)
