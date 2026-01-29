@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageIndex: 3
   roomData: {fileID: 11400000, guid: 6bb5d72916c180043bd68b37f4981991, type: 2}
-  totalRoomCount: 13
+  totalRoomCount: 12
   bossRoomCount: 1
+  bossRoom: {fileID: 5150652526908895158, guid: 593cee359efe0ce45980bb72da2a13bd, type: 3}
   treasureRoomCount: 1
   shopRoomCount: 1

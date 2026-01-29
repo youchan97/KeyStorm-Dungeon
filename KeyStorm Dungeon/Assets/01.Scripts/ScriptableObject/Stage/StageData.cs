@@ -10,6 +10,7 @@ public class StageData : ScriptableObject
     public StageRoomData roomData;
     public int totalRoomCount;
     public int bossRoomCount;
+    public Room bossRoom;
     public int treasureRoomCount;
     public int shopRoomCount;
 }
