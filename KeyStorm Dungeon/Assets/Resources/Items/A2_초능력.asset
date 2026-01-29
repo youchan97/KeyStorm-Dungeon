@@ -37,6 +37,6 @@ MonoBehaviour:
   useAmmo: 0
   scale: 0
   cooldownType: 2
-  cooldownMax: 10
+  cooldownMax: 20
   activeSkillType: 1
   passiveSkillData: {fileID: 0}
