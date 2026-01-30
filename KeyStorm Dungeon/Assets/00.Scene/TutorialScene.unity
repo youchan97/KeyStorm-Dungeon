@@ -3549,6 +3549,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a1d42a8680449f4898f71b29c595678, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &1824307159 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3463246886144797168, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
+  m_PrefabInstance: {fileID: 1824307157}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1835394590
 GameObject:
   m_ObjectHideFlags: 0
@@ -3622,7 +3627,7 @@ MonoBehaviour:
   mainGameSceneName: MainScene
   stepTransitionDelay: 0.5
   bossHpBarPrefab: {fileID: 4693454531127502876, guid: 0b71f91a49c5ebd4da1449722febf22d, type: 3}
-  bossHpBarLayout: {fileID: 0}
+  bossHpBarLayout: {fileID: 1824307159}
 --- !u!1 &1851911122
 GameObject:
   m_ObjectHideFlags: 0

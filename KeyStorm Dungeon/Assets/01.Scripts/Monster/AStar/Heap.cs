@@ -110,7 +110,7 @@ public class Heap<T> where T : IHeapItem<T>
         {
             T parentItem = items[parentIndex];
 
-            if(item.CompareTo(parentItem) > 0)
+            if (item.CompareTo(parentItem) > 0)
             {
                 Swap(item, parentItem);
             }

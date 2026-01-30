@@ -39,6 +39,6 @@ public class Node : IHeapItem<Node>
             compare = hCost.CompareTo(nodeToCompare.hCost);
         }
 
-        return -compare;
+        return -compare;    // 최대 힙 구현에 맞게 부호 반전
     }
 }

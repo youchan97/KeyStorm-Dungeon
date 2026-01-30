@@ -13,7 +13,7 @@ public class Grid
     private Tilemap airObstacleTilemap;     // 공중 유닛을 막는 장애물
     private Tilemap universalObstacleTilemap;// 모든 유닛을 막는 장애물
 
-    private Vector3Int origin;
+    private Vector3Int origin;  // 그리드 시작 좌표
 
     public Grid(Tilemap baseGroundMap, Tilemap groundObstacleMap, Tilemap airObstacleMap, Tilemap universalObstacleMap)
     {
@@ -22,6 +22,7 @@ public class Grid
         this.airObstacleTilemap = airObstacleMap;
         this.universalObstacleTilemap = universalObstacleMap;
 
+        // 타일맵 범위를 읽어 그리드 크기 및 시작 위치 설정
         BoundsInt bounds = baseGroundMap.cellBounds;
         gridSize = new Vector3Int(bounds.size.x, bounds.size.y, 1);
         origin = bounds.min;
@@ -35,18 +36,20 @@ public class Grid
             {
                 Vector3Int cellPos = new Vector3Int(origin.x + x, origin.y + y, 0);
 
+                // 기본 지형이 없는 칸은 이동 불가 노드
                 bool hasBaseGround = (baseGroundTilemap.GetTile(cellPos) != null);
-
                 if (!hasBaseGround)
                 {
                     nodes[x, y] = new Node(new Vector3Int(x, y, 0), false, false);
                     continue;
                 }
 
+                // 장애물 검사
                 bool hasGroundObstacle = (groundObstacleTilemap != null && groundObstacleMap.GetTile(cellPos) != null);
                 bool hasAirObstacle = (airObstacleTilemap != null && airObstacleTilemap.GetTile(cellPos) != null);
                 bool hasUnivesalObstacle = (universalObstacleTilemap != null && universalObstacleTilemap.GetTile(cellPos) != null);
 
+                // 유닛 타입별 이동 가능 결정
                 bool isWalkableGround = !hasGroundObstacle && !hasUnivesalObstacle;
                 bool isWalkableAir = !hasAirObstacle && !hasUnivesalObstacle;
 
@@ -55,7 +58,7 @@ public class Grid
         }
     }
 
-    // 월드 좌표를 그리드의 Node 객체로 변환
+    // 월드 좌표를 그리드의 Node객체로 변환
     public Node GetNodeFromWorldPoint(Vector3 worldPosition)
     {
         if (baseGroundTilemap == null) return null;
@@ -72,7 +75,7 @@ public class Grid
         return null;
     }
 
-    // Node 객체의 그리드 인덱스를 실제 월드 좌표로 변환
+    // Node객체의 그리드 인덱스를 실제 월드 좌표로 변환
     public Vector3 GetWorldPointFromNode(Node node)
     {
         if (baseGroundTilemap == null || node == null) return Vector3.zero;
@@ -99,14 +102,15 @@ public class Grid
 
                 if (checkX >= 0 && checkX < gridSize.x && checkY >= 0 && checkY < gridSize.y)
                 {
-                    if(x != 0 && y != 0)
+                    // 대각선 이동 시 장애물 회피
+                    if (x != 0 && y != 0)
                     {
                         Node nodeX = nodes[node.gridPos.x + x, node.gridPos.y];
                         Node nodeY = nodes[node.gridPos.x, node.gridPos.y + y];
 
                         bool canMoveDiagonal = true;
 
-                        if(unitType == UnitType.Ground)
+                        if (unitType == UnitType.Ground)
                         {
                             if (!nodeX.isWalkableGround || !nodeY.isWalkableGround)
                             {
@@ -128,7 +132,6 @@ public class Grid
                 }
             }
         }
-
         return neighbors;
     }
 }

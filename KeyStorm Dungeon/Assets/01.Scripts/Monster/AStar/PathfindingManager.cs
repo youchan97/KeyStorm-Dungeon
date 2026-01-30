@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class PathfindingManager : SingletonManager<PathfindingManager>
@@ -10,6 +7,7 @@ public class PathfindingManager : SingletonManager<PathfindingManager>
         base.Awake();
     }
 
+    // 방의 Pathfinding 객체 생성
     public Pathfinding CreateRoomPathfinding(Tilemap baseGroundmap, Tilemap groundObstacleMap, Tilemap airObstacleMap, Tilemap universalObstacleMap)
     {
         if (baseGroundmap == null) return null;
