@@ -186,7 +186,7 @@ public class InventoryUi : MonoBehaviour
         itemBackGround.sprite = widget.GetTierBackground(tier);
         itemImage.sprite = data.iconSprite;
         TextColorSetting(tier);
-        itemNameKor.text = data.name;
+        itemNameKor.text = data.itemName;
         itemNameEng.text = data.itemEnglishName;
         itemTier.text = string.Format("Tier : {0}", widget.GetTierText(tier));
         itemStatus.text = widget.BuildStatsText(data);
