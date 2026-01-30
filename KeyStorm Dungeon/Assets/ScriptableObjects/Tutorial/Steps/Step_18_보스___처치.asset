@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3796b2a55b949144adae7e817f86f83, type: 3}
-  m_Name: "Step_17_\uBCF4\uC2A4___\uCC98\uCE58"
+  m_Name: "Step_18_\uBCF4\uC2A4___\uCC98\uCE58"
   m_EditorClassIdentifier: 
-  stepIndex: 18
+  stepIndex: 19
   stepName: "\uBCF4\uC2A4 - \uCC98\uCE58"
   waitForRoomEnter: 0
   targetRoomType: 0
@@ -29,19 +29,15 @@ MonoBehaviour:
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
-    textColor: {r: 1, g: 1, b: 1, a: 1}
   - text: "\uBCF4\uC2A4\uAC00 \uC544\uC774\uD15C\uC744 \uB5A8\uC5B4\uB728\uB838\uAD70."
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
-    textColor: {r: 1, g: 1, b: 1, a: 1}
   - text: "\uADF8\uB9AC\uACE0 \uD3EC\uD0C8\uC774 \uC5F4\uB838\uC5B4."
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
-    textColor: {r: 1, g: 1, b: 1, a: 1}
   currentRoom: 2
   openDoorsAfterQuest: 0
-  wallIndexToOpen: -1
   blockInputDuringDialogue: 1
   resetMoveTrackingOnStart: 0

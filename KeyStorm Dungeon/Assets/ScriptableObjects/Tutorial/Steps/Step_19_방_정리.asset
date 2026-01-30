@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3796b2a55b949144adae7e817f86f83, type: 3}
-  m_Name: "Step_18_\uBC29_\uC815\uB9AC"
+  m_Name: "Step_19_\uBC29_\uC815\uB9AC"
   m_EditorClassIdentifier: 
-  stepIndex: 19
+  stepIndex: 20
   stepName: "\uBC29 \uC815\uB9AC"
   waitForRoomEnter: 0
   targetRoomType: 0
