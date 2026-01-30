@@ -112,7 +112,7 @@ public class PlayerAttack : MonoBehaviour
     public Dictionary<string, bool> KeyCoolDic { get => keyCoolDic; }
     public ThrownBomb Bomb { get => bomb; set => bomb = value; }
 
-    public bool CanBomb { get => canBomb; }
+    public ThrownBomb CurBomb { get => curBomb; }
     #endregion
 
     private void Start()

@@ -9,6 +9,8 @@ public class TutorialPlayerHook : MonoBehaviour
     private bool hasMovedUp, hasMovedDown, hasMovedLeft, hasMovedRight;
     private TutorialManager tutorialManager;
 
+    bool canThrowBomb = false;
+
     private void Awake()
     {
         if (playerController == null)
@@ -33,7 +35,7 @@ public class TutorialPlayerHook : MonoBehaviour
             if (playerController != null)
             {
                 playerController.OnMove += HandleMove;
-                playerController.OnShoot += HandleShoot;
+                playerController.OnShoot += HandleShootAndBomb;
                 playerController.OnBomb += HandleBomb;
                 playerController.OnUseActiveItem += HandleSpecialAttack;
                 Debug.Log("[TutorialPlayerHook] PlayerController 연결 완료!");
@@ -50,7 +52,7 @@ public class TutorialPlayerHook : MonoBehaviour
         if (playerController != null)
         {
             playerController.OnMove += HandleMove;
-            playerController.OnShoot += HandleShoot;
+            playerController.OnShoot += HandleShootAndBomb;
             playerController.OnBomb += HandleBomb;
             playerController.OnUseActiveItem += HandleSpecialAttack;
         }
@@ -60,7 +62,7 @@ public class TutorialPlayerHook : MonoBehaviour
     {
         if (playerController == null) return;
         playerController.OnMove -= HandleMove;
-        playerController.OnShoot -= HandleShoot;
+        playerController.OnShoot -= HandleShootAndBomb;
         playerController.OnBomb -= HandleBomb;
         playerController.OnUseActiveItem -= HandleSpecialAttack;
     }
@@ -99,8 +101,30 @@ public class TutorialPlayerHook : MonoBehaviour
         { hasMovedRight = true; tutorialManager.ReportQuestProgress(QuestType.MoveRight); }
     }
 
-    void HandleShoot() => tutorialManager?.ReportQuestProgress(QuestType.Shoot);
-    void HandleBomb() => tutorialManager?.ReportQuestProgress(QuestType.UseBomb);
+    void HandleShootAndBomb()
+    {
+        if(canThrowBomb)
+        {
+            tutorialManager?.ReportQuestProgress(QuestType.UseBomb);
+            canThrowBomb = false;
+        }
+        else
+            tutorialManager?.ReportQuestProgress(QuestType.Shoot);
+    }
+    void HandleBomb()
+    {
+        Player player = FindFirstObjectByType<Player>();
+
+        if (player.PlayerAttack.CurBomb != null)
+            canThrowBomb = true;
+        else
+        {
+            if(player.Inventory.bombCount != 0)
+            {
+                canThrowBomb = true;
+            }
+        }         
+    }
     void HandleSpecialAttack() => tutorialManager?.ReportQuestProgress(QuestType.SpecialShoot);
 
     public void ReportItemPickup() => tutorialManager?.ReportQuestProgress(QuestType.PickupItem);

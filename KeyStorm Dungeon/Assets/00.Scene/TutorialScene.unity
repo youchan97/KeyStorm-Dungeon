@@ -3401,6 +3401,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1320209388956021136, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320209388956021136, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320209388956021136, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320209388956021136, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1759059543413838959, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -3420,6 +3436,22 @@ PrefabInstance:
     - target: {fileID: 6666980126985427679, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
       propertyPath: m_Name
       value: GameSceneUi
+      objectReference: {fileID: 0}
+    - target: {fileID: 9150251824016508006, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9150251824016508006, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9150251824016508006, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9150251824016508006, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9173897955583598746, guid: 422bb73140737a74a94742234f1e72ef, type: 3}
       propertyPath: m_Pivot.x
@@ -3577,8 +3609,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 236c5fa1606c1ed468778c286e296d42, type: 2}
   - {fileID: 11400000, guid: 19168ba407bbc084fb00de2e49d68201, type: 2}
   - {fileID: 11400000, guid: 6e15d488e38951d4494fdfac62c3fbf9, type: 2}
-  - {fileID: 11400000, guid: 5161f05c1da72c44ab45465e8f452722, type: 2}
-  - {fileID: 11400000, guid: 495487ac0aa2e3c4bbed7b781e743638, type: 2}
+  - {fileID: 11400000, guid: 3269b933c55729342ab1b0b94a21f322, type: 2}
   - {fileID: 11400000, guid: 8b70190a2d046ba4cb24fecec144693e, type: 2}
   - {fileID: 11400000, guid: c8a18f041d71db9418ddfd845148b306, type: 2}
   - {fileID: 11400000, guid: 7b7626191f720724b838cba96a8d290b, type: 2}
