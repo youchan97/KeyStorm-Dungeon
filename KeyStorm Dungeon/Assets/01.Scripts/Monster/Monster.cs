@@ -6,7 +6,7 @@ using static ConstValue;
 public abstract class Monster : Character
 {
     public CharacterStateManager<Monster> MonsterStateManager { get; protected set; }
-    [SerializeField] private MonsterData monsterData;
+    [SerializeField] private MonsterData _monsterData;
     [SerializeField] protected SpriteRenderer monsterSpriteRenderer;
     [SerializeField] private Animator animator;
 
@@ -27,11 +27,9 @@ public abstract class Monster : Character
     [SerializeField] protected bool itemDropSwitch = true;
 
     protected AudioManager audioManager;
-    protected Rigidbody2D monsterRb;
-    protected float currentAttackCooldown;
 
-    #region 속성
-    public MonsterData MonsterData => monsterData;
+    public MonsterData MonsterData => _monsterData;
+    private Rigidbody2D monsterRb;
     public Rigidbody2D MonsterRb => monsterRb;
     public Animator Animator => animator;
     public LayerMask ObstacleLayer => obstacleLayer;
@@ -43,22 +41,20 @@ public abstract class Monster : Character
     public Transform PlayerTransform { get; protected set; }
     public Player player { get; protected set; }
     public bool ItemDropSwitch => itemDropSwitch;
+
+    protected float currentAttackCooldown;
     public float CurrentAttackCooldown => currentAttackCooldown;
-    #endregion
 
     public abstract CharacterState<Monster> CreateIdleState();
     public abstract CharacterState<Monster> CreateMoveState();
     public abstract CharacterState<Monster> CreateAttackState();
     public abstract CharacterState<Monster> CreateDieState();
 
-    // 몬스터 이벤트
     public event Action OnMonsterDied;
     public event Action OnTakeDamage;
     
-    // 몬스터가 소환될 방
     public Room MyRoom { get; set; }
 
-    // 넉백 아이템 관련 속성
     public bool isKnockBack;
     Coroutine knockBackCo;
 
@@ -75,12 +71,11 @@ public abstract class Monster : Character
 
         MonsterStateManager = new CharacterStateManager<Monster>(this);
 
-        if (monsterData != null)
+        if (_monsterData != null)
         {
-            // 몬스터 데이터 적용
-            InitCharData(monsterData.characterData);
+            InitCharData(_monsterData.characterData);
             currentAttackCooldown = 0f;
-            transform.localScale = new Vector3(monsterData.xScale, monsterData.yScale, 1f);
+            transform.localScale = new Vector3(_monsterData.xScale, _monsterData.yScale, 1f);
         }
         else
         {
@@ -106,11 +101,10 @@ public abstract class Monster : Character
         else
         {
             PlayerTransform = PlayerGO.transform;
-            // player가 죽었을 시 사용할 이벤트 구독
             player.OnDie += OnStopChase;
-            // Idle상태로 시작
             MonsterStateManager.ChangeState(CreateIdleState());
         }
+
     }
 
     protected virtual void OnDisable()
@@ -120,7 +114,6 @@ public abstract class Monster : Character
 
     protected override void Update()
     {
-        // FSM 기반 상태별 Update 실행
         MonsterStateManager.Update();
 
         if (currentAttackCooldown > 0f)
@@ -132,7 +125,6 @@ public abstract class Monster : Character
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
-        // FSM 기반 상태별 FixedUpdate 실행
         MonsterStateManager.FixedUpdate();
     }
 
@@ -141,12 +133,11 @@ public abstract class Monster : Character
         base.Attack(character);
     }
 
-    // 공격 쿨타임을 리셋
     public void ResetAttackCooldown()
     {
-        if (monsterData != null)
+        if (_monsterData != null)
         {
-            currentAttackCooldown = monsterData.attackSpeed;
+            currentAttackCooldown = _monsterData.attackSpeed;
         }
         else
         {
@@ -154,13 +145,10 @@ public abstract class Monster : Character
         }
     }
 
-    // 데미지를 몬스터 체력에 적용하는 메서드
     public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
-        // 피격 애니메이션 실행
         animator.SetTrigger(HurtAnim);
-        // 보스 체력바 UI에 감소된 체력 적용
         if (MonsterData.tier == MonsterTier.Boss)
         {
             OnTakeDamage?.Invoke();
@@ -170,15 +158,18 @@ public abstract class Monster : Character
     public override void Die()
     {
         base.Die();
-        // 이벤트에 구독된 메서드 실행
         OnMonsterDied?.Invoke();
-        // Die 상태로 변경
+
         MonsterStateManager.ChangeState(CreateDieState());
 
         if (MyRoom != null)
         {
-            // 몬스터가 속한 방의 몬스터 리스트에서 제거 (방에서의 몬스터 생사여부 확인용)
             MyRoom.RemoveMonster(this);
+
+            /*if (MonsterData != null && MonsterData.tier == MonsterTier.Boss)
+            {
+                MyRoom.StageClear(transform.position);
+            }*/
         }
 
         TutorialPlayerHook hook = FindObjectOfType<TutorialPlayerHook>();
@@ -193,7 +184,7 @@ public abstract class Monster : Character
         }
     }
 
-    // 현재 이동방향에 따라 스프라이트를 반전 (왼쪽 방향 스프라이트만 존재시)
+    // 몬스터가 플레이어 위치에 따라 스프라이트 반전에서 현재 이동방향에 따라 반전하도록 하는 것이 올바름
     public virtual void FlipSprite(float moveDirectionX)
     {
         if (monsterSpriteRenderer == null) return;
@@ -208,12 +199,10 @@ public abstract class Monster : Character
         }
     }
 
-    // 몬스터의 공격 방향에 따라 스프라이트를 반전 (왼쪽 방향 스프라이트만 존재시)
     public virtual void FlipSpriteAttack(Transform playerTransform)
     {
         if (playerTransform == null && monsterSpriteRenderer == null) return;
 
-        //
         if (playerTransform.position.x < monsterRb.position.x)
         {
             monsterSpriteRenderer.flipX = false;
@@ -230,14 +219,12 @@ public abstract class Monster : Character
         OnMonsterDied?.Invoke();
     }
 
-    // 방을 몬스터의 방으로 지정한 뒤 해당 방의 플레이어를 가져오는 메서드
     public void SetMyRoom(Room room)
     {
         MyRoom = room;
         player = room.Player;
     }
 
-    // 플레이어가 죽었을 때 Idle 상태로 변경하는 메서드
     public void ChangeStateToPlayerDied()
     {
         MonsterStateManager.ChangeState(CreateIdleState());
@@ -245,7 +232,6 @@ public abstract class Monster : Character
 
     protected void OnStopChase() => PlayerGO = null;
 
-    // 넉백 아이템 사용시 적용되는 메서드
     public void ApplyKnockBack(Vector2 dir, float force, float duration)
     {
         if(knockBackCo != null)
@@ -253,14 +239,11 @@ public abstract class Monster : Character
             StopCoroutine(knockBackCo);
             knockBackCo = null;
         }
-        // 넉백 코루틴 실행
         knockBackCo = StartCoroutine(KnockBackRoutine(dir, force, duration));
     }
 
-    // 넉백 코루틴
     IEnumerator KnockBackRoutine(Vector2 dir, float force, float duration)
     {
-        // 넉백 중임을 알림 - 움직임 Update 제어용
         isKnockBack = true;
         float originDrag = MonsterRb.drag;
         MonsterRb.drag = 0f;
@@ -275,10 +258,8 @@ public abstract class Monster : Character
         knockBackCo = null;
     }
 
-    // 소환하는 몬스터가 있을 경우 벽 너머에 소환하는 것을 방지
     protected bool IsSpawnPositionValid(Vector3 position, float radius, LayerMask layerMask)
     {
-        // 몬스터의 위치와 반경을 검사하여 주변에 벽이 존재할 경우 null 리턴
         return Physics2D.OverlapCircle(position, radius, layerMask) == null;
     }
 }
