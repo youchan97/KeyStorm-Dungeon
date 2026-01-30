@@ -32,6 +32,7 @@ public class RuinsGolem : MeleeMonster
     [SerializeField] private float rockFallShakeCameraDuration;
     [SerializeField] private float damageRadius;
 
+    #region 속성
     public float IdleTime => idleTime;
     public float AttackDelay => attackDelay;
     public GameObject[] SlamEffect => slamEffect;
@@ -51,6 +52,7 @@ public class RuinsGolem : MeleeMonster
     public float RockFallShakeCameraPower => rockFallShakeCameraPower;
     public float RockFallShakeCameraDuration => rockFallShakeCameraDuration;
     public float DamageRadius => damageRadius;
+    #endregion
 
     public event Action OnSlamAnimation;
     public event Action OnRockFallAnimation;

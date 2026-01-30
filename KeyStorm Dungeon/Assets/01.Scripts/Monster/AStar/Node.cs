@@ -24,7 +24,6 @@ public class Node : IHeapItem<Node>
         this.isWalkableAir = isWalkableAir;
     }
 
-
     /// <summary>
     /// 두 노드를 비교해 F 비용이 낮은 노드를 우선
     /// F 비용이 같다면 H 비용이 낮은 노드를 우선
@@ -39,6 +38,6 @@ public class Node : IHeapItem<Node>
             compare = hCost.CompareTo(nodeToCompare.hCost);
         }
 
-        return -compare;
+        return -compare;    // 최대 힙 구현에 맞게 부호 반전
     }
 }
