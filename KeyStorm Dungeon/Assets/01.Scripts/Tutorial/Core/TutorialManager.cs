@@ -18,6 +18,7 @@ public class TutorialManager : MonoBehaviour
 
     [Header("참조 - 시스템")]
     [SerializeField] private PlayerController playerController;
+    Player player;
 
     [Header("설정")]
     [SerializeField] private string mainGameSceneName = "GameScene";
@@ -66,7 +67,7 @@ public class TutorialManager : MonoBehaviour
 
         if (playerController == null)
         {
-            Player player = FindObjectOfType<Player>();
+            player = FindObjectOfType<Player>();
             if (player != null)
             {
                 playerController = player.PlayerController;
@@ -132,6 +133,8 @@ public class TutorialManager : MonoBehaviour
 
         if (step.hasQuest && step.objectives.Count > 0)
         {
+            if (step.stepIndex == 15)
+                player.Inventory.AddBomb(1);
             isQuestActive = true;
             step.ResetObjectives();
             questUI.ShowQuest(step.questTitle, step.objectives);
@@ -206,8 +209,11 @@ public class TutorialManager : MonoBehaviour
 
             if (room.IsPlayerIn) return true;
 
-            float distance = Vector2.Distance(player.transform.position, room.transform.position);
-            if (distance <= 14f) return true;
+            if(targetType == RoomType.Treasure || targetType == RoomType.Shop)
+            {
+                float distance = Vector2.Distance(player.transform.position, room.transform.position);
+                if (distance <= 18f) return true;
+            }
         }
 
         return false;
