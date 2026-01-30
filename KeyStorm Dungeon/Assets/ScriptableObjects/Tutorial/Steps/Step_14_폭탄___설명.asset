@@ -13,11 +13,22 @@ MonoBehaviour:
   m_Name: "Step_14_\uD3ED\uD0C4___\uC124\uBA85"
   m_EditorClassIdentifier: 
   stepIndex: 15
-  stepName: "\uD3ED\uD0C4 - \uC124\uBA85"
+  stepName: "\uD3ED\uD0C4 - \uC0AC"
   waitForRoomEnter: 0
   targetRoomType: 0
   preDialogues:
   - text: "\uC800\uAE30 \uD3ED\uD0C4\uB3C4 \uC788\uB124."
+    typingSpeed: 0.03
+    waitForInput: 1
+    autoDelay: 1.5
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+  - text: "\uD560\uC544\uBC84\uC9C0\uAC00 \uD3ED\uD0C4\uC744 \uBD84\uBA85 \uCC59\uACA8\uC92C\uB358
+      \uAC83 \uAC19\uC740\uB370..."
+    typingSpeed: 0.03
+    waitForInput: 1
+    autoDelay: 1.5
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+  - text: "\uC5EC\uAE30\uC788\uB2E4!!"
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
@@ -34,7 +45,14 @@ MonoBehaviour:
     waitForInput: 1
     autoDelay: 1.5
     textColor: {r: 1, g: 0.7137255, b: 0.7137255, a: 1}
-  - text: "\uD3ED\uD0C4\uC744 \uAD6C\uB9E4\uD6C4 \uC0AC\uC6A9\uD574\uBCF4\uC790."
+  - text: "\uD3ED\uD0C4\uC744 \uB4E0 \uC0C1\uD0DC\uB85C \uACF5\uACA9\uC744 \uD558\uBA74
+      \uD574\uB2F9\uBC29\uD5A5\uC73C\uB85C \uD3ED\uD0C4\uC774 \uB098\uAC00\uAC8C
+      \uB429\uB2C8\uB2E4."
+    typingSpeed: 0.03
+    waitForInput: 1
+    autoDelay: 1.5
+    textColor: {r: 1, g: 0.7137255, b: 0.7137255, a: 1}
+  - text: "\uD3ED\uD0C4\uC744 \uC0AC\uC6A9\uD574\uBCF4\uC790!"
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
@@ -46,9 +64,30 @@ MonoBehaviour:
     type: 17
     targetCount: 1
     currentCount: 0
-  postDialogues: []
+  postDialogues:
+  - text: "\uD3ED\uD0C4\uC758 \uBC94\uC704 \uC548\uC5D0 \uC788\uC73C\uBA74 \uD50C\uB808\uC774\uC5B4\uB3C4
+      \uD53C\uD574\uB97C \uC785\uC2B5\uB2C8\uB2E4."
+    typingSpeed: 0.03
+    waitForInput: 0
+    autoDelay: 1.5
+    textColor: {r: 1, g: 0.7137255, b: 0.7137255, a: 0}
+  - text: "\uC0DD\uAC01\uBCF4\uB2E4 \uAC15\uB825\uD55C\uAC78?"
+    typingSpeed: 0.03
+    waitForInput: 0
+    autoDelay: 1.5
+    textColor: {r: 1, g: 1, b: 1, a: 0}
+  - text: "\uC798 \uC0AC\uC6A9 \uD574\uC57C\uACA0\uC5B4."
+    typingSpeed: 0.03
+    waitForInput: 0
+    autoDelay: 1.5
+    textColor: {r: 1, g: 1, b: 1, a: 0}
+  - text: "\uC774\uC81C \uC624\uB978\uCABD\uBC29\uC73C\uB85C \uC774\uB3D9\uD574\uBCF4\uC790."
+    typingSpeed: 0.03
+    waitForInput: 0
+    autoDelay: 1.5
+    textColor: {r: 1, g: 1, b: 0, a: 0}
   currentRoom: 4
-  openDoorsAfterQuest: 0
-  wallIndexToOpen: -1
+  openDoorsAfterQuest: 1
+  wallIndexToOpen: 3
   blockInputDuringDialogue: 1
   resetMoveTrackingOnStart: 0
