@@ -10,14 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3796b2a55b949144adae7e817f86f83, type: 3}
-  m_Name: "Step_14_\uD3ED\uD0C4___\uC124\uBA85"
+  m_Name: "Step_14_\uD3ED\uD0C4___\uC0AC\uC6A9"
   m_EditorClassIdentifier: 
   stepIndex: 15
-  stepName: "\uD3ED\uD0C4 - \uC124\uBA85"
+  stepName: "\uD3ED\uD0C4 - \uC0AC\uC6A9"
   waitForRoomEnter: 0
   targetRoomType: 0
   preDialogues:
   - text: "\uC800\uAE30 \uD3ED\uD0C4\uB3C4 \uC788\uB124."
+    typingSpeed: 0.03
+    waitForInput: 1
+    autoDelay: 1.5
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+  - text: "\uD560\uC544\uBC84\uC9C0\uAC00 \uCC59\uACA8 \uC8FC\uC2E0\uAC8C \uC788\uC744\uD150\uB370...."
+    typingSpeed: 0.03
+    waitForInput: 1
+    autoDelay: 1.5
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+  - text: "\uC5EC\uAE30\uC788\uB2E4!"
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
@@ -28,8 +38,14 @@ MonoBehaviour:
     waitForInput: 1
     autoDelay: 1.5
     textColor: {r: 1, g: 1, b: 1, a: 1}
-  - text: "Shift\uD0A4\uB97C \uD65C\uC6A9\uD574 \uD3ED\uD0C4\uC744 \uC0AC\uC6A9\uD560
-      \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+  - text: "Shift\uD0A4\uB97C \uD65C\uC6A9\uD574 \uD3ED\uD0C4\uC744 \uB4E4\uAC8C \uB429\uB2C8\uB2E4."
+    typingSpeed: 0.03
+    waitForInput: 1
+    autoDelay: 1.5
+    textColor: {r: 1, g: 0.7137255, b: 0.7137255, a: 1}
+  - text: "\uD3ED\uD0C4\uC744 \uB4E0 \uC0C1\uD0DC\uB85C \uACF5\uACA9\uC744 \uD558\uBA74
+      \uD574\uB2F9\uBC29\uD5A5\uC73C\uB85C \uD3ED\uD0C4\uC774 \uB098\uAC00\uAC8C
+      \uB429\uB2C8\uB2E4."
     typingSpeed: 0.03
     waitForInput: 1
     autoDelay: 1.5
