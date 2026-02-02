@@ -1,6 +1,6 @@
 # [KeyStorm Dungeon]
 <img width="832" height="470" alt="image" src="https://github.com/user-attachments/assets/a5ac79b0-d8ff-4b9e-a5bc-33276214f646" />
-**KeyStorm Dungeon** 은 독특한 전투 시스템을 가진 로그라이크 게임입니다.
+KeyStorm Dungeon 은 독특한 전투 시스템을 가진 로그라이크 게임입니다.
 플레이어는 던전에 진입해 끊임없이 몰려오는 적들과 맞서 싸우며,
 키 조합을 활용한 공격과 아이템 빌드를 통해 매 판마다 다른 전략을 만들어갑니다.
 도전할수록 새롭게 열리는 플레이 경험이
@@ -15,6 +15,7 @@
 6. [팀원 구성](#팀원-구성)
 7. [기간 별 목표 및 결과](#기간-별-목표-및-결과)
 
+
 ## [게임 소개]
 KeyStorm Dungeon
 <img width="1200" height="900" alt="image" src="https://github.com/user-attachments/assets/5f335a91-e62f-475d-9116-969ee00d1c56" />
@@ -24,6 +25,7 @@ KeyStorm Dungeon
 
 - **장르** : 로그라이트, 액션, 어드벤처, 탑다운 슈팅
 - **플랫폼** : PC
+
 
 ### 조작
 - **UI 조작**: 마우스 좌클릭
@@ -48,6 +50,7 @@ KeyStorm Dungeon
 <img width="830" height="460" alt="image" src="https://github.com/user-attachments/assets/6b450762-c924-4203-93ca-3cb81bbe5ead" />
 <img width="828" height="459" alt="image" src="https://github.com/user-attachments/assets/a04fa7a7-2c3a-4396-ac35-79171409b0a0" />
 
+
 ## [주요기능]
 
 - 기능 1
@@ -63,8 +66,10 @@ KeyStorm Dungeon
 - 기능 6
     - 트리 기반 랜덤 무방향 그래프 사용 - 스테이지 랜덤 생성
 
+
 ## [개발기간]
 - 총 60 일   { 2025.12.05(금) ~ 2026.02.02(월) }
+
 
 ## [기술스택]
 
@@ -72,8 +77,10 @@ KeyStorm Dungeon
 |--|--|--|--|--|
 |[![My Skills](https://skillicons.dev/icons?i=cs&perline=1)](https://skillicons.dev)|[![My Skills](https://skillicons.dev/icons?i=unity&perline=1)](https://skillicons.dev)|[![My Skills](https://skillicons.dev/icons?i=git,github&perline=2)](https://skillicons.dev)|[![My Skills](https://skillicons.dev/icons?i=visualstudio&perline=1)](https://skillicons.dev)|[![My Skills](https://skillicons.dev/icons?i=notion,figma&perline=2)](https://skillicons.dev)|
 
+
 ## [클라이언트 구조]
 <img width="854" height="927" alt="image" src="https://github.com/user-attachments/assets/a7670dd0-070d-4d0b-b135-42d032db6635" />
+
 
 
 ## [팀원 구성]
@@ -81,6 +88,7 @@ KeyStorm Dungeon
 |:---:|:---:|:---:|:---:|:---:|
 |<img src="https://avatars.githubusercontent.com/u/208426399?v=4" width="100"/>|<img src="https://avatars.githubusercontent.com/u/151013695?v=4" width="100"/>|<img src="https://avatars.githubusercontent.com/u/233680526?v=4" width="100"/>|<img src="https://avatars.githubusercontent.com/u/101345563?v=4" width="100">|<img src="https://avatars.githubusercontent.com/u/127909764?v=4" width="100"/>|
 |[이승민](https://github.com/Seungmin0514)|[정유찬](https://github.com/youchan97)|[김문경](https://github.com/moon7441-dev)|[김하늘](https://github.com/Hagill)|[황준영](https://github.com/PeacefulKim)|
+
 
 ## [기간 별 목표 및 결과]
 
