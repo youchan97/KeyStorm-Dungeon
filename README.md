@@ -1,19 +1,19 @@
-# KeyStorm Dungeon
+# [KeyStorm Dungeon]
 <img width="832" height="470" alt="image" src="https://github.com/user-attachments/assets/a5ac79b0-d8ff-4b9e-a5bc-33276214f646" />
-**KeyStorm Dungeon**은
-독특한 전투 시스템을 가진 로그라이크 게임입니다.
+**KeyStorm Dungeon** 은 독특한 전투 시스템을 가진 로그라이크 게임입니다.
 플레이어는 던전에 진입해 끊임없이 몰려오는 적들과 맞서 싸우며,
 키 조합을 활용한 공격과 아이템 빌드를 통해 매 판마다 다른 전략을 만들어갑니다.
 도전할수록 새롭게 열리는 플레이 경험이
 짧지만 강렬한 몰입을 선사합니다.
 
-## 목차
+## [목차]
 1. [게임 소개](#게임-소개)
 2. [주요기능](#주요기능)
 3. [개발기간](#개발기간)
 4. [기술스택](#기술스택)
 5. [클라이언트 구조](#클라이언트-구조)
 6. [팀원 구성](#팀원-구성)
+7. [기간 별 목표 및 결과](#기간-별-목표-및-결과)
 
 ## [게임 소개]
 KeyStorm Dungeon
@@ -39,14 +39,16 @@ KeyStorm Dungeon
 
 #### 튜토리얼
 <img width="828" height="462" alt="image" src="https://github.com/user-attachments/assets/d5536c30-88ad-4076-b870-e5f859ce8737" />
+
 #### 아이템
 <img width="897" height="460" alt="image" src="https://github.com/user-attachments/assets/0a401696-3f3a-490f-a1bf-344062e9bdef" />
+
 #### 보스
 <img width="832" height="465" alt="image" src="https://github.com/user-attachments/assets/2e95fe5d-0e4f-4195-8c0f-335d27531fe5" />
 <img width="830" height="460" alt="image" src="https://github.com/user-attachments/assets/6b450762-c924-4203-93ca-3cb81bbe5ead" />
 <img width="828" height="459" alt="image" src="https://github.com/user-attachments/assets/a04fa7a7-2c3a-4396-ac35-79171409b0a0" />
 
-## 주요기능
+## [주요기능]
 
 - 기능 1
     - ScriptableObject 기반 튜토리얼 시스템
@@ -61,14 +63,14 @@ KeyStorm Dungeon
 - 기능 6
     - 트리 기반 랜덤 무방향 그래프 사용 - 스테이지 랜덤 생성
 
-## 개발기간
+## [개발기간]
 - 총 60 일   { 2025.12.05(금) ~ 2026.02.02(월) }
 
 ## [기술스택]
 
 |Language|Engine|Version Control|IDE|Collaboration|
 |--|--|--|--|--|
-|[![My Skills](https://skillicons.dev/icons?i=cs&perline=1)](https://skillicons.dev)|[![My Skills](https://skillicons.dev/icons?i=unity&perline=1)](https://skillicons.dev)|[![My Skills](https://skillicons.dev/icons?i=git,github&perline=2)](https://skillicons.dev)|[![My Skills](https://skillicons.dev/icons?i=visualstudio&perline=1)](https://skillicons.dev)|[![My Skills](https://skillicons.dev/icons?i=notion,figma&perline=1)](https://skillicons.dev)|
+|[![My Skills](https://skillicons.dev/icons?i=cs&perline=1)](https://skillicons.dev)|[![My Skills](https://skillicons.dev/icons?i=unity&perline=1)](https://skillicons.dev)|[![My Skills](https://skillicons.dev/icons?i=git,github&perline=2)](https://skillicons.dev)|[![My Skills](https://skillicons.dev/icons?i=visualstudio&perline=1)](https://skillicons.dev)|[![My Skills](https://skillicons.dev/icons?i=notion,figma&perline=2)](https://skillicons.dev)|
 
 ## [클라이언트 구조]
 <img width="854" height="927" alt="image" src="https://github.com/user-attachments/assets/a7670dd0-070d-4d0b-b135-42d032db6635" />
@@ -79,3 +81,155 @@ KeyStorm Dungeon
 |:---:|:---:|:---:|:---:|:---:|
 |<img src="https://avatars.githubusercontent.com/u/208426399?v=4" width="100"/>|<img src="https://avatars.githubusercontent.com/u/151013695?v=4" width="100"/>|<img src="https://avatars.githubusercontent.com/u/233680526?v=4" width="100"/>|<img src="https://avatars.githubusercontent.com/u/101345563?v=4" width="100">|<img src="https://avatars.githubusercontent.com/u/127909764?v=4" width="100"/>|
 |[이승민](https://github.com/Seungmin0514)|[정유찬](https://github.com/youchan97)|[김문경](https://github.com/moon7441-dev)|[김하늘](https://github.com/Hagill)|[황준영](https://github.com/PeacefulKim)|
+
+## [기간 별 목표 및 결과]
+
+### 프로토타입 (12/1~12/5)
+
+#### **목표**
+
+**단순 구현에 그치지 않고,**
+
+**플레이 경험 관점에서 ‘재미가 실제로 성립하는가’를 검증하는 것**
+
+#### ⚔️ 공격 방식의 재미 검증
+
+- 현재 설계된 공격 방식이 플레이어에게 **직관적이면서도 재미있는 경험**으로 전달되는지 확인
+- 반복 플레이 시 공격 방식의 재미가 **어느 시점까지 유지되는지** 검증
+- 조작 피로도와 타격감 사이의 균형을 통해 전투의 몰입 지속 가능성 판단
+
+#### 🧩 아이템 재미 검증
+
+- 아이템 획득이 단순한 수치 상승이 아닌 **공격 방식의 확장 및 해방감**으로 이어지는지 검증
+- 리스크를 감수하는 대신 강력한 효과를 제공하는 아이템이 실제로 **‘재미있는 선택’으로 인식되는지** 확인
+- 플레이어가 재미를 체감하기 위해 **아이템을 어느 정도 획득해야 하는지**에 대한 기준 탐색
+
+#### 🧠 게임 구조 방향성 고민
+
+- 플레이 흐름을 중심으로
+    - 자동 성장 중심의 **뱀서류 구조**
+    - 전투와 선택에 집중하는 **스테이지 기반 구조** 중 어떤 방식이 게임의 컨셉과 더 잘 맞는지 비교·분석
+
+- 각 구조가 전투 재미, 아이템 체감, 플레이 피로도에 어떤 영향을 미치는지 테스트를 통해 판단
+
+#### 🔍 검증을 통한 기대 결과
+
+- 단순히 “가능한 구조”가 아닌 **우리 게임에 가장 잘 맞는 재미의 형태 도출**
+- 이후 방향성 확정을 위한 명확한 근거 확보 및 개선 포인트 도출
+
+#### 결과
+
+| 목표 | 결론 |
+| --- | --- |
+| 공격 방식의 재미 검증 | **충분히 재미로 다가올 수 있다.** 
+다만 단순 공격 방식 그 자체의 재미만으로는 재미를 오래 이끌어 갈 수 없을 것이다. 그렇기에 캐릭터의 성장으로 재미를 이어가야 한다. |
+| 아이템의 재미 검증 | 아이템으로 인한 해방감은 **일부 검증**하였음. 
+공격 방식을 완화하는 아이템이 플레이어에게 **해방감**을 주고 재미로 다가 올 수 있었음. 다만 프로토 타입의 특성상 해방감의 극한인 게임의 후반부까지 유추하긴 어려움이 있었음.  |
+| 게임구조 고민 | **스테이지 플레이방식**으로 결정
+스테이지를 플레이하는 방식이 조금 더 공격 방식의 재미를 강화할 수 있는 방식이라고 판단함. |
+
+충분히 앞으로 프로젝트를 진행할만한 재미를 가지고 있다고 판단
+
+### **중간 점검 (12/5~1/2)**
+
+#### **목표**
+
+**우리 게임이 어떻게 진행되고 어떠한 컨셉을 가지고 있는지 보여줄 수 있을 정도의 구현**
+
+#### 🧙 캐릭터 시스템
+
+- 기본 이동 및 공격 시스템 구현
+- 전투 흐름을 고려한 조작감 설계
+- 스탯형 아이템 획득 시 → 캐릭터 능력치(공격력, 체력 등) 실시간 반영
+- 
+#### 👾 몬스터 & 보스
+
+- 몬스터 및 보스 공통 구조 설계 및 구현
+- 숲 스테이지 전용 몬스터 **총 9종 구현**
+- 일반 몬스터와 보스의 역할 분리로 전투 난이도 및 긴장감 단계적 구성
+
+#### 🗺️ 스테이지 & 맵
+
+- 랜덤 스테이지 생성 시스템 구현
+- 방 단위 구조 설계 (이동·전투 흐름 고려)
+- 게임 전체 컨셉에 맞는 타일 제작
+- 일반방 / 특수방 구분 구현으로 탐험의 변주와 플레이 동기 부여
+
+#### 🖥️ UI 시스템
+
+- 게임 진입을 위한 **시작 UI 구현**
+- 플레이 중 필요한 정보 제공을 위한 **인게임 UI 구성 완료**
+- 게임 흐름을 방해하지 않는 최소한의 UI 설계
+
+#### 🧩 아이템 시스템
+
+- 확장 가능한 아이템 구조 설계
+- 스탯형 아이템 **15종 구현**
+- 전략적 선택을 유도하는 액티브 아이템 **3종 구현**
+
+#### ✅ 종합 결과
+
+- 게임의 **핵심 루프(탐험 → 전투 → 성장)** 가 명확히 드러나는 플레이 가능 상태 달성
+- 컨셉, 시스템, 콘텐츠가 유기적으로 연결된 **MVP 수준의 구현 완료**
+- 이후 밸런싱 및 콘텐츠 확장이 가능한 구조 확보
+
+기본적인 구조 성립 + 게임의 콘셉트,진행을 보여줄 정도의 구현 완료
+
+### 최종 (1/2~2/2)
+
+#### **목표**
+
+**게임의 퀼리티 고도화**
+
+**유저테스트를 통해 최대한 많은 피드백 수집 및 개선**
+
+#### 🛠️ 게임 퀄리티 고도화
+
+- 플레이 중 발견되는 각종 오류 수정
+- 콘텐츠 보강 및 신규 요소 추가
+- 플레이 흐름을 개선하기 위한 편의 기능 및 추가 시스템 도입
+- 전반적인 완성도와 몰입감을 높이기 위한 지속적인 폴리싱 진행
+
+#### 👥 유저 테스트 기반 개선
+
+- 최대한 많은 유저 테스트를 진행하여 다양한 플레이 성향과 피드백 수집
+- 재미 요소, 피로도, 이해도에 대한 실제 플레이 경험 중심 검증
+- 수집된 피드백을 기반으로 설계 의도와 실제 체감의 차이를 보완
+
+#### 🎯 지향점
+
+- 개발자의 의도가 아닌 **플레이어 경험을 중심으로 완성도를 끌어올린 게임**
+- 명확한 방향성과 근거를 갖춘 최종 구조 확정 및 콘텐츠 확장 기반 마련
+
+### 최종 결과
+
+#### 📊 유저 테스트 진행 결과
+
+- **1차 유저 테스트 진행 (4일간)**
+- 설문 참여자 **총 31명**
+- 누적 플레이 횟수 **200회 이상**
+- 정량적 데이터와 함께 재미, 피로도, 이해도에 대한 정성적 피드백 수집
+
+#### 🧠 콘텐츠 확장 및 개선
+
+- 보스 몬스터 **4종 추가**
+- 신규 스테이지 **2종 추가**
+- 아이템 추가를 통해 전투 선택지 및 성장 다양성 강화
+
+#### 🖥️ UI 및 편의 기능 개선
+
+- 인벤토리 UI 추가
+- 캐릭터 스탯 확인 UI 추가
+- 플레이 중 정보 접근성 개선으로 게임 이해도 및 몰입도 향상
+  
+#### ⚖️ 밸런스 조정
+
+- 몬스터 밸런스 조정
+- 아이템 밸런스 조정
+- 유저 테스트 피드백을 기반으로 난이도 곡선 및 성장 체감 개선
+
+#### 🛠️ 안정성 및 완성도 개선
+
+- 플레이 중 발견된 오류 수정
+- 전반적인 게임 안정성 확보
+- 반복 플레이 시 불편 요소 지속 제거
