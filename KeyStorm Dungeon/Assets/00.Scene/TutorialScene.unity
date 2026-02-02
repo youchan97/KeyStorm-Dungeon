@@ -4655,11 +4655,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43a1f36a72cf78d4786c526d49eae1d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tier0Weight: 0
-  tier1Weight: 0
-  tier2Weight: 2
+  tier0Weight: 3
+  tier1Weight: 3
+  tier2Weight: 3
   tier3Weight: 2
-  tier4Weight: 2
+  tier4Weight: 1
 --- !u!4 &2078733432
 Transform:
   m_ObjectHideFlags: 0
