@@ -111,7 +111,7 @@ public class GameManager : SingletonManager<GameManager>
             Time.timeScale = 1f;
         isPaused = false;
         isGameCleared = false; 
-        currentStage = 1;
+        currentStage = DefaultIntOne;
         InitializeRunData();
         ItemPoolManager.Instance.ResetItemPool();
         audioManager.AllStopSfxLoop();
@@ -124,7 +124,7 @@ public class GameManager : SingletonManager<GameManager>
         ItemPoolManager.Instance.ResetItemPool();
         isPaused = false;
         isGameCleared = false;
-        currentStage = 1; 
+        currentStage = DefaultIntOne; 
 
 
         stageDataManager.SelectDifficulty(stageDataManager.CurrentDifficulty);

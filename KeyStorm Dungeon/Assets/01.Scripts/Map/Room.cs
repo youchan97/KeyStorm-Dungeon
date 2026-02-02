@@ -84,7 +84,7 @@ public class Room : MonoBehaviour
         TutorialPlayerHook hook = FindObjectOfType<TutorialPlayerHook>();
         if (hook != null)
         {
-            if (roomType == RoomType.Normal || roomType == RoomType.Boss || canOpenDoor == false)
+            if ((roomType == RoomType.Normal || roomType == RoomType.Boss) && canOpenDoor == false)
             {
                 CloseDoors();
 
@@ -179,6 +179,17 @@ public class Room : MonoBehaviour
             doors[i].ClearDoor();
         if (player != null && roomCollider != null)
             player.MagnetItems(roomCollider.bounds);
+
+        TutorialPlayerHook hook = FindObjectOfType<TutorialPlayerHook>();
+        if (hook != null)
+        {
+            if (roomType == RoomType.Boss)
+            {
+                hook.ReportBossKill();
+            }
+
+            hook.ReportEnemyKill();
+        }
     }
 
     public void StageClear()

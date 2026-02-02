@@ -32,7 +32,7 @@ MonoBehaviour:
   objectives:
   - description: "\uBAAC\uC2A4\uD130 \uCC98\uCE58"
     type: 10
-    targetCount: 3
+    targetCount: 1
     currentCount: 0
   postDialogues:
   - text: "\uD734, \uCC98\uB9AC\uD588\uAD70."
