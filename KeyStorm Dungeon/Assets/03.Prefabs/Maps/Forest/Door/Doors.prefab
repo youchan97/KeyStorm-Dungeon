@@ -537,7 +537,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -4, y: 0}
+  m_Offset: {x: -2.5, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -548,7 +548,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8, y: 5}
+  m_Size: {x: 5, y: 5}
   m_EdgeRadius: 0
 --- !u!114 &200794411373061315
 MonoBehaviour:
@@ -568,6 +568,7 @@ MonoBehaviour:
   wallSprite: {fileID: 3612990219225395633}
   anim: {fileID: 8090361879743135758}
   canUse: 0
+  isClosed: 1
 --- !u!95 &8090361879743135758
 Animator:
   serializedVersion: 5
@@ -657,7 +658,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 4}
+  m_Offset: {x: 0, y: 3}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -668,7 +669,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5, y: 8}
+  m_Size: {x: 5, y: 4}
   m_EdgeRadius: 0
 --- !u!114 &385363134729178273
 MonoBehaviour:
@@ -688,6 +689,7 @@ MonoBehaviour:
   wallSprite: {fileID: 9020759045823460012}
   anim: {fileID: 2599958335994474976}
   canUse: 0
+  isClosed: 1
 --- !u!95 &2599958335994474976
 Animator:
   serializedVersion: 5
@@ -777,7 +779,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -4}
+  m_Offset: {x: 0, y: -3}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -788,7 +790,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5, y: 8}
+  m_Size: {x: 5, y: 4}
   m_EdgeRadius: 0
 --- !u!114 &1672636125268958255
 MonoBehaviour:
@@ -808,6 +810,7 @@ MonoBehaviour:
   wallSprite: {fileID: 8933823969093890129}
   anim: {fileID: 792861219243671129}
   canUse: 0
+  isClosed: 1
 --- !u!95 &792861219243671129
 Animator:
   serializedVersion: 5
@@ -897,7 +900,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 4, y: 0}
+  m_Offset: {x: 2.5, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -908,7 +911,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8, y: 5}
+  m_Size: {x: 5, y: 5}
   m_EdgeRadius: 0
 --- !u!114 &1570302527309799846
 MonoBehaviour:
@@ -928,6 +931,7 @@ MonoBehaviour:
   wallSprite: {fileID: 2360396887621698814}
   anim: {fileID: 8642553878557591659}
   canUse: 0
+  isClosed: 1
 --- !u!95 &8642553878557591659
 Animator:
   serializedVersion: 5
